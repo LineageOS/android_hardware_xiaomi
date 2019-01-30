@@ -43,5 +43,9 @@ cc_binary {
         "libperfmgr",
         "vendor.lineage.power@1.0",
     ],
+  	header_libs: [
+        "libhardware_headers",
+        "generated_kernel_headers",
+    ],
     proprietary: true,
 }
