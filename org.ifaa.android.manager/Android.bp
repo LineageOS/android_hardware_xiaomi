@@ -21,4 +21,7 @@ java_library {
         "src/**/*.java",
         "src/**/I*.aidl",
     ],
+    aidl: {
+        local_include_dirs: ["src"],
+    },
 }
