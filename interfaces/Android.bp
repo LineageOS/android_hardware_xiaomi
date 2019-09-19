@@ -1,4 +1,9 @@
 hidl_package_root {
+    name: "com.fingerprints",
+    path: "hardware/xiaomi/interfaces/fingerprints",
+}
+
+hidl_package_root {
     name: "vendor.goodix",
     path: "hardware/xiaomi/interfaces/goodix",
 }
