@@ -26,7 +26,7 @@
 #include <hidl/Status.h>
 #include <perfmgr/HintManager.h>
 
-#include "InteractionHandler.h"
+#include "disp-power/InteractionHandler.h"
 
 #include <vendor/lineage/power/1.0/ILineagePower.h>
 
