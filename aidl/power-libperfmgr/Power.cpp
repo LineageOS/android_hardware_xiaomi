@@ -111,9 +111,11 @@ ndk::ScopedAStatus Power::setMode(Mode type, bool enabled) {
             if (enabled) {
                 // Device in battery saver mode, enable display low power mode
                 set_display_lpm(true);
+                mHintManager->DoHint(toString(type));
             } else {
                 // Device exiting battery saver mode, disable display low power mode
                 set_display_lpm(false);
+                mHintManager->EndHint(toString(type));
             }
             break;
         case Mode::SUSTAINED_PERFORMANCE:
@@ -206,13 +208,25 @@ ndk::ScopedAStatus Power::setBoost(Boost type, int32_t durationMs) {
     ATRACE_INT(toString(type).c_str(), durationMs);
     switch (type) {
         case Boost::INTERACTION:
+            if (mVRModeOn || mSustainedPerfModeOn) {
+                break;
+            }
+            mInteractionHandler->Acquire(durationMs);
+            break;
         case Boost::DISPLAY_UPDATE_IMMINENT:
+            [[fallthrough]];
         case Boost::ML_ACC:
+            [[fallthrough]];
         case Boost::AUDIO_LAUNCH:
+            [[fallthrough]];
         case Boost::CAMERA_LAUNCH:
+            [[fallthrough]];
         case Boost::CAMERA_SHOT:
             [[fallthrough]];
         default:
+            if (mVRModeOn || mSustainedPerfModeOn) {
+                break;
+            }
             if (durationMs > 0) {
                 mHintManager->DoHint(toString(type), std::chrono::milliseconds(durationMs));
             } else if (durationMs == 0) {
