@@ -195,13 +195,25 @@ ndk::ScopedAStatus Power::setBoost(Boost type, int32_t durationMs) {
     ATRACE_INT(toString(type).c_str(), durationMs);
     switch (type) {
         case Boost::INTERACTION:
+            if (mVRModeOn || mSustainedPerfModeOn) {
+                break;
+            }
+            mInteractionHandler->Acquire(durationMs);
+            break;
         case Boost::DISPLAY_UPDATE_IMMINENT:
+            [[fallthrough]];
         case Boost::ML_ACC:
+            [[fallthrough]];
         case Boost::AUDIO_LAUNCH:
+            [[fallthrough]];
         case Boost::CAMERA_LAUNCH:
+            [[fallthrough]];
         case Boost::CAMERA_SHOT:
             [[fallthrough]];
         default:
+            if (mVRModeOn || mSustainedPerfModeOn) {
+                break;
+            }
             if (durationMs > 0) {
                 mHintManager->DoHint(toString(type), std::chrono::milliseconds(durationMs));
             } else if (durationMs == 0) {
