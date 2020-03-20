@@ -20,48 +20,38 @@
 #include <memory>
 #include <thread>
 
-#include <aidl/android/hardware/power/BnPower.h>
+#include <aidl/android/hardware/pixel/extension/power/BnPowerExt.h>
 #include <perfmgr/HintManager.h>
-
-#include "InteractionHandler.h"
 
 namespace aidl {
 namespace android {
 namespace hardware {
+namespace pixel {
+namespace extension {
 namespace power {
 namespace impl {
-namespace pixel {
 
-using ::InteractionHandler;
 using ::android::perfmgr::HintManager;
 
-class Power : public BnPower {
+class PowerExt : public BnPowerExt {
   public:
-    Power(std::shared_ptr<HintManager> hm)
-        : mHintManager(hm),
-          mInteractionHandler(nullptr),
-          mVRModeOn(false),
-          mSustainedPerfModeOn(false),
-          mReady(false) {}
+    PowerExt(std::shared_ptr<HintManager> hm) : mHintManager(hm), mReady(false) {}
 
-    ndk::ScopedAStatus setMode(Mode type, bool enabled) override;
-    ndk::ScopedAStatus isModeSupported(Mode type, bool *_aidl_return) override;
-    ndk::ScopedAStatus setBoost(Boost type, int32_t durationMs) override;
-    ndk::ScopedAStatus isBoostSupported(Boost type, bool *_aidl_return) override;
-    binder_status_t dump(int fd, const char **args, uint32_t numArgs) override;
+    ndk::ScopedAStatus setMode(const std::string &mode, bool enabled) override;
+    ndk::ScopedAStatus isModeSupported(const std::string &mode, bool *_aidl_return) override;
+    ndk::ScopedAStatus setBoost(const std::string &boost, int32_t durationMs) override;
+    ndk::ScopedAStatus isBoostSupported(const std::string &boost, bool *_aidl_return) override;
     void setReady();
 
   private:
     std::shared_ptr<HintManager> mHintManager;
-    std::unique_ptr<InteractionHandler> mInteractionHandler;
-    std::atomic<bool> mVRModeOn;
-    std::atomic<bool> mSustainedPerfModeOn;
     std::atomic<bool> mReady;
 };
 
-}  // namespace pixel
 }  // namespace impl
 }  // namespace power
+}  // namespace extension
+}  // namespace pixel
 }  // namespace hardware
 }  // namespace android
 }  // namespace aidl

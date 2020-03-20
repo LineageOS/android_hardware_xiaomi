@@ -28,12 +28,14 @@ LOCAL_SHARED_LIBRARIES := \
     libdl \
     liblog \
     libperfmgr \
-    libutils
+    libutils \
+    pixel-power-ext-ndk_platform
 
 LOCAL_SRC_FILES := \
     service.cpp \
     InteractionHandler.cpp \
-    Power.cpp
+    Power.cpp \
+    PowerExt.cpp
 
 LOCAL_CFLAGS := -Wno-unused-parameter -Wno-unused-variable
 

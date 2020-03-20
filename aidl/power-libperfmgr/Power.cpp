@@ -39,63 +39,45 @@ namespace pixel {
 
 constexpr char kPowerHalStateProp[] = "vendor.powerhal.state";
 constexpr char kPowerHalAudioProp[] = "vendor.powerhal.audio";
-constexpr char kPowerHalInitProp[] = "vendor.powerhal.init";
 constexpr char kPowerHalRenderingProp[] = "vendor.powerhal.rendering";
-constexpr char kPowerHalConfigPath[] = "/vendor/etc/powerhint.json";
 
-Power::Power()
-    : mHintManager(nullptr),
-      mInteractionHandler(nullptr),
-      mVRModeOn(false),
-      mSustainedPerfModeOn(false),
-      mReady(false) {
-    // Parse config but do not start the looper
-    mHintManager = HintManager::GetFromJSON(kPowerHalConfigPath, false);
-    if (!mHintManager) {
-        LOG(FATAL) << "Invalid config: " << kPowerHalConfigPath;
+void Power::setReady() {
+    mInteractionHandler = std::make_unique<InteractionHandler>(mHintManager);
+    mInteractionHandler->Init();
+
+    std::string state = ::android::base::GetProperty(kPowerHalStateProp, "");
+    if (state == "SUSTAINED_PERFORMANCE") {
+        ALOGI("Initialize with SUSTAINED_PERFORMANCE on");
+        mHintManager->DoHint("SUSTAINED_PERFORMANCE");
+        mSustainedPerfModeOn = true;
+    } else if (state == "VR") {
+        ALOGI("Initialize with VR on");
+        mHintManager->DoHint(state);
+        mVRModeOn = true;
+    } else if (state == "VR_SUSTAINED_PERFORMANCE") {
+        ALOGI("Initialize with SUSTAINED_PERFORMANCE and VR on");
+        mHintManager->DoHint("VR_SUSTAINED_PERFORMANCE");
+        mSustainedPerfModeOn = true;
+        mVRModeOn = true;
+    } else {
+        ALOGI("Initialize PowerHAL");
     }
 
-    std::thread initThread([this]() {
-        ::android::base::WaitForProperty(kPowerHalInitProp, "1");
-        mHintManager->Start();
-        mInteractionHandler = std::make_unique<InteractionHandler>(mHintManager);
-        mInteractionHandler->Init();
+    state = ::android::base::GetProperty(kPowerHalAudioProp, "");
+    if (state == "AUDIO_STREAMING_LOW_LATENCY") {
+        ALOGI("Initialize with AUDIO_LOW_LATENCY on");
+        mHintManager->DoHint(state);
+    }
 
-        std::string state = ::android::base::GetProperty(kPowerHalStateProp, "");
-        if (state == "SUSTAINED_PERFORMANCE") {
-            ALOGI("Initialize with SUSTAINED_PERFORMANCE on");
-            mHintManager->DoHint("SUSTAINED_PERFORMANCE");
-            mSustainedPerfModeOn = true;
-        } else if (state == "VR") {
-            ALOGI("Initialize with VR on");
-            mHintManager->DoHint(state);
-            mVRModeOn = true;
-        } else if (state == "VR_SUSTAINED_PERFORMANCE") {
-            ALOGI("Initialize with SUSTAINED_PERFORMANCE and VR on");
-            mHintManager->DoHint("VR_SUSTAINED_PERFORMANCE");
-            mSustainedPerfModeOn = true;
-            mVRModeOn = true;
-        } else {
-            ALOGI("Initialize PowerHAL");
-        }
+    state = ::android::base::GetProperty(kPowerHalRenderingProp, "");
+    if (state == "EXPENSIVE_RENDERING") {
+        ALOGI("Initialize with EXPENSIVE_RENDERING on");
+        mHintManager->DoHint("EXPENSIVE_RENDERING");
+    }
 
-        state = ::android::base::GetProperty(kPowerHalAudioProp, "");
-        if (state == "AUDIO_STREAMING_LOW_LATENCY") {
-            ALOGI("Initialize with AUDIO_LOW_LATENCY on");
-            mHintManager->DoHint(state);
-        }
-
-        state = ::android::base::GetProperty(kPowerHalRenderingProp, "");
-        if (state == "EXPENSIVE_RENDERING") {
-            ALOGI("Initialize with EXPENSIVE_RENDERING on");
-            mHintManager->DoHint("EXPENSIVE_RENDERING");
-        }
-
-        // Now start to take powerhint
-        mReady.store(true);
-        ALOGI("PowerHAL ready to process hints");
-    });
-    initThread.detach();
+    // Now start to take powerhint
+    mReady.store(true);
+    ALOGI("PowerHAL ready to process hints");
 }
 
 ndk::ScopedAStatus Power::setMode(Mode type, bool enabled) {
@@ -229,7 +211,7 @@ ndk::ScopedAStatus Power::setBoost(Boost type, int32_t durationMs) {
 
 ndk::ScopedAStatus Power::isBoostSupported(Boost type, bool *_aidl_return) {
     bool supported = mHintManager->IsHintSupported(toString(type));
-    LOG(INFO) << "Power mode " << toString(type) << " isBoostSupported: " << supported;
+    LOG(INFO) << "Power boost " << toString(type) << " isBoostSupported: " << supported;
     *_aidl_return = supported;
     return ndk::ScopedAStatus::ok();
 }
