@@ -16,23 +16,57 @@
 
 #define LOG_TAG "android.hardware.power-service.xiaomi-libperfmgr"
 
-#include "Power.h"
+#include <thread>
 
 #include <android-base/logging.h>
+#include <android-base/properties.h>
 #include <android/binder_manager.h>
 #include <android/binder_process.h>
 
+#include "Power.h"
+#include "PowerExt.h"
+
+using aidl::android::hardware::pixel::extension::power::impl::PowerExt;
 using aidl::android::hardware::power::impl::pixel::Power;
+using ::android::perfmgr::HintManager;
+
+constexpr char kPowerHalConfigPath[] = "/vendor/etc/powerhint.json";
+constexpr char kPowerHalInitProp[] = "vendor.powerhal.init";
 
 int main() {
     LOG(INFO) << "Xiaomi Power HAL AIDL Service is starting.";
+
+    // Parse config but do not start the looper
+    std::shared_ptr<HintManager> hm = HintManager::GetFromJSON(kPowerHalConfigPath, false);
+    if (!hm) {
+        LOG(FATAL) << "Invalid config: " << kPowerHalConfigPath;
+    }
+
+    // single thread
     ABinderProcess_setThreadPoolMaxThreadCount(0);
-    std::shared_ptr<Power> pw = ndk::SharedRefBase::make<Power>();
+
+    // power hal core service
+    std::shared_ptr<Power> pw = ndk::SharedRefBase::make<Power>(hm);
+    ndk::SpAIBinder pwBinder = pw->asBinder();
+
+    // making the extension service
+    std::shared_ptr<PowerExt> pwExt = ndk::SharedRefBase::make<PowerExt>(hm);
+
+    // need to attach the extension to the same binder we will be registering
+    CHECK(STATUS_OK == AIBinder_setExtension(pwBinder.get(), pwExt->asBinder().get()));
 
     const std::string instance = std::string() + Power::descriptor + "/default";
     binder_status_t status = AServiceManager_addService(pw->asBinder().get(), instance.c_str());
     CHECK(status == STATUS_OK);
-    LOG(INFO) << "Xiaomi Power HAL AIDL Service is started.";
+    LOG(INFO) << "Xiaomi Power HAL AIDL Service with Extension is started.";
+
+    std::thread initThread([&]() {
+        ::android::base::WaitForProperty(kPowerHalInitProp, "1");
+        hm->Start();
+        pw->setReady();
+        pwExt->setReady();
+    });
+    initThread.detach();
 
     ABinderProcess_joinThreadPool();
     LOG(ERROR) << "Xiaomi Power HAL AIDL Service died.";
