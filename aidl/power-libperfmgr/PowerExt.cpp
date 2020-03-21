@@ -38,16 +38,7 @@ namespace extension {
 namespace power {
 namespace impl {
 
-void PowerExt::setReady() {
-    // Now start to take powerhint
-    mReady.store(true);
-    ALOGI("PowerHAL extension ready to process hints");
-}
-
 ndk::ScopedAStatus PowerExt::setMode(const std::string &mode, bool enabled) {
-    if (!mReady) {
-        return ndk::ScopedAStatus::ok();
-    }
     LOG(DEBUG) << "PowerExt setMode: " << mode << " to: " << enabled;
     ATRACE_INT(mode.c_str(), enabled);
 
@@ -68,9 +59,6 @@ ndk::ScopedAStatus PowerExt::isModeSupported(const std::string &mode, bool *_aid
 }
 
 ndk::ScopedAStatus PowerExt::setBoost(const std::string &boost, int32_t durationMs) {
-    if (!mReady) {
-        return ndk::ScopedAStatus::ok();
-    }
     LOG(DEBUG) << "PowerExt setBoost: " << boost << " duration: " << durationMs;
     ATRACE_INT(boost.c_str(), durationMs);
 
