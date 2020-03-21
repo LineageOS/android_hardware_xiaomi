@@ -34,7 +34,7 @@ constexpr char kPowerHalConfigPath[] = "/vendor/etc/powerhint.json";
 constexpr char kPowerHalInitProp[] = "vendor.powerhal.init";
 
 int main() {
-    LOG(INFO) << "Power HAL AIDL Service for Pixel is starting.";
+    LOG(INFO) << "Pixel Power HAL AIDL Service with Extension is starting.";
 
     // Parse config but do not start the looper
     std::shared_ptr<HintManager> hm = HintManager::GetFromJSON(kPowerHalConfigPath, false);
@@ -45,14 +45,14 @@ int main() {
     // single thread
     ABinderProcess_setThreadPoolMaxThreadCount(0);
 
-    // power hal core service
+    // core service
     std::shared_ptr<Power> pw = ndk::SharedRefBase::make<Power>(hm);
     ndk::SpAIBinder pwBinder = pw->asBinder();
 
-    // making the extension service
+    // extension service
     std::shared_ptr<PowerExt> pwExt = ndk::SharedRefBase::make<PowerExt>(hm);
 
-    // need to attach the extension to the same binder we will be registering
+    // attach the extension to the same binder we will be registering
     CHECK(STATUS_OK == AIBinder_setExtension(pwBinder.get(), pwExt->asBinder().get()));
 
     const std::string instance = std::string() + Power::descriptor + "/default";
@@ -63,12 +63,12 @@ int main() {
     std::thread initThread([&]() {
         ::android::base::WaitForProperty(kPowerHalInitProp, "1");
         hm->Start();
-        pw->setReady();
-        pwExt->setReady();
     });
     initThread.detach();
 
     ABinderProcess_joinThreadPool();
-    LOG(ERROR) << "Power HAL AIDL Service for Pixel died.";
-    return EXIT_FAILURE;  // should not reach
+
+    // should not reach
+    LOG(ERROR) << "Pixel Power HAL AIDL Service with Extension just died.";
+    return EXIT_FAILURE;
 }
