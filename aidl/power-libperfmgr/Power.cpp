@@ -41,7 +41,11 @@ constexpr char kPowerHalStateProp[] = "vendor.powerhal.state";
 constexpr char kPowerHalAudioProp[] = "vendor.powerhal.audio";
 constexpr char kPowerHalRenderingProp[] = "vendor.powerhal.rendering";
 
-void Power::setReady() {
+Power::Power(std::shared_ptr<HintManager> hm)
+    : mHintManager(hm),
+      mInteractionHandler(nullptr),
+      mVRModeOn(false),
+      mSustainedPerfModeOn(false) {
     mInteractionHandler = std::make_unique<InteractionHandler>(mHintManager);
     mInteractionHandler->Init();
 
@@ -76,14 +80,10 @@ void Power::setReady() {
     }
 
     // Now start to take powerhint
-    mReady.store(true);
     ALOGI("PowerHAL ready to process hints");
 }
 
 ndk::ScopedAStatus Power::setMode(Mode type, bool enabled) {
-    if (!mReady) {
-        return ndk::ScopedAStatus::ok();
-    }
     LOG(DEBUG) << "Power setMode: " << toString(type) << " to: " << enabled;
     ATRACE_INT(toString(type).c_str(), enabled);
     switch (type) {
@@ -170,9 +170,6 @@ ndk::ScopedAStatus Power::isModeSupported(Mode type, bool *_aidl_return) {
 }
 
 ndk::ScopedAStatus Power::setBoost(Boost type, int32_t durationMs) {
-    if (!mReady) {
-        return ndk::ScopedAStatus::ok();
-    }
     LOG(DEBUG) << "Power setBoost: " << toString(type) << " duration: " << durationMs;
     ATRACE_INT(toString(type).c_str(), durationMs);
     switch (type) {
@@ -221,20 +218,18 @@ constexpr const char *boolToString(bool b) {
 }
 
 binder_status_t Power::dump(int fd, const char **, uint32_t) {
-    if (mReady) {
-        std::string buf(::android::base::StringPrintf(
-                "HintManager Running: %s\n"
-                "VRMode: %s\n"
-                "SustainedPerformanceMode: %s\n",
-                boolToString(mHintManager->IsRunning()), boolToString(mVRModeOn),
-                boolToString(mSustainedPerfModeOn)));
-        // Dump nodes through libperfmgr
-        mHintManager->DumpToFd(fd);
-        if (!::android::base::WriteStringToFd(buf, fd)) {
-            PLOG(ERROR) << "Failed to dump state to fd";
-        }
-        fsync(fd);
+    std::string buf(::android::base::StringPrintf(
+            "HintManager Running: %s\n"
+            "VRMode: %s\n"
+            "SustainedPerformanceMode: %s\n",
+            boolToString(mHintManager->IsRunning()), boolToString(mVRModeOn),
+            boolToString(mSustainedPerfModeOn)));
+    // Dump nodes through libperfmgr
+    mHintManager->DumpToFd(fd);
+    if (!::android::base::WriteStringToFd(buf, fd)) {
+        PLOG(ERROR) << "Failed to dump state to fd";
     }
+    fsync(fd);
     return STATUS_OK;
 }
 

@@ -35,17 +35,14 @@ using ::android::perfmgr::HintManager;
 
 class PowerExt : public BnPowerExt {
   public:
-    PowerExt(std::shared_ptr<HintManager> hm) : mHintManager(hm), mReady(false) {}
-
+    PowerExt(std::shared_ptr<HintManager> hm) : mHintManager(hm) {}
     ndk::ScopedAStatus setMode(const std::string &mode, bool enabled) override;
     ndk::ScopedAStatus isModeSupported(const std::string &mode, bool *_aidl_return) override;
     ndk::ScopedAStatus setBoost(const std::string &boost, int32_t durationMs) override;
     ndk::ScopedAStatus isBoostSupported(const std::string &boost, bool *_aidl_return) override;
-    void setReady();
 
   private:
     std::shared_ptr<HintManager> mHintManager;
-    std::atomic<bool> mReady;
 };
 
 }  // namespace impl
