@@ -20,20 +20,19 @@
 #include <memory>
 #include <thread>
 
-#include <aidl/android/hardware/pixel/extension/power/BnPowerExt.h>
+#include <aidl/google/hardware/power/extension/pixel/BnPowerExt.h>
 #include <perfmgr/HintManager.h>
 
 namespace aidl {
-namespace android {
+namespace google {
 namespace hardware {
-namespace pixel {
-namespace extension {
 namespace power {
 namespace impl {
+namespace pixel {
 
 using ::android::perfmgr::HintManager;
 
-class PowerExt : public BnPowerExt {
+class PowerExt : public ::aidl::google::hardware::power::extension::pixel::BnPowerExt {
   public:
     PowerExt(std::shared_ptr<HintManager> hm) : mHintManager(hm) {}
     ndk::ScopedAStatus setMode(const std::string &mode, bool enabled) override;
@@ -45,10 +44,9 @@ class PowerExt : public BnPowerExt {
     std::shared_ptr<HintManager> mHintManager;
 };
 
+}  // namespace pixel
 }  // namespace impl
 }  // namespace power
-}  // namespace extension
-}  // namespace pixel
 }  // namespace hardware
-}  // namespace android
+}  // namespace google
 }  // namespace aidl

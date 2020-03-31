@@ -26,8 +26,8 @@
 #include "Power.h"
 #include "PowerExt.h"
 
-using aidl::android::hardware::pixel::extension::power::impl::PowerExt;
-using aidl::android::hardware::power::impl::pixel::Power;
+using aidl::google::hardware::power::impl::pixel::Power;
+using aidl::google::hardware::power::impl::pixel::PowerExt;
 using ::android::perfmgr::HintManager;
 
 constexpr char kPowerHalConfigPath[] = "/vendor/etc/powerhint.json";
