@@ -26,16 +26,18 @@
 #include "InteractionHandler.h"
 
 namespace aidl {
-namespace android {
+namespace google {
 namespace hardware {
 namespace power {
 namespace impl {
 namespace pixel {
 
 using ::InteractionHandler;
+using ::aidl::android::hardware::power::Boost;
+using ::aidl::android::hardware::power::Mode;
 using ::android::perfmgr::HintManager;
 
-class Power : public BnPower {
+class Power : public ::aidl::android::hardware::power::BnPower {
   public:
     Power(std::shared_ptr<HintManager> hm);
     ndk::ScopedAStatus setMode(Mode type, bool enabled) override;
@@ -55,5 +57,5 @@ class Power : public BnPower {
 }  // namespace impl
 }  // namespace power
 }  // namespace hardware
-}  // namespace android
+}  // namespace google
 }  // namespace aidl
