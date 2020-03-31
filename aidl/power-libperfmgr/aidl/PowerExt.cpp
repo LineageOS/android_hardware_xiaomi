@@ -31,12 +31,11 @@
 #include <utils/Trace.h>
 
 namespace aidl {
-namespace android {
+namespace google {
 namespace hardware {
-namespace pixel {
-namespace extension {
 namespace power {
 namespace impl {
+namespace pixel {
 
 ndk::ScopedAStatus PowerExt::setMode(const std::string &mode, bool enabled) {
     LOG(DEBUG) << "PowerExt setMode: " << mode << " to: " << enabled;
@@ -80,10 +79,9 @@ ndk::ScopedAStatus PowerExt::isBoostSupported(const std::string &boost, bool *_a
     return ndk::ScopedAStatus::ok();
 }
 
+}  // namespace pixel
 }  // namespace impl
 }  // namespace power
-}  // namespace extension
-}  // namespace pixel
 }  // namespace hardware
-}  // namespace android
+}  // namespace google
 }  // namespace aidl
