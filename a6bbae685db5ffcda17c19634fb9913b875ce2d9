@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ea551161_849fc571",
+        "filename": "org.ifaa.android.manager/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2020-04-08T13:22:05Z",
+      "side": 1,
+      "message": "Didn\u0027t you miss this?\n\n    aidl: {\n        local_include_dirs: [\"src\"],\n    },",
+      "revId": "a6bbae685db5ffcda17c19634fb9913b875ce2d9",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
