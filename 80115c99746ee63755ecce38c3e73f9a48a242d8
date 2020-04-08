@@ -22,6 +22,30 @@
       "revId": "80115c99746ee63755ecce38c3e73f9a48a242d8",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "353f6e01_57e904bc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 24438
+      },
+      "writtenOn": "2020-04-08T13:16:54Z",
+      "side": 1,
+      "message": "https://review.lineageos.org/c/LineageOS/android_device_xiaomi_jason/+/238073\nIFAA is only for Alipay iirc.",
+      "parentUuid": "1bda9762_691cfc51",
+      "range": {
+        "startLine": 7,
+        "startChar": 16,
+        "endLine": 7,
+        "endChar": 22
+      },
+      "revId": "80115c99746ee63755ecce38c3e73f9a48a242d8",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
     }
   ]
 }
