@@ -2,7 +2,8 @@
 
 hidl_interface {
     name: "vendor.xiaomi.hardware.touchfeature@1.0",
-    root: "vendor.xiaomi",
+    root: "vendor",
+    product_specific: true,
     srcs: [
         "ITouchFeature.hal",
     ],

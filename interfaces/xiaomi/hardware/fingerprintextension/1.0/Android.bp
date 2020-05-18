@@ -2,7 +2,8 @@
 
 hidl_interface {
     name: "vendor.xiaomi.hardware.fingerprintextension@1.0",
-    root: "vendor.xiaomi",
+    root: "vendor",
+    product_specific: true,
     srcs: [
         "IXiaomiFingerprint.hal",
     ],
@@ -11,3 +12,4 @@ hidl_interface {
     ],
     gen_java: true,
 }
+
