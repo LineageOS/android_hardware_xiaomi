@@ -12,8 +12,11 @@
 #include <hardware/hardware.h>
 #include "BiometricsFingerprint.h"
 
+#include <fcntl.h>
 #include <inttypes.h>
+#include <poll.h>
 #include <unistd.h>
+#include <thread>
 
 namespace android {
 namespace hardware {
@@ -21,6 +24,34 @@ namespace biometrics {
 namespace fingerprint {
 namespace V2_3 {
 namespace implementation {
+
+#define COMMAND_NIT 10
+#define PARAM_NIT_FOD 1
+#define PARAM_NIT_NONE 0
+
+static const char* kFodUiPaths[] = {
+        "/sys/devices/platform/soc/soc:qcom,dsi-display-primary/fod_ui",
+        "/sys/devices/platform/soc/soc:qcom,dsi-display/fod_ui",
+};
+
+static bool readBool(int fd) {
+    char c;
+    int rc;
+
+    rc = lseek(fd, 0, SEEK_SET);
+    if (rc) {
+        ALOGE("failed to seek fd, err: %d", rc);
+        return false;
+    }
+
+    rc = read(fd, &c, sizeof(char));
+    if (rc != 1) {
+        ALOGE("failed to read bool from fd, err: %d", rc);
+        return false;
+    }
+
+    return c != '0';
+}
 
 // Supported fingerprint HAL version
 static const uint16_t kVersion = HARDWARE_MODULE_API_VERSION(2, 1);
@@ -54,6 +85,40 @@ BiometricsFingerprint::BiometricsFingerprint() : mClientCallback(nullptr), mDevi
     }
     if (!mDevice) {
         ALOGE("Can't open any HAL module");
+    }
+
+    if (mIsUdfps) {
+        std::thread([this]() {
+            int fd;
+            for (auto& path : kFodUiPaths) {
+                fd = open(path, O_RDONLY);
+                if (fd >= 0) {
+                    break;
+                }
+            }
+
+            if (fd < 0) {
+                ALOGE("failed to open fd, err: %d", fd);
+                return;
+            }
+
+            struct pollfd fodUiPoll = {
+                    .fd = fd,
+                    .events = POLLERR | POLLPRI,
+                    .revents = 0,
+            };
+
+            while (true) {
+                int rc = poll(&fodUiPoll, 1, -1);
+                if (rc < 0) {
+                    ALOGE("failed to poll fd, err: %d", rc);
+                    continue;
+                }
+
+                mDevice->extCmd(mDevice, COMMAND_NIT,
+                                readBool(fd) ? PARAM_NIT_FOD : PARAM_NIT_NONE);
+            }
+        }).detach();
     }
 }
 
