@@ -1,3 +1,10 @@
+on boot
+    chown system system /sys/devices/platform/soc/soc:qcom,dsi-display-primary/fod_ui
+    chown system system /sys/devices/platform/soc/soc:qcom,dsi-display/fod_ui
+
+    chmod 0444 /sys/devices/platform/soc/soc:qcom,dsi-display-primary/fod_ui
+    chmod 0444 /sys/devices/platform/soc/soc:qcom,dsi-display/fod_ui
+
 service vendor.fps_hal /vendor/bin/hw/android.hardware.biometrics.fingerprint@2.3-service.xiaomi
     # "class hal" causes a race condition on some devices due to files created
     # in /data. As a workaround, postpone startup until later in boot once
