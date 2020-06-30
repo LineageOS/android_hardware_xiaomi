@@ -39,6 +39,7 @@ namespace implementation {
 using ::android::hardware::hidl_vec;
 using ::android::hardware::Return;
 using ::android::hardware::Void;
+using ::android::hardware::power::V1_3::IPower;
 using ::android::hardware::power::V1_0::Feature;
 using ::android::hardware::power::V1_0::Status;
 
@@ -46,6 +47,8 @@ constexpr char kPowerHalStateProp[] = "vendor.powerhal.state";
 constexpr char kPowerHalAudioProp[] = "vendor.powerhal.audio";
 constexpr char kPowerHalInitProp[] = "vendor.powerhal.init";
 constexpr char kPowerHalRenderingProp[] = "vendor.powerhal.rendering";
+constexpr char kPowerHalProfileNumProp[] = "vendor.powerhal.perf_profiles";
+constexpr char kPowerHalProfileProp[] = "vendor.powerhal.perf_profile";
 constexpr char kPowerHalConfigPath[] = "/vendor/etc/powerhint.json";
 
 Power::Power()
@@ -54,7 +57,9 @@ Power::Power()
       mVRModeOn(false),
       mSustainedPerfModeOn(false),
       mCameraStreamingMode(false),
-      mReady(false) {
+      mReady(false),
+      mNumPerfProfiles(0),
+      mCurrentPerfProfile(PowerProfile::BALANCED) {
     mInitThread = std::thread([this]() {
         android::base::WaitForProperty(kPowerHalInitProp, "1");
         mHintManager = HintManager::GetFromJSON(kPowerHalConfigPath);
@@ -96,10 +101,30 @@ Power::Power()
             ALOGI("Initialize with EXPENSIVE_RENDERING on");
             mHintManager->DoHint("EXPENSIVE_RENDERING");
         }
+
+        state = android::base::GetProperty(kPowerHalProfileProp, "");
+        if (state == "POWER_SAVE") {
+            ALOGI("Initialize with POWER_SAVE profile");
+            setProfile(PowerProfile::POWER_SAVE);
+            mCurrentPerfProfile = PowerProfile::POWER_SAVE;
+        } else if (state == "BIAS_POWER_SAVE") {
+            ALOGI("Initialize with BIAS_POWER_SAVE profile");
+            setProfile(PowerProfile::BIAS_POWER_SAVE);
+            mCurrentPerfProfile = PowerProfile::BIAS_POWER_SAVE;
+        } else if (state == "BIAS_PERFORMANCE") {
+            ALOGI("Initialize with BIAS_PERFORMANCE profile");
+            setProfile(PowerProfile::BIAS_PERFORMANCE);
+            mCurrentPerfProfile = PowerProfile::BIAS_PERFORMANCE;
+        } else if (state == "HIGH_PERFORMANCE") {
+            ALOGI("Initialize with HIGH_PERFORMANCE profile");
+            setProfile(PowerProfile::HIGH_PERFORMANCE);
+            mCurrentPerfProfile = PowerProfile::HIGH_PERFORMANCE;
+        }
         // Now start to take powerhint
         mReady.store(true);
         ALOGI("PowerHAL ready to process hints");
     });
+    mNumPerfProfiles = android::base::GetIntProperty(kPowerHalProfileNumProp, 0);
     mInitThread.detach();
 }
 
@@ -112,6 +137,50 @@ Return<void> Power::updateHint(const char *hint, bool enable) {
     } else {
         mHintManager->EndHint(hint);
     }
+    return Void();
+}
+
+Return<void> Power::setProfile(PowerProfile profile) {
+    if (mCurrentPerfProfile == profile) {
+        return Void();
+    }
+
+    // End previous perf profile hints
+    switch (mCurrentPerfProfile) {
+        case PowerProfile::POWER_SAVE:
+            mHintManager->EndHint("PROFILE_POWER_SAVE");
+            break;
+        case PowerProfile::BIAS_POWER_SAVE:
+            mHintManager->EndHint("PROFILE_BIAS_POWER_SAVE");
+            break;
+        case PowerProfile::BIAS_PERFORMANCE:
+            mHintManager->EndHint("PROFILE_BIAS_PERFORMANCE");
+            break;
+        case PowerProfile::HIGH_PERFORMANCE:
+            mHintManager->EndHint("PROFILE_HIGH_PERFORMANCE");
+            break;
+        default:
+            break;
+    }
+
+    // Apply perf profile hints
+    switch (profile) {
+        case PowerProfile::POWER_SAVE:
+            mHintManager->DoHint("PROFILE_POWER_SAVE");
+            break;
+        case PowerProfile::BIAS_POWER_SAVE:
+            mHintManager->DoHint("PROFILE_BIAS_POWER_SAVE");
+            break;
+        case PowerProfile::BIAS_PERFORMANCE:
+            mHintManager->DoHint("PROFILE_BIAS_PERFORMANCE");
+            break;
+        case PowerProfile::HIGH_PERFORMANCE:
+            mHintManager->DoHint("PROFILE_HIGH_PERFORMANCE");
+            break;
+        default:
+            break;
+    }
+
     return Void();
 }
 
@@ -291,6 +360,15 @@ Return<void> Power::powerHintAsync_1_3(PowerHint_1_3 hint, int32_t data) {
         return Void();
     }
 
+    switch (static_cast<LineagePowerHint>(hint)) {
+        case LineagePowerHint::SET_PROFILE:
+            setProfile(static_cast<PowerProfile>(data));
+            mCurrentPerfProfile = static_cast<PowerProfile>(data);
+            return Void();
+        default:
+            break;
+    }
+
     if (hint == PowerHint_1_3::EXPENSIVE_RENDERING) {
         ATRACE_INT(android::hardware::power::V1_3::toString(hint).c_str(), data);
         if (mVRModeOn || mSustainedPerfModeOn) {
@@ -306,6 +384,16 @@ Return<void> Power::powerHintAsync_1_3(PowerHint_1_3 hint, int32_t data) {
         return powerHintAsync_1_2(static_cast<PowerHint_1_2>(hint), data);
     }
     return Void();
+}
+
+// Methods from ::vendor::lineage::power::V1_0::ILineagePower follow.
+Return<int32_t> Power::getFeature(LineageFeature feature) {
+    switch (feature) {
+        case LineageFeature::SUPPORTED_PROFILES:
+            return mNumPerfProfiles;
+        default:
+            return -1;
+    }
 }
 
 constexpr const char *boolToString(bool b) {
@@ -332,6 +420,29 @@ Return<void> Power::debug(const hidl_handle &handle, const hidl_vec<hidl_string>
         fsync(fd);
     }
     return Void();
+}
+
+status_t Power::registerAsSystemService() {
+    status_t ret = 0;
+
+    ret = IPower::registerAsService();
+    if (ret != 0) {
+        ALOGE("Failed to register IPower (%d)", ret);
+        goto fail;
+    } else {
+        ALOGI("Successfully registered IPower");
+    }
+
+    ret = ILineagePower::registerAsService();
+    if (ret != 0) {
+        ALOGE("Failed to register ILineagePower (%d)", ret);
+        goto fail;
+    } else {
+        ALOGI("Successfully registered ILineagePower");
+    }
+
+fail:
+    return ret;
 }
 
 }  // namespace implementation
