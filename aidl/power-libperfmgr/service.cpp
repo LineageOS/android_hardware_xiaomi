@@ -25,9 +25,11 @@
 
 #include "Power.h"
 #include "PowerExt.h"
+#include "LineagePower.h"
 
 using aidl::google::hardware::power::impl::pixel::Power;
 using aidl::google::hardware::power::impl::pixel::PowerExt;
+using aidl::vendor::lineage::power::LineagePower;
 using ::android::perfmgr::HintManager;
 
 constexpr char kPowerHalConfigPath[] = "/vendor/etc/powerhint.json";
@@ -52,12 +54,21 @@ int main() {
     // extension service
     std::shared_ptr<PowerExt> pwExt = ndk::SharedRefBase::make<PowerExt>(hm);
 
+    // lineage service
+    std::shared_ptr<LineagePower> lpw = ndk::SharedRefBase::make<LineagePower>(hm);
+    ndk::SpAIBinder lpwBinder = lpw->asBinder();
+
     // attach the extension to the same binder we will be registering
     CHECK(STATUS_OK == AIBinder_setExtension(pwBinder.get(), pwExt->asBinder().get()));
 
     const std::string instance = std::string() + Power::descriptor + "/default";
     binder_status_t status = AServiceManager_addService(pw->asBinder().get(), instance.c_str());
     CHECK(status == STATUS_OK);
+
+    const std::string linstance = std::string() + LineagePower::descriptor + "/default";
+    binder_status_t lstatus = AServiceManager_addService(lpw->asBinder().get(), linstance.c_str());
+    CHECK(lstatus == STATUS_OK);
+
     LOG(INFO) << "Xiaomi Power HAL AIDL Service with Extension is started.";
 
     std::thread initThread([&]() {
