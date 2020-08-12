@@ -4,6 +4,9 @@ service vendor.power-hal-aidl /vendor/bin/hw/android.hardware.power-service.xiao
     group system
     priority -20
 
+on late-fs
+    start vendor.power-hal-aidl
+
 # restart powerHAL when framework died
 on property:init.svc.zygote=restarting && property:vendor.powerhal.state=*
     setprop vendor.powerhal.state ""
