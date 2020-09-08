@@ -14,10 +14,10 @@
 // limitations under the License.
 
 cc_binary {
-    name: "android.hardware.power-service.pixel-libperfmgr",
+    name: "android.hardware.power-service.xiaomi-libperfmgr",
     relative_install_path: "hw",
-    init_rc: ["aidl/android.hardware.power-service.pixel-libperfmgr.rc"],
-    vintf_fragments: ["aidl/android.hardware.power-service.pixel.xml"],
+    init_rc: ["aidl/android.hardware.power-service.xiaomi-libperfmgr.rc"],
+    vintf_fragments: ["aidl/android.hardware.power-service.xiaomi.xml"],
     vendor: true,
     shared_libs: [
         "android.hardware.power-ndk_platform",
@@ -34,5 +34,10 @@ cc_binary {
         "aidl/service.cpp",
         "aidl/Power.cpp",
         "aidl/PowerExt.cpp",
+    ],
+    header_libs: [
+        "libhardware_headers",
+        "generated_kernel_headers",
+        "disp_power_headers",
     ],
 }
