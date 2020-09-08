@@ -29,6 +29,12 @@ cc_library {
 }
 
 cc_library_headers {
+    name: "disp_power_headers",
+    vendor: true,
+    export_include_dirs: ["disp-power"],
+}
+
+cc_library_headers {
     name: "xiaomi_power_headers",
     vendor: true,
     export_include_dirs: ["hidl"],
