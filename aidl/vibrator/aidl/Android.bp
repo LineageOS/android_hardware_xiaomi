@@ -14,7 +14,6 @@ cc_library_shared {
         "liblog",
         "libqtivibratoreffect.xiaomi",
         "libqtivibratoreffectoffload.xiaomi",
-        "libsoc_helper",
         "libbinder_ndk",
         "android.hardware.vibrator-V2-ndk",
     ],

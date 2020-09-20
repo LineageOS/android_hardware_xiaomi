@@ -33,6 +33,7 @@
 
 #define LOG_TAG "vendor.qti.vibrator"
 
+#include <cutils/properties.h>
 #include <dirent.h>
 #include <inttypes.h>
 #include <linux/input.h>
@@ -50,10 +51,6 @@
 #include "effect.h"
 #endif
 
-extern "C" {
-#include "libsoc_helper.h"
-}
-
 namespace aidl {
 namespace android {
 namespace hardware {
@@ -67,6 +64,18 @@ namespace vibrator {
 #define NAME_BUF_SIZE           32
 #define PRIMITIVE_ID_MASK       0x8000
 #define MAX_PATTERN_ID          32767
+
+#define MSM_CPU_LAHAINA         415
+#define APQ_CPU_LAHAINA         439
+#define MSM_CPU_SHIMA           450
+#define MSM_CPU_SM8325          501
+#define APQ_CPU_SM8325P         502
+#define MSM_CPU_TARO            457
+#define MSM_CPU_TARO_LTE        552
+#define MSM_CPU_YUPIK           475
+#define MSM_CPU_CAPE            530
+#define APQ_CPU_CAPE            531
+#define MSM_CPU_KALAMA          519
 
 #define test_bit(bit, array)    ((array)[(bit)/8] & (1<<((bit)%8)))
 
@@ -83,13 +92,14 @@ enum composeEvent {
 InputFFDevice::InputFFDevice()
 {
     DIR *dp;
+    FILE *fp = NULL;
     struct dirent *dir;
     uint8_t ffBitmask[FF_CNT / 8];
     char devicename[PATH_MAX];
     const char *INPUT_DIR = "/dev/input/";
     char name[NAME_BUF_SIZE];
     int fd, ret;
-    soc_info_v0_1_t soc;
+    int soc = property_get_int32("ro.vendor.qti.soc_id", -1);
 
     mVibraFd = INVALID_VALUE;
     mSupportGain = false;
@@ -148,9 +158,11 @@ InputFFDevice::InputFFDevice()
             if (test_bit(FF_GAIN, ffBitmask))
                 mSupportGain = true;
 
-            get_soc_info(&soc);
-            ALOGD("msm CPU SoC ID: %d\n", soc.msm_cpu);
-            switch (soc.msm_cpu) {
+            if (soc <= 0 && (fp = fopen("/sys/devices/soc0/soc_id", "r")) != NULL) {
+                fscanf(fp, "%u", &soc);
+                fclose(fp);
+            }
+            switch (soc) {
             case MSM_CPU_LAHAINA:
             case APQ_CPU_LAHAINA:
             case MSM_CPU_SHIMA:
@@ -936,4 +948,3 @@ ndk::ScopedAStatus Vibrator::composePwle(const std::vector<PrimitivePwle> &compo
 }  // namespace hardware
 }  // namespace android
 }  // namespace aidl
-
