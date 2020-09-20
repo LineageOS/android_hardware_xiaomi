@@ -24,8 +24,6 @@ cc_binary {
         "libbase",
         "libhardware",
         "libhidlbase",
-        "libhidltransport",
-        "libhwbinder",
         "libutils",
     ],
     proprietary: true,
