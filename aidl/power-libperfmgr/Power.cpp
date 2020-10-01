@@ -37,6 +37,11 @@ namespace power {
 namespace impl {
 namespace pixel {
 
+#ifdef MODE_EXT
+extern bool isDeviceSpecificModeSupported(Mode type, bool* _aidl_return);
+extern bool setDeviceSpecificMode(Mode type, bool enabled);
+#endif
+
 constexpr char kPowerHalStateProp[] = "vendor.powerhal.state";
 constexpr char kPowerHalAudioProp[] = "vendor.powerhal.audio";
 constexpr char kPowerHalRenderingProp[] = "vendor.powerhal.rendering";
@@ -76,6 +81,11 @@ Power::Power(std::shared_ptr<HintManager> hm)
 ndk::ScopedAStatus Power::setMode(Mode type, bool enabled) {
     LOG(DEBUG) << "Power setMode: " << toString(type) << " to: " << enabled;
     ATRACE_INT(toString(type).c_str(), enabled);
+#ifdef MODE_EXT
+    if (setDeviceSpecificMode(type, enabled)) {
+        return ndk::ScopedAStatus::ok();
+    }
+#endif
     switch (type) {
         case Mode::SUSTAINED_PERFORMANCE:
             if (enabled) {
@@ -115,6 +125,12 @@ ndk::ScopedAStatus Power::setMode(Mode type, bool enabled) {
 }
 
 ndk::ScopedAStatus Power::isModeSupported(Mode type, bool *_aidl_return) {
+#ifdef MODE_EXT
+    if (isDeviceSpecificModeSupported(type, _aidl_return)) {
+        return ndk::ScopedAStatus::ok();
+    }
+#endif
+
     bool supported = mHintManager->IsHintSupported(toString(type));
     LOG(INFO) << "Power mode " << toString(type) << " isModeSupported: " << supported;
     *_aidl_return = supported;
