@@ -39,6 +39,11 @@ LOCAL_SRC_FILES := \
 
 LOCAL_CFLAGS := -Wno-unused-parameter -Wno-unused-variable
 
+ifneq ($(TARGET_POWERHAL_MODE_EXT),)
+    LOCAL_CFLAGS += -DMODE_EXT
+    LOCAL_SRC_FILES += ../../../../$(TARGET_POWERHAL_MODE_EXT)
+endif
+
 LOCAL_MODULE := android.hardware.power-service.xiaomi-libperfmgr
 LOCAL_INIT_RC := android.hardware.power-service.xiaomi-libperfmgr.rc
 LOCAL_MODULE_TAGS := optional
