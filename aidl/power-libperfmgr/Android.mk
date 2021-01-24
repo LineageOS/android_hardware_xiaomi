@@ -24,7 +24,8 @@ include $(CLEAR_VARS)
 LOCAL_MODULE_RELATIVE_PATH := hw
 
 LOCAL_SHARED_LIBRARIES := \
-    android.hardware.power-V1-ndk_platform \
+    android.hardware.power-V2-ndk_platform \
+    libadpf-pixel \
     libbase \
     libbinder_ndk \
     libcutils \
