@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "068fe9db_34602935",
+        "filename": "aidl/power-libperfmgr/aidl/Power.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2021-02-05T16:28:23Z",
+      "side": 1,
+      "message": "You messed up indentation from this line on.",
+      "revId": "a8f51254248c023897bf119cd7f9f612fa7014e3",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
