@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c3cb0f72_ecd05b1d",
+        "filename": "hidl/power-libperfmgr/Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2021-02-05T16:24:20Z",
+      "side": 1,
+      "message": "stray tab",
+      "range": {
+        "startLine": 45,
+        "startChar": 2,
+        "endLine": 45,
+        "endChar": 3
+      },
+      "revId": "752d864c41056daff01b5aa589c6e8f6d0481ed2",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
