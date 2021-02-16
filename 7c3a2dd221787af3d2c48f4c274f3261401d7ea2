@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "006c7bf6_38abc021",
+        "filename": "hidl/power-libperfmgr/android.hardware.power@1.3-service.xiaomi-libperfmgr.rc",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2021-02-16T21:47:06Z",
+      "side": 0,
+      "message": "This removal is not proper. AUDIO_LOW_LATENCY can be handled with a patched audio HAL.",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 31
+      },
+      "revId": "7c3a2dd221787af3d2c48f4c274f3261401d7ea2",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
