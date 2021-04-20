@@ -18,6 +18,9 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
+ifneq (,$(findstring hardware/google/interfaces, $(PRODUCT_SOONG_NAMESPACES)))
+ifneq (,$(findstring hardware/google/pixel, $(PRODUCT_SOONG_NAMESPACES)))
+
 LOCAL_MODULE_RELATIVE_PATH := hw
 
 LOCAL_SHARED_LIBRARIES := \
@@ -51,3 +54,6 @@ LOCAL_VENDOR_MODULE := true
 LOCAL_VINTF_FRAGMENTS := android.hardware.power-service.xiaomi.xml
 
 include $(BUILD_EXECUTABLE)
+
+endif
+endif
