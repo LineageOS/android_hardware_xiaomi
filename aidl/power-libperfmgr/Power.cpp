@@ -31,7 +31,8 @@
 #include <utils/Log.h>
 #include <utils/Trace.h>
 
-#include "adpf/PowerHintSession.h"
+#include "PowerHintSession.h"
+#include "PowerSessionManager.h"
 
 namespace aidl {
 namespace google {
@@ -40,7 +41,7 @@ namespace power {
 namespace impl {
 namespace pixel {
 
-using ::aidl::google::hardware::power::impl::pixel::adpf::PowerHintSession;
+using ::aidl::google::hardware::power::impl::pixel::PowerHintSession;
 
 #ifdef MODE_EXT
 extern bool isDeviceSpecificModeSupported(Mode type, bool* _aidl_return);
@@ -89,6 +90,7 @@ Power::Power(std::shared_ptr<HintManager> hm)
 ndk::ScopedAStatus Power::setMode(Mode type, bool enabled) {
     LOG(DEBUG) << "Power setMode: " << toString(type) << " to: " << enabled;
     ATRACE_INT(toString(type).c_str(), enabled);
+    PowerSessionManager::getInstance().updateHintMode(toString(type), enabled);
 #ifdef MODE_EXT
     if (setDeviceSpecificMode(type, enabled)) {
         return ndk::ScopedAStatus::ok();

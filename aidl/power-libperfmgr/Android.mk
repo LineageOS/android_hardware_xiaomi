@@ -25,7 +25,6 @@ LOCAL_MODULE_RELATIVE_PATH := hw
 
 LOCAL_SHARED_LIBRARIES := \
     android.hardware.power-V2-ndk_platform \
-    libadpf-pixel \
     libbase \
     libbinder_ndk \
     libcutils \
@@ -39,7 +38,9 @@ LOCAL_SRC_FILES := \
     service.cpp \
     InteractionHandler.cpp \
     Power.cpp \
-    PowerExt.cpp
+    PowerExt.cpp \
+    PowerHintSession.cpp \
+    PowerSessionManager.cpp
 
 LOCAL_CFLAGS := -Wno-unused-parameter -Wno-unused-variable
 
