@@ -13,13 +13,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-cc_binary {
-    name: "android.hardware.ir@1.0-service.xiaomi",
+cc_defaults {
+    name: "xiaomi_consumerir_defaults",
     relative_install_path: "hw",
     defaults: ["hidl_defaults"],
+    stem: "android.hardware.ir@1.0-service.xiaomi",
     init_rc: ["android.hardware.ir@1.0-service.xiaomi.rc"],
     vintf_fragments: ["android.hardware.ir@1.0-service.xiaomi.xml"],
-    srcs: ["service.cpp", "ConsumerIr.cpp"],
+    srcs: ["service.cpp"],
     shared_libs: [
         "android.hardware.ir@1.0",
         "libbase",
@@ -28,4 +29,16 @@ cc_binary {
         "libutils",
     ],
     proprietary: true,
+}
+
+cc_binary {
+    name: "android.hardware.ir@1.0-service.xiaomi-lirc",
+    defaults: ["xiaomi_consumerir_defaults"],
+    srcs: ["ConsumerIrLirc.cpp"],
+}
+
+cc_binary {
+    name: "android.hardware.ir@1.0-service.xiaomi-spi",
+    defaults: ["xiaomi_consumerir_defaults"],
+    srcs: ["ConsumerIrSpi.cpp"],
 }
