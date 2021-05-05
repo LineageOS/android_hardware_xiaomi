@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-#define LOG_TAG "ConsumerIrService"
+#define LOG_TAG "ConsumerIrLircService"
 
 #include <fcntl.h>
 #include <linux/lirc.h>
 
 #include <android-base/logging.h>
 
-#include "ConsumerIr.h"
+#include <ConsumerIr.h>
 
 namespace android {
 namespace hardware {

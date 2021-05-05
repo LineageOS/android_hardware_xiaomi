@@ -19,7 +19,7 @@
 #include <android-base/logging.h>
 #include <hidl/HidlTransportSupport.h>
 
-#include "ConsumerIr.h"
+#include <ConsumerIr.h>
 
 // libhwbinder:
 using android::hardware::configureRpcThreadpool;
