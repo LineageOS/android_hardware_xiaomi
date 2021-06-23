@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3965dbdf_24da52cb",
+        "filename": "aidl/power-libperfmgr/Power.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2021-06-23T10:17:57Z",
+      "side": 0,
+      "message": "Do it like this:\n\ncase Mode::DOUBLE_TAP_TO_WAKE:\n#ifdef TAP_TO_WAKE_NODE\n            sysfs_write(TAP_TO_WAKE_NODE, state ? \"1\" : \"0\");\n            break;\n#else\n            [[fallthrough]];\n#endif",
+      "revId": "f05aff1088ea23e9409efd644c9021f5f3daf5e3",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
