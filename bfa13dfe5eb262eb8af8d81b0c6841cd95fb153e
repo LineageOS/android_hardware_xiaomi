@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5b21f02c_11ad263a",
+        "filename": "aidl/power-libperfmgr/Power.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2021-06-23T10:43:34Z",
+      "side": 1,
+      "message": "#ifdef TAP_TO_WAKE_NODE\n\t               ::android::base::WriteStringToFile(enabled ? \"1\" : \"0\",\n                               TAP_TO_WAKE_NODE, true);\n            break;\n#endif",
+      "revId": "bfa13dfe5eb262eb8af8d81b0c6841cd95fb153e",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}

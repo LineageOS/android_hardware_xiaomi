@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1f333663_4fdb4937",
+        "filename": "aidl/power-libperfmgr/Power.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2021-06-23T10:43:34Z",
+      "side": 0,
+      "message": "#ifndef TAP_TO_WAKE_NODE\n            [[fallthrough]];\n#endif",
+      "revId": "6cc33c8b1c9e37a9f483486d40569e549ccdec97",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
