@@ -16,6 +16,24 @@
       "revId": "f05aff1088ea23e9409efd644c9021f5f3daf5e3",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ed486fd_36c5c807",
+        "filename": "aidl/power-libperfmgr/Power.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 28423
+      },
+      "writtenOn": "2021-06-23T10:27:48Z",
+      "side": 0,
+      "message": "noted, good for people who rely on powerhint for node definition.",
+      "parentUuid": "3965dbdf_24da52cb",
+      "revId": "f05aff1088ea23e9409efd644c9021f5f3daf5e3",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
     }
   ]
 }
