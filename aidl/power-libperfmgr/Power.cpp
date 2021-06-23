@@ -138,6 +138,11 @@ ndk::ScopedAStatus Power::isModeSupported(Mode type, bool *_aidl_return) {
 #endif
 
     bool supported = mHintManager->IsHintSupported(toString(type));
+#ifdef TAP_TO_WAKE_NODE
+    if (type == Mode::DOUBLE_TAP_TO_WAKE) {
+        supported = true;
+    }
+#endif
     LOG(INFO) << "Power mode " << toString(type) << " isModeSupported: " << supported;
     *_aidl_return = supported;
     return ndk::ScopedAStatus::ok();
