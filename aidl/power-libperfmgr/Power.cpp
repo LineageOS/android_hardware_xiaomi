@@ -87,6 +87,14 @@ ndk::ScopedAStatus Power::setMode(Mode type, bool enabled) {
     }
 #endif
     switch (type) {
+        case Mode::DOUBLE_TAP_TO_WAKE:
+#ifdef TAP_TO_WAKE_NODE
+	               ::android::base::WriteStringToFile(enabled ? "1" : "0",
+                               TAP_TO_WAKE_NODE, true);
+            break;
+#else
+            [[fallthrough]];
+#endif        
         case Mode::SUSTAINED_PERFORMANCE:
             if (enabled) {
                 mHintManager->DoHint("SUSTAINED_PERFORMANCE");
@@ -98,11 +106,6 @@ ndk::ScopedAStatus Power::setMode(Mode type, bool enabled) {
                 break;
             }
             [[fallthrough]];
-#ifdef TAP_TO_WAKE_NODE
-        case Mode::DOUBLE_TAP_TO_WAKE:
-            sysfs_write(TAP_TO_WAKE_NODE, state ? "1" : "0");
-            break;
-#endif
         case Mode::FIXED_PERFORMANCE:
             [[fallthrough]];
         case Mode::EXPENSIVE_RENDERING:
