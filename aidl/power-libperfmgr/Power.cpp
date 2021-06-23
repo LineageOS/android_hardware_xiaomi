@@ -98,8 +98,11 @@ ndk::ScopedAStatus Power::setMode(Mode type, bool enabled) {
                 break;
             }
             [[fallthrough]];
+#ifdef TAP_TO_WAKE_NODE
         case Mode::DOUBLE_TAP_TO_WAKE:
-            [[fallthrough]];
+            sysfs_write(TAP_TO_WAKE_NODE, state ? "1" : "0");
+            break;
+#endif
         case Mode::FIXED_PERFORMANCE:
             [[fallthrough]];
         case Mode::EXPENSIVE_RENDERING:
