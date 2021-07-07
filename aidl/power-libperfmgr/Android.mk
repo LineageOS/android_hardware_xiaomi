@@ -31,6 +31,7 @@ LOCAL_SHARED_LIBRARIES := \
     libdl \
     liblog \
     libperfmgr \
+    libprocessgroup \
     libutils \
     pixel-power-ext-V1-ndk_platform
 
