@@ -19,8 +19,8 @@ import org.lineageos.settings.doze.DozeUtils.isPickUpEnabled
 import org.lineageos.settings.doze.DozeUtils.isPocketGestureEnabled
 
 class DozeService : Service() {
-    private lateinit var proximitySensor: ProximitySensor
-    private lateinit var pickupSensor: PickupSensor
+    private var proximitySensor: ProximitySensor? = null
+    private var pickupSensor: PickupSensor? = null
 
     private val screenStateReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
@@ -34,8 +34,8 @@ class DozeService : Service() {
     override fun onCreate() {
         Log.d(LOG_TAG, "Creating service")
 
-        proximitySensor = ProximitySensor(this)
-        pickupSensor = PickupSensor(this)
+        proximitySensor = ProximitySensor.getInstance(this)
+        pickupSensor = PickupSensor.getInstance(this)
 
         registerReceiver(screenStateReceiver, IntentFilter().apply {
             addAction(Intent.ACTION_SCREEN_ON)
@@ -53,8 +53,8 @@ class DozeService : Service() {
         Log.d(LOG_TAG, "Destroying service")
 
         unregisterReceiver(screenStateReceiver)
-        proximitySensor.disable()
-        pickupSensor.disable()
+        proximitySensor?.disable()
+        pickupSensor?.disable()
 
         super.onDestroy()
     }
@@ -65,12 +65,12 @@ class DozeService : Service() {
         Log.d(LOG_TAG, "Display on")
 
         if (isPickUpEnabled(this)) {
-            pickupSensor.disable()
+            pickupSensor?.disable()
         }
         if (isHandwaveGestureEnabled(this) ||
             isPocketGestureEnabled(this)
         ) {
-            proximitySensor.disable()
+            proximitySensor?.disable()
         }
     }
 
@@ -78,12 +78,12 @@ class DozeService : Service() {
         Log.d(LOG_TAG, "Display off")
 
         if (isPickUpEnabled(this)) {
-            pickupSensor.enable()
+            pickupSensor?.enable()
         }
         if (isHandwaveGestureEnabled(this) ||
             isPocketGestureEnabled(this)
         ) {
-            proximitySensor.enable()
+            proximitySensor?.enable()
         }
     }
 

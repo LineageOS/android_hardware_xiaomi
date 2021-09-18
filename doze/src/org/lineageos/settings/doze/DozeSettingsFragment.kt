@@ -36,6 +36,7 @@ class DozeSettingsFragment : PreferenceFragmentCompat(), OnPreferenceChangeListe
         addPreferencesFromResource(R.xml.doze_settings)
 
         val activity = requireActivity()
+        val context = requireContext()
 
         val prefs = activity.getSharedPreferences(
             "doze_settings",
@@ -76,8 +77,13 @@ class DozeSettingsFragment : PreferenceFragmentCompat(), OnPreferenceChangeListe
         pocketPreference.isEnabled = dozeEnabled
         pocketPreference.onPreferenceChangeListener = this
 
+        // Hide pickup sensor related features if the device doesn't support them
+        if (context.pickupSensorType == null) {
+            preferenceScreen.removePreference(pickupSensorCategory)
+        }
+
         // Hide proximity sensor related features if the device doesn't support them
-        if (!DozeUtils.getProxCheckBeforePulse(activity)) {
+        if (context.proximitySensorType == null || !DozeUtils.getProxCheckBeforePulse(activity)) {
             preferenceScreen.removePreference(proximitySensorCategory)
         }
 

@@ -17,11 +17,14 @@ import org.lineageos.settings.doze.DozeUtils.isPocketGestureEnabled
 import org.lineageos.settings.doze.DozeUtils.launchDozePulse
 import java.util.concurrent.Executors
 
-class ProximitySensor(private val context: Context) : SensorEventListener {
+class ProximitySensor(
+    private val context: Context,
+    private val sensor: Sensor,
+) : SensorEventListener {
     var sawNear = false
         private set
     private val sensorManager = context.getSystemService(SensorManager::class.java)
-    private val sensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY, false)
+
     private val executorService = Executors.newSingleThreadExecutor()
     private var inPocketTime = 0L
 
@@ -82,5 +85,14 @@ class ProximitySensor(private val context: Context) : SensorEventListener {
 
         // Minimum time until the device is considered to have been in the pocket: 2s
         private const val POCKET_MIN_DELTA_NS = 2000 * 1000 * 1000
+
+        fun getInstance(context: Context): ProximitySensor? {
+            val sensorManager = context.getSystemService(SensorManager::class.java)
+
+            val sensorType = context.proximitySensorType ?: return null
+            val sensor = sensorManager.getSensor(sensorType) ?: return null
+
+            return ProximitySensor(context, sensor)
+        }
     }
 }

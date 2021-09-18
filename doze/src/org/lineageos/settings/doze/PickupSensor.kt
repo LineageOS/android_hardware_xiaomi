@@ -17,9 +17,12 @@ import org.lineageos.settings.doze.DozeUtils.launchDozePulse
 import java.util.concurrent.Executors
 import java.util.concurrent.Future
 
-class PickupSensor(private val context: Context) : SensorEventListener {
+class PickupSensor(
+    private val context: Context,
+    private val sensor: Sensor
+) : SensorEventListener {
     private val sensorManager = context.getSystemService(SensorManager::class.java)
-    private val sensor = sensorManager.getSensor(SENSOR_NAME)
+
     private val executorService = Executors.newSingleThreadExecutor()
     private var entryTimestamp = 0L
 
@@ -64,8 +67,15 @@ class PickupSensor(private val context: Context) : SensorEventListener {
     companion object {
         private const val LOG_TAG = "PickupSensor"
 
-        private const val SENSOR_NAME = "xiaomi.sensor.pickup"
-
         private const val MIN_PULSE_INTERVAL_MS = 2500
+
+        fun getInstance(context: Context): PickupSensor? {
+            val sensorManager = context.getSystemService(SensorManager::class.java)
+
+            val sensorType = context.pickupSensorType ?: return null
+            val sensor = sensorManager.getSensor(sensorType) ?: return null
+
+            return PickupSensor(context, sensor)
+        }
     }
 }
