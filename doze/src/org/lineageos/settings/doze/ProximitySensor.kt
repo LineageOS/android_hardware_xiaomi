@@ -23,11 +23,13 @@ class ProximitySensor(private val context: Context) : SensorEventListener {
     var sawNear = false
         private set
     private val sensorManager = context.getSystemService(SensorManager::class.java)
-    private val sensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY, false)
+    private val sensor = sensorManager.getSensor(
+            context.getResources().getString(R.string.proximity_sensor_type))
     private val executorService = Executors.newSingleThreadExecutor()
     private var inPocketTime = 0L
 
     override fun onSensorChanged(event: SensorEvent) {
+        if (sensor == null) return
         if (DEBUG) Log.d(LOG_TAG, "Got sensor event: ${event.values[0]}")
 
         val isNear = event.values[0] < sensor.maximumRange
@@ -46,6 +48,7 @@ class ProximitySensor(private val context: Context) : SensorEventListener {
     override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {}
 
     fun enable() {
+        if (sensor == null) return
         Log.d(LOG_TAG, "Enabling")
 
         submit {
@@ -57,6 +60,7 @@ class ProximitySensor(private val context: Context) : SensorEventListener {
     }
 
     fun disable() {
+        if (sensor == null) return
         Log.d(LOG_TAG, "Disabling")
 
         submit { sensorManager.unregisterListener(this, sensor) }

@@ -59,8 +59,15 @@ class DozeSettingsFragment : PreferenceFragmentCompat(), OnPreferenceChangeListe
 
         val pickupSensorCategory =
             preferenceScreen.findPreference<PreferenceCategory>(DozeUtils.CATEG_PICKUP_SENSOR)
+        if (getString(R.string.pickup_sensor_type).isEmpty()) {
+            preferenceScreen.removePreference(pickupSensorCategory)
+        }
+
         val proximitySensorCategory =
             preferenceScreen.findPreference<PreferenceCategory>(DozeUtils.CATEG_PROX_SENSOR)
+        if (getString(R.string.proximity_sensor_type).isEmpty()) {
+            preferenceScreen.removePreference(proximitySensorCategory)
+        }
 
         pickUpPreference = findPreference(DozeUtils.GESTURE_PICK_UP_KEY)
         pickUpPreference?.isEnabled = dozeEnabled
@@ -73,11 +80,6 @@ class DozeSettingsFragment : PreferenceFragmentCompat(), OnPreferenceChangeListe
         pocketPreference = findPreference(DozeUtils.GESTURE_POCKET_KEY)
         pocketPreference?.isEnabled = dozeEnabled
         pocketPreference?.onPreferenceChangeListener = this
-
-        // Hide proximity sensor related features if the device doesn't support them
-        if (!DozeUtils.getProxCheckBeforePulse(activity)) {
-            preferenceScreen.removePreference(proximitySensorCategory)
-        }
 
         // Hide AOD if not supported and set all its dependents otherwise
         if (!DozeUtils.alwaysOnDisplayAvailable(activity)) {

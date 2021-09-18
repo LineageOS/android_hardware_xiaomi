@@ -8,7 +8,6 @@ package org.lineageos.settings.doze
 
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager.NameNotFoundException
 import android.hardware.display.AmbientDisplayConfiguration
 import android.os.UserHandle
 import android.provider.Settings
@@ -33,17 +32,6 @@ object DozeUtils {
     internal const val GESTURE_POCKET_KEY = "gesture_pocket"
 
     private const val DOZE_INTENT = "com.android.systemui.doze.pulse"
-
-    internal fun getProxCheckBeforePulse(context: Context) = try {
-        val con = context.createPackageContext("com.android.systemui", 0)
-        val id = con.resources.getIdentifier(
-            "doze_proximity_check_before_pulse",
-            "bool", "com.android.systemui"
-        )
-        con.resources.getBoolean(id)
-    } catch (e: NameNotFoundException) {
-        false
-    }
 
     internal fun enableDoze(context: Context, enable: Boolean) = Settings.Secure.putInt(
         context.contentResolver,
