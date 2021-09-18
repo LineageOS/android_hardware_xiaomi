@@ -21,7 +21,8 @@ import java.util.concurrent.Future
 
 class PickupSensor(private val context: Context) : SensorEventListener {
     private val sensorManager = context.getSystemService(SensorManager::class.java)
-    private val sensor = sensorManager.getSensor(SENSOR_NAME)
+    private val sensor = sensorManager.getSensor(
+            context.getResources().getString(R.string.pickup_sensor_type))
     private val executorService = Executors.newSingleThreadExecutor()
     private var entryTimestamp = 0L
 
@@ -42,6 +43,7 @@ class PickupSensor(private val context: Context) : SensorEventListener {
     override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {}
 
     fun enable() {
+        if (sensor == null) return
         Log.d(LOG_TAG, "Enabling")
 
         submit {
@@ -54,6 +56,7 @@ class PickupSensor(private val context: Context) : SensorEventListener {
     }
 
     fun disable() {
+        if (sensor == null) return
         Log.d(LOG_TAG, "Disabling")
 
         submit { sensorManager.unregisterListener(this, sensor) }
@@ -66,8 +69,6 @@ class PickupSensor(private val context: Context) : SensorEventListener {
     companion object {
         private const val LOG_TAG = "PickupSensor"
         private const val DEBUG = false
-
-        private const val SENSOR_NAME = "xiaomi.sensor.pickup"
 
         private const val MIN_PULSE_INTERVAL_MS = 2500
     }

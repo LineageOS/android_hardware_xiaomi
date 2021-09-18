@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2021 The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <!-- Sensor types -->
+    <string name="pickup_sensor_type"></string>
+    <string name="proximity_sensor_type"></string>
+</resources>
