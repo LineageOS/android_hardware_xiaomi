@@ -20,6 +20,7 @@
 #include <android/hardware/sensors/1.0/ISensors.h>
 #include <hardware/sensors.h>
 #include <mutex>
+#include <vector>
 
 namespace android {
 namespace hardware {
@@ -65,7 +66,7 @@ struct Sensors : public ::android::hardware::sensors::V1_0::ISensors {
     int getHalDeviceVersion() const;
 
     static void convertFromSensorEvents(size_t count, const sensors_event_t* src,
-                                        hidl_vec<Event>* dst);
+                                        std::vector<Event> dst);
 
     DISALLOW_COPY_AND_ASSIGN(Sensors);
 };

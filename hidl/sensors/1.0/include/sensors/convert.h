@@ -34,6 +34,8 @@ void convertToSensorEvent(const Event& src, sensors_event_t* dst);
 bool convertFromSharedMemInfo(const SharedMemInfo& memIn, sensors_direct_mem_t* memOut);
 int convertFromRateLevel(RateLevel rate);
 
+bool patchXiaomiPickupSensor(SensorInfo& sensor);
+
 }  // namespace implementation
 }  // namespace V1_0
 }  // namespace sensors

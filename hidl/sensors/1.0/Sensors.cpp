@@ -106,15 +106,21 @@ Return<void> Sensors::getSensorsList(getSensorsList_cb _hidl_cb) {
     sensor_t const* list;
     size_t count = mSensorModule->get_sensors_list(mSensorModule, &list);
 
-    hidl_vec<SensorInfo> out;
-    out.resize(count);
+    std::vector<SensorInfo> sensors;
 
     for (size_t i = 0; i < count; ++i) {
         const sensor_t* src = &list[i];
-        SensorInfo* dst = &out[i];
+        SensorInfo sensor;
 
-        convertFromSensor(*src, dst);
+        convertFromSensor(*src, &sensor);
+
+        bool keep = patchXiaomiPickupSensor(sensor);
+        if (keep) {
+            sensors.push_back(sensor);
+        }
     }
+
+    hidl_vec<SensorInfo> out = sensors;
 
     _hidl_cb(out);
 
@@ -206,8 +212,9 @@ Return<void> Sensors::poll(int32_t maxCount, poll_cb _hidl_cb) {
         dynamicSensorsAdded[numDynamicSensors] = info;
     }
 
-    out.resize(count);
-    convertFromSensorEvents(err, data.get(), &out);
+    std::vector<Event> events;
+    convertFromSensorEvents(err, data.get(), events);
+    out = events;
 
     _hidl_cb(Result::OK, out, dynamicSensorsAdded);
 
@@ -301,12 +308,18 @@ Return<void> Sensors::configDirectReport(int32_t sensorHandle, int32_t channelHa
 
 // static
 void Sensors::convertFromSensorEvents(size_t count, const sensors_event_t* srcArray,
-                                      hidl_vec<Event>* dstVec) {
+                                      std::vector<Event> dst) {
     for (size_t i = 0; i < count; ++i) {
         const sensors_event_t& src = srcArray[i];
-        Event* dst = &(*dstVec)[i];
+        Event event;
 
-        convertFromSensorEvent(src, dst);
+        convertFromSensorEvent(src, &event);
+
+        if (event.sensorType == SensorType::PICK_UP_GESTURE && event.u.scalar != 1) {
+            continue;
+        }
+
+        dst.push_back(event);
     }
 }
 
