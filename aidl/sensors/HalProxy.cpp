@@ -81,6 +81,25 @@ int64_t msFromNs(int64_t nanos) {
     return nanos / nanosecondsInAMillsecond;
 }
 
+bool patchXiaomiPickupSensor(V2_1::SensorInfo& sensor) {
+    if (sensor.typeAsString != "xiaomi.sensor.pickup") {
+        return true;
+    }
+
+    /*
+     * Implement only the wake-up version of this sensor.
+     */
+    if (!(sensor.flags & V1_0::SensorFlagBits::WAKE_UP)) {
+        return false;
+    }
+
+    sensor.type = V2_1::SensorType::PICK_UP_GESTURE;
+    sensor.typeAsString = SENSOR_STRING_TYPE_PICK_UP_GESTURE;
+    sensor.maxRange = 1;
+
+    return true;
+}
+
 HalProxy::HalProxy() {
     static const std::string kMultiHalConfigFiles[] = {"/vendor/etc/sensors/hals.conf",
                                                        "/odm/etc/sensors/hals.conf"};
@@ -496,6 +515,11 @@ void HalProxy::initializeSensorList() {
                     ALOGV("Loaded sensor: %s", sensor.name.c_str());
                     sensor.sensorHandle = setSubHalIndex(sensor.sensorHandle, subHalIndex);
                     setDirectChannelFlags(&sensor, mSubHalList[subHalIndex]);
+                    bool keep = patchXiaomiPickupSensor(sensor);
+                    if (!keep) {
+                        continue;
+                    }
+
                     mSensors[sensor.sensorHandle] = sensor;
                 }
             }
