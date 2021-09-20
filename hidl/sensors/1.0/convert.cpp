@@ -374,6 +374,25 @@ int convertFromRateLevel(RateLevel rate) {
     }
 }
 
+bool patchXiaomiPickupSensor(SensorInfo& sensor) {
+    if (sensor.typeAsString != "xiaomi.sensor.pickup") {
+        return true;
+    }
+
+    /*
+     * Implement only the wake-up version of this sensor.
+     */
+    if (!(sensor.flags & SensorFlagBits::WAKE_UP)) {
+        return false;
+    }
+
+    sensor.type = SensorType::PICK_UP_GESTURE;
+    sensor.typeAsString = SENSOR_STRING_TYPE_PICK_UP_GESTURE;
+    sensor.maxRange = 1;
+
+    return true;
+}
+
 }  // namespace implementation
 }  // namespace V1_0
 }  // namespace sensors
