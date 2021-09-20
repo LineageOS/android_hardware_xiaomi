@@ -103,18 +103,7 @@ status_t Sensors::initCheck() const {
 }
 
 Return<void> Sensors::getSensorsList(getSensorsList_cb _hidl_cb) {
-    sensor_t const* list;
-    size_t count = mSensorModule->get_sensors_list(mSensorModule, &list);
-
-    hidl_vec<SensorInfo> out;
-    out.resize(count);
-
-    for (size_t i = 0; i < count; ++i) {
-        const sensor_t* src = &list[i];
-        SensorInfo* dst = &out[i];
-
-        convertFromSensor(*src, dst);
-    }
+    hidl_vec<SensorInfo> out = getFixedUpSensorList();
 
     _hidl_cb(out);
 
@@ -206,8 +195,9 @@ Return<void> Sensors::poll(int32_t maxCount, poll_cb _hidl_cb) {
         dynamicSensorsAdded[numDynamicSensors] = info;
     }
 
-    out.resize(count);
-    convertFromSensorEvents(err, data.get(), &out);
+    std::vector<Event> events;
+    convertFromSensorEvents(err, data.get(), events, getFixedUpSensorList());
+    out = events;
 
     _hidl_cb(Result::OK, out, dynamicSensorsAdded);
 
@@ -299,14 +289,53 @@ Return<void> Sensors::configDirectReport(int32_t sensorHandle, int32_t channelHa
     return Void();
 }
 
+std::vector<SensorInfo> Sensors::getFixedUpSensorList() {
+    std::vector<SensorInfo> sensors;
+
+    sensor_t const* list;
+    size_t count = mSensorModule->get_sensors_list(mSensorModule, &list);
+
+    for (size_t i = 0; i < count; ++i) {
+        const sensor_t* src = &list[i];
+        SensorInfo sensor;
+
+        convertFromSensor(*src, &sensor);
+
+        bool keep = patchXiaomiPickupSensor(sensor);
+        if (keep) {
+            sensors.push_back(sensor);
+        }
+    }
+
+    return sensors;
+};
+
 // static
 void Sensors::convertFromSensorEvents(size_t count, const sensors_event_t* srcArray,
-                                      hidl_vec<Event>* dstVec) {
+                                      std::vector<Event>& dstVec,
+                                      std::vector<SensorInfo> sensorsList) {
     for (size_t i = 0; i < count; ++i) {
         const sensors_event_t& src = srcArray[i];
-        Event* dst = &(*dstVec)[i];
+        Event event;
 
-        convertFromSensorEvent(src, dst);
+        convertFromSensorEvent(src, &event);
+
+        SensorInfo* sensor = nullptr;
+        for (auto& s : sensorsList) {
+            if (s.sensorHandle == event.sensorHandle) {
+                sensor = &s;
+                break;
+            }
+        }
+
+        if (sensor && sensor->type == SensorType::PICK_UP_GESTURE) {
+            if (event.u.scalar != 1) {
+                continue;
+            }
+            event.sensorType = SensorType::PICK_UP_GESTURE;
+        }
+
+        dstVec.push_back(event);
     }
 }
 
