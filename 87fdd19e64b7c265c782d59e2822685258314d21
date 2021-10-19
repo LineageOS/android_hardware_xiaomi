@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2340ff70_9c5c1017",
+        "filename": "aidl/light/Lights.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 11883
+      },
+      "writtenOn": "2021-10-19T08:17:29Z",
+      "side": 1,
+      "message": "cast it there?\nuse c++ casts",
+      "revId": "87fdd19e64b7c265c782d59e2822685258314d21",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "76f2f287_80962db0",
+        "filename": "aidl/light/Utils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 11883
+      },
+      "writtenOn": "2021-10-19T08:17:29Z",
+      "side": 1,
+      "message": "fileWriteable?",
+      "revId": "87fdd19e64b7c265c782d59e2822685258314d21",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
