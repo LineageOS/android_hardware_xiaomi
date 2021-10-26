@@ -16,8 +16,6 @@
 
 #pragma once
 
-#include "PowerHintSession.h"
-
 #include <android-base/properties.h>
 #include <perfmgr/HintManager.h>
 #include <utils/Looper.h>
@@ -25,6 +23,8 @@
 #include <mutex>
 #include <optional>
 #include <unordered_set>
+
+#include "PowerHintSession.h"
 
 namespace aidl {
 namespace google {

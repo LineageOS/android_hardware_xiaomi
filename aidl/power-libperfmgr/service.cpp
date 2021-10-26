@@ -61,7 +61,7 @@ int main() {
     CHECK(status == STATUS_OK);
     LOG(INFO) << "Xiaomi Power HAL AIDL Service with Extension is started.";
 
-    if (::android::base::GetIntProperty("vendor.powerhal.adpf.rate", -1) != -1) {
+    if (HintManager::GetInstance()->GetAdpfProfile()) {
         PowerHintMonitor::getInstance()->start();
     }
 

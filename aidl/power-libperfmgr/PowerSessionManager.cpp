@@ -44,6 +44,9 @@ void PowerSessionManager::updateHintMode(const std::string &mode, bool enabled) 
             mDisplayRefreshRate = 60;
         }
     }
+    if (HintManager::GetInstance()->GetAdpfProfile()) {
+        HintManager::GetInstance()->SetAdpfProfile(mode);
+    }
 }
 
 int PowerSessionManager::getDisplayRefreshRate() {
