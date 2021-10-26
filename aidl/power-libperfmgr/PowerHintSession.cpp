@@ -17,16 +17,19 @@
 #define LOG_TAG "powerhal-libperfmgr"
 #define ATRACE_TAG (ATRACE_TAG_POWER | ATRACE_TAG_HAL)
 
+#include "PowerHintSession.h"
+
 #include <android-base/logging.h>
 #include <android-base/parsedouble.h>
 #include <android-base/properties.h>
 #include <android-base/stringprintf.h>
+#include <perfmgr/AdpfConfig.h>
 #include <sys/syscall.h>
 #include <time.h>
 #include <utils/Trace.h>
+
 #include <atomic>
 
-#include "PowerHintSession.h"
 #include "PowerSessionManager.h"
 
 namespace aidl {
@@ -37,25 +40,10 @@ namespace impl {
 namespace pixel {
 
 using ::android::base::StringPrintf;
+using ::android::perfmgr::AdpfConfig;
+using ::android::perfmgr::HintManager;
 using std::chrono::duration_cast;
 using std::chrono::nanoseconds;
-
-constexpr char kPowerHalAdpfPidPOver[] = "vendor.powerhal.adpf.pid_p.over";
-constexpr char kPowerHalAdpfPidPUnder[] = "vendor.powerhal.adpf.pid_p.under";
-constexpr char kPowerHalAdpfPidI[] = "vendor.powerhal.adpf.pid_i";
-constexpr char kPowerHalAdpfPidDOver[] = "vendor.powerhal.adpf.pid_d.over";
-constexpr char kPowerHalAdpfPidDUnder[] = "vendor.powerhal.adpf.pid_d.under";
-constexpr char kPowerHalAdpfPidIInit[] = "vendor.powerhal.adpf.pid_i.init";
-constexpr char kPowerHalAdpfPidIHighLimit[] = "vendor.powerhal.adpf.pid_i.high_limit";
-constexpr char kPowerHalAdpfPidILowLimit[] = "vendor.powerhal.adpf.pid_i.low_limit";
-constexpr char kPowerHalAdpfUclampEnable[] = "vendor.powerhal.adpf.uclamp";
-constexpr char kPowerHalAdpfUclampMinGranularity[] = "vendor.powerhal.adpf.uclamp_min.granularity";
-constexpr char kPowerHalAdpfUclampMinHighLimit[] = "vendor.powerhal.adpf.uclamp_min.high_limit";
-constexpr char kPowerHalAdpfUclampMinLowLimit[] = "vendor.powerhal.adpf.uclamp_min.low_limit";
-constexpr char kPowerHalAdpfStaleTimeFactor[] = "vendor.powerhal.adpf.stale_timeout_factor";
-constexpr char kPowerHalAdpfPSamplingWindow[] = "vendor.powerhal.adpf.p.window";
-constexpr char kPowerHalAdpfISamplingWindow[] = "vendor.powerhal.adpf.i.window";
-constexpr char kPowerHalAdpfDSamplingWindow[] = "vendor.powerhal.adpf.d.window";
 
 namespace {
 /* there is no glibc or bionic wrapper */
@@ -73,9 +61,7 @@ struct sched_attr {
 };
 
 static int sched_setattr(int pid, struct sched_attr *attr, unsigned int flags) {
-    static const bool kPowerHalAdpfUclamp =
-            ::android::base::GetBoolProperty(kPowerHalAdpfUclampEnable, true);
-    if (!kPowerHalAdpfUclamp) {
+    if (!HintManager::GetInstance()->GetAdpfProfile()->mUclampMinOn) {
         ALOGV("PowerHintSession:%s: skip", __func__);
         return 0;
     }
@@ -86,54 +72,77 @@ static inline int64_t ns_to_100us(int64_t ns) {
     return ns / 100000;
 }
 
-static double getDoubleProperty(const char *prop, double value) {
-    std::string result = ::android::base::GetProperty(prop, std::to_string(value).c_str());
-    if (!::android::base::ParseDouble(result.c_str(), &value)) {
-        ALOGE("PowerHintSession : failed to parse double in %s", prop);
+static int64_t convertWorkDurationToBoostByPid(std::shared_ptr<AdpfConfig> adpfConfig,
+                                               nanoseconds targetDuration,
+                                               const std::vector<WorkDuration> &actualDurations,
+                                               int64_t *integral_error, int64_t *previous_error,
+                                               const std::string &idstr) {
+    uint64_t samplingWindowP = adpfConfig->mSamplingWindowP;
+    uint64_t samplingWindowI = adpfConfig->mSamplingWindowI;
+    uint64_t samplingWindowD = adpfConfig->mSamplingWindowD;
+    int64_t targetDurationNanos = (int64_t)targetDuration.count();
+    int64_t length = actualDurations.size();
+    int64_t p_start =
+            samplingWindowP == 0 || samplingWindowP > length ? 0 : length - samplingWindowP;
+    int64_t i_start =
+            samplingWindowI == 0 || samplingWindowI > length ? 0 : length - samplingWindowI;
+    int64_t d_start =
+            samplingWindowD == 0 || samplingWindowD > length ? 0 : length - samplingWindowD;
+    int64_t dt = ns_to_100us(targetDurationNanos);
+    int64_t err_sum = 0;
+    int64_t derivative_sum = 0;
+    for (int64_t i = std::min({p_start, i_start, d_start}); i < length; i++) {
+        int64_t actualDurationNanos = actualDurations[i].durationNanos;
+        if (std::abs(actualDurationNanos) > targetDurationNanos * 20) {
+            ALOGW("The actual duration is way far from the target (%" PRId64 " >> %" PRId64 ")",
+                  actualDurationNanos, targetDurationNanos);
+        }
+        // PID control algorithm
+        int64_t error = ns_to_100us(actualDurationNanos - targetDurationNanos);
+        if (i >= d_start) {
+            derivative_sum += error - (*previous_error);
+        }
+        if (i >= p_start) {
+            err_sum += error;
+        }
+        if (i >= i_start) {
+            *integral_error = *integral_error + error * dt;
+            *integral_error = std::min(adpfConfig->getPidIHighDivI(), *integral_error);
+            *integral_error = std::max(adpfConfig->getPidILowDivI(), *integral_error);
+        }
+        *previous_error = error;
     }
-    return value;
-}
+    int64_t pOut = static_cast<int64_t>((err_sum > 0 ? adpfConfig->mPidPo : adpfConfig->mPidPu) *
+                                        err_sum / (length - p_start));
+    int64_t iOut = static_cast<int64_t>(adpfConfig->mPidI * (*integral_error));
+    int64_t dOut =
+            static_cast<int64_t>((derivative_sum > 0 ? adpfConfig->mPidDo : adpfConfig->mPidDu) *
+                                 derivative_sum / dt / (length - d_start));
 
-static double sPidPOver = getDoubleProperty(kPowerHalAdpfPidPOver, 2.0);
-static double sPidPUnder = getDoubleProperty(kPowerHalAdpfPidPUnder, 1.0);
-static double sPidI = getDoubleProperty(kPowerHalAdpfPidI, 0.0);
-static double sPidDOver = getDoubleProperty(kPowerHalAdpfPidDOver, 300.0);
-static double sPidDUnder = getDoubleProperty(kPowerHalAdpfPidDUnder, 0.0);
-static const int64_t sPidIInit =
-        (sPidI == 0.0) ? 0
-                       : static_cast<int64_t>(::android::base::GetIntProperty<int64_t>(
-                                                      kPowerHalAdpfPidIInit, 200) /
-                                              sPidI);
-static const int64_t sPidIHighLimit =
-        (sPidI == 0.0) ? 0
-                       : static_cast<int64_t>(::android::base::GetIntProperty<int64_t>(
-                                                      kPowerHalAdpfPidIHighLimit, 512) /
-                                              sPidI);
-static const int64_t sPidILowLimit =
-        (sPidI == 0.0) ? 0
-                       : static_cast<int64_t>(::android::base::GetIntProperty<int64_t>(
-                                                      kPowerHalAdpfPidILowLimit, -30) /
-                                              sPidI);
-static const int32_t sUclampMinHighLimit =
-        ::android::base::GetUintProperty<uint32_t>(kPowerHalAdpfUclampMinHighLimit, 384);
-static const int32_t sUclampMinLowLimit =
-        ::android::base::GetUintProperty<uint32_t>(kPowerHalAdpfUclampMinLowLimit, 2);
-static const uint32_t sUclampMinGranularity =
-        ::android::base::GetUintProperty<uint32_t>(kPowerHalAdpfUclampMinGranularity, 5);
-static const int64_t sStaleTimeFactor =
-        ::android::base::GetUintProperty<uint32_t>(kPowerHalAdpfStaleTimeFactor, 20);
-static const int64_t sPSamplingWindow =
-        ::android::base::GetUintProperty<uint32_t>(kPowerHalAdpfPSamplingWindow, 1);
-static const int64_t sISamplingWindow =
-        ::android::base::GetUintProperty<uint32_t>(kPowerHalAdpfISamplingWindow, 0);
-static const int64_t sDSamplingWindow =
-        ::android::base::GetUintProperty<uint32_t>(kPowerHalAdpfDSamplingWindow, 1);
+    int64_t output = pOut + iOut + dOut;
+    if (ATRACE_ENABLED()) {
+        std::string sz = StringPrintf("adpf.%s-pid.err", idstr.c_str());
+        ATRACE_INT(sz.c_str(), err_sum / (length - p_start));
+        sz = StringPrintf("adpf.%s-pid.integral", idstr.c_str());
+        ATRACE_INT(sz.c_str(), *integral_error);
+        sz = StringPrintf("adpf.%s-pid.derivative", idstr.c_str());
+        ATRACE_INT(sz.c_str(), derivative_sum / dt / (length - d_start));
+        sz = StringPrintf("adpf.%s-pid.pOut", idstr.c_str());
+        ATRACE_INT(sz.c_str(), pOut);
+        sz = StringPrintf("adpf.%s-pid.iOut", idstr.c_str());
+        ATRACE_INT(sz.c_str(), iOut);
+        sz = StringPrintf("adpf.%s-pid.dOut", idstr.c_str());
+        ATRACE_INT(sz.c_str(), dOut);
+        sz = StringPrintf("adpf.%s-pid.output", idstr.c_str());
+        ATRACE_INT(sz.c_str(), output);
+    }
+    return output;
+}
 
 }  // namespace
 
 PowerHintSession::PowerHintSession(int32_t tgid, int32_t uid, const std::vector<int32_t> &threadIds,
-                                   int64_t durationNanos, const nanoseconds adpfRate)
-    : kAdpfRate(adpfRate) {
+                                   int64_t durationNanos) {
     mDescriptor = new AppHintDesc(tgid, uid, threadIds);
     mDescriptor->duration = std::chrono::nanoseconds(durationNanos);
     mStaleHandler = sp<StaleHandler>(new StaleHandler(this));
@@ -150,7 +159,7 @@ PowerHintSession::PowerHintSession(int32_t tgid, int32_t uid, const std::vector<
     }
     PowerSessionManager::getInstance()->addPowerSession(this);
     // init boost
-    setUclamp(sUclampMinHighLimit);
+    setUclamp(HintManager::GetInstance()->GetAdpfProfile()->mUclampMinHigh);
     ALOGV("PowerHintSession created: %s", mDescriptor->toString().c_str());
 }
 
@@ -276,6 +285,8 @@ ndk::ScopedAStatus PowerHintSession::updateTargetWorkDuration(int64_t targetDura
         ALOGE("Error: targetDurationNanos(%" PRId64 ") should bigger than 0", targetDurationNanos);
         return ndk::ScopedAStatus::fromExceptionCode(EX_ILLEGAL_ARGUMENT);
     }
+    targetDurationNanos =
+            targetDurationNanos * HintManager::GetInstance()->GetAdpfProfile()->mTargetTimeFactor;
     ALOGV("update target duration: %" PRId64 " ns", targetDurationNanos);
 
     mDescriptor->duration = std::chrono::nanoseconds(targetDurationNanos);
@@ -306,91 +317,54 @@ ndk::ScopedAStatus PowerHintSession::reportActualWorkDuration(
         ALOGE("Error: shouldn't report duration during pause state.");
         return ndk::ScopedAStatus::fromExceptionCode(EX_ILLEGAL_STATE);
     }
-
+    std::shared_ptr<AdpfConfig> adpfConfig = HintManager::GetInstance()->GetAdpfProfile();
     mDescriptor->update_count++;
     if (ATRACE_ENABLED()) {
         const std::string idstr = getIdString();
-        std::string sz = StringPrintf("adpf.%s-samples", idstr.c_str());
+        std::string sz = StringPrintf("adpf.%s-batch_size", idstr.c_str());
         ATRACE_INT(sz.c_str(), actualDurations.size());
-        sz = StringPrintf("adpf.%s-actual_time", idstr.c_str());
+        sz = StringPrintf("adpf.%s-actl_last", idstr.c_str());
         ATRACE_INT(sz.c_str(), actualDurations.back().durationNanos);
-        sz = StringPrintf("adpf.%s-target_time", idstr.c_str());
+        sz = StringPrintf("adpf.%s-target", idstr.c_str());
         ATRACE_INT(sz.c_str(), (int64_t)mDescriptor->duration.count());
-        sz = StringPrintf("adpf.%s-overtime", idstr.c_str());
+        sz = StringPrintf("adpf.%s-hint.count", idstr.c_str());
+        ATRACE_INT(sz.c_str(), mDescriptor->update_count);
+        sz = StringPrintf("adpf.%s-hint.overtime", idstr.c_str());
         ATRACE_INT(sz.c_str(),
                    actualDurations.back().durationNanos - mDescriptor->duration.count() > 0);
-        sz = StringPrintf("adpf.%s-update_count", idstr.c_str());
-        ATRACE_INT(sz.c_str(), mDescriptor->update_count);
         sz = StringPrintf("adpf.%s-stale", idstr.c_str());
         ATRACE_INT(sz.c_str(), isStale());
     }
+
+    if (PowerHintMonitor::getInstance()->isRunning() && isStale()) {
+        mDescriptor->integral_error =
+                std::max(adpfConfig->getPidIInitDivI(), mDescriptor->integral_error);
+        if (ATRACE_ENABLED()) {
+            const std::string idstr = getIdString();
+            std::string sz = StringPrintf("adpf.%s-wakeup", idstr.c_str());
+            ATRACE_INT(sz.c_str(), mDescriptor->integral_error);
+            ATRACE_INT(sz.c_str(), 0);
+        }
+    }
+
     mStaleHandler->updateStaleTimer();
 
-    int64_t targetDurationNanos = (int64_t)mDescriptor->duration.count();
-    int64_t length = actualDurations.size();
-    int64_t p_start =
-            sPSamplingWindow == 0 || sPSamplingWindow > length ? 0 : length - sPSamplingWindow;
-    int64_t i_start =
-            sISamplingWindow == 0 || sISamplingWindow > length ? 0 : length - sISamplingWindow;
-    int64_t d_start =
-            sDSamplingWindow == 0 || sDSamplingWindow > length ? 0 : length - sDSamplingWindow;
-    int64_t dt = ns_to_100us(targetDurationNanos);
-    int64_t err_sum = 0;
-    int64_t derivative_sum = 0;
-    for (int64_t i = std::min({p_start, i_start, d_start}); i < length; i++) {
-        int64_t actualDurationNanos = actualDurations[i].durationNanos;
-        if (std::abs(actualDurationNanos) > targetDurationNanos * 20) {
-            ALOGW("The actual duration is way far from the target (%" PRId64 " >> %" PRId64 ")",
-                  actualDurationNanos, targetDurationNanos);
-        }
-        // PID control algorithm
-        int64_t error = ns_to_100us(actualDurationNanos - targetDurationNanos);
-        if (i >= d_start) {
-            derivative_sum += error - mDescriptor->previous_error;
-        }
-        if (i >= p_start) {
-            err_sum += error;
-        }
-        if (i >= i_start && sPidI != 0.0) {
-            mDescriptor->integral_error = mDescriptor->integral_error + error * dt;
-            mDescriptor->integral_error = std::min(sPidIHighLimit, mDescriptor->integral_error);
-            mDescriptor->integral_error = std::max(sPidILowLimit, mDescriptor->integral_error);
-        }
-        mDescriptor->previous_error = error;
+    if (!adpfConfig->mPidOn) {
+        setUclamp(adpfConfig->mUclampMinHigh);
+        return ndk::ScopedAStatus::ok();
     }
-    if (ATRACE_ENABLED()) {
-        const std::string idstr = getIdString();
-    }
-    int64_t pOut = static_cast<int64_t>((err_sum > 0 ? sPidPOver : sPidPUnder) * err_sum /
-                                        (length - p_start));
-    int64_t iOut = static_cast<int64_t>(sPidI * mDescriptor->integral_error);
-    int64_t dOut = static_cast<int64_t>((derivative_sum > 0 ? sPidDOver : sPidDUnder) *
-                                        derivative_sum / dt / (length - d_start));
-    int64_t output = pOut + iOut + dOut;
-    if (ATRACE_ENABLED()) {
-        const std::string idstr = getIdString();
-        std::string sz = StringPrintf("adpf.%s-pid.p", idstr.c_str());
-        ATRACE_INT(sz.c_str(), err_sum / (length - p_start));
-        sz = StringPrintf("adpf.%s-pid.i", idstr.c_str());
-        ATRACE_INT(sz.c_str(), mDescriptor->integral_error);
-        sz = StringPrintf("adpf.%s-pid.d", idstr.c_str());
-        ATRACE_INT(sz.c_str(), derivative_sum / (length - d_start));
-        sz = StringPrintf("adpf.%s-pid.pOut", idstr.c_str());
-        ATRACE_INT(sz.c_str(), pOut);
-        sz = StringPrintf("adpf.%s-pid.iOut", idstr.c_str());
-        ATRACE_INT(sz.c_str(), iOut);
-        sz = StringPrintf("adpf.%s-pid.dOut", idstr.c_str());
-        ATRACE_INT(sz.c_str(), dOut);
-        sz = StringPrintf("adpf.%s-pid.output", idstr.c_str());
-        ATRACE_INT(sz.c_str(), output);
-    }
+    int64_t output = convertWorkDurationToBoostByPid(
+            adpfConfig, mDescriptor->duration, actualDurations, &(mDescriptor->integral_error),
+            &(mDescriptor->previous_error), getIdString());
+
+    mStaleHandler->updateStaleTimer();
 
     /* apply to all the threads in the group */
     if (output != 0) {
-        int next_min =
-                std::min(sUclampMinHighLimit, mDescriptor->current_min + static_cast<int>(output));
-        next_min = std::max(sUclampMinLowLimit, next_min);
-        if (std::abs(mDescriptor->current_min - next_min) > sUclampMinGranularity) {
+        int next_min = std::min(static_cast<int>(adpfConfig->mUclampMinHigh),
+                                mDescriptor->current_min + static_cast<int>(output));
+        next_min = std::max(static_cast<int>(adpfConfig->mUclampMinLow), next_min);
+        if (std::abs(mDescriptor->current_min - next_min) > adpfConfig->mUclampMinGranularity) {
             setUclamp(next_min);
         } else {
             restoreUclamp();
@@ -472,7 +446,9 @@ void PowerHintSession::StaleHandler::updateStaleTimer() {
 
 time_point<steady_clock> PowerHintSession::StaleHandler::getStaleTime() {
     return mLastUpdatedTime.load() +
-           std::chrono::duration_cast<milliseconds>(mSession->kAdpfRate) * sStaleTimeFactor;
+           nanoseconds(static_cast<int64_t>(
+                   mSession->mDescriptor->duration.count() *
+                   HintManager::GetInstance()->GetAdpfProfile()->mStaleTimeFactor));
 }
 
 void PowerHintSession::StaleHandler::handleMessage(const Message &) {
