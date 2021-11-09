@@ -59,6 +59,7 @@ struct AppHintDesc {
     const std::vector<int> threadIds;
     nanoseconds duration;
     int current_min;
+    int transitioanl_min;
     // status
     std::atomic<bool> is_active;
     // pid
@@ -81,6 +82,7 @@ class PowerHintSession : public BnPowerHintSession {
     bool isActive();
     bool isStale();
     const std::vector<int> &getTidList() const;
+    int restoreUclamp();
 
   private:
     class StaleHandler : public MessageHandler {
@@ -106,7 +108,7 @@ class PowerHintSession : public BnPowerHintSession {
   private:
     void setStale();
     void updateUniveralBoostMode();
-    int setUclamp(int32_t min, int32_t max = kMaxUclampValue);
+    int setUclamp(int32_t min, bool update = true);
     std::string getIdString() const;
     AppHintDesc *mDescriptor = nullptr;
     sp<StaleHandler> mStaleHandler;

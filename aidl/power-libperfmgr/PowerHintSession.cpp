@@ -96,24 +96,24 @@ static double getDoubleProperty(const char *prop, double value) {
 
 static double sPidPOver = getDoubleProperty(kPowerHalAdpfPidPOver, 2.0);
 static double sPidPUnder = getDoubleProperty(kPowerHalAdpfPidPUnder, 1.0);
-static double sPidI = getDoubleProperty(kPowerHalAdpfPidI, 0.001);
-static double sPidDOver = getDoubleProperty(kPowerHalAdpfPidDOver, 500.0);
+static double sPidI = getDoubleProperty(kPowerHalAdpfPidI, 0.0);
+static double sPidDOver = getDoubleProperty(kPowerHalAdpfPidDOver, 300.0);
 static double sPidDUnder = getDoubleProperty(kPowerHalAdpfPidDUnder, 0.0);
 static const int64_t sPidIInit =
-        (sPidI == 0) ? 0
-                     : static_cast<int64_t>(::android::base::GetIntProperty<int64_t>(
-                                                    kPowerHalAdpfPidIInit, 200) /
-                                            sPidI);
+        (sPidI == 0.0) ? 0
+                       : static_cast<int64_t>(::android::base::GetIntProperty<int64_t>(
+                                                      kPowerHalAdpfPidIInit, 200) /
+                                              sPidI);
 static const int64_t sPidIHighLimit =
-        (sPidI == 0) ? 0
-                     : static_cast<int64_t>(::android::base::GetIntProperty<int64_t>(
-                                                    kPowerHalAdpfPidIHighLimit, 512) /
-                                            sPidI);
+        (sPidI == 0.0) ? 0
+                       : static_cast<int64_t>(::android::base::GetIntProperty<int64_t>(
+                                                      kPowerHalAdpfPidIHighLimit, 512) /
+                                              sPidI);
 static const int64_t sPidILowLimit =
-        (sPidI == 0) ? 0
-                     : static_cast<int64_t>(::android::base::GetIntProperty<int64_t>(
-                                                    kPowerHalAdpfPidILowLimit, -30) /
-                                            sPidI);
+        (sPidI == 0.0) ? 0
+                       : static_cast<int64_t>(::android::base::GetIntProperty<int64_t>(
+                                                      kPowerHalAdpfPidILowLimit, -30) /
+                                              sPidI);
 static const int32_t sUclampMinHighLimit =
         ::android::base::GetUintProperty<uint32_t>(kPowerHalAdpfUclampMinHighLimit, 384);
 static const int32_t sUclampMinLowLimit =
@@ -180,12 +180,10 @@ void PowerHintSession::updateUniveralBoostMode() {
     PowerHintMonitor::getInstance()->getLooper()->sendMessage(mPowerManagerHandler, NULL);
 }
 
-int PowerHintSession::setUclamp(int32_t min, int32_t max) {
+int PowerHintSession::setUclamp(int32_t min, bool update) {
     std::lock_guard<std::mutex> guard(mLock);
     min = std::max(0, min);
-    min = std::min(min, max);
-    max = std::max(0, max);
-    max = std::max(min, max);
+    min = std::min(min, kMaxUclampValue);
     if (ATRACE_ENABLED()) {
         const std::string idstr = getIdString();
         std::string sz = StringPrintf("adpf.%s-min", idstr.c_str());
@@ -197,16 +195,26 @@ int PowerHintSession::setUclamp(int32_t min, int32_t max) {
 
         attr.sched_flags = (SCHED_FLAG_KEEP_ALL | SCHED_FLAG_UTIL_CLAMP);
         attr.sched_util_min = min;
-        attr.sched_util_max = max;
+        attr.sched_util_max = kMaxUclampValue;
 
         int ret = sched_setattr(tid, &attr, 0);
         if (ret) {
             ALOGW("sched_setattr failed for thread %d, err=%d", tid, errno);
         }
-        ALOGV("PowerHintSession tid: %d, uclamp(%d, %d)", tid, min, max);
+        ALOGV("PowerHintSession tid: %d, uclamp(%d, %d)", tid, min, kMaxUclampValue);
     }
-    mDescriptor->current_min = min;
+    if (update) {
+        mDescriptor->current_min = min;
+    }
+    mDescriptor->transitioanl_min = min;
     return 0;
+}
+
+int PowerHintSession::restoreUclamp() {
+    if (mDescriptor->transitioanl_min == mDescriptor->current_min) {
+        return 1;
+    }
+    return setUclamp(mDescriptor->current_min, false);
 }
 
 ndk::ScopedAStatus PowerHintSession::pause() {
@@ -217,7 +225,7 @@ ndk::ScopedAStatus PowerHintSession::pause() {
     if (!mDescriptor->is_active.load())
         return ndk::ScopedAStatus::fromExceptionCode(EX_ILLEGAL_STATE);
     // Reset to default uclamp value.
-    setUclamp(0);
+    setUclamp(0, false);
     mDescriptor->is_active.store(false);
     if (ATRACE_ENABLED()) {
         const std::string idstr = getIdString();
@@ -236,9 +244,9 @@ ndk::ScopedAStatus PowerHintSession::resume() {
     if (mDescriptor->is_active.load())
         return ndk::ScopedAStatus::fromExceptionCode(EX_ILLEGAL_STATE);
     mDescriptor->is_active.store(true);
-    mDescriptor->integral_error = std::max(sPidIInit, mDescriptor->integral_error);
+    mStaleHandler->updateStaleTimer();
     // resume boost
-    setUclamp(sUclampMinHighLimit);
+    setUclamp(mDescriptor->current_min, false);
     if (ATRACE_ENABLED()) {
         const std::string idstr = getIdString();
         std::string sz = StringPrintf("adpf.%s-active", idstr.c_str());
@@ -298,15 +306,26 @@ ndk::ScopedAStatus PowerHintSession::reportActualWorkDuration(
         ALOGE("Error: shouldn't report duration during pause state.");
         return ndk::ScopedAStatus::fromExceptionCode(EX_ILLEGAL_STATE);
     }
-    if (PowerHintMonitor::getInstance()->isRunning() && isStale()) {
-        mDescriptor->integral_error = std::max(sPidIInit, mDescriptor->integral_error);
-        if (ATRACE_ENABLED()) {
-            const std::string idstr = getIdString();
-            std::string sz = StringPrintf("adpf.%s-wakeup", idstr.c_str());
-            ATRACE_INT(sz.c_str(), mDescriptor->integral_error);
-            ATRACE_INT(sz.c_str(), 0);
-        }
+
+    mDescriptor->update_count++;
+    if (ATRACE_ENABLED()) {
+        const std::string idstr = getIdString();
+        std::string sz = StringPrintf("adpf.%s-samples", idstr.c_str());
+        ATRACE_INT(sz.c_str(), actualDurations.size());
+        sz = StringPrintf("adpf.%s-actual_time", idstr.c_str());
+        ATRACE_INT(sz.c_str(), actualDurations.back().durationNanos);
+        sz = StringPrintf("adpf.%s-target_time", idstr.c_str());
+        ATRACE_INT(sz.c_str(), (int64_t)mDescriptor->duration.count());
+        sz = StringPrintf("adpf.%s-overtime", idstr.c_str());
+        ATRACE_INT(sz.c_str(),
+                   actualDurations.back().durationNanos - mDescriptor->duration.count() > 0);
+        sz = StringPrintf("adpf.%s-update_count", idstr.c_str());
+        ATRACE_INT(sz.c_str(), mDescriptor->update_count);
+        sz = StringPrintf("adpf.%s-stale", idstr.c_str());
+        ATRACE_INT(sz.c_str(), isStale());
     }
+    mStaleHandler->updateStaleTimer();
+
     int64_t targetDurationNanos = (int64_t)mDescriptor->duration.count();
     int64_t length = actualDurations.size();
     int64_t p_start =
@@ -332,7 +351,7 @@ ndk::ScopedAStatus PowerHintSession::reportActualWorkDuration(
         if (i >= p_start) {
             err_sum += error;
         }
-        if (i >= i_start) {
+        if (i >= i_start && sPidI != 0.0) {
             mDescriptor->integral_error = mDescriptor->integral_error + error * dt;
             mDescriptor->integral_error = std::min(sPidIHighLimit, mDescriptor->integral_error);
             mDescriptor->integral_error = std::max(sPidILowLimit, mDescriptor->integral_error);
@@ -341,31 +360,21 @@ ndk::ScopedAStatus PowerHintSession::reportActualWorkDuration(
     }
     if (ATRACE_ENABLED()) {
         const std::string idstr = getIdString();
-        std::string sz = StringPrintf("adpf.%s-err", idstr.c_str());
-        ATRACE_INT(sz.c_str(), err_sum / (length - p_start));
-        sz = StringPrintf("adpf.%s-integral", idstr.c_str());
-        ATRACE_INT(sz.c_str(), mDescriptor->integral_error);
-        sz = StringPrintf("adpf.%s-derivative", idstr.c_str());
-        ATRACE_INT(sz.c_str(), derivative_sum / dt / (length - d_start));
     }
     int64_t pOut = static_cast<int64_t>((err_sum > 0 ? sPidPOver : sPidPUnder) * err_sum /
                                         (length - p_start));
     int64_t iOut = static_cast<int64_t>(sPidI * mDescriptor->integral_error);
     int64_t dOut = static_cast<int64_t>((derivative_sum > 0 ? sPidDOver : sPidDUnder) *
                                         derivative_sum / dt / (length - d_start));
-
     int64_t output = pOut + iOut + dOut;
-
     if (ATRACE_ENABLED()) {
         const std::string idstr = getIdString();
-        std::string sz = StringPrintf("adpf.%s-actl_last", idstr.c_str());
-        ATRACE_INT(sz.c_str(), actualDurations[length - 1].durationNanos);
-        sz = StringPrintf("adpf.%s-target", idstr.c_str());
-        ATRACE_INT(sz.c_str(), (int64_t)mDescriptor->duration.count());
-        sz = StringPrintf("adpf.%s-sample_size", idstr.c_str());
-        ATRACE_INT(sz.c_str(), length);
-        sz = StringPrintf("adpf.%s-pid.count", idstr.c_str());
-        ATRACE_INT(sz.c_str(), mDescriptor->update_count);
+        std::string sz = StringPrintf("adpf.%s-pid.p", idstr.c_str());
+        ATRACE_INT(sz.c_str(), err_sum / (length - p_start));
+        sz = StringPrintf("adpf.%s-pid.i", idstr.c_str());
+        ATRACE_INT(sz.c_str(), mDescriptor->integral_error);
+        sz = StringPrintf("adpf.%s-pid.d", idstr.c_str());
+        ATRACE_INT(sz.c_str(), derivative_sum / (length - d_start));
         sz = StringPrintf("adpf.%s-pid.pOut", idstr.c_str());
         ATRACE_INT(sz.c_str(), pOut);
         sz = StringPrintf("adpf.%s-pid.iOut", idstr.c_str());
@@ -374,21 +383,17 @@ ndk::ScopedAStatus PowerHintSession::reportActualWorkDuration(
         ATRACE_INT(sz.c_str(), dOut);
         sz = StringPrintf("adpf.%s-pid.output", idstr.c_str());
         ATRACE_INT(sz.c_str(), output);
-        sz = StringPrintf("adpf.%s-stale", idstr.c_str());
-        ATRACE_INT(sz.c_str(), isStale());
-        sz = StringPrintf("adpf.%s-pid.overtime", idstr.c_str());
-        ATRACE_INT(sz.c_str(), err_sum > 0);
     }
-    mDescriptor->update_count++;
-
-    mStaleHandler->updateStaleTimer();
 
     /* apply to all the threads in the group */
     if (output != 0) {
-        int next_min = std::min(sUclampMinHighLimit, static_cast<int>(output));
+        int next_min =
+                std::min(sUclampMinHighLimit, mDescriptor->current_min + static_cast<int>(output));
         next_min = std::max(sUclampMinLowLimit, next_min);
         if (std::abs(mDescriptor->current_min - next_min) > sUclampMinGranularity) {
             setUclamp(next_min);
+        } else {
+            restoreUclamp();
         }
     }
 
@@ -436,7 +441,7 @@ void PowerHintSession::setStale() {
         ATRACE_INT(sz.c_str(), 1);
     }
     // Reset to default uclamp value.
-    setUclamp(0);
+    setUclamp(0, false);
     // Deliver a task to check if all sessions are inactive.
     updateUniveralBoostMode();
 }
