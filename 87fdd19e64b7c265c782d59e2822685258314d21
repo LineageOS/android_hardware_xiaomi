@@ -1,6 +1,7 @@
 {
   "comments": [
     {
+      "unresolved": true,
       "key": {
         "uuid": "2340ff70_9c5c1017",
         "filename": "aidl/light/Lights.cpp",
@@ -14,10 +15,28 @@
       "side": 1,
       "message": "cast it there?\nuse c++ casts",
       "revId": "87fdd19e64b7c265c782d59e2822685258314d21",
-      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
-      "unresolved": true
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8fa11fea_a6ebd4e1",
+        "filename": "aidl/light/Lights.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2021-11-19T10:39:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2340ff70_9c5c1017",
+      "revId": "87fdd19e64b7c265c782d59e2822685258314d21",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "76f2f287_80962db0",
         "filename": "aidl/light/Utils.cpp",
@@ -31,8 +50,25 @@
       "side": 1,
       "message": "fileWriteable?",
       "revId": "87fdd19e64b7c265c782d59e2822685258314d21",
-      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
-      "unresolved": true
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ba37d48_e63e8073",
+        "filename": "aidl/light/Utils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2021-11-19T10:39:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "76f2f287_80962db0",
+      "revId": "87fdd19e64b7c265c782d59e2822685258314d21",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
