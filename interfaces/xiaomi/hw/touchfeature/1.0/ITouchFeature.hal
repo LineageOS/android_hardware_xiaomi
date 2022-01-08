@@ -1,0 +1,18 @@
+/*
+ * Copyright (C) 2022 The LineageOS Project
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+package vendor.xiaomi.hw.touchfeature@1.0;
+
+interface ITouchFeature {
+    getModeCurValue(int32_t touchId, int32_t ControlMode) generates (int32_t result);
+    getModeDefaultValue(int32_t touchId, int32_t ControlMode) generates (int32_t result);
+    getModeMaxValue(int32_t touchId, int32_t ControlMode) generates (int32_t result);
+    getModeMinValue(int32_t touchId, int32_t ControlMode) generates (int32_t result);
+    getModeValue(int32_t touchId, int32_t mode) generates (vec<int32_t> result);
+    modeReset(int32_t touchId, int32_t ControlMode) generates (int32_t result);
+    setModeLongValue(int32_t touchId, int32_t ControlMode, uint32_t ValueLen, vec<int32_t> ValueBuf) generates (int32_t result);
+    setModeValue(int32_t touchId, int32_t ControlMode, int32_t ModeValue) generates (int32_t result);
+};
