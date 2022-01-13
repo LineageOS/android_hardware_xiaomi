@@ -14,9 +14,7 @@
  * limitations under the License.
  */
 
-#ifndef HARDWARE_INTERFACES_SENSORS_V1_0_DEFAULT_INCLUDE_CONVERT_H_
-
-#define HARDWARE_INTERFACES_SENSORS_V1_0_DEFAULT_INCLUDE_CONVERT_H_
+#pragma once
 
 #include <android/hardware/sensors/1.0/ISensors.h>
 #include <hardware/sensors.h>
@@ -41,5 +39,3 @@ int convertFromRateLevel(RateLevel rate);
 }  // namespace sensors
 }  // namespace hardware
 }  // namespace android
-
-#endif  // HARDWARE_INTERFACES_SENSORS_V1_0_DEFAULT_INCLUDE_CONVERT_H_
