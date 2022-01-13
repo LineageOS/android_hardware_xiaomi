@@ -16,6 +16,24 @@
       "message": "Do you still want this merged here?",
       "revId": "c27f8d37c5284d1c59869ba73d0763c06f536b3f",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ab9e713_b83e35fc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2022-01-13T14:41:43Z",
+      "side": 1,
+      "message": "Nah, also aren\u0027t we dropping power profiles in 19.0 from what I understood?",
+      "parentUuid": "9db0708c_a821772e",
+      "revId": "c27f8d37c5284d1c59869ba73d0763c06f536b3f",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
