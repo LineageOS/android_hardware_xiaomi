@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6568a57_121046df",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2022-01-13T14:44:21Z",
+      "side": 1,
+      "message": "Hold until it\u0027s clarified whether Lineage profiles are really going to be dropped in lineage-19.0.",
+      "revId": "906204afcd4c280c0abd389fa976042f49c4aa54",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
