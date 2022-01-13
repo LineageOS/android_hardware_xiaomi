@@ -34,6 +34,24 @@
       "parentUuid": "9db0708c_a821772e",
       "revId": "c27f8d37c5284d1c59869ba73d0763c06f536b3f",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc619c09_97d352d1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2022-01-13T14:48:25Z",
+      "side": 1,
+      "message": "That\u0027s not clear for me. I don\u0027t know why it was dropped. But I was asking about the lineage-18.1 change for now.",
+      "parentUuid": "2ab9e713_b83e35fc",
+      "revId": "c27f8d37c5284d1c59869ba73d0763c06f536b3f",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
