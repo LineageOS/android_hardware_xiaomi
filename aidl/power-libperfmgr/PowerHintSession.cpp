@@ -145,7 +145,7 @@ PowerHintSession::PowerHintSession(int32_t tgid, int32_t uid, const std::vector<
                                    int64_t durationNanos) {
     mDescriptor = new AppHintDesc(tgid, uid, threadIds);
     mDescriptor->duration = std::chrono::nanoseconds(durationNanos);
-    mStaleHandler = sp<StaleHandler>(new StaleHandler(this));
+    mHintTimerHandler = sp<HintTimerHandler>(new HintTimerHandler(this));
     mPowerManagerHandler = PowerSessionManager::getInstance();
 
     if (ATRACE_ENABLED()) {
@@ -154,8 +154,6 @@ PowerHintSession::PowerHintSession(int32_t tgid, int32_t uid, const std::vector<
         ATRACE_INT(sz.c_str(), (int64_t)mDescriptor->duration.count());
         sz = StringPrintf("adpf.%s-active", idstr.c_str());
         ATRACE_INT(sz.c_str(), mDescriptor->is_active.load());
-        sz = StringPrintf("adpf.%s-stale", idstr.c_str());
-        ATRACE_INT(sz.c_str(), isStale());
     }
     PowerSessionManager::getInstance()->addPowerSession(this);
     // init boost
@@ -175,7 +173,7 @@ PowerHintSession::~PowerHintSession() {
         sz = sz = StringPrintf("adpf.%s-active", idstr.c_str());
         ATRACE_INT(sz.c_str(), 0);
     }
-    mStaleHandler->setSessionDead();
+    mHintTimerHandler->setSessionDead();
     delete mDescriptor;
 }
 
@@ -186,7 +184,14 @@ std::string PowerHintSession::getIdString() const {
 }
 
 void PowerHintSession::updateUniveralBoostMode() {
+    if (ATRACE_ENABLED()) {
+        const std::string tag = StringPrintf("%s:updateUniveralBoostMode()", getIdString().c_str());
+        ATRACE_BEGIN(tag.c_str());
+    }
     PowerHintMonitor::getInstance()->getLooper()->sendMessage(mPowerManagerHandler, NULL);
+    if (ATRACE_ENABLED()) {
+        ATRACE_END();
+    }
 }
 
 int PowerHintSession::setUclamp(int32_t min, bool update) {
@@ -253,7 +258,7 @@ ndk::ScopedAStatus PowerHintSession::resume() {
     if (mDescriptor->is_active.load())
         return ndk::ScopedAStatus::fromExceptionCode(EX_ILLEGAL_STATE);
     mDescriptor->is_active.store(true);
-    mStaleHandler->updateStaleTimer();
+    mHintTimerHandler->updateHintTimer(0);
     // resume boost
     setUclamp(mDescriptor->current_min, false);
     if (ATRACE_ENABLED()) {
@@ -332,8 +337,6 @@ ndk::ScopedAStatus PowerHintSession::reportActualWorkDuration(
         sz = StringPrintf("adpf.%s-hint.overtime", idstr.c_str());
         ATRACE_INT(sz.c_str(),
                    actualDurations.back().durationNanos - mDescriptor->duration.count() > 0);
-        sz = StringPrintf("adpf.%s-stale", idstr.c_str());
-        ATRACE_INT(sz.c_str(), isStale());
     }
 
     if (PowerHintMonitor::getInstance()->isRunning() && isStale()) {
@@ -347,7 +350,7 @@ ndk::ScopedAStatus PowerHintSession::reportActualWorkDuration(
         }
     }
 
-    mStaleHandler->updateStaleTimer();
+    mHintTimerHandler->updateHintTimer(actualDurations);
 
     if (!adpfConfig->mPidOn) {
         setUclamp(adpfConfig->mUclampMinHigh);
@@ -356,8 +359,6 @@ ndk::ScopedAStatus PowerHintSession::reportActualWorkDuration(
     int64_t output = convertWorkDurationToBoostByPid(
             adpfConfig, mDescriptor->duration, actualDurations, &(mDescriptor->integral_error),
             &(mDescriptor->previous_error), getIdString());
-
-    mStaleHandler->updateStaleTimer();
 
     /* apply to all the threads in the group */
     if (output != 0) {
@@ -401,7 +402,7 @@ bool PowerHintSession::isActive() {
 
 bool PowerHintSession::isStale() {
     auto now = std::chrono::steady_clock::now();
-    return now >= mStaleHandler->getStaleTime();
+    return now >= mHintTimerHandler->getStaleTime();
 }
 
 const std::vector<int> &PowerHintSession::getTidList() const {
@@ -409,70 +410,146 @@ const std::vector<int> &PowerHintSession::getTidList() const {
 }
 
 void PowerHintSession::setStale() {
-    if (ATRACE_ENABLED()) {
-        const std::string idstr = getIdString();
-        std::string sz = StringPrintf("adpf.%s-stale", idstr.c_str());
-        ATRACE_INT(sz.c_str(), 1);
-    }
     // Reset to default uclamp value.
     setUclamp(0, false);
     // Deliver a task to check if all sessions are inactive.
     updateUniveralBoostMode();
 }
 
-void PowerHintSession::StaleHandler::updateStaleTimer() {
+void PowerHintSession::HintTimerHandler::updateHintTimer(int64_t actualDurationNs) {
     std::lock_guard<std::mutex> guard(mStaleLock);
-    if (PowerHintMonitor::getInstance()->isRunning()) {
-        auto when = getStaleTime();
-        auto now = std::chrono::steady_clock::now();
-        mLastUpdatedTime.store(now);
-        if (now > when) {
+    std::shared_ptr<AdpfConfig> adpfConfig = HintManager::GetInstance()->GetAdpfProfile();
+    HintTimerState prevState = mState;
+    mState = MONITORING;
+    auto now = std::chrono::steady_clock::now();
+    mLastUpdatedTime.store(now);
+    nanoseconds nextStartDur = nanoseconds((mSession->mDescriptor->work_period
+                                                    ? mSession->mDescriptor->work_period
+                                                    : mSession->mDescriptor->duration.count()) -
+                                           actualDurationNs);
+    mNextStartTime.store(now + nextStartDur);
+    if (prevState != MONITORING) {
+        int64_t next =
+                static_cast<int64_t>(duration_cast<nanoseconds>(getEarlyBoostTime() - now).count());
+        PowerHintMonitor::getInstance()->getLooper()->removeMessages(mSession->mHintTimerHandler);
+        PowerHintMonitor::getInstance()->getLooper()->sendMessageDelayed(
+                next, mSession->mHintTimerHandler, NULL);
+        if (prevState == STALE) {
             mSession->updateUniveralBoostMode();
         }
-        if (!mIsMonitoringStale.load()) {
-            auto next = getStaleTime();
-            PowerHintMonitor::getInstance()->getLooper()->removeMessages(mSession->mStaleHandler);
-            PowerHintMonitor::getInstance()->getLooper()->sendMessageDelayed(
-                    duration_cast<nanoseconds>(next - now).count(), mSession->mStaleHandler, NULL);
-            mIsMonitoringStale.store(true);
-        }
-        if (ATRACE_ENABLED()) {
-            const std::string idstr = mSession->getIdString();
-            std::string sz = StringPrintf("adpf.%s-stale", idstr.c_str());
-            ATRACE_INT(sz.c_str(), 0);
-        }
+    }
+    if (ATRACE_ENABLED()) {
+        const std::string idstr = mSession->getIdString();
+        std::string sz = StringPrintf("adpf.%s-timer.state", idstr.c_str());
+        ATRACE_INT(sz.c_str(), mState);
+        sz = StringPrintf("adpf.%s-timer.nextvsync", idstr.c_str());
+        ATRACE_INT(sz.c_str(), nextStartDur.count());
+        sz = StringPrintf("adpf.%s-timer.nexthint", idstr.c_str());
+        ATRACE_INT(sz.c_str(),
+                   (int64_t)(nextStartDur.count() + mSession->mDescriptor->duration.count() *
+                                                            adpfConfig->mEarlyBoostTimeFactor));
     }
 }
 
-time_point<steady_clock> PowerHintSession::StaleHandler::getStaleTime() {
+void PowerHintSession::HintTimerHandler::updateHintTimer(
+        const std::vector<WorkDuration> &actualDurations) {
+    if (actualDurations.size() == 0)
+        return;
+    if (actualDurations.size() >= 2) {
+        const WorkDuration &last = actualDurations[actualDurations.size() - 2];
+        mSession->mDescriptor->last_start = last.timeStampNanos - last.durationNanos;
+        ALOGD("last_start initialized by previous.");
+    }
+    const WorkDuration &current = actualDurations.back();
+    int64_t curr_start = current.timeStampNanos - current.durationNanos;
+    if (!mSession->mDescriptor->last_start) {
+        mSession->mDescriptor->last_start = curr_start;
+        ALOGD("last_start initialized by current.");
+        updateHintTimer(current.durationNanos);
+        return;
+    }
+    int64_t period = curr_start - mSession->mDescriptor->last_start;
+    mSession->mDescriptor->last_start = curr_start;
+    if (period > 0 && period < mSession->mDescriptor->duration.count() * 2) {
+        // Accounting workload period with moving average for the last 10 workload.
+        mSession->mDescriptor->work_period =
+                0.9 * mSession->mDescriptor->work_period + 0.1 * period;
+        if (ATRACE_ENABLED()) {
+            const std::string idstr = mSession->getIdString();
+            std::string sz = StringPrintf("adpf.%s-timer.period", idstr.c_str());
+            ATRACE_INT(sz.c_str(), period);
+        }
+    }
+    updateHintTimer(current.durationNanos);
+}
+
+time_point<steady_clock> PowerHintSession::HintTimerHandler::getEarlyBoostTime() {
+    std::shared_ptr<AdpfConfig> adpfConfig = HintManager::GetInstance()->GetAdpfProfile();
+    if (!adpfConfig->mEarlyBoostOn) {
+        return getStaleTime();
+    }
+    int64_t earlyBoostTimeoutNs =
+            (int64_t)mSession->mDescriptor->duration.count() * adpfConfig->mEarlyBoostTimeFactor;
+    return mNextStartTime.load() + nanoseconds(earlyBoostTimeoutNs);
+}
+
+time_point<steady_clock> PowerHintSession::HintTimerHandler::getStaleTime() {
     return mLastUpdatedTime.load() +
            nanoseconds(static_cast<int64_t>(
                    mSession->mDescriptor->duration.count() *
                    HintManager::GetInstance()->GetAdpfProfile()->mStaleTimeFactor));
 }
 
-void PowerHintSession::StaleHandler::handleMessage(const Message &) {
+PowerHintSession::HintTimerHandler::~HintTimerHandler() {
+    ATRACE_CALL();
+}
+
+void PowerHintSession::HintTimerHandler::handleMessage(const Message &) {
     std::lock_guard<std::mutex> guard(mStaleLock);
     if (mIsSessionDead) {
         return;
     }
+    std::shared_ptr<AdpfConfig> adpfConfig = HintManager::GetInstance()->GetAdpfProfile();
     auto now = std::chrono::steady_clock::now();
-    auto when = getStaleTime();
-    // Check if the session is stale based on the last_updated_time.
-    if (now > when) {
+    auto staleTime = getStaleTime();
+    auto earlyBoostTime = getEarlyBoostTime();
+    if (adpfConfig->mEarlyBoostOn && now < earlyBoostTime) {
+        int64_t next =
+                static_cast<int64_t>(duration_cast<nanoseconds>(earlyBoostTime - now).count());
+        mState = MONITORING;
+        // Schedule for the early hint check.
+        PowerHintMonitor::getInstance()->getLooper()->removeMessages(mSession->mHintTimerHandler);
+        PowerHintMonitor::getInstance()->getLooper()->sendMessageDelayed(
+                next, mSession->mHintTimerHandler, NULL);
+        if (ATRACE_ENABLED()) {
+            const std::string idstr = mSession->getIdString();
+            std::string sz = StringPrintf("adpf.%s-timer.nexthint", idstr.c_str());
+            ATRACE_INT(sz.c_str(), next);
+        }
+    } else if (now >= staleTime) {  // Check if the session is stale.
         mSession->setStale();
-        mIsMonitoringStale.store(false);
-        return;
+        mState = STALE;
+    } else {  // Check if it's time to do early boost.
+        if (adpfConfig->mEarlyBoostOn) {
+            mState = EARLY_BOOST;
+            mSession->setUclamp(adpfConfig->mUclampMinHigh);
+        }
+        int64_t next = static_cast<int64_t>(duration_cast<nanoseconds>(staleTime - now).count());
+        // Schedule for the stale timeout check.
+        PowerHintMonitor::getInstance()->getLooper()->removeMessages(mSession->mHintTimerHandler);
+        PowerHintMonitor::getInstance()->getLooper()->sendMessageDelayed(
+                next, mSession->mHintTimerHandler, NULL);
     }
-    // Schedule for the next checking time.
-    PowerHintMonitor::getInstance()->getLooper()->removeMessages(mSession->mStaleHandler);
-    PowerHintMonitor::getInstance()->getLooper()->sendMessageDelayed(
-            duration_cast<nanoseconds>(when - now).count(), mSession->mStaleHandler, NULL);
+    if (ATRACE_ENABLED()) {
+        const std::string idstr = mSession->getIdString();
+        std::string sz = StringPrintf("adpf.%s-timer.state", idstr.c_str());
+        ATRACE_INT(sz.c_str(), mState);
+    }
 }
 
-void PowerHintSession::StaleHandler::setSessionDead() {
+void PowerHintSession::HintTimerHandler::setSessionDead() {
     std::lock_guard<std::mutex> guard(mStaleLock);
-    PowerHintMonitor::getInstance()->getLooper()->removeMessages(mSession->mStaleHandler);
+    PowerHintMonitor::getInstance()->getLooper()->removeMessages(mSession->mHintTimerHandler);
     mIsSessionDead = true;
 }
 
