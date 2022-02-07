@@ -3,6 +3,7 @@
 hidl_interface {
     name: "vendor.goodix.hardware.biometrics.fingerprint@2.1",
     root: "vendor.goodix",
+    system_ext_specific: true,
     srcs: [
         "IGoodixFingerprintDaemon.hal",
         "IGoodixFingerprintDaemonCallback.hal",
@@ -10,4 +11,5 @@ hidl_interface {
     interfaces: [
         "android.hidl.base@1.0",
     ],
+    gen_java: true,
 }
