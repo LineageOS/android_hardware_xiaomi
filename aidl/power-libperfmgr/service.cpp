@@ -34,6 +34,7 @@ using aidl::google::hardware::power::impl::pixel::PowerSessionManager;
 using ::android::perfmgr::HintManager;
 
 constexpr std::string_view kPowerHalInitProp("vendor.powerhal.init");
+constexpr std::string_view kConfigDebugPathProperty("vendor.powerhal.config.debug");
 constexpr std::string_view kConfigProperty("vendor.powerhal.config");
 constexpr std::string_view kConfigDefaultFileName("powerhint.json");
 
@@ -68,14 +69,23 @@ int main() {
     CHECK(status == STATUS_OK);
     LOG(INFO) << "Xiaomi Power HAL AIDL Service with Extension is started.";
 
-    if (::android::base::GetIntProperty("vendor.powerhal.adpf.rate", -1) != -1) {
-        PowerHintMonitor::getInstance()->start();
-        PowerSessionManager::getInstance()->setHintManager(hm);
-    }
-
     std::thread initThread([&]() {
         ::android::base::WaitForProperty(kPowerHalInitProp.data(), "1");
         hm->Start();
+
+        // use debug config for ADPF tuning.
+        if (android::base::GetBoolProperty(kConfigDebugPathProperty.data(), false)) {
+            const std::string debug_config_path =
+                    "/data/vendor/etc/" + android::base::GetProperty(kConfigProperty.data(),
+                                                                     kConfigDefaultFileName.data());
+            hm = HintManager::GetFromJSON(debug_config_path, false);
+            LOG(WARNING) << "Xiaomi Power HAL AIDL Service with Extension is reloading with config: "
+                         << debug_config_path;
+        }
+        if (::android::base::GetIntProperty("vendor.powerhal.adpf.rate", -1) != -1) {
+            PowerHintMonitor::getInstance()->start();
+            PowerSessionManager::getInstance()->setHintManager(hm);
+        }
     });
     initThread.detach();
 
