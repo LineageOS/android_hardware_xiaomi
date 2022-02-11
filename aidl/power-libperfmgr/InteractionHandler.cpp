@@ -17,20 +17,20 @@
 #define ATRACE_TAG (ATRACE_TAG_POWER | ATRACE_TAG_HAL)
 #define LOG_TAG "powerhal-libperfmgr"
 
-#include <array>
-#include <memory>
+#include "InteractionHandler.h"
 
+#include <android-base/properties.h>
 #include <fcntl.h>
+#include <perfmgr/HintManager.h>
 #include <poll.h>
 #include <sys/eventfd.h>
 #include <time.h>
 #include <unistd.h>
-
-#include <android-base/properties.h>
 #include <utils/Log.h>
 #include <utils/Trace.h>
 
-#include "InteractionHandler.h"
+#include <array>
+#include <memory>
 
 #define MAX_LENGTH 64
 
@@ -79,10 +79,10 @@ static int FbIdleOpen(void) {
 
 }  // namespace
 
-InteractionHandler::InteractionHandler(std::shared_ptr<HintManager> const &hint_manager)
-    : mState(INTERACTION_STATE_UNINITIALIZED),
-      mDurationMs(0),
-      mHintManager(hint_manager) {}
+using ::android::perfmgr::HintManager;
+
+InteractionHandler::InteractionHandler()
+    : mState(INTERACTION_STATE_UNINITIALIZED), mDurationMs(0) {}
 
 InteractionHandler::~InteractionHandler() {
     Exit();
@@ -130,14 +130,14 @@ void InteractionHandler::Exit() {
 
 void InteractionHandler::PerfLock() {
     ALOGV("%s: acquiring perf lock", __func__);
-    if (!mHintManager->DoHint("INTERACTION")) {
+    if (!HintManager::GetInstance()->DoHint("INTERACTION")) {
         ALOGE("%s: do hint INTERACTION failed", __func__);
     }
 }
 
 void InteractionHandler::PerfRel() {
     ALOGV("%s: releasing perf lock", __func__);
-    if (!mHintManager->EndHint("INTERACTION")) {
+    if (!HintManager::GetInstance()->EndHint("INTERACTION")) {
         ALOGE("%s: end hint INTERACTION failed", __func__);
     }
 }
@@ -160,7 +160,7 @@ void InteractionHandler::Acquire(int32_t duration) {
     // 1) override property is set OR
     // 2) InteractionHandler not initialized
     if (!kDisplayIdleSupport || mState == INTERACTION_STATE_UNINITIALIZED) {
-        mHintManager->DoHint("INTERACTION", std::chrono::milliseconds(finalDuration));
+        HintManager::GetInstance()->DoHint("INTERACTION", std::chrono::milliseconds(finalDuration));
         return;
     }
 

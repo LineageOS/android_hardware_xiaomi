@@ -16,12 +16,13 @@
 
 #define LOG_TAG "powerhal-libperfmgr"
 
-#include <thread>
-
 #include <android-base/logging.h>
 #include <android-base/properties.h>
 #include <android/binder_manager.h>
 #include <android/binder_process.h>
+#include <perfmgr/HintManager.h>
+
+#include <thread>
 
 #include "Power.h"
 #include "PowerExt.h"
@@ -34,37 +35,23 @@ using aidl::google::hardware::power::impl::pixel::PowerSessionManager;
 using ::android::perfmgr::HintManager;
 
 constexpr std::string_view kPowerHalInitProp("vendor.powerhal.init");
-constexpr std::string_view kConfigDebugPathProperty("vendor.powerhal.config.debug");
-constexpr std::string_view kConfigProperty("vendor.powerhal.config");
-constexpr std::string_view kConfigDefaultFileName("powerhint.json");
 
 int main() {
-    std::string config_path = "/vendor/etc/";
-    if (android::base::GetBoolProperty(kConfigDebugPathProperty.data(), false)) {
-        config_path = "/data/vendor/etc/";
-        LOG(WARNING) << "Xiaomi Power HAL AIDL Service is using debug config from: " << config_path;
-    }
-    config_path.append(
-            android::base::GetProperty(kConfigProperty.data(), kConfigDefaultFileName.data()));
-
-    LOG(INFO) << "Xiaomi Power HAL AIDL Service with Extension is starting with config: "
-              << config_path;
-
     // Parse config but do not start the looper
-    std::shared_ptr<HintManager> hm = HintManager::GetFromJSON(config_path, false);
+    std::shared_ptr<HintManager> hm = HintManager::GetInstance();
     if (!hm) {
-        LOG(FATAL) << "Invalid config: " << config_path;
+        LOG(FATAL) << "HintManager Init failed";
     }
 
     // single thread
     ABinderProcess_setThreadPoolMaxThreadCount(0);
 
     // core service
-    std::shared_ptr<Power> pw = ndk::SharedRefBase::make<Power>(hm);
+    std::shared_ptr<Power> pw = ndk::SharedRefBase::make<Power>();
     ndk::SpAIBinder pwBinder = pw->asBinder();
 
     // extension service
-    std::shared_ptr<PowerExt> pwExt = ndk::SharedRefBase::make<PowerExt>(hm);
+    std::shared_ptr<PowerExt> pwExt = ndk::SharedRefBase::make<PowerExt>();
 
     // attach the extension to the same binder we will be registering
     CHECK(STATUS_OK == AIBinder_setExtension(pwBinder.get(), pwExt->asBinder().get()));
@@ -76,12 +63,11 @@ int main() {
 
     if (::android::base::GetIntProperty("vendor.powerhal.adpf.rate", -1) != -1) {
         PowerHintMonitor::getInstance()->start();
-        PowerSessionManager::getInstance()->setHintManager(hm);
     }
 
     std::thread initThread([&]() {
         ::android::base::WaitForProperty(kPowerHalInitProp.data(), "1");
-        hm->Start();
+        HintManager::GetInstance()->Start();
     });
     initThread.detach();
 

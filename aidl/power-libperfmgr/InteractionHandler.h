@@ -22,16 +22,12 @@
 #include <string>
 #include <thread>
 
-#include <perfmgr/HintManager.h>
-
 namespace aidl {
 namespace google {
 namespace hardware {
 namespace power {
 namespace impl {
 namespace pixel {
-
-using ::android::perfmgr::HintManager;
 
 enum InteractionState {
     INTERACTION_STATE_UNINITIALIZED,
@@ -42,7 +38,7 @@ enum InteractionState {
 
 class InteractionHandler {
   public:
-    InteractionHandler(std::shared_ptr<HintManager> const &hint_manager);
+    InteractionHandler();
     ~InteractionHandler();
     bool Init();
     void Exit();
@@ -65,7 +61,6 @@ class InteractionHandler {
     std::unique_ptr<std::thread> mThread;
     std::mutex mLock;
     std::condition_variable mCond;
-    std::shared_ptr<HintManager> mHintManager;
 };
 
 }  // namespace pixel
