@@ -17,11 +17,12 @@
 #define LOG_TAG "powerhal-libperfmgr"
 #define ATRACE_TAG (ATRACE_TAG_POWER | ATRACE_TAG_HAL)
 
+#include "PowerSessionManager.h"
+
 #include <log/log.h>
+#include <perfmgr/HintManager.h>
 #include <processgroup/processgroup.h>
 #include <utils/Trace.h>
-
-#include "PowerSessionManager.h"
 
 namespace aidl {
 namespace google {
@@ -30,12 +31,7 @@ namespace power {
 namespace impl {
 namespace pixel {
 
-void PowerSessionManager::setHintManager(std::shared_ptr<HintManager> const &hint_manager) {
-    // Only initialize hintmanager instance if hint is supported.
-    if (hint_manager->IsHintSupported(kDisableBoostHintName)) {
-        mHintManager = hint_manager;
-    }
-}
+using ::android::perfmgr::HintManager;
 
 void PowerSessionManager::updateHintMode(const std::string &mode, bool enabled) {
     ALOGV("PowerSessionManager::updateHintMode: mode: %s, enabled: %d", mode.c_str(), enabled);
@@ -124,16 +120,16 @@ void PowerSessionManager::handleMessage(const Message &) {
 }
 
 void PowerSessionManager::enableSystemTopAppBoost() {
-    if (mHintManager) {
+    if (HintManager::GetInstance()->IsHintSupported(kDisableBoostHintName)) {
         ALOGV("PowerSessionManager::enableSystemTopAppBoost!!");
-        mHintManager->EndHint(kDisableBoostHintName);
+        HintManager::GetInstance()->EndHint(kDisableBoostHintName);
     }
 }
 
 void PowerSessionManager::disableSystemTopAppBoost() {
-    if (mHintManager) {
+    if (HintManager::GetInstance()->IsHintSupported(kDisableBoostHintName)) {
         ALOGV("PowerSessionManager::disableSystemTopAppBoost!!");
-        mHintManager->DoHint(kDisableBoostHintName);
+        HintManager::GetInstance()->DoHint(kDisableBoostHintName);
     }
 }
 
