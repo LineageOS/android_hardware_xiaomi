@@ -58,7 +58,7 @@ class Sensor {
     Result injectEvent(const Event& event);
 
   protected:
-    void run();
+    virtual void run();
     virtual std::vector<Event> readEvents();
     static void startThread(Sensor* sensor);
 
