@@ -51,7 +51,7 @@ class Sensor {
     const SensorInfo& getSensorInfo() const;
     virtual void batch(int32_t samplingPeriodNs);
     virtual void activate(bool enable);
-    Result flush();
+    virtual Result flush();
 
     void setOperationMode(OperationMode mode);
     bool supportsDataInjection() const;
