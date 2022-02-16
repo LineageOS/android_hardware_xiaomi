@@ -5,6 +5,36 @@
 //
 
 cc_library_shared {
+    name: "sensors.xiaomi",
+    defaults: ["hidl_defaults"],
+    srcs: [
+        "Sensor.cpp",
+        "SensorsSubHal.cpp",
+    ],
+    shared_libs: [
+        "android.hardware.sensors@1.0",
+        "android.hardware.sensors@2.0",
+        "android.hardware.sensors@2.0-ScopedWakelock",
+        "android.hardware.sensors@2.1",
+        "libcutils",
+        "libfmq",
+        "libhardware",
+        "libhidlbase",
+        "liblog",
+        "libpower",
+        "libutils",
+    ],
+    static_libs: [
+        "android.hardware.sensors@1.0-convert",
+        "android.hardware.sensors@2.X-multihal",
+    ],
+    cflags: [
+        "-DLOG_TAG=\"sensors.xiaomi\"",
+    ],
+    vendor: true,
+}
+
+cc_library_shared {
     name: "sensors.udfps",
     defaults: ["hidl_defaults"],
     srcs: [
