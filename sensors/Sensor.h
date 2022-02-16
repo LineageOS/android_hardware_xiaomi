@@ -79,6 +79,15 @@ class Sensor {
     OperationMode mMode;
 };
 
+class OneShotSensor : public Sensor {
+  public:
+    OneShotSensor(int32_t sensorHandle, ISensorsEventCallback* callback);
+
+    virtual void batch(int32_t /* samplingPeriodNs */) override {}
+
+    virtual Result flush() override { return Result::BAD_VALUE; }
+};
+
 }  // namespace implementation
 }  // namespace subhal
 }  // namespace V2_1
