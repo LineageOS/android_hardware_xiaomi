@@ -93,7 +93,7 @@ void Sensor::activate(bool enable) {
 Result Sensor::flush() {
     // Only generate a flush complete event if the sensor is enabled and if the sensor is not a
     // one-shot sensor.
-    if (!mIsEnabled || (mSensorInfo.flags & static_cast<uint32_t>(SensorFlagBits::ONE_SHOT_MODE))) {
+    if (!mIsEnabled) {
         return Result::BAD_VALUE;
     }
 
@@ -182,6 +182,13 @@ Result Sensor::injectEvent(const Event& event) {
         result = Result::BAD_VALUE;
     }
     return result;
+}
+
+OneShotSensor::OneShotSensor(int32_t sensorHandle, ISensorsEventCallback* callback)
+    : Sensor(sensorHandle, callback) {
+    mSensorInfo.minDelay = -1;
+    mSensorInfo.maxDelay = 0;
+    mSensorInfo.flags |= SensorFlagBits::ONE_SHOT_MODE;
 }
 
 }  // namespace implementation
