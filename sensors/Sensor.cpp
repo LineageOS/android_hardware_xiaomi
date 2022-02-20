@@ -17,9 +17,40 @@
 #include "Sensor.h"
 
 #include <hardware/sensors.h>
+#include <log/log.h>
 #include <utils/SystemClock.h>
 
 #include <cmath>
+
+namespace {
+
+static bool readFpState(int fd, int& screenX, int& screenY) {
+    char buffer[512];
+    int state = 0;
+    int rc;
+
+    rc = lseek(fd, 0, SEEK_SET);
+    if (rc) {
+        ALOGE("failed to seek: %d", rc);
+        return false;
+    }
+
+    rc = read(fd, &buffer, sizeof(buffer));
+    if (rc < 0) {
+        ALOGE("failed to read state: %d", rc);
+        return false;
+    }
+
+    rc = sscanf(buffer, "%d,%d,%d", &screenX, &screenY, &state);
+    if (rc < 0) {
+        ALOGE("failed to parse fp state: %d", rc);
+        return false;
+    }
+
+    return state > 0;
+}
+
+}  // anonymous namespace
 
 namespace android {
 namespace hardware {
@@ -189,6 +220,117 @@ OneShotSensor::OneShotSensor(int32_t sensorHandle, ISensorsEventCallback* callba
     mSensorInfo.minDelay = -1;
     mSensorInfo.maxDelay = 0;
     mSensorInfo.flags |= SensorFlagBits::ONE_SHOT_MODE;
+}
+
+UdfpsSensor::UdfpsSensor(int32_t sensorHandle, ISensorsEventCallback* callback)
+    : OneShotSensor(sensorHandle, callback) {
+    mSensorInfo.name = "UDFPS Sensor";
+    mSensorInfo.type =
+            static_cast<SensorType>(static_cast<int32_t>(SensorType::DEVICE_PRIVATE_BASE) + 1);
+    mSensorInfo.typeAsString = "org.lineageos.sensor.udfps";
+    mSensorInfo.maxRange = 2048.0f;
+    mSensorInfo.resolution = 1.0f;
+    mSensorInfo.power = 0;
+    mSensorInfo.flags |= SensorFlagBits::WAKE_UP;
+
+    int rc;
+
+    rc = pipe(mWaitPipeFd);
+    if (rc < 0) {
+        mWaitPipeFd[0] = -1;
+        mWaitPipeFd[1] = -1;
+        ALOGE("failed to open wait pipe: %d", rc);
+    }
+
+    mPollFd = open("/sys/devices/virtual/touch/touch_dev/fod_press_status", O_RDONLY);
+    if (mPollFd < 0) {
+        ALOGE("failed to open poll fd: %d", mPollFd);
+    }
+
+    if (mWaitPipeFd[0] < 0 || mWaitPipeFd[1] < 0 || mPollFd < 0) {
+        mStopThread = true;
+        return;
+    }
+
+    mPolls[0] = {
+            .fd = mWaitPipeFd[0],
+            .events = POLLIN,
+    };
+
+    mPolls[1] = {
+            .fd = mPollFd,
+            .events = POLLERR | POLLPRI,
+    };
+}
+
+UdfpsSensor::~UdfpsSensor() {
+    interruptPoll();
+}
+
+void UdfpsSensor::activate(bool enable) {
+    std::lock_guard<std::mutex> lock(mRunMutex);
+
+    if (mIsEnabled != enable) {
+        mIsEnabled = enable;
+
+        interruptPoll();
+        mWaitCV.notify_all();
+    }
+}
+
+void UdfpsSensor::setOperationMode(OperationMode mode) {
+    Sensor::setOperationMode(mode);
+    interruptPoll();
+}
+
+void UdfpsSensor::run() {
+    std::unique_lock<std::mutex> runLock(mRunMutex);
+
+    while (!mStopThread) {
+        if (!mIsEnabled || mMode == OperationMode::DATA_INJECTION) {
+            mWaitCV.wait(runLock, [&] {
+                return ((mIsEnabled && mMode == OperationMode::NORMAL) || mStopThread);
+            });
+        } else {
+            // Cannot hold lock while polling.
+            runLock.unlock();
+            int rc = poll(mPolls, 2, -1);
+            runLock.lock();
+
+            if (rc < 0) {
+                ALOGE("failed to poll: %d", rc);
+                mStopThread = true;
+                continue;
+            }
+
+            if (mPolls[1].revents == mPolls[1].events && readFpState(mPollFd, mScreenX, mScreenY)) {
+                mIsEnabled = false;
+                mCallback->postEvents(readEvents(), isWakeUpSensor());
+            } else if (mPolls[0].revents == mPolls[0].events) {
+                char buf;
+                read(mWaitPipeFd[0], &buf, sizeof(buf));
+            }
+        }
+    }
+}
+
+std::vector<Event> UdfpsSensor::readEvents() {
+    std::vector<Event> events;
+    Event event;
+    event.sensorHandle = mSensorInfo.sensorHandle;
+    event.sensorType = mSensorInfo.type;
+    event.timestamp = ::android::elapsedRealtimeNano();
+    event.u.data[0] = mScreenX;
+    event.u.data[1] = mScreenY;
+    events.push_back(event);
+    return events;
+}
+
+void UdfpsSensor::interruptPoll() {
+    if (mWaitPipeFd[1] < 0) return;
+
+    char c = '1';
+    write(mWaitPipeFd[1], &c, sizeof(c));
 }
 
 }  // namespace implementation

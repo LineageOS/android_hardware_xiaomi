@@ -17,6 +17,9 @@
 #pragma once
 
 #include <android/hardware/sensors/2.1/types.h>
+#include <fcntl.h>
+#include <poll.h>
+#include <unistd.h>
 
 #include <condition_variable>
 #include <memory>
@@ -86,6 +89,29 @@ class OneShotSensor : public Sensor {
     virtual void batch(int32_t /* samplingPeriodNs */) override {}
 
     virtual Result flush() override { return Result::BAD_VALUE; }
+};
+
+class UdfpsSensor : public OneShotSensor {
+  public:
+    UdfpsSensor(int32_t sensorHandle, ISensorsEventCallback* callback);
+    virtual ~UdfpsSensor() override;
+
+    virtual void activate(bool enable) override;
+    virtual void setOperationMode(OperationMode mode) override;
+
+  protected:
+    virtual void run() override;
+    virtual std::vector<Event> readEvents();
+
+  private:
+    void interruptPoll();
+
+    struct pollfd mPolls[2];
+    int mWaitPipeFd[2];
+    int mPollFd;
+
+    int mScreenX;
+    int mScreenY;
 };
 
 }  // namespace implementation
