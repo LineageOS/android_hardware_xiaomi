@@ -17,9 +17,35 @@
 #include "Sensor.h"
 
 #include <hardware/sensors.h>
+#include <log/log.h>
 #include <utils/SystemClock.h>
 
 #include <cmath>
+
+namespace {
+
+static bool readBool(int fd, bool seek) {
+    char c;
+    int rc;
+
+    if (seek) {
+        rc = lseek(fd, 0, SEEK_SET);
+        if (rc) {
+            ALOGE("failed to seek: %d", rc);
+            return false;
+        }
+    }
+
+    rc = read(fd, &c, sizeof(c));
+    if (rc != 1) {
+        ALOGE("failed to read bool: %d", rc);
+        return false;
+    }
+
+    return c != '0';
+}
+
+}  // anonymous namespace
 
 namespace android {
 namespace hardware {
@@ -189,6 +215,146 @@ OneShotSensor::OneShotSensor(int32_t sensorHandle, ISensorsEventCallback* callba
     mSensorInfo.minDelay = -1;
     mSensorInfo.maxDelay = 0;
     mSensorInfo.flags |= SensorFlagBits::ONE_SHOT_MODE;
+}
+
+SysfsPollingOneShotSensor::SysfsPollingOneShotSensor(
+        int32_t sensorHandle, ISensorsEventCallback* callback, const std::string& pollPath,
+        const std::string& enablePath, const std::string& name, const std::string& typeAsString,
+        SensorType type)
+    : OneShotSensor(sensorHandle, callback) {
+    mSensorInfo.name = name;
+    mSensorInfo.type = type;
+    mSensorInfo.typeAsString = typeAsString;
+    mSensorInfo.maxRange = 2048.0f;
+    mSensorInfo.resolution = 1.0f;
+    mSensorInfo.power = 0;
+    mSensorInfo.flags |= SensorFlagBits::WAKE_UP;
+
+    mEnableStream.open(enablePath);
+
+    int rc;
+
+    rc = pipe(mWaitPipeFd);
+    if (rc < 0) {
+        mWaitPipeFd[0] = -1;
+        mWaitPipeFd[1] = -1;
+        ALOGE("failed to open wait pipe: %d", rc);
+    }
+
+    mPollFd = open(pollPath.c_str(), O_RDONLY);
+    if (mPollFd < 0) {
+        ALOGE("failed to open poll fd: %d", mPollFd);
+    }
+
+    if (mWaitPipeFd[0] < 0 || mWaitPipeFd[1] < 0 || mPollFd < 0) {
+        mStopThread = true;
+        return;
+    }
+
+    mPolls[0] = {
+            .fd = mWaitPipeFd[0],
+            .events = POLLIN,
+    };
+
+    mPolls[1] = {
+            .fd = mPollFd,
+            .events = POLLERR | POLLPRI,
+    };
+}
+
+SysfsPollingOneShotSensor::~SysfsPollingOneShotSensor() {
+    interruptPoll();
+}
+
+void SysfsPollingOneShotSensor::writeEnable(bool enable) {
+    if (mEnableStream) {
+        mEnableStream << (enable ? '1' : '0') << std::flush;
+    }
+}
+
+void SysfsPollingOneShotSensor::activate(bool enable, bool notify, bool lock) {
+    std::unique_lock<std::mutex> runLock(mRunMutex, std::defer_lock);
+
+    if (lock) {
+        runLock.lock();
+    }
+
+    if (mIsEnabled != enable) {
+        writeEnable(enable);
+
+        mIsEnabled = enable;
+
+        if (notify) {
+            interruptPoll();
+            mWaitCV.notify_all();
+        }
+    }
+
+    if (lock) {
+        runLock.unlock();
+    }
+}
+
+void SysfsPollingOneShotSensor::activate(bool enable) {
+    activate(enable, true, true);
+}
+
+void SysfsPollingOneShotSensor::setOperationMode(OperationMode mode) {
+    Sensor::setOperationMode(mode);
+    interruptPoll();
+}
+
+void SysfsPollingOneShotSensor::run() {
+    std::unique_lock<std::mutex> runLock(mRunMutex);
+
+    while (!mStopThread) {
+        if (!mIsEnabled || mMode == OperationMode::DATA_INJECTION) {
+            mWaitCV.wait(runLock, [&] {
+                return ((mIsEnabled && mMode == OperationMode::NORMAL) || mStopThread);
+            });
+        } else {
+            // Cannot hold lock while polling.
+            runLock.unlock();
+            int rc = poll(mPolls, 2, -1);
+            runLock.lock();
+
+            if (rc < 0) {
+                ALOGE("failed to poll: %d", rc);
+                mStopThread = true;
+                continue;
+            }
+
+            if (mPolls[1].revents == mPolls[1].events && readBool(mPollFd, true /* seek */)) {
+                activate(false, false, false);
+                mCallback->postEvents(readEvents(), isWakeUpSensor());
+            } else if (mPolls[0].revents == mPolls[0].events) {
+                readBool(mWaitPipeFd[0], false /* seek */);
+            }
+        }
+    }
+}
+
+void SysfsPollingOneShotSensor::interruptPoll() {
+    if (mWaitPipeFd[1] < 0) return;
+
+    char c = '1';
+    write(mWaitPipeFd[1], &c, sizeof(c));
+}
+
+std::vector<Event> SysfsPollingOneShotSensor::readEvents() {
+    std::vector<Event> events;
+    Event event;
+    event.sensorHandle = mSensorInfo.sensorHandle;
+    event.sensorType = mSensorInfo.type;
+    event.timestamp = ::android::elapsedRealtimeNano();
+    fillEventData(event);
+    events.push_back(event);
+    return events;
+}
+
+void SysfsPollingOneShotSensor::fillEventData(Event& event) {
+    event.u.data[0] = 0;
+    event.u.data[1] = 0;
 }
 
 }  // namespace implementation
