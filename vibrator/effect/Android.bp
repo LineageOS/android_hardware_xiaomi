@@ -10,7 +10,11 @@ cc_library_shared {
     ],
     shared_libs: [
         "libcutils",
+        "liblog",
         "libutils",
+    ],
+    static_libs: [
+        "libc++fs",
     ],
     export_include_dirs: ["."]
 }
