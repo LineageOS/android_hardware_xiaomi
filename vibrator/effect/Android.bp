@@ -9,8 +9,12 @@ cc_library_shared {
         "effect.cpp",
     ],
     shared_libs: [
+        "libbase",
         "libcutils",
         "libutils",
+    ],
+    static_libs: [
+        "libc++fs",
     ],
     export_include_dirs: ["."]
 }
