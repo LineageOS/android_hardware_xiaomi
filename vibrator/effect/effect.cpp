@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2020, The Linux Foundation. All rights reserved.
+ * Copyright (C) 2022 The LineageOS Project
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -31,26 +32,16 @@
  * SPDX-License-Identifier: BSD-3-Clause-Clear
  */
 
+#define LOG_TAG "libqtivibratoreffect.xiaomi"
+
+#include <iostream>
+#include <fstream>
+#include <log/log.h>
+#include <sys/stat.h>
+
 #include "effect.h"
 
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof(*(a)))
-
-/* ~170 HZ sine waveform */
-static const int8_t effect_0[] = {
-    17,  34,  50,  65,  79,  92,  103, 112, 119, 124,
-    127, 127, 126, 122, 116, 108, 98,  86,  73,  58,
-    42,  26,  9,   -8,  -25, -41, -57, -72, -85, -97,
-    -108, -116, -122, -126, -127, -127, -125, -120,
-    -113, -104, -93,  -80, -66, -51, -35, -18, -1,
-};
-
-static const int8_t effect_1[] = {
-    -1, -18, -35, -51, -66, -80, -93, -104, -113,
-    -120, -125, -127, -127, -126, -122, -116, -108,
-    -97, -85, -72, -57, -41, -25, -8, 9, 26, 42,
-    58, 73, 86, 98, 108, 116, 122, 126, 127, 127,
-    124, 119, 112, 103, 92, 79, 65, 50, 34, 17,
-};
 
 static const int8_t primitive_0[] = {
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -70,22 +61,6 @@ static const int8_t primitive_2[] = {
     42,  26,  9,   -8,  -25, -41, -57, -72, -85, -97,
     -108, -116, -122, -126, -127, -127, -125, -120,
     -113, -104, -93,  -80, -66, -51, -35, -18, -1,
-};
-
-static const struct effect_stream effects[] = {
-    {
-        .effect_id = 0,
-        .data = effect_0,
-        .length = ARRAY_SIZE(effect_0),
-        .play_rate_hz = 8000,
-    },
-
-    {
-        .effect_id = 1,
-        .data = effect_1,
-        .length = ARRAY_SIZE(effect_1),
-        .play_rate_hz = 8000,
-    },
 };
 
 static const struct effect_stream primitives[] = {
@@ -111,6 +86,44 @@ static const struct effect_stream primitives[] = {
     },
 };
 
+int parse_custom_data(effect_stream *effect) {
+    std::string newpath = "/vendor/etc/vibrator/effect_" + std::to_string(effect->effect_id) + ".bin";
+    const char *path = newpath.c_str();
+    std::ifstream data;
+    struct stat file_stat;
+    int rc = 0;
+
+    ALOGV("Parsing custom fifo data for effect %u from path %s",
+            effect->effect_id, path);
+
+    rc = stat(path, &file_stat);
+    if (!rc) {
+        effect->length = file_stat.st_size;
+    } else {
+        ALOGE("Could not open %s while loading fifo data for effect %u", path, effect->effect_id);
+        return rc;
+    }
+
+    // 8-bit int array which contains the fifo data, where one slot
+    // of the array contains one byte of the fifo data from vendor.
+    int8_t *custom_data = new int8_t[effect->length];
+
+    data.open(path, std::ios::in | std::ios::binary);
+    data.read(reinterpret_cast<char *>(custom_data), effect->length);
+    data.close();
+
+    effect->data = custom_data;
+
+    return rc;
+}
+
+static effect_stream effect = {
+    .effect_id = UINT32_MAX,
+    .data = 0,
+    .length = 0,
+    .play_rate_hz = 24000,
+};
+
 const struct effect_stream *get_effect_stream(uint32_t effect_id)
 {
     int i;
@@ -123,9 +136,12 @@ const struct effect_stream *get_effect_stream(uint32_t effect_id)
                 return &primitives[i];
         }
     } else {
-        for (i = 0; i < ARRAY_SIZE(effects); i++) {
-            if (effect_id == effects[i].effect_id)
-                return &effects[i];
+        if (effect_id == effect.effect_id) {
+            return &effect;
+        }
+        effect.effect_id = effect_id;
+        if (!parse_custom_data(&effect)) {
+            return &effect;
         }
     }
 
