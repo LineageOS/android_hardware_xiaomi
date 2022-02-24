@@ -32,12 +32,15 @@
 #include <sys/types.h>
 
 struct effect_stream {
-    uint32_t   	    effect_id;
-    uint32_t        length;
-    uint32_t        play_rate_hz;
-    const int8_t    *data;
+    uint32_t effect_id;
+    uint32_t length;
+    uint32_t play_rate_hz;
+    std::vector<int8_t> data;
+
+    effect_stream(uint32_t id, uint32_t len, uint32_t rate, const int8_t* ptr)
+        : effect_id(id), length(len), play_rate_hz(rate), data(ptr, ptr + len) {}
 };
 
-const struct effect_stream *get_effect_stream(uint32_t effect_id);
+const struct effect_stream* get_effect_stream(uint32_t effect_id);
 
 #endif
