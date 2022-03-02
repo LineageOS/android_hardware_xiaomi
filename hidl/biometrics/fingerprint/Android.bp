@@ -38,3 +38,14 @@ cc_library_headers {
     header_libs: ["libhardware_headers"],
     export_header_lib_headers: ["libhardware_headers"],
 }
+
+cc_library_static {
+    name: "libudfps_extension.xiaomi",
+    srcs: ["UdfpsExtension.cpp"],
+    include_dirs: [
+        "frameworks/native/services/surfaceflinger/CompositionEngine/include"
+    ],
+    header_libs: [
+        "generated_kernel_headers",
+    ],
+}
