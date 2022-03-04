@@ -16,6 +16,24 @@
       "message": "This is gonna be a mess. Can we ditch the old one?",
       "revId": "c809bb00523cac12bd69a51063b0db4a35c23921",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da2c79ec_31af6e1e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2022-03-04T18:30:42Z",
+      "side": 1,
+      "message": "Nope, this is a new interface, but I can check from another device with the older interface if the methods are the same",
+      "parentUuid": "289de41a_f1b3be0d",
+      "revId": "c809bb00523cac12bd69a51063b0db4a35c23921",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
