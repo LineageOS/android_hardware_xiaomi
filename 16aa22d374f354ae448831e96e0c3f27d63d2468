@@ -33,6 +33,24 @@
       "message": "Didn\u0027t you miss vendor.goodix.hardware.biometrics.fingerprint@2.1?",
       "revId": "16aa22d374f354ae448831e96e0c3f27d63d2468",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ba768ae_4dd1852b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2022-03-04T15:46:47Z",
+      "side": 1,
+      "message": "The script fails to regen it since it\u0027s not in vendor.xiaomi namespace, we should probably fix that as well",
+      "parentUuid": "9fd1a0d6_39dfee77",
+      "revId": "16aa22d374f354ae448831e96e0c3f27d63d2468",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
