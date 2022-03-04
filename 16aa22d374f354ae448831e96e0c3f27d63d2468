@@ -16,6 +16,23 @@
       "message": "Now all non-AOSP interfaces must not be in system",
       "revId": "16aa22d374f354ae448831e96e0c3f27d63d2468",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9fd1a0d6_39dfee77",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2022-03-04T15:44:51Z",
+      "side": 1,
+      "message": "Didn\u0027t you miss vendor.goodix.hardware.biometrics.fingerprint@2.1?",
+      "revId": "16aa22d374f354ae448831e96e0c3f27d63d2468",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
