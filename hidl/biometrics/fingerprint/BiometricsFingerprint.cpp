@@ -12,6 +12,7 @@
 #include <hardware/fingerprint.h>
 #include <hardware/hardware.h>
 #include "BiometricsFingerprint.h"
+#include "xiaomi_fingerprint.h"
 
 #include <android-base/logging.h>
 #include <inttypes.h>
@@ -242,7 +243,7 @@ IBiometricsFingerprint* BiometricsFingerprint::getInstance() {
     return sInstance;
 }
 
-fingerprint_device_t* BiometricsFingerprint::openHal(const char* class_name) {
+xiaomi_fingerprint_device_t* BiometricsFingerprint::openHal(const char* class_name) {
     int err;
     const hw_module_t* hw_mdl = nullptr;
     LOG(DEBUG) << "Opening fingerprint hal library...";
@@ -275,7 +276,7 @@ fingerprint_device_t* BiometricsFingerprint::openHal(const char* class_name) {
         return nullptr;
     }
 
-    fingerprint_device_t* fp_device = reinterpret_cast<fingerprint_device_t*>(device);
+    xiaomi_fingerprint_device_t* fp_device = reinterpret_cast<xiaomi_fingerprint_device_t*>(device);
 
     if (0 != (err = fp_device->set_notify(fp_device, BiometricsFingerprint::notify))) {
         LOG(ERROR) << "Can't register fingerprint module callback, error: " << err;

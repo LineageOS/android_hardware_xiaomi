@@ -12,6 +12,7 @@
 #include <hardware/hardware.h>
 #include <hidl/MQDescriptor.h>
 #include <hidl/Status.h>
+#include "xiaomi_fingerprint.h"
 
 namespace android {
 namespace hardware {
@@ -61,7 +62,7 @@ struct BiometricsFingerprint : public IBiometricsFingerprint {
     Return<void> onFingerUp() override;
 
   private:
-    static fingerprint_device_t* openHal(const char* class_name);
+    static xiaomi_fingerprint_device_t* openHal(const char* class_name);
     static void notify(
             const fingerprint_msg_t* msg); /* Static callback for legacy HAL implementation */
     static Return<RequestStatus> ErrorFilter(int32_t error);
@@ -71,7 +72,7 @@ struct BiometricsFingerprint : public IBiometricsFingerprint {
 
     std::mutex mClientCallbackMutex;
     sp<IBiometricsFingerprintClientCallback> mClientCallback;
-    fingerprint_device_t* mDevice;
+    xiaomi_fingerprint_device_t* mDevice;
     bool mIsUdfps;
 };
 
