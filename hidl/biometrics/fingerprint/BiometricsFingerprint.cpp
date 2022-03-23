@@ -9,9 +9,9 @@
 
 #include <hardware/hw_auth_token.h>
 
-#include <hardware/fingerprint.h>
 #include <hardware/hardware.h>
 #include "BiometricsFingerprint.h"
+#include "fingerprint.h"
 
 #include <android-base/logging.h>
 #include <inttypes.h>
