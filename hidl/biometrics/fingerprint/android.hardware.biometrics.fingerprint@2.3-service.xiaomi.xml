@@ -4,4 +4,9 @@
         <transport>hwbinder</transport>
         <fqname>@2.3::IBiometricsFingerprint/default</fqname>
     </hal>
+    <hal format="hidl">
+        <name>vendor.xiaomi.hardware.fingerprintextension</name>
+        <transport>hwbinder</transport>
+        <fqname>@1.0::IXiaomiFingerprint/default</fqname>
+    </hal>
 </manifest>
