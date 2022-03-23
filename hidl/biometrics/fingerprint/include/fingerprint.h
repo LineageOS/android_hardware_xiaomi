@@ -1,5 +1,6 @@
  /*
   * Copyright (C) 2014 The Android Open Source Project
+  *               2022 The LineageOS Project
   *
  * SPDX-License-Identifier: Apache-2.0
   */
@@ -248,6 +249,11 @@ typedef struct fingerprint_device {
      *                  or a negative number in case of error, generally from the errno.h set.
      */
     int (*authenticate)(struct fingerprint_device *dev, uint64_t operation_id, uint32_t gid);
+
+    /*
+     * Xiaomi fingerprint extension command.
+     */
+    int (*extCmd)(struct fingerprint_device* dev, int32_t cmd, int32_t param);
 
     /* Reserved for backward binary compatibility */
     void *reserved[4];
