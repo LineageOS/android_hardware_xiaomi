@@ -12,6 +12,7 @@
 #include <hardware/fingerprint.h>
 #include <hardware/hardware.h>
 #include "BiometricsFingerprint.h"
+#include "xiaomi_fingerprint.h"
 
 #include <android-base/logging.h>
 #include <inttypes.h>
@@ -235,14 +236,11 @@ Return<void> BiometricsFingerprint::onFingerUp() {
     return Void();
 }
 
-IBiometricsFingerprint* BiometricsFingerprint::getInstance() {
-    if (!sInstance) {
-        sInstance = new BiometricsFingerprint();
-    }
-    return sInstance;
+Return<int32_t> BiometricsFingerprint::extCmd(int32_t cmd, int32_t param) {
+    return mDevice->extCmd(mDevice, cmd, param);
 }
 
-fingerprint_device_t* BiometricsFingerprint::openHal(const char* class_name) {
+xiaomi_fingerprint_device_t* BiometricsFingerprint::openHal(const char* class_name) {
     int err;
     const hw_module_t* hw_mdl = nullptr;
     LOG(DEBUG) << "Opening fingerprint hal library...";
@@ -275,7 +273,7 @@ fingerprint_device_t* BiometricsFingerprint::openHal(const char* class_name) {
         return nullptr;
     }
 
-    fingerprint_device_t* fp_device = reinterpret_cast<fingerprint_device_t*>(device);
+    xiaomi_fingerprint_device_t* fp_device = reinterpret_cast<xiaomi_fingerprint_device_t*>(device);
 
     if (0 != (err = fp_device->set_notify(fp_device, BiometricsFingerprint::notify))) {
         LOG(ERROR) << "Can't register fingerprint module callback, error: " << err;
@@ -286,8 +284,7 @@ fingerprint_device_t* BiometricsFingerprint::openHal(const char* class_name) {
 }
 
 void BiometricsFingerprint::notify(const fingerprint_msg_t* msg) {
-    BiometricsFingerprint* thisPtr =
-            static_cast<BiometricsFingerprint*>(BiometricsFingerprint::getInstance());
+    BiometricsFingerprint* thisPtr = BiometricsFingerprint::getInstance<BiometricsFingerprint>();
     std::lock_guard<std::mutex> lock(thisPtr->mClientCallbackMutex);
     if (thisPtr == nullptr || thisPtr->mClientCallback == nullptr) {
         LOG(ERROR) << "Receiving callbacks before the client callback is registered.";
