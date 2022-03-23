@@ -12,6 +12,8 @@
 #include <hardware/hardware.h>
 #include <hidl/MQDescriptor.h>
 #include <hidl/Status.h>
+#include <vendor/xiaomi/hardware/fingerprintextension/1.0/IXiaomiFingerprint.h>
+#include "xiaomi_fingerprint.h"
 
 namespace android {
 namespace hardware {
@@ -30,14 +32,21 @@ using ::android::hardware::biometrics::fingerprint::V2_1::FingerprintError;
 using ::android::hardware::biometrics::fingerprint::V2_1::IBiometricsFingerprintClientCallback;
 using ::android::hardware::biometrics::fingerprint::V2_1::RequestStatus;
 using ::android::hardware::biometrics::fingerprint::V2_3::IBiometricsFingerprint;
+using ::vendor::xiaomi::hardware::fingerprintextension::V1_0::IXiaomiFingerprint;
 
-struct BiometricsFingerprint : public IBiometricsFingerprint {
+struct BiometricsFingerprint : public IBiometricsFingerprint, public IXiaomiFingerprint {
   public:
     BiometricsFingerprint();
     ~BiometricsFingerprint();
 
     // Method to wrap legacy HAL with BiometricsFingerprint class
-    static IBiometricsFingerprint* getInstance();
+    template <class T>
+    static T* getInstance() {
+      if (!sInstance) {
+        sInstance = new BiometricsFingerprint();
+      }
+      return sInstance;
+    }
 
     // Methods from ::android::hardware::biometrics::fingerprint::V2_1::IBiometricsFingerprint
     // follow.
@@ -60,8 +69,12 @@ struct BiometricsFingerprint : public IBiometricsFingerprint {
     Return<void> onFingerDown(uint32_t x, uint32_t y, float minor, float major) override;
     Return<void> onFingerUp() override;
 
+    // Methods from ::vendor::xiaomi::hardware::fingerprintextension::V1_0::IXiaomiFingerprint
+    // follow.
+    Return<int32_t> extCmd(int32_t cmd, int32_t param) override;
+
   private:
-    static fingerprint_device_t* openHal(const char* class_name);
+    static xiaomi_fingerprint_device_t* openHal(const char* class_name);
     static void notify(
             const fingerprint_msg_t* msg); /* Static callback for legacy HAL implementation */
     static Return<RequestStatus> ErrorFilter(int32_t error);
@@ -71,7 +84,7 @@ struct BiometricsFingerprint : public IBiometricsFingerprint {
 
     std::mutex mClientCallbackMutex;
     sp<IBiometricsFingerprintClientCallback> mClientCallback;
-    fingerprint_device_t* mDevice;
+    xiaomi_fingerprint_device_t* mDevice;
     bool mIsUdfps;
 };
 
