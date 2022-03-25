@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include <android/hardware/biometrics/fingerprint/2.1/IBiometricsFingerprint.h>
+#include <android/hardware/biometrics/fingerprint/2.3/IBiometricsFingerprint.h>
 #include <android/log.h>
 #include <hardware/hardware.h>
 #include <hidl/MQDescriptor.h>
@@ -19,7 +19,7 @@ namespace android {
 namespace hardware {
 namespace biometrics {
 namespace fingerprint {
-namespace V2_1 {
+namespace V2_3 {
 namespace implementation {
 
 using ::android::sp;
@@ -27,9 +27,11 @@ using ::android::hardware::hidl_string;
 using ::android::hardware::hidl_vec;
 using ::android::hardware::Return;
 using ::android::hardware::Void;
-using ::android::hardware::biometrics::fingerprint::V2_1::IBiometricsFingerprint;
+using ::android::hardware::biometrics::fingerprint::V2_1::FingerprintAcquiredInfo;
+using ::android::hardware::biometrics::fingerprint::V2_1::FingerprintError;
 using ::android::hardware::biometrics::fingerprint::V2_1::IBiometricsFingerprintClientCallback;
 using ::android::hardware::biometrics::fingerprint::V2_1::RequestStatus;
+using ::android::hardware::biometrics::fingerprint::V2_3::IBiometricsFingerprint;
 
 struct BiometricsFingerprint : public IBiometricsFingerprint {
   public:
@@ -54,6 +56,12 @@ struct BiometricsFingerprint : public IBiometricsFingerprint {
     Return<RequestStatus> setActiveGroup(uint32_t gid, const hidl_string& storePath) override;
     Return<RequestStatus> authenticate(uint64_t operationId, uint32_t gid) override;
 
+    // Methods from ::android::hardware::biometrics::fingerprint::V2_3::IBiometricsFingerprint
+    // follow.
+    Return<bool> isUdfps(uint32_t sensorId) override;
+    Return<void> onFingerDown(uint32_t x, uint32_t y, float minor, float major) override;
+    Return<void> onFingerUp() override;
+
   private:
     static fingerprint_device_t* openHal();
     static void notify(
@@ -69,7 +77,7 @@ struct BiometricsFingerprint : public IBiometricsFingerprint {
 };
 
 }  // namespace implementation
-}  // namespace V2_1
+}  // namespace V2_3
 }  // namespace fingerprint
 }  // namespace biometrics
 }  // namespace hardware
