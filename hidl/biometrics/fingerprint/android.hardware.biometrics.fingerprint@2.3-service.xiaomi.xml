@@ -2,6 +2,6 @@
     <hal format="hidl">
         <name>android.hardware.biometrics.fingerprint</name>
         <transport>hwbinder</transport>
-        <fqname>@2.1::IBiometricsFingerprint/default</fqname>
+        <fqname>@2.3::IBiometricsFingerprint/default</fqname>
     </hal>
 </manifest>
