@@ -86,16 +86,21 @@ class PowerHintSession : public BnPowerHintSession {
     class StaleHandler : public MessageHandler {
       public:
         StaleHandler(PowerHintSession *session)
-            : mSession(session), mIsMonitoringStale(false), mLastUpdatedTime(steady_clock::now()) {}
+            : mSession(session),
+              mIsMonitoringStale(false),
+              mLastUpdatedTime(steady_clock::now()),
+              mIsSessionDead(false) {}
         void handleMessage(const Message &message) override;
         void updateStaleTimer();
         time_point<steady_clock> getStaleTime();
+        void setSessionDead();
 
       private:
         PowerHintSession *mSession;
         std::atomic<bool> mIsMonitoringStale;
         std::atomic<time_point<steady_clock>> mLastUpdatedTime;
         std::mutex mStaleLock;
+        bool mIsSessionDead;
     };
 
   private:
