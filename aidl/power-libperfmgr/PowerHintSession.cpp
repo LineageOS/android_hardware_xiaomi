@@ -39,7 +39,6 @@ namespace pixel {
 using ::android::base::StringPrintf;
 using std::chrono::duration_cast;
 using std::chrono::nanoseconds;
-using std::literals::chrono_literals::operator""s;
 
 constexpr char kPowerHalAdpfPidPOver[] = "vendor.powerhal.adpf.pid_p.over";
 constexpr char kPowerHalAdpfPidPUnder[] = "vendor.powerhal.adpf.pid_p.under";
@@ -167,6 +166,7 @@ PowerHintSession::~PowerHintSession() {
         sz = sz = StringPrintf("adpf.%s-active", idstr.c_str());
         ATRACE_INT(sz.c_str(), 0);
     }
+    mStaleHandler->setSessionDead();
     delete mDescriptor;
 }
 
@@ -210,6 +210,10 @@ int PowerHintSession::setUclamp(int32_t min, int32_t max) {
 }
 
 ndk::ScopedAStatus PowerHintSession::pause() {
+    if (mSessionClosed) {
+        ALOGE("Error: session is dead");
+        return ndk::ScopedAStatus::fromExceptionCode(EX_ILLEGAL_STATE);
+    }
     if (!mDescriptor->is_active.load())
         return ndk::ScopedAStatus::fromExceptionCode(EX_ILLEGAL_STATE);
     // Reset to default uclamp value.
@@ -225,6 +229,10 @@ ndk::ScopedAStatus PowerHintSession::pause() {
 }
 
 ndk::ScopedAStatus PowerHintSession::resume() {
+    if (mSessionClosed) {
+        ALOGE("Error: session is dead");
+        return ndk::ScopedAStatus::fromExceptionCode(EX_ILLEGAL_STATE);
+    }
     if (mDescriptor->is_active.load())
         return ndk::ScopedAStatus::fromExceptionCode(EX_ILLEGAL_STATE);
     mDescriptor->is_active.store(true);
@@ -245,7 +253,6 @@ ndk::ScopedAStatus PowerHintSession::close() {
     if (!mSessionClosed.compare_exchange_strong(sessionClosedExpectedToBe, true)) {
         return ndk::ScopedAStatus::fromExceptionCode(EX_ILLEGAL_STATE);
     }
-    PowerHintMonitor::getInstance()->getLooper()->removeMessages(mStaleHandler);
     setUclamp(0);
     PowerSessionManager::getInstance()->removePowerSession(this);
     updateUniveralBoostMode();
@@ -253,6 +260,10 @@ ndk::ScopedAStatus PowerHintSession::close() {
 }
 
 ndk::ScopedAStatus PowerHintSession::updateTargetWorkDuration(int64_t targetDurationNanos) {
+    if (mSessionClosed) {
+        ALOGE("Error: session is dead");
+        return ndk::ScopedAStatus::fromExceptionCode(EX_ILLEGAL_STATE);
+    }
     if (targetDurationNanos <= 0) {
         ALOGE("Error: targetDurationNanos(%" PRId64 ") should bigger than 0", targetDurationNanos);
         return ndk::ScopedAStatus::fromExceptionCode(EX_ILLEGAL_ARGUMENT);
@@ -275,6 +286,10 @@ ndk::ScopedAStatus PowerHintSession::updateTargetWorkDuration(int64_t targetDura
 
 ndk::ScopedAStatus PowerHintSession::reportActualWorkDuration(
         const std::vector<WorkDuration> &actualDurations) {
+    if (mSessionClosed) {
+        ALOGE("Error: session is dead");
+        return ndk::ScopedAStatus::fromExceptionCode(EX_ILLEGAL_STATE);
+    }
     if (mDescriptor->duration.count() == 0LL) {
         ALOGE("Expect to call updateTargetWorkDuration() first.");
         return ndk::ScopedAStatus::fromExceptionCode(EX_ILLEGAL_STATE);
@@ -441,8 +456,9 @@ void PowerHintSession::StaleHandler::updateStaleTimer() {
         }
         if (!mIsMonitoringStale.load()) {
             auto next = getStaleTime();
+            PowerHintMonitor::getInstance()->getLooper()->removeMessages(mSession->mStaleHandler);
             PowerHintMonitor::getInstance()->getLooper()->sendMessageDelayed(
-                    duration_cast<nanoseconds>(next - now).count(), this, NULL);
+                    duration_cast<nanoseconds>(next - now).count(), mSession->mStaleHandler, NULL);
             mIsMonitoringStale.store(true);
         }
         if (ATRACE_ENABLED()) {
@@ -460,6 +476,9 @@ time_point<steady_clock> PowerHintSession::StaleHandler::getStaleTime() {
 
 void PowerHintSession::StaleHandler::handleMessage(const Message &) {
     std::lock_guard<std::mutex> guard(mStaleLock);
+    if (mIsSessionDead) {
+        return;
+    }
     auto now = std::chrono::steady_clock::now();
     auto when = getStaleTime();
     // Check if the session is stale based on the last_updated_time.
@@ -469,8 +488,15 @@ void PowerHintSession::StaleHandler::handleMessage(const Message &) {
         return;
     }
     // Schedule for the next checking time.
+    PowerHintMonitor::getInstance()->getLooper()->removeMessages(mSession->mStaleHandler);
     PowerHintMonitor::getInstance()->getLooper()->sendMessageDelayed(
-            duration_cast<nanoseconds>(when - now).count(), this, NULL);
+            duration_cast<nanoseconds>(when - now).count(), mSession->mStaleHandler, NULL);
+}
+
+void PowerHintSession::StaleHandler::setSessionDead() {
+    std::lock_guard<std::mutex> guard(mStaleLock);
+    PowerHintMonitor::getInstance()->getLooper()->removeMessages(mSession->mStaleHandler);
+    mIsSessionDead = true;
 }
 
 }  // namespace pixel
