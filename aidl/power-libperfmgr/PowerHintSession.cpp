@@ -269,10 +269,6 @@ ndk::ScopedAStatus PowerHintSession::updateTargetWorkDuration(int64_t targetDura
         return ndk::ScopedAStatus::fromExceptionCode(EX_ILLEGAL_ARGUMENT);
     }
     ALOGV("update target duration: %" PRId64 " ns", targetDurationNanos);
-    double ratio =
-            targetDurationNanos == 0 ? 1.0 : mDescriptor->duration.count() / targetDurationNanos;
-    mDescriptor->integral_error =
-            std::max(sPidIInit, static_cast<int64_t>(mDescriptor->integral_error * ratio));
 
     mDescriptor->duration = std::chrono::nanoseconds(targetDurationNanos);
     if (ATRACE_ENABLED()) {
