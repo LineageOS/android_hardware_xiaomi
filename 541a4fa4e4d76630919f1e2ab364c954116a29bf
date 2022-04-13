@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea81c4da_83ffe5ac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2022-04-13T22:51:17Z",
+      "side": 1,
+      "message": "I\u0027m trying to bring this in common again after PIG\u0027s failed attempt\n\nI\u0027m sure that at least sm8250, sm7250, sm8150, sm6150, sdm845 and sdm710 uses the same exact code.\nsdm660 only differs because of wayne model being hardcoded (https://github.com/LineageOS/android_device_xiaomi_sdm660-common/blob/lineage-18.1/org.ifaa.android.manager/src/org/ifaa/android/manager/IFAAManagerImpl.java#L165), while I haven\u0027t checked msm8998.\nMaybe it\u0027s time to consider this",
+      "revId": "541a4fa4e4d76630919f1e2ab364c954116a29bf",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
