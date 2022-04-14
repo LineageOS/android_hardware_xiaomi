@@ -1,0 +1,26 @@
+//
+// Copyright (C) 2022 The LineageOS Project
+//
+// SPDX-License-Identifier: Apache-2.0
+//
+
+android_app {
+    name: "IFAAService",
+    srcs: [
+        "src/**/*.java",
+        "src/**/I*.aidl",
+    ],
+    aidl: {
+        local_include_dirs: ["src"],
+    },
+    resource_dirs: ["res"],
+
+    static_libs: [
+        "android.hidl.base-V1.0-java",
+        "vendor.xiaomi.hardware.mlipay-V1.1-java",
+    ],
+
+    certificate: "platform",
+    platform_apis: true,
+    system_ext_specific: true,
+}
