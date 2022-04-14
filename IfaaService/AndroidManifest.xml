@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:sharedUserId="android.uid.system" android:versionCode="30" android:versionName="11" android:compileSdkVersion="30" android:compileSdkVersionCodename="11" package="org.ifaa.aidl.manager" platformBuildVersionCode="30" platformBuildVersionName="11">
+    <uses-sdk android:minSdkVersion="30" android:targetSdkVersion="29"/>
+    <application android:label="@string/app_name" android:persistent="true">
+        <service android:name="org.ifaa.aidl.manager.IfaaService" android:exported="true">
+            <intent-filter>
+                <action android:name="org.ifaa.aidl.manager.IfaaManagerService"/>
+            </intent-filter>
+        </service>
+    </application>
+</manifest>
