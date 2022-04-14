@@ -16,6 +16,46 @@
       "message": "I\u0027m trying to bring this in common again after PIG\u0027s failed attempt\n\nI\u0027m sure that at least sm8250, sm7250, sm8150, sm6150, sdm845 and sdm710 uses the same exact code.\nsdm660 only differs because of wayne model being hardcoded (https://github.com/LineageOS/android_device_xiaomi_sdm660-common/blob/lineage-18.1/org.ifaa.android.manager/src/org/ifaa/android/manager/IFAAManagerImpl.java#L165), while I haven\u0027t checked msm8998.\nMaybe it\u0027s time to consider this",
       "revId": "541a4fa4e4d76630919f1e2ab364c954116a29bf",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52fff4a7_4d497d1b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 10258
+      },
+      "writtenOn": "2022-04-14T02:34:40Z",
+      "side": 1,
+      "message": "You may want to follow https://github.com/Art-Chen/android_device_oppo_OP4A89/tree/arrow-12.0/IfaaService to migrate to the new org.ifaa.aidl.manager.IfaaService api. It just publishes a new service and requires no framework injection. Some OEMs are already using it in stock, I\u0027ve no idea why meme stick with the old one tho.",
+      "revId": "541a4fa4e4d76630919f1e2ab364c954116a29bf",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9030743_0efd84e1",
+        "filename": "org.ifaa.android.manager/src/org/ifaa/android/manager/IFAAManagerImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 10258
+      },
+      "writtenOn": "2022-04-14T02:34:40Z",
+      "side": 1,
+      "message": "1\u003c\u003c1 and 1 \u003c\u003c 4, respectively",
+      "range": {
+        "startLine": 31,
+        "startChar": 4,
+        "endLine": 32,
+        "endChar": 55
+      },
+      "revId": "541a4fa4e4d76630919f1e2ab364c954116a29bf",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
