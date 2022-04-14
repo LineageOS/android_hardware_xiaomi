@@ -1,0 +1,15 @@
+/*
+ * Copyright (C) 2022 The LineageOS Project
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+package vendor.xiaomi.hardware.mlipay@1.0;
+
+interface IMlipayService {
+    invoke_command(vec<uint8_t> sbuf, uint32_t sbuf_len) generates (vec<uint8_t> ret);
+    ifaa_key_get_version() generates (int32_t result);
+    ifaa_key_prepare() generates (string hex);
+    ifaa_key_load(string data_text, string sign_text) generates (int32_t result);
+    ifaa_key_extract(vec<uint8_t> buf, uint32_t buf_len) generates (int32_t result);
+};
