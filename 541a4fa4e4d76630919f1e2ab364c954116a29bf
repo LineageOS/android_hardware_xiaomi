@@ -35,6 +35,23 @@
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e03bb16_49d1247c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2022-04-14T17:02:33Z",
+      "side": 1,
+      "message": "I\u0027m gonna rewrite it properly with https://review.lineageos.org/c/LineageOS/android_hardware_xiaomi/+/328681, hold",
+      "revId": "541a4fa4e4d76630919f1e2ab364c954116a29bf",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a9030743_0efd84e1",
