@@ -16,6 +16,24 @@
       "message": "dian how can I test this? xd",
       "revId": "7d7fcee8476a6e58cd284bb9dedb27747202cec2",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "60ca4083_a6ccf5b8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 10258
+      },
+      "writtenOn": "2022-04-15T07:42:11Z",
+      "side": 1,
+      "message": "get some alipay users to test fingerprint payment",
+      "parentUuid": "34601e72_52d0d9c5",
+      "revId": "7d7fcee8476a6e58cd284bb9dedb27747202cec2",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
