@@ -24,7 +24,7 @@ namespace sensors {
 namespace V1_0 {
 namespace implementation {
 
-void convertFromSensor(const sensor_t &src, SensorInfo *dst) {
+void convertFromSensor(const sensor_t& src, SensorInfo* dst) {
     dst->name = src.name;
     dst->vendor = src.vendor;
     dst->version = src.version;
@@ -42,9 +42,7 @@ void convertFromSensor(const sensor_t &src, SensorInfo *dst) {
     dst->flags = src.flags;
 }
 
-void convertToSensor(
-        const ::android::hardware::sensors::V1_0::SensorInfo &src,
-        sensor_t *dst) {
+void convertToSensor(const ::android::hardware::sensors::V1_0::SensorInfo& src, sensor_t* dst) {
     dst->name = strdup(src.name.c_str());
     dst->vendor = strdup(src.vendor.c_str());
     dst->version = src.version;
@@ -63,7 +61,7 @@ void convertToSensor(
     dst->reserved[0] = dst->reserved[1] = 0;
 }
 
-void convertFromSensorEvent(const sensors_event_t &src, Event *dst) {
+void convertFromSensorEvent(const sensors_event_t& src, Event* dst) {
     typedef ::android::hardware::sensors::V1_0::SensorType SensorType;
     typedef ::android::hardware::sensors::V1_0::MetaDataEventType MetaDataEventType;
 
@@ -196,7 +194,7 @@ void convertFromSensorEvent(const sensors_event_t &src, Event *dst) {
     }
 }
 
-void convertToSensorEvent(const Event &src, sensors_event_t *dst) {
+void convertToSensorEvent(const Event& src, sensors_event_t* dst) {
     *dst = {.version = sizeof(sensors_event_t),
             .sensor = src.sensorHandle,
             .type = (int32_t)src.sensorType,
@@ -247,8 +245,7 @@ void convertToSensorEvent(const Event &src, sensors_event_t *dst) {
 
         case SensorType::MAGNETIC_FIELD_UNCALIBRATED:
         case SensorType::GYROSCOPE_UNCALIBRATED:
-        case SensorType::ACCELEROMETER_UNCALIBRATED:
-        {
+        case SensorType::ACCELEROMETER_UNCALIBRATED: {
             dst->uncalibrated_gyro.x_uncalib = src.u.uncal.x;
             dst->uncalibrated_gyro.y_uncalib = src.u.uncal.y;
             dst->uncalibrated_gyro.z_uncalib = src.u.uncal.z;
@@ -303,26 +300,21 @@ void convertToSensorEvent(const Event &src, sensors_event_t *dst) {
             dst->dynamic_sensor_meta.handle = src.u.dynamic.sensorHandle;
             dst->dynamic_sensor_meta.sensor = NULL;  // to be filled in later
 
-            memcpy(dst->dynamic_sensor_meta.uuid,
-                   src.u.dynamic.uuid.data(),
-                   16);
+            memcpy(dst->dynamic_sensor_meta.uuid, src.u.dynamic.uuid.data(), 16);
 
             break;
         }
 
         case SensorType::ADDITIONAL_INFO: {
-            const ::android::hardware::sensors::V1_0::AdditionalInfo &srcInfo =
-                src.u.additional;
+            const ::android::hardware::sensors::V1_0::AdditionalInfo& srcInfo = src.u.additional;
 
-            additional_info_event_t *dstInfo = &dst->additional_info;
+            additional_info_event_t* dstInfo = &dst->additional_info;
             dstInfo->type = (int32_t)srcInfo.type;
             dstInfo->serial = srcInfo.serial;
 
             CHECK_EQ(sizeof(srcInfo.u), sizeof(dstInfo->data_int32));
 
-            memcpy(dstInfo->data_int32,
-                   &srcInfo.u,
-                   sizeof(dstInfo->data_int32));
+            memcpy(dstInfo->data_int32, &srcInfo.u, sizeof(dstInfo->data_int32));
 
             break;
         }
@@ -334,12 +326,12 @@ void convertToSensorEvent(const Event &src, sensors_event_t *dst) {
     }
 }
 
-bool convertFromSharedMemInfo(const SharedMemInfo& memIn, sensors_direct_mem_t *memOut) {
+bool convertFromSharedMemInfo(const SharedMemInfo& memIn, sensors_direct_mem_t* memOut) {
     if (memOut == nullptr) {
         return false;
     }
 
-    switch(memIn.type) {
+    switch (memIn.type) {
         case SharedMemType::ASHMEM:
             memOut->type = SENSOR_DIRECT_MEM_TYPE_ASHMEM;
             break;
@@ -350,7 +342,7 @@ bool convertFromSharedMemInfo(const SharedMemInfo& memIn, sensors_direct_mem_t *
             return false;
     }
 
-    switch(memIn.format) {
+    switch (memIn.format) {
         case SharedMemFormat::SENSORS_EVENT:
             memOut->format = SENSOR_DIRECT_FMT_SENSORS_EVENT;
             break;
@@ -368,7 +360,7 @@ bool convertFromSharedMemInfo(const SharedMemInfo& memIn, sensors_direct_mem_t *
 }
 
 int convertFromRateLevel(RateLevel rate) {
-    switch(rate) {
+    switch (rate) {
         case RateLevel::STOP:
             return SENSOR_DIRECT_RATE_STOP;
         case RateLevel::NORMAL:
@@ -387,4 +379,3 @@ int convertFromRateLevel(RateLevel rate) {
 }  // namespace sensors
 }  // namespace hardware
 }  // namespace android
-

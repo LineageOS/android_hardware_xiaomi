@@ -27,13 +27,13 @@ namespace sensors {
 namespace V1_0 {
 namespace implementation {
 
-void convertFromSensor(const sensor_t &src, SensorInfo *dst);
-void convertToSensor(const SensorInfo &src, sensor_t *dst);
+void convertFromSensor(const sensor_t& src, SensorInfo* dst);
+void convertToSensor(const SensorInfo& src, sensor_t* dst);
 
-void convertFromSensorEvent(const sensors_event_t &src, Event *dst);
-void convertToSensorEvent(const Event &src, sensors_event_t *dst);
+void convertFromSensorEvent(const sensors_event_t& src, Event* dst);
+void convertToSensorEvent(const Event& src, sensors_event_t* dst);
 
-bool convertFromSharedMemInfo(const SharedMemInfo& memIn, sensors_direct_mem_t *memOut);
+bool convertFromSharedMemInfo(const SharedMemInfo& memIn, sensors_direct_mem_t* memOut);
 int convertFromRateLevel(RateLevel rate);
 
 }  // namespace implementation
