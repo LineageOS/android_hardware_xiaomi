@@ -18,6 +18,23 @@
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "be430939_5e7751e3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2022-04-20T16:01:06Z",
+      "side": 1,
+      "message": "I would suggest to swap author and co-author here since i wrote the initial implementation of the service.",
+      "revId": "c980f4a1b59f1f7061fae169f927a667523d946d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3d1c7e1c_c42e73a3",
