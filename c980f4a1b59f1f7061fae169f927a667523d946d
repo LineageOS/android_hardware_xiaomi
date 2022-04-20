@@ -39,6 +39,29 @@
       },
       "revId": "c980f4a1b59f1f7061fae169f927a667523d946d",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9da248f5_7d489ed3",
+        "filename": "interfaces/xiaomi/hardware/touchfeature/1.0/default/vendor.xiaomi.hardware.touchfeature@1.0-service.rc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2022-04-20T15:11:10Z",
+      "side": 1,
+      "message": "Why should it be globally readable?",
+      "range": {
+        "startLine": 3,
+        "startChar": 13,
+        "endLine": 3,
+        "endChar": 14
+      },
+      "revId": "c980f4a1b59f1f7061fae169f927a667523d946d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
