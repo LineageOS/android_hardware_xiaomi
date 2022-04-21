@@ -19,6 +19,7 @@
 
 #include "PowerSessionManager.h"
 
+#include <android-base/file.h>
 #include <log/log.h>
 #include <perfmgr/HintManager.h>
 #include <processgroup/processgroup.h>
@@ -198,6 +199,28 @@ void PowerSessionManager::handleMessage(const Message &) {
         disableSystemTopAppBoost();
     } else {
         enableSystemTopAppBoost();
+    }
+}
+
+void PowerSessionManager::dumpToFd(int fd) {
+    std::ostringstream dump_buf;
+    std::lock_guard<std::mutex> guard(mLock);
+    dump_buf << "========== Begin PowerSessionManager ADPF list ==========\n";
+    for (PowerHintSession *s : mSessions) {
+        s->dumpToStream(dump_buf);
+        dump_buf << " Tid:Ref[";
+        for (size_t i = 0, len = s->getTidList().size(); i < len; i++) {
+            int t = s->getTidList()[i];
+            dump_buf << t << ":" << mTidSessionListMap[t].size();
+            if (i < len - 1) {
+                dump_buf << ", ";
+            }
+        }
+        dump_buf << "]\n";
+    }
+    dump_buf << "========== End PowerSessionManager ADPF list ==========\n";
+    if (!::android::base::WriteStringToFd(dump_buf.str(), fd)) {
+        ALOGE("Failed to dump one of session list to fd:%d", fd);
     }
 }
 

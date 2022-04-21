@@ -200,6 +200,13 @@ int PowerHintSession::getUclampMin() {
     return mDescriptor->current_min;
 }
 
+void PowerHintSession::dumpToStream(std::ostream &stream) {
+    stream << "ID.Min.Act.Stale(" << getIdString();
+    stream << ", " << mDescriptor->current_min;
+    stream << ", " << mDescriptor->is_active;
+    stream << ", " << isStale() << ")";
+}
+
 ndk::ScopedAStatus PowerHintSession::pause() {
     if (mSessionClosed) {
         ALOGE("Error: session is dead");
