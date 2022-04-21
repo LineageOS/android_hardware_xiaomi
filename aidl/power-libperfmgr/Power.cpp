@@ -202,6 +202,7 @@ binder_status_t Power::dump(int fd, const char **, uint32_t) {
             boolToString(mSustainedPerfModeOn)));
     // Dump nodes through libperfmgr
     HintManager::GetInstance()->DumpToFd(fd);
+    PowerSessionManager::getInstance()->dumpToFd(fd);
     if (!::android::base::WriteStringToFd(buf, fd)) {
         PLOG(ERROR) << "Failed to dump state to fd";
     }
