@@ -458,13 +458,11 @@ void PowerHintSession::HintTimerHandler::updateHintTimer(
     if (actualDurations.size() >= 2) {
         const WorkDuration &last = actualDurations[actualDurations.size() - 2];
         mSession->mDescriptor->last_start = last.timeStampNanos - last.durationNanos;
-        ALOGD("last_start initialized by previous.");
     }
     const WorkDuration &current = actualDurations.back();
     int64_t curr_start = current.timeStampNanos - current.durationNanos;
     if (!mSession->mDescriptor->last_start) {
         mSession->mDescriptor->last_start = curr_start;
-        ALOGD("last_start initialized by current.");
         updateHintTimer(current.durationNanos);
         return;
     }
