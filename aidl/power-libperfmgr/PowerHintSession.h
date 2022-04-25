@@ -49,6 +49,7 @@ struct AppHintDesc {
           threadIds(std::move(threadIds)),
           duration(0LL),
           current_min(0),
+          transitioanl_min(0),
           is_active(true),
           update_count(0),
           integral_error(0),
