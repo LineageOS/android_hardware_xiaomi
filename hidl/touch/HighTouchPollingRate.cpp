@@ -16,8 +16,6 @@ namespace touch {
 namespace V1_0 {
 namespace implementation {
 
-#define HIGH_TOUCH_POLLING_PATH = "/sys/devices/virtual/touch/touch_dev/bump_sample_rate"
-
 Return<bool> HighTouchPollingRate::isEnabled() {
     std::ifstream file(HIGH_TOUCH_POLLING_PATH);
     int enabled;
