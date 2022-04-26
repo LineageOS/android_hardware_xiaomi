@@ -4,11 +4,31 @@
 // SPDX-License-Identifier: Apache-2.0
 //
 
+soong_config_module_type {
+    name: "xiaomi_touch_hal_cc_defaults",
+    module_type: "cc_defaults",
+    config_namespace: "XIAOMI_TOUCH",
+    value_variables: ["HIGH_TOUCH_POLLING_PATH"],
+    properties: ["cppflags"],
+}
+
+xiaomi_touch_hal_cc_defaults {
+    name: "xiaomi_touch_hal_defaults",
+    soong_config_variables: {
+        HIGH_TOUCH_POLLING_PATH: {
+            cppflags: ["-DHIGH_TOUCH_POLLING_PATH=\"%s\""],
+        },
+    },
+}
+
 cc_binary {
     name: "vendor.lineage.touch@1.0-service.xiaomi",
     vintf_fragments: ["vendor.lineage.touch@1.0-service.xiaomi.xml"],
     init_rc: ["vendor.lineage.touch@1.0-service.xiaomi.rc"],
-    defaults: ["hidl_defaults"],
+    defaults: [
+        "hidl_defaults",
+        "xiaomi_touch_hal_defaults",
+    ],
     relative_install_path: "hw",
     proprietary: true,
     srcs: [
