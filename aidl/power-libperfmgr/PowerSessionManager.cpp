@@ -91,12 +91,12 @@ void PowerSessionManager::removePowerSession(PowerHintSession *session) {
     mSessions.erase(session);
 }
 
-std::optional<bool> PowerSessionManager::isAnySessionActive() {
+std::optional<bool> PowerSessionManager::isAnyAppSessionActive() {
     std::lock_guard<std::mutex> guard(mLock);
     bool active = false;
     for (PowerHintSession *s : mSessions) {
         // session active and not stale is actually active.
-        if (s->isActive() && !s->isStale()) {
+        if (s->isActive() && !s->isStale() && s->isAppSession()) {
             active = true;
             break;
         }
@@ -111,7 +111,7 @@ std::optional<bool> PowerSessionManager::isAnySessionActive() {
 }
 
 void PowerSessionManager::handleMessage(const Message &) {
-    auto active = isAnySessionActive();
+    auto active = isAnyAppSessionActive();
     if (!active.has_value()) {
         return;
     }
