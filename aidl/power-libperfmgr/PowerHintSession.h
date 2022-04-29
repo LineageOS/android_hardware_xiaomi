@@ -87,6 +87,8 @@ class PowerHintSession : public BnPowerHintSession {
             const std::vector<WorkDuration> &actualDurations) override;
     bool isActive();
     bool isStale();
+    // Is this hint session for a user application
+    bool isAppSession();
     const std::vector<int> &getTidList() const;
     int restoreUclamp();
 

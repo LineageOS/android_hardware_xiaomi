@@ -59,7 +59,7 @@ class PowerSessionManager : public MessageHandler {
     }
 
   private:
-    std::optional<bool> isAnySessionActive();
+    std::optional<bool> isAnyAppSessionActive();
     void disableSystemTopAppBoost();
     void enableSystemTopAppBoost();
     const std::string kDisableBoostHintName;

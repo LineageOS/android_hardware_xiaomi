@@ -24,6 +24,7 @@
 #include <android-base/properties.h>
 #include <android-base/stringprintf.h>
 #include <perfmgr/AdpfConfig.h>
+#include <private/android_filesystem_config.h>
 #include <sys/syscall.h>
 #include <time.h>
 #include <utils/Trace.h>
@@ -183,7 +184,15 @@ std::string PowerHintSession::getIdString() const {
     return idstr;
 }
 
+bool PowerHintSession::isAppSession() {
+    // Check if uid is in range reserved for applications
+    return mDescriptor->uid >= AID_APP_START;
+}
+
 void PowerHintSession::updateUniveralBoostMode() {
+    if (!isAppSession()) {
+        return;
+    }
     if (ATRACE_ENABLED()) {
         const std::string tag = StringPrintf("%s:updateUniveralBoostMode()", getIdString().c_str());
         ATRACE_BEGIN(tag.c_str());
