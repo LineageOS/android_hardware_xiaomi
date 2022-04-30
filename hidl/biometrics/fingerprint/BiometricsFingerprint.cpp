@@ -27,15 +27,35 @@ namespace implementation {
 // Supported fingerprint HAL version
 static const uint16_t kVersion = HARDWARE_MODULE_API_VERSION(2, 1);
 
+typedef struct fingerprint_hal {
+    const char* class_name;
+    const bool fod;
+} fingerprint_hal_t;
+
+static const fingerprint_hal_t kModules[] = {
+        {"fpc", false},       {"fpc_fod", true},     {"goodix", false},
+        {"goodix_fod", true}, {"goodix_fod6", true},
+};
+
 using RequestStatus = android::hardware::biometrics::fingerprint::V2_1::RequestStatus;
 
 BiometricsFingerprint* BiometricsFingerprint::sInstance = nullptr;
 
 BiometricsFingerprint::BiometricsFingerprint() : mClientCallback(nullptr), mDevice(nullptr) {
     sInstance = this;  // keep track of the most recent instance
-    mDevice = openHal();
+    for (auto& [class_name, fod] : kModules) {
+        mDevice = openHal(class_name);
+        if (!mDevice) {
+            LOG(ERROR) << "Can't open HAL module, class " << class_name;
+            continue;
+        }
+
+        LOG(INFO) << "Opened fingerprint HAL, class " << class_name;
+        mFod = fod;
+        break;
+    }
     if (!mDevice) {
-        LOG(ERROR) << "Can't open HAL module";
+        LOG(ERROR) << "Can't open any HAL module";
     }
 }
 
@@ -203,7 +223,7 @@ Return<RequestStatus> BiometricsFingerprint::authenticate(uint64_t operationId, 
 }
 
 Return<bool> BiometricsFingerprint::isUdfps(uint32_t /*sensorId*/) {
-    return false;
+    return mFod;
 }
 
 Return<void> BiometricsFingerprint::onFingerDown(uint32_t /*x*/, uint32_t /*y*/, float /*minor*/,
@@ -222,11 +242,11 @@ IBiometricsFingerprint* BiometricsFingerprint::getInstance() {
     return sInstance;
 }
 
-fingerprint_device_t* BiometricsFingerprint::openHal() {
+fingerprint_device_t* BiometricsFingerprint::openHal(const char* class_name) {
     int err;
     const hw_module_t* hw_mdl = nullptr;
     LOG(DEBUG) << "Opening fingerprint hal library...";
-    if (0 != (err = hw_get_module(FINGERPRINT_HARDWARE_MODULE_ID, &hw_mdl))) {
+    if (0 != (err = hw_get_module_by_class(FINGERPRINT_HARDWARE_MODULE_ID, class_name, &hw_mdl))) {
         LOG(ERROR) << "Can't open fingerprint HW Module, error: " << err;
         return nullptr;
     }
