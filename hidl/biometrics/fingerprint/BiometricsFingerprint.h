@@ -8,12 +8,10 @@
 #pragma once
 
 #include <android/hardware/biometrics/fingerprint/2.1/IBiometricsFingerprint.h>
-#include <android/log.h>
 #include <hardware/fingerprint.h>
 #include <hardware/hardware.h>
 #include <hidl/MQDescriptor.h>
 #include <hidl/Status.h>
-#include <log/log.h>
 
 namespace android {
 namespace hardware {
