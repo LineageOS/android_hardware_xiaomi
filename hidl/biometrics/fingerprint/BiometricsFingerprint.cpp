@@ -12,6 +12,7 @@
 #include <hardware/hardware.h>
 #include "BiometricsFingerprint.h"
 
+#include <android-base/properties.h>
 #include <inttypes.h>
 #include <unistd.h>
 
@@ -37,6 +38,8 @@ static const fingerprint_hal_t kModules[] = {
 
 using RequestStatus = android::hardware::biometrics::fingerprint::V2_1::RequestStatus;
 
+using ::android::base::SetProperty;
+
 BiometricsFingerprint* BiometricsFingerprint::sInstance = nullptr;
 
 BiometricsFingerprint::BiometricsFingerprint() : mClientCallback(nullptr), mDevice(nullptr) {
@@ -50,10 +53,16 @@ BiometricsFingerprint::BiometricsFingerprint() : mClientCallback(nullptr), mDevi
 
         ALOGI("Opened fingerprint HAL, class %s", class_name);
         mIsUdfps = is_udfps;
+        SetProperty("persist.vendor.sys.fp.vendor", class_name);
         break;
     }
     if (!mDevice) {
         ALOGE("Can't open any HAL module");
+        SetProperty("persist.vendor.sys.fp.vendor", "none");
+    }
+
+    if (mIsUdfps) {
+        SetProperty("ro.hardware.fp.udfps", "true");
     }
 }
 
