@@ -7,9 +7,9 @@
 
 #define LOG_TAG "android.hardware.biometrics.fingerprint@2.1-service.xiaomi"
 
+#include <android-base/logging.h>
 #include <android/hardware/biometrics/fingerprint/2.1/IBiometricsFingerprint.h>
 #include <android/hardware/biometrics/fingerprint/2.1/types.h>
-#include <android/log.h>
 #include <hidl/HidlSupport.h>
 #include <hidl/HidlTransportSupport.h>
 #include "BiometricsFingerprint.h"
@@ -30,7 +30,7 @@ int main() {
             return 1;
         }
     } else {
-        ALOGE("Can't create instance of BiometricsFingerprint, nullptr");
+        LOG(ERROR) << "Can't create instance of BiometricsFingerprint, nullptr";
     }
 
     joinRpcThreadpool();
