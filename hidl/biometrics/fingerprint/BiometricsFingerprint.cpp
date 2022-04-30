@@ -13,6 +13,7 @@
 #include "BiometricsFingerprint.h"
 
 #include <android-base/logging.h>
+#include <android-base/properties.h>
 #include <fcntl.h>
 #include <inttypes.h>
 #include <poll.h>
@@ -69,6 +70,8 @@ static const fingerprint_hal_t kModules[] = {
 
 using RequestStatus = android::hardware::biometrics::fingerprint::V2_1::RequestStatus;
 
+using ::android::base::SetProperty;
+
 BiometricsFingerprint* BiometricsFingerprint::sInstance = nullptr;
 
 BiometricsFingerprint::BiometricsFingerprint() : mClientCallback(nullptr), mDevice(nullptr) {
@@ -82,6 +85,7 @@ BiometricsFingerprint::BiometricsFingerprint() : mClientCallback(nullptr), mDevi
 
         LOG(INFO) << "Opened fingerprint HAL, class " << class_name;
         mIsUdfps = is_udfps;
+        SetProperty("persist.vendor.sys.fp.vendor", class_name);
         break;
     }
     if (!mDevice) {
@@ -120,6 +124,8 @@ BiometricsFingerprint::BiometricsFingerprint() : mClientCallback(nullptr), mDevi
                                 readBool(fd) ? PARAM_NIT_FOD : PARAM_NIT_NONE);
             }
         }).detach();
+
+        SetProperty("ro.hardware.fp.fod", "true");
     }
 }
 
