@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18e6183f_70542942",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2022-05-01T15:21:31Z",
+      "side": 1,
+      "message": "dian you were right btw, Xiaomi is using this service on stock",
+      "revId": "5eb7d26c52f6c2f512cfd138e641f06fd445b0a2",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
