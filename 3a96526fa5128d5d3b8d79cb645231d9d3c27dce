@@ -33,6 +33,24 @@
       "message": "Where do you have the device tree commit to ditch prebuilt interface and build this one?",
       "revId": "3a96526fa5128d5d3b8d79cb645231d9d3c27dce",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "32f6a34d_df59d920",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2022-05-02T14:35:38Z",
+      "side": 1,
+      "message": "Alright... you set BUILD_BROKEN_DUP_RULES. That\u0027s why you didn\u0027t get any build error. :/\n\nI\u0027ve put up this one already: https://review.lineageos.org/c/LineageOS/android_device_xiaomi_sdm845-common/+/330674/.",
+      "parentUuid": "d50819ed_c7b8cfc3",
+      "revId": "3a96526fa5128d5d3b8d79cb645231d9d3c27dce",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
