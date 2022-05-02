@@ -16,6 +16,23 @@
       "message": "Dynamic symbol table is 1:1 with prebuilt one and nothing dies",
       "revId": "3a96526fa5128d5d3b8d79cb645231d9d3c27dce",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d50819ed_c7b8cfc3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2022-05-02T10:51:31Z",
+      "side": 1,
+      "message": "Where do you have the device tree commit to ditch prebuilt interface and build this one?",
+      "revId": "3a96526fa5128d5d3b8d79cb645231d9d3c27dce",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
