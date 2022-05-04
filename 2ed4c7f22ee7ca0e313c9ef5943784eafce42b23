@@ -51,6 +51,23 @@
       "parentUuid": "0ab5d442_e1a19faf",
       "revId": "2ed4c7f22ee7ca0e313c9ef5943784eafce42b23",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "58635ce4_98dbb69c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2022-05-04T08:09:10Z",
+      "side": 1,
+      "message": "Fixed with https://review.lineageos.org/c/LineageOS/android_hardware_xiaomi/+/330766",
+      "revId": "2ed4c7f22ee7ca0e313c9ef5943784eafce42b23",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
