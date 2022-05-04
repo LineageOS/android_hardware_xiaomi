@@ -1,0 +1,16 @@
+/*
+ * Copyright (C) 2022 The LineageOS Project
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+package vendor.xiaomi.hardware.mtdservice@1.1;
+
+import @1.0::IMTService;
+
+interface IMTService extends @1.0::IMTService {
+    persist_read(int32_t dir_id, string file_name) generates (int32_t ret, vec<uint8_t> rbuf);
+    persist_write(int32_t dir_id, string file_name, vec<uint8_t> sbuf, uint32_t sbuf_len) generates (int32_t ret);
+    persist_remove(int32_t dir_id, string file_name) generates (int32_t ret);
+    ifaa_key_dump() generates (string ret);
+};

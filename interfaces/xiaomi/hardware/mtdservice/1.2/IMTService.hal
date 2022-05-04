@@ -1,0 +1,30 @@
+/*
+ * Copyright (C) 2022 The LineageOS Project
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+package vendor.xiaomi.hardware.mtdservice@1.2;
+
+import @1.1::IMTService;
+
+interface IMTService extends @1.1::IMTService {
+    widevine_get_version() generates (int32_t ret);
+    widevine_prepare() generates (string ret);
+    widevine_load(string data_text, string sign_text) generates (int32_t ret);
+    widevine_dump() generates (string ret);
+    runExternalCmd(int32_t taType, vec<uint8_t> ta, uint32_t cmdId, vec<uint8_t> data) generates (int32_t ret, vec<uint8_t> rsp);
+    installTa(int32_t taType, vec<uint8_t> ta, vec<uint8_t> ta_buf) generates (int32_t ret);
+    unInstallTa(int32_t taType, vec<uint8_t> ta) generates (int32_t ret);
+    loadTa(int32_t taType, vec<uint8_t> ta) generates (int32_t ret);
+    runTaCmd(int32_t taType, vec<uint8_t> ta, vec<uint8_t> data) generates (int32_t ret, vec<uint8_t> rsp);
+    unloadTa(int32_t taType, vec<uint8_t> ta) generates (int32_t ret);
+    checkPermission(vec<uint8_t> packageName, vec<uint8_t> signature) generates (bool ret);
+    updateWhitelist(int32_t operation, vec<uint8_t> whitelist) generates (int32_t ret);
+    getWhitelistVersion() generates (int32_t ret);
+    enrollV2(int32_t taType, vec<uint8_t> ta, vec<uint8_t> data) generates (int32_t ret, vec<uint8_t> rsp);
+    external_key_version(int32_t key_type) generates (int32_t ret);
+    external_key_prepare(int32_t key_type) generates (string ret);
+    external_key_load(int32_t key_type, string data_text, string sign_text) generates (int32_t ret);
+    external_key_dump(int32_t key_type) generates (string ret);
+};

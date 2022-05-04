@@ -1,0 +1,23 @@
+/*
+ * Copyright (C) 2022 The LineageOS Project
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+package vendor.xiaomi.hardware.mtdservice@1.0;
+
+interface IMTService {
+    getFid() generates (string fid);
+    eccSign(uint32_t keyType, string text) generates (string signData);
+    reload(string text, string sign) generates (int32_t result);
+    enroll(string appname, int32_t enrollType) generates (string enrolldata);
+    ifaa_key_get_version() generates (int32_t result);
+    ifaa_key_prepare() generates (string ret);
+    ifaa_key_load(string data_text, string sign_text) generates (int32_t result);
+    fido_key_get_version() generates (int32_t result);
+    fido_key_prepare() generates (string ret);
+    fido_key_load(string data_text, string sign_text) generates (int32_t result);
+    soter_generate() generates (string ret);
+    soter_get_state() generates (int32_t result);
+    soter_set_state(int32_t state);
+};
