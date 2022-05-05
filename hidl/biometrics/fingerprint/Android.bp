@@ -14,12 +14,14 @@ cc_binary {
     relative_install_path: "hw",
     srcs: [
         "BiometricsFingerprint.cpp",
+        "UdfpsHandler.cpp",
         "service.cpp",
     ],
 
     shared_libs: [
         "libbase",
         "libcutils",
+        "libdl",
         "liblog",
         "libhidlbase",
         "libhardware",
