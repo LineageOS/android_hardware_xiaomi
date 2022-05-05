@@ -16,6 +16,29 @@
       "message": "Works with https://github.com/xiaomi-sm6150/android_device_xiaomi_davinci/commit/fd0f5c740c8470448a128284024161c58832344e\n\nTODOs:\n* The BoardConfig.mk must get common (vendor/lineage or introduce hardware/xiaomi/BoardConfig.mk)\n* One of these two:\n  - Add default dummy implementation\n  - Make it work without a udfps lib",
       "revId": "de8efd8637649b94b5a68fc4fba326b814f5127c",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15249eaa_e270d127",
+        "filename": "hidl/biometrics/fingerprint/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2022-05-05T21:52:33Z",
+      "side": 1,
+      "message": "This could be done in I9fff79d0052c09bc17fcd58489c828cb435c7498",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 0
+      },
+      "revId": "de8efd8637649b94b5a68fc4fba326b814f5127c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
