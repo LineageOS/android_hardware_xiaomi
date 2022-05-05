@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99f279ff_b9f0c2ed",
+        "filename": "hidl/biometrics/fingerprint/BiometricsFingerprint.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2022-05-05T12:14:21Z",
+      "side": 1,
+      "message": "This should rather be called mIsUdfps since the under display fingerprint sensor is referred to as udfps and not as fod.",
+      "revId": "9ae5c62ae9e30906d855b5be04c9aa07a39581f8",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
