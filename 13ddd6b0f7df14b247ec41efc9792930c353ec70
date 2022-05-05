@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87f02846_f7435833",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 23
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2022-05-05T18:07:03Z",
+      "side": 1,
+      "message": "The current guard works just fine and pragma once is not part of the c++ standard. There is no reason to change this and the google c++ style guide recommends not using pragma once \"Do not use #pragma once; instead use the standard Google include guards. The path in the include guards should be relative to the top of your project tree.\"\n\nhttps://google.github.io/styleguide/cppguide.html",
+      "revId": "13ddd6b0f7df14b247ec41efc9792930c353ec70",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
