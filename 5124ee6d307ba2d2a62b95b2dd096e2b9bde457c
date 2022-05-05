@@ -16,6 +16,24 @@
       "message": "What do we need this for on 19.1? Since lineage biometrics hal does not exist anymore and the extCmd is used from fp hidl directly i don\u0027t see a reason to register the fingerprintextension service.",
       "revId": "5124ee6d307ba2d2a62b95b2dd096e2b9bde457c",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "722685fe_30649ce1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2022-05-05T12:38:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae80d531_821dc479",
+      "revId": "5124ee6d307ba2d2a62b95b2dd096e2b9bde457c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
