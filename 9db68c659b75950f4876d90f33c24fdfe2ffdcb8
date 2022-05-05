@@ -22,6 +22,30 @@
       },
       "revId": "9db68c659b75950f4876d90f33c24fdfe2ffdcb8",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02df3ac1_dc310fe0",
+        "filename": "IFAAService/src/org/ifaa/aidl/manager/IfaaService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2022-05-05T17:10:40Z",
+      "side": 1,
+      "message": "Apparently no device is setting it... I wonder why.",
+      "parentUuid": "1037c25a_a012de37",
+      "range": {
+        "startLine": 181,
+        "startChar": 0,
+        "endLine": 183,
+        "endChar": 0
+      },
+      "revId": "9db68c659b75950f4876d90f33c24fdfe2ffdcb8",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
