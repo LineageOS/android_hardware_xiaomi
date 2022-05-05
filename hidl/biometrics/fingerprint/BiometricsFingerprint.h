@@ -20,10 +20,10 @@
 #include <log/log.h>
 #include <android/log.h>
 #include <hardware/hardware.h>
-#include <hardware/fingerprint.h>
 #include <hidl/MQDescriptor.h>
 #include <hidl/Status.h>
 #include <android/hardware/biometrics/fingerprint/2.1/IBiometricsFingerprint.h>
+#include "fingerprint.h"
 
 namespace android {
 namespace hardware {
