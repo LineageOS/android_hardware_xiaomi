@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4411ecc0_c384a6e6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2022-05-05T17:37:09Z",
+      "side": 1,
+      "message": "The only thing devices need to do is to set the props (per new naming convention) from stock: https://review.lineageos.org/q/Id013fe7d6d3d529a5d41f5d0eecd8178712fd651",
+      "revId": "3b1a4a69d10ab61341cbb6e2137cb07c98e23396",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
