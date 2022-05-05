@@ -14,8 +14,12 @@
 #include "BiometricsFingerprint.h"
 
 #include <android-base/properties.h>
+#include <dlfcn.h>
 #include <inttypes.h>
+#include <thread>
 #include <unistd.h>
+
+#define XIAOMI_UDFPS_LIB_NAME "libxiaomiudfps.so"
 
 namespace android {
 namespace hardware {
@@ -44,6 +48,50 @@ using ::android::base::StartsWith;
 
 BiometricsFingerprint* BiometricsFingerprint::sInstance = nullptr;
 
+static void *xiaomi_udfps_handle = NULL;
+
+typedef void (*udfpsThread_t)(fingerprint_device *);
+static udfpsThread_t udfpsThread = NULL;
+
+typedef Return<void> (*xiaomiOnFingerDown_t)(fingerprint_device *, unsigned int, unsigned int, float, float);
+static xiaomiOnFingerDown_t xiaomiOnFingerDown = NULL;
+
+typedef Return<void> (*xiaomiOnFingerUp_t)(fingerprint_device *);
+static xiaomiOnFingerUp_t xiaomiOnFingerUp = NULL;
+
+void xiaomi_udfps_init() {
+    xiaomi_udfps_handle = dlopen(XIAOMI_UDFPS_LIB_NAME, RTLD_NOW);
+
+    if (xiaomi_udfps_handle) {
+        ALOGI("%s: Successfully dlopened %s", __func__, XIAOMI_UDFPS_LIB_NAME);
+        udfpsThread = (udfpsThread_t) dlsym(xiaomi_udfps_handle, "_Z11udfpsThreadP18fingerprint_device");
+        if (udfpsThread == NULL) {
+            ALOGE("%s: dlsym error for udfpsThread: %s", __func__, dlerror());
+            goto udfps_error;
+        }
+
+        xiaomiOnFingerDown = (xiaomiOnFingerDown_t) dlsym(xiaomi_udfps_handle, "_Z18xiaomiOnFingerDownP18fingerprint_devicejjff");
+        if (xiaomiOnFingerDown == NULL) {
+            ALOGE("%s: dlsym error for xiaomiOnFingerDown: %s", __func__, dlerror());
+            goto udfps_error;
+        }
+
+        xiaomiOnFingerUp = (xiaomiOnFingerUp_t) dlsym(xiaomi_udfps_handle, "_Z16xiaomiOnFingerUpP18fingerprint_device");
+        if (xiaomiOnFingerUp == NULL) {
+            ALOGE("%s: dlsym error for xiaomiOnFingerUp: %s", __func__, dlerror());
+            goto udfps_error;
+        }
+
+        return;
+    }
+
+udfps_error:
+    if (xiaomi_udfps_handle) {
+        dlclose(xiaomi_udfps_handle);
+    }
+    ALOGE("%s: Failed to dlopen %s", __func__, XIAOMI_UDFPS_LIB_NAME);
+}
+
 BiometricsFingerprint::BiometricsFingerprint() : mClientCallback(nullptr), mDevice(nullptr) {
     sInstance = this;  // keep track of the most recent instance
     for (auto& [class_name, is_udfps] : kModules) {
@@ -65,6 +113,14 @@ BiometricsFingerprint::BiometricsFingerprint() : mClientCallback(nullptr), mDevi
 
     if (mIsUdfps) {
         SetProperty("ro.hardware.fp.udfps", "true");
+
+        xiaomi_udfps_init();
+
+        std::thread([this]() {
+            if (udfpsThread != NULL) {
+                udfpsThread(mDevice);
+            }
+        }).detach();
     }
 }
 
@@ -241,13 +297,12 @@ Return<bool> BiometricsFingerprint::isUdfps(uint32_t /*sensorId*/) {
     return mIsUdfps;
 }
 
-Return<void> BiometricsFingerprint::onFingerDown(uint32_t /*x*/, uint32_t /*y*/, float /*minor*/,
-                                                 float /*major*/) {
-    return Void();
+Return<void> BiometricsFingerprint::onFingerDown(uint32_t x, uint32_t y, float minor, float major) {
+    return (xiaomiOnFingerDown != NULL) ? xiaomiOnFingerDown(mDevice, x, y, minor, major) : Void();
 }
 
 Return<void> BiometricsFingerprint::onFingerUp() {
-    return Void();
+    return (xiaomiOnFingerUp != NULL) ? xiaomiOnFingerUp(mDevice) : Void();
 }
 
 IBiometricsFingerprint* BiometricsFingerprint::getInstance() {
