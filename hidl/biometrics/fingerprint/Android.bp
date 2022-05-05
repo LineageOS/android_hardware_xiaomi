@@ -5,6 +5,14 @@
 // SPDX-License-Identifier: Apache-2.0
 //
 
+cc_library_headers {
+    name: "xiaomifingerprint_headers",
+    export_include_dirs: ["include"],
+    vendor: true,
+    header_libs: ["libhardware_headers"],
+    export_header_lib_headers: ["libhardware_headers"],
+}
+
 cc_binary {
     name: "android.hardware.biometrics.fingerprint@2.3-service.xiaomi",
     defaults: ["hidl_defaults"],
@@ -20,6 +28,7 @@ cc_binary {
     shared_libs: [
         "libbase",
         "libcutils",
+        "libdl",
         "liblog",
         "libhidlbase",
         "libhardware",
@@ -28,6 +37,8 @@ cc_binary {
         "android.hardware.biometrics.fingerprint@2.2",
         "android.hardware.biometrics.fingerprint@2.3",
     ],
+
+    header_libs: ["xiaomifingerprint_headers"],
 
 }
 
