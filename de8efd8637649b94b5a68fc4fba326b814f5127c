@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66c1f6bd_0bc8a5be",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2022-05-05T21:51:15Z",
+      "side": 1,
+      "message": "Works with https://github.com/xiaomi-sm6150/android_device_xiaomi_davinci/commit/fd0f5c740c8470448a128284024161c58832344e\n\nTODOs:\n* The BoardConfig.mk must get common (vendor/lineage or introduce hardware/xiaomi/BoardConfig.mk)\n* One of these two:\n  - Add default dummy implementation\n  - Make it work without a udfps lib",
+      "revId": "de8efd8637649b94b5a68fc4fba326b814f5127c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
