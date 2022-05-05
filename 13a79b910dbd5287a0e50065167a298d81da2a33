@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d013e10a_180e8289",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2022-05-05T13:35:00Z",
+      "side": 1,
+      "message": "Okay. Can we import default fingerprint.h first and then apply this on top?",
+      "revId": "13a79b910dbd5287a0e50065167a298d81da2a33",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
