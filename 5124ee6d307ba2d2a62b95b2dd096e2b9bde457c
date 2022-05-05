@@ -34,6 +34,24 @@
       "parentUuid": "ae80d531_821dc479",
       "revId": "5124ee6d307ba2d2a62b95b2dd096e2b9bde457c",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "17f15f14_8a3756f1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2022-05-05T13:46:10Z",
+      "side": 1,
+      "message": "Does this also means we can kill vendor.xiaomi.hardware.fingerprintextension?",
+      "parentUuid": "722685fe_30649ce1",
+      "revId": "5124ee6d307ba2d2a62b95b2dd096e2b9bde457c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
