@@ -37,8 +37,6 @@ public class IfaaService extends Service {
     private static final int ACTIVITY_START_SUCCESS = 0;
     private static final int ACTIVITY_START_FAILED = -1;
 
-    private static boolean sIsFod = SystemProperties.getBoolean("ro.hardware.fp.fod", false);
-
     private IMlipayService mMlipayService = null;
 
     private final IBinder mIFAABinder = new IfaaServiceStub(this);
@@ -57,7 +55,8 @@ public class IfaaService extends Service {
                     ifaaProp & AUTH_TYPE_IRIS :
                     ifaaProp & (AUTH_TYPE_FINGERPRINT | AUTH_TYPE_IRIS);
 
-            if ((res & AUTH_TYPE_FINGERPRINT) == AUTH_TYPE_FINGERPRINT && sIsFod) {
+            if ((res & AUTH_TYPE_FINGERPRINT) == AUTH_TYPE_FINGERPRINT &&
+                    SystemProperties.getBoolean("ro.hardware.fp.udfps", false)) {
                 res |= AUTH_TYPE_OPTICAL_FINGERPRINT;
             }
 
