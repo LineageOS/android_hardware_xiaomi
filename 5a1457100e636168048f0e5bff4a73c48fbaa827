@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "310e4066_41be75dd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2022-05-05T10:20:51Z",
+      "side": 1,
+      "message": "I couldn\u0027t get my HAL to load. Need to debug when I have more time.",
+      "revId": "5a1457100e636168048f0e5bff4a73c48fbaa827",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
