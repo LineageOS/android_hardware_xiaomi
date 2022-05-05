@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dea72809_9fb50696",
+        "filename": "hidl/biometrics/fingerprint/BiometricsFingerprint.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2022-05-05T13:33:07Z",
+      "side": 1,
+      "message": "fod -\u003e udfps maybe? I\u0027d like if we avoid using fod and instead udfps to match how aosp calls the fp sensor. What do you think about changing fod_ui to udfps_ui in kernel?",
+      "range": {
+        "startLine": 34,
+        "startChar": 20,
+        "endLine": 34,
+        "endChar": 23
+      },
+      "revId": "892ed24c7c3b4635e41a9afb864810802dacf3cd",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
