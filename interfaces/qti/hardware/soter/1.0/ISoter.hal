@@ -1,0 +1,24 @@
+/*
+ * Copyright (C) 2022 The LineageOS Project
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+package vendor.qti.hardware.soter@1.0;
+
+interface ISoter {
+    generateAttkKeyPair(uint8_t param1) generates (SoterErrorCode result_code);
+    verifyAttkKeyPair() generates (SoterErrorCode result_code);
+    exportAttkPublicKey() generates (SoterErrorCode result_code, vec<uint8_t> data, uint32_t data_len);
+    getDeviceId() generates (SoterErrorCode result_code, vec<uint8_t> data, uint32_t data_len);
+    generateAskKeyPair(uint32_t uid) generates (SoterErrorCode result_code);
+    exportAskPublicKey(uint32_t uid) generates (SoterErrorCode result_code, vec<uint8_t> data, uint32_t data_len);
+    removeAllUidKey(uint32_t uid) generates (SoterErrorCode result_code);
+    hasAskAlready(uint32_t uid) generates (SoterErrorCode result_code);
+    generateAuthKeyPair(uint32_t uid, string str) generates (SoterErrorCode result_code);
+    exportAuthKeyPublicKey(uint32_t uid, string str) generates (SoterErrorCode result_code, vec<uint8_t> data, uint32_t data_len);
+    removeAuthKey(uint32_t uid, string str) generates (SoterErrorCode result_code);
+    hasAuthKey(uint32_t uid, string kname) generates (SoterErrorCode result_code);
+    initSign(uint32_t uid, string str, string str2) generates (SoterErrorCode result_code, uint64_t session);
+    finishSign(uint64_t session) generates (SoterErrorCode result_code, vec<uint8_t> data, uint32_t data_len);
+};

@@ -4,6 +4,11 @@ hidl_package_root {
 }
 
 hidl_package_root {
+    name: "vendor.qti",
+    path: "hardware/xiaomi/interfaces/qti",
+}
+
+hidl_package_root {
     name: "vendor.xiaomi",
     path: "hardware/xiaomi/interfaces/xiaomi",
 }
