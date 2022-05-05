@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87d5ee30_ddde0500",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2022-05-05T20:12:43Z",
+      "side": 1,
+      "message": "Matches dynamic table and etc, but is this an actual qcom interface? It belongs to vendor/qcom/opensource/interfaces?",
+      "revId": "1f71cfaa91526b50c6a3c0f17e009cfaf022e6ff",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
