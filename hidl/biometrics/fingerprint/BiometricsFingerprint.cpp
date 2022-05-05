@@ -4,8 +4,8 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
+
 #define LOG_TAG "android.hardware.biometrics.fingerprint@2.1-service.xiaomi"
-#define LOG_VERBOSE "android.hardware.biometrics.fingerprint@2.1-service.xiaomi"
 
 #include <hardware/hw_auth_token.h>
 
