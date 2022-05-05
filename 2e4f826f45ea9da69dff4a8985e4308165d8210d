@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de13fa8f_4c89be19",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 24
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2022-05-05T18:10:40Z",
+      "side": 1,
+      "message": "https://google.github.io/styleguide/cppguide.html#The__define_Guard",
+      "revId": "2e4f826f45ea9da69dff4a8985e4308165d8210d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
