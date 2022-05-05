@@ -20,6 +20,7 @@ cc_binary {
     shared_libs: [
         "libbase",
         "libcutils",
+        "libdl",
         "liblog",
         "libhidlbase",
         "libhardware",
