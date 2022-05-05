@@ -52,6 +52,23 @@
       "parentUuid": "91351c42_01f38ac1",
       "revId": "9db9898721281686c0ad49a5811766ecbf254df4",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c598649e_165f985a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2022-05-05T11:56:46Z",
+      "side": 1,
+      "message": "This is the main reason I dislike it:\n\ncheckvintf E 05-05 12:29:01  7596  7596 VintfObject.cpp:69] getDeviceHalManifest: -2147483648 VINTF parse error: Cannot add manifest fragment /vendor/etc/vintf/manifest/android.hardware.biometrics.fingerprint@2.\n3-service.xiaomi.xml: HAL \"vendor.xiaomi.hardware.fingerprintextension\" has a conflict: Conflicting major version: 1.0 (from /vendor/etc/vintf/manifest.xml) vs. 1.0 (from /vendor/etc/vintf/manifest/android.hardw\nare.biometrics.fingerprint@2.3-service.xiaomi.xml). Check whether or not multiple modules providing the same HAL are installed.\n\nThis error only came up after undoing fqname edit for vendor.xiaomi.hardware.fingerprintextension\". Obviously, I need to remove the entry from the device tree, but as fqname it would become a leftover.",
+      "revId": "9db9898721281686c0ad49a5811766ecbf254df4",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
