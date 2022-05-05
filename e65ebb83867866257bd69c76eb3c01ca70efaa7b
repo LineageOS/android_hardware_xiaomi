@@ -16,6 +16,24 @@
       "message": "If we maintain that list anyway, can we also try to maintain the file permissions like xiaomi does in the fingerprint .rc?\nAlternatively we could get rid of this commit and let devices set ro.hardware.fingerprint to pick the correct hal automatically.",
       "revId": "e65ebb83867866257bd69c76eb3c01ca70efaa7b",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06c57546_2da1834d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2022-05-05T18:38:05Z",
+      "side": 1,
+      "message": "If we go with your suggested alternative, how would we handle devices that are shipped with different fps?",
+      "parentUuid": "543800ff_66d0a057",
+      "revId": "e65ebb83867866257bd69c76eb3c01ca70efaa7b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
