@@ -16,6 +16,9 @@
 #include <android-base/properties.h>
 #include <inttypes.h>
 #include <unistd.h>
+#include <thread>
+
+#include "xiaomiUdfps.h"
 
 namespace android {
 namespace hardware {
@@ -65,6 +68,7 @@ BiometricsFingerprint::BiometricsFingerprint() : mClientCallback(nullptr), mDevi
 
     if (mIsUdfps) {
         SetProperty("ro.hardware.fp.udfps", "true");
+        std::thread([this]() { udfpsThread(mDevice); }).detach();
     }
 }
 
@@ -241,13 +245,12 @@ Return<bool> BiometricsFingerprint::isUdfps(uint32_t /*sensorId*/) {
     return mIsUdfps;
 }
 
-Return<void> BiometricsFingerprint::onFingerDown(uint32_t /*x*/, uint32_t /*y*/, float /*minor*/,
-                                                 float /*major*/) {
-    return Void();
+Return<void> BiometricsFingerprint::onFingerDown(uint32_t x, uint32_t y, float minor, float major) {
+    return xiaomiOnFingerDown(mDevice, x, y, minor, major);
 }
 
 Return<void> BiometricsFingerprint::onFingerUp() {
-    return Void();
+    return xiaomiOnFingerUp(mDevice);
 }
 
 IBiometricsFingerprint* BiometricsFingerprint::getInstance() {

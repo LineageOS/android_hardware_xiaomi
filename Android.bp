@@ -1,2 +1,23 @@
 soong_namespace {
 }
+
+soong_config_module_type {
+    name: "xiaomi_biometrics_udfps",
+    module_type: "cc_defaults",
+    config_namespace: "xiaomiVars",
+    value_variables: ["udfps_lib"],
+    properties: [
+        "whole_static_libs",
+    ],
+}
+
+xiaomi_biometrics_udfps {
+    name: "xiaomi_biometrics_udfps_defaults",
+    soong_config_variables: {
+        udfps_lib: {
+            whole_static_libs: [
+                "%s",
+            ],
+        },
+    },
+}
