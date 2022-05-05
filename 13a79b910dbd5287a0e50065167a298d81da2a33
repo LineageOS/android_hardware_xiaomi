@@ -34,6 +34,24 @@
       "parentUuid": "d013e10a_180e8289",
       "revId": "13a79b910dbd5287a0e50065167a298d81da2a33",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a6eb648_faa8e539",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2022-05-05T13:39:06Z",
+      "side": 1,
+      "message": "That\u0027s not what I meant. This is adding the full fingerprint.h with xiaommi edit applied. Let\u0027s import default fingerprint.h here first and then apply this commit on top of that.",
+      "parentUuid": "28dd4ac0_f74d0577",
+      "revId": "13a79b910dbd5287a0e50065167a298d81da2a33",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
