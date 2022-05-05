@@ -28,4 +28,13 @@ cc_binary {
         "android.hardware.biometrics.fingerprint@2.1",
     ],
 
+    header_libs: ["xiaomifingerprint_headers"],
+}
+
+cc_library_headers {
+    name: "xiaomifingerprint_headers",
+    export_include_dirs: ["include"],
+    vendor: true,
+    header_libs: ["libhardware_headers"],
+    export_header_lib_headers: ["libhardware_headers"],
 }
