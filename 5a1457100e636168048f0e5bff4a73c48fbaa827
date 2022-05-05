@@ -16,6 +16,24 @@
       "message": "I couldn\u0027t get my HAL to load. Need to debug when I have more time.",
       "revId": "5a1457100e636168048f0e5bff4a73c48fbaa827",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cdd95998_21456d17",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2022-05-05T10:37:16Z",
+      "side": 1,
+      "message": "You probably need to move chown/chmods out of fingerprint service init rc, check patchset 2 https://review.lineageos.org/c/LineageOS/android_device_xiaomi_sm8250-common/+/330509",
+      "parentUuid": "310e4066_41be75dd",
+      "revId": "5a1457100e636168048f0e5bff4a73c48fbaa827",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
