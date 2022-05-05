@@ -14,10 +14,15 @@
 #include "BiometricsFingerprint.h"
 
 #include <android-base/properties.h>
+#include <dlfcn.h>
 #include <inttypes.h>
 #include <unistd.h>
 
 namespace {
+
+#define UDFPS_LIB_NAME "libxiaomiudfps.so"
+
+using ::android::hardware::Return;
 
 typedef struct fingerprint_hal {
     const char* class_name;
@@ -28,6 +33,51 @@ static const fingerprint_hal_t kModules[] = {
         {"fpc", false},        {"fpc_fod", true}, {"goodix", false}, {"goodix_fod", true},
         {"goodix_fod6", true}, {"silead", false}, {"syna", true},
 };
+
+static void* udfpsLibHandle = NULL;
+
+typedef void (*xiaomiUdfpsInit_t)(fingerprint_device*);
+static xiaomiUdfpsInit_t xiaomiUdfpsInit = NULL;
+
+typedef Return<void> (*xiaomiOnFingerDown_t)(fingerprint_device*, unsigned int, unsigned int, float,
+                                             float);
+static xiaomiOnFingerDown_t xiaomiOnFingerDown = NULL;
+
+typedef Return<void> (*xiaomiOnFingerUp_t)(fingerprint_device*);
+static xiaomiOnFingerUp_t xiaomiOnFingerUp = NULL;
+
+void openUdfpsLib() {
+    udfpsLibHandle = dlopen(UDFPS_LIB_NAME, RTLD_NOW);
+
+    if (udfpsLibHandle) {
+        ALOGI("%s: Successfully dlopened %s", __func__, UDFPS_LIB_NAME);
+        xiaomiUdfpsInit = (xiaomiUdfpsInit_t)dlsym(udfpsLibHandle, "xiaomiUdfpsInit");
+        if (xiaomiUdfpsInit == NULL) {
+            ALOGE("%s: dlsym error for xiaomiUdfpsInit: %s", __func__, dlerror());
+            goto error;
+        }
+
+        xiaomiOnFingerDown = (xiaomiOnFingerDown_t)dlsym(udfpsLibHandle, "xiaomiOnFingerDown");
+        if (xiaomiOnFingerDown == NULL) {
+            ALOGE("%s: dlsym error for xiaomiOnFingerDown: %s", __func__, dlerror());
+            goto error;
+        }
+
+        xiaomiOnFingerUp = (xiaomiOnFingerUp_t)dlsym(udfpsLibHandle, "xiaomiOnFingerUp");
+        if (xiaomiOnFingerUp == NULL) {
+            ALOGE("%s: dlsym error for xiaomiOnFingerUp: %s", __func__, dlerror());
+            goto error;
+        }
+
+        return;
+    }
+
+error:
+    if (udfpsLibHandle) {
+        dlclose(udfpsLibHandle);
+    }
+    ALOGE("%s: Failed to dlopen %s", __func__, UDFPS_LIB_NAME);
+}
 
 }  // anonymous namespace
 
@@ -69,6 +119,12 @@ BiometricsFingerprint::BiometricsFingerprint() : mClientCallback(nullptr), mDevi
 
     if (mIsUdfps) {
         SetProperty("ro.hardware.fp.udfps", "true");
+
+        openUdfpsLib();
+
+        if (xiaomiUdfpsInit != NULL) {
+            xiaomiUdfpsInit(mDevice);
+        }
     }
 }
 
@@ -245,12 +301,17 @@ Return<bool> BiometricsFingerprint::isUdfps(uint32_t /*sensorId*/) {
     return mIsUdfps;
 }
 
-Return<void> BiometricsFingerprint::onFingerDown(uint32_t /*x*/, uint32_t /*y*/, float /*minor*/,
-                                                 float /*major*/) {
+Return<void> BiometricsFingerprint::onFingerDown(uint32_t x, uint32_t y, float minor, float major) {
+    if (xiaomiOnFingerDown != NULL) {
+        xiaomiOnFingerDown(mDevice, x, y, minor, major);
+    }
     return Void();
 }
 
 Return<void> BiometricsFingerprint::onFingerUp() {
+    if (xiaomiOnFingerUp != NULL) {
+        xiaomiOnFingerUp(mDevice);
+    }
     return Void();
 }
 
