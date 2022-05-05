@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0bd3c76c_42903d9c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2022-05-05T12:55:56Z",
+      "side": 1,
+      "message": "Wouldn\u0027t you prefer to import hardware/fingerprint.h here and then apply xiaomi changes on top?",
+      "revId": "9ee614593c77f09611fc4202d527c45562b4638c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
