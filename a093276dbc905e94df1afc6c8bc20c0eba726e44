@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f72b7ad_1b2100b2",
+        "filename": "hidl/biometrics/fingerprint/fingerprint.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2022-05-05T14:23:48Z",
+      "side": 1,
+      "message": "That\u0027s nitpicking now, but this comment is kinda weird?\nJust \"Xiaomi fingerprint extension command\" or some more details would be better imo.",
+      "range": {
+        "startLine": 264,
+        "startChar": 7,
+        "endLine": 264,
+        "endChar": 14
+      },
+      "revId": "a093276dbc905e94df1afc6c8bc20c0eba726e44",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
