@@ -16,6 +16,24 @@
       "message": "pragma once is not part of the c++ standard (even though it\u0027s widely supported) due to issues with including files relatively from different places and headers with the same names. Is there any specific reason to do this change? The previous code works perfectly fine and doesn\u0027t diverge from the standard.",
       "revId": "7921723c84aa8a8353d1faa5103fbc04ad54408f",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aef858a9_fa172670",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2022-05-05T13:29:40Z",
+      "side": 1,
+      "message": "https://review.lineageos.org/q/Use+pragma+once\nEveryone does this, it looks nicer, why not",
+      "parentUuid": "6b2151a7_ee713508",
+      "revId": "7921723c84aa8a8353d1faa5103fbc04ad54408f",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
