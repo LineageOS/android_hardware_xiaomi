@@ -13,6 +13,7 @@
 #include <hidl/MQDescriptor.h>
 #include <hidl/Status.h>
 #include <log/log.h>
+#include "UdfpsHandler.h"
 #include "fingerprint.h"
 
 namespace android {
@@ -75,6 +76,8 @@ struct BiometricsFingerprint : public IBiometricsFingerprint {
     sp<IBiometricsFingerprintClientCallback> mClientCallback;
     fingerprint_device_t* mDevice;
     bool mIsUdfps;
+    UdfpsHandlerFactory* mUdfpsHandlerFactory;
+    UdfpsHandler* mUdfpsHandler;
 };
 
 }  // namespace implementation
