@@ -16,6 +16,24 @@
       "message": "Do we really want to maintain the udfps functionality in the common HAL? This requires that all devices from different generations use the same implementation. We could also let devices build a (maybe static) library which provides the udfps functionality.",
       "revId": "f08d099ec01c4db2ae24de53a8488f764b931f88",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a743fee7_018c5c62",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 22
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2022-05-05T18:36:48Z",
+      "side": 1,
+      "message": "That\u0027d be nice to have because right now the only thing that keeps me away from moving blindly to the common HAL on mi845 is exactly the different UDFPS impl, which I am not able to test is a timely manner.",
+      "parentUuid": "01a23996_6767249d",
+      "revId": "f08d099ec01c4db2ae24de53a8488f764b931f88",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
