@@ -16,6 +16,24 @@
       "message": "This could be removed since it\u0027s included from BiometricsFingerprint.h right above anyway.",
       "revId": "aca81ce1ce0e0c13c96abc0f4d97d954cca659e5",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8971ee4_1870d391",
+        "filename": "hidl/biometrics/fingerprint/BiometricsFingerprint.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2022-05-05T13:33:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ebf88ffb_c4e812a4",
+      "revId": "aca81ce1ce0e0c13c96abc0f4d97d954cca659e5",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
