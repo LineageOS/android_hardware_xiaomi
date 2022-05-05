@@ -16,6 +16,24 @@
       "message": "Okay. Can we import default fingerprint.h first and then apply this on top?",
       "revId": "13a79b910dbd5287a0e50065167a298d81da2a33",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "28dd4ac0_f74d0577",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2022-05-05T13:37:10Z",
+      "side": 1,
+      "message": "I don\u0027t think so. It is not allowed to redefine a struct.",
+      "parentUuid": "d013e10a_180e8289",
+      "revId": "13a79b910dbd5287a0e50065167a298d81da2a33",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
