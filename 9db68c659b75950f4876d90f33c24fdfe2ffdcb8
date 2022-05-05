@@ -46,6 +46,30 @@
       },
       "revId": "9db68c659b75950f4876d90f33c24fdfe2ffdcb8",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2baa3466_5110884a",
+        "filename": "IFAAService/src/org/ifaa/aidl/manager/IfaaService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2022-05-05T17:37:32Z",
+      "side": 1,
+      "message": "At least for me on lmi, I forgot to define those, but they must be set, my fault",
+      "parentUuid": "02df3ac1_dc310fe0",
+      "range": {
+        "startLine": 181,
+        "startChar": 0,
+        "endLine": 183,
+        "endChar": 0
+      },
+      "revId": "9db68c659b75950f4876d90f33c24fdfe2ffdcb8",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
