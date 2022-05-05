@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17d10499_7f435d08",
+        "filename": "hidl/biometrics/fingerprint/BiometricsFingerprint.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2022-05-05T12:27:57Z",
+      "side": 1,
+      "message": "What about making this configurable? Older devices (sdmmagpie for example) use dsi-display instead of dsi-display-primary here. https://source.codeaurora.org/quic/la/kernel/msm-4.14/tree/arch/arm64/boot/dts/qcom/sdmmagpie-sde-display.dtsi?h\u003dLA.UM.9.1.r1-11500.02-SMxxx0.QSSI12.0#n350 vs https://source.codeaurora.org/quic/la/kernel/msm-4.14/tree/arch/arm64/boot/dts/qcom/sm8150-sde-display.dtsi?h\u003dLA.UM.9.1.r1-11500.02-SMxxx0.QSSI12.0#n452",
+      "range": {
+        "startLine": 35,
+        "startChar": 56,
+        "endLine": 35,
+        "endChar": 75
+      },
+      "revId": "75c6f7cf39f96eedca0482c22cec42d0639c9a69",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
