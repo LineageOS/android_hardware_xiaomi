@@ -34,6 +34,24 @@
       "parentUuid": "0bd3c76c_42903d9c",
       "revId": "9ee614593c77f09611fc4202d527c45562b4638c",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "34370e79_5be733ea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2022-05-05T13:10:47Z",
+      "side": 1,
+      "message": "I was more interested to avoid changing from fingerprint_device_t to xiaomi_fingerprint_device_t. I don\u0027t think the other declarations in fingerprint.h suffer so much changes that it would make it unbearable to track here.",
+      "parentUuid": "3ee52a4e_19d38aaf",
+      "revId": "9ee614593c77f09611fc4202d527c45562b4638c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
