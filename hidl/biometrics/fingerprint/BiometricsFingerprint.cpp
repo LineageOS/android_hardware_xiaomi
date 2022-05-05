@@ -19,7 +19,6 @@
 #include <hardware/hw_auth_token.h>
 
 #include <hardware/hardware.h>
-#include <hardware/fingerprint.h>
 #include "BiometricsFingerprint.h"
 
 #include <inttypes.h>
