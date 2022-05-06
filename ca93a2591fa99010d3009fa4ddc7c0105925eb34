@@ -18,6 +18,24 @@
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "86957640_86004fb7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2022-05-06T14:30:25Z",
+      "side": 1,
+      "message": "Actually, now that we are not using a static lib anymore we can move the thread completely to libxiaomiudfps and just make a \"init\" function which we call.",
+      "parentUuid": "bba3ae87_0b3a2ec8",
+      "revId": "ca93a2591fa99010d3009fa4ddc7c0105925eb34",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e741e6d0_d28ca9e2",
