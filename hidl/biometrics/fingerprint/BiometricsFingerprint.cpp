@@ -17,22 +17,13 @@
 #include <dlfcn.h>
 #include <inttypes.h>
 #include <unistd.h>
+#include <filesystem>
 
 namespace {
 
 #define UDFPS_LIB_NAME "libxiaomiudfps.so"
 
 using ::android::hardware::Return;
-
-typedef struct fingerprint_hal {
-    const char* class_name;
-    const bool is_udfps;
-} fingerprint_hal_t;
-
-static const fingerprint_hal_t kModules[] = {
-        {"fpc", false},        {"fpc_fod", true}, {"goodix", false}, {"goodix_fod", true},
-        {"goodix_fod6", true}, {"silead", false}, {"syna", true},
-};
 
 static void* udfpsLibHandle = NULL;
 
@@ -46,7 +37,7 @@ static xiaomiOnFingerDown_t xiaomiOnFingerDown = NULL;
 typedef Return<void> (*xiaomiOnFingerUp_t)(fingerprint_device*);
 static xiaomiOnFingerUp_t xiaomiOnFingerUp = NULL;
 
-void openUdfpsLib() {
+bool openUdfpsLib() {
     udfpsLibHandle = dlopen(UDFPS_LIB_NAME, RTLD_NOW);
 
     if (udfpsLibHandle) {
@@ -69,7 +60,7 @@ void openUdfpsLib() {
             goto error;
         }
 
-        return;
+        return true;
     }
 
 error:
@@ -77,6 +68,7 @@ error:
         dlclose(udfpsLibHandle);
     }
     ALOGE("%s: Failed to dlopen %s", __func__, UDFPS_LIB_NAME);
+    return false;
 }
 
 }  // anonymous namespace
@@ -100,27 +92,41 @@ BiometricsFingerprint* BiometricsFingerprint::sInstance = nullptr;
 
 BiometricsFingerprint::BiometricsFingerprint() : mClientCallback(nullptr), mDevice(nullptr) {
     sInstance = this;  // keep track of the most recent instance
-    for (auto& [class_name, is_udfps] : kModules) {
-        mDevice = openHal(class_name);
-        if (!mDevice) {
-            ALOGE("Can't open HAL module, class %s", class_name);
-            continue;
-        }
 
-        ALOGI("Opened fingerprint HAL, class %s", class_name);
-        mIsUdfps = is_udfps;
-        SetProperty("persist.vendor.sys.fp.vendor", class_name);
-        break;
+    std::string path("/vendor/lib64/hw/");
+    std::string prefix("fingerprint.");
+    for (auto& p : std::filesystem::recursive_directory_iterator(path)) {
+        std::string filename = p.path().stem().string();
+        if (filename.compare(0, prefix.length(), prefix) == 0) {
+            std::string vendor =
+                    filename.substr(prefix.length(), filename.length() - prefix.length());
+            vendor = vendor.substr(0, vendor.find('.'));
+
+            const char* class_name = vendor.c_str();
+
+            ALOGI("%s: Found possible fingerprint module: %s", __func__, class_name);
+
+            mDevice = openHal(class_name);
+            if (!mDevice) {
+                ALOGV("Can't open HAL module, class %s", class_name);
+                continue;
+            }
+
+            ALOGI("Opened fingerprint HAL, class %s", class_name);
+            SetProperty("persist.vendor.sys.fp.vendor", class_name);
+            break;
+        }
     }
+
     if (!mDevice) {
         ALOGE("Can't open any HAL module");
         SetProperty("persist.vendor.sys.fp.vendor", "none");
     }
 
+    mIsUdfps = openUdfpsLib();
+
     if (mIsUdfps) {
         SetProperty("ro.hardware.fp.udfps", "true");
-
-        openUdfpsLib();
 
         if (xiaomiUdfpsInit != NULL) {
             xiaomiUdfpsInit(mDevice);
