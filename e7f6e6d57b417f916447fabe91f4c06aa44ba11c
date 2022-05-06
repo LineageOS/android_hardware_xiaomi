@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c1d35cd_c36ff9da",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2022-05-06T21:16:05Z",
+      "side": 1,
+      "message": "This way we don\u0027t have to maintain a list of devices and we can avoid trying a lot of not existing hals on every device. What do you think?",
+      "revId": "e7f6e6d57b417f916447fabe91f4c06aa44ba11c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
