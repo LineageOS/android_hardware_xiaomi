@@ -87,6 +87,24 @@
       "parentUuid": "816aada9_795cfe48",
       "revId": "e7f6e6d57b417f916447fabe91f4c06aa44ba11c",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e4865e0_1591ffad",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2022-05-06T22:52:39Z",
+      "side": 1,
+      "message": "recursive_directory_iterator does not introduce significant overhead. We are talking about single digit ms here and on my sm7150 with goodifx_fod it\u0027s as fast or faster than previously across multiple tries.\n\n32 bit support would be very easy, we could use the __LP64__ compiler macro which is set by the compiler automatically but there is not a single xiaomi device i\u0027m aware of with 32 bit fingerprint hwmodule.\nSupporting hwmodules in odm is simple too.",
+      "parentUuid": "48de4a50_d0b61892",
+      "revId": "e7f6e6d57b417f916447fabe91f4c06aa44ba11c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
