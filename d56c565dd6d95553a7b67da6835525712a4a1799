@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d756fe48_90f1c221",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2022-05-06T10:52:55Z",
+      "side": 1,
+      "message": "Why don\u0027t we keep the sf extension lib as common? Are there really different implementations of it?",
+      "revId": "d56c565dd6d95553a7b67da6835525712a4a1799",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
