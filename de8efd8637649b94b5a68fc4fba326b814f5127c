@@ -97,6 +97,30 @@
       },
       "revId": "de8efd8637649b94b5a68fc4fba326b814f5127c",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e11cf238_24e4fcd8",
+        "filename": "hidl/biometrics/fingerprint/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2022-05-06T13:45:07Z",
+      "side": 1,
+      "message": "To get the fingerprint_device struct in the device specific libs (to be able to call the extCmd). export_include_dirs doesn\u0027t seem to work for cc_binary.",
+      "parentUuid": "be1ffb0a_6418e382",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 0
+      },
+      "revId": "de8efd8637649b94b5a68fc4fba326b814f5127c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
