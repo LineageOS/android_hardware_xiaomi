@@ -51,6 +51,24 @@
       "message": "dear god no.\nIf for somehow reason you want to decommonize the list of modules use libxiaomiudfps.so (you need a vector for that), but the list is the same for a lot of devices",
       "revId": "e7f6e6d57b417f916447fabe91f4c06aa44ba11c",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "816aada9_795cfe48",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2022-05-06T22:08:16Z",
+      "side": 1,
+      "message": "No, the list of hwmodules is not related to udfps. The idea of the udfps lib was to provide the not so common udfps implementation parts and not require it for non-udfps devices.\n\nI\u0027d definitely like to see the list gone since it causes many unnecessary failed attempts to open the HAL (unless your HAL is the first in the list). With this commit we would just try the hwmodules shipped on a device and allow any name, not limited to a pre defined list.",
+      "parentUuid": "bdef51c5_ee547df1",
+      "revId": "e7f6e6d57b417f916447fabe91f4c06aa44ba11c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
