@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9f17363_ea71834a",
+        "filename": "hidl/biometrics/fingerprint/BiometricsFingerprint.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2022-05-06T13:57:22Z",
+      "side": 1,
+      "message": "Please use extern \"C\" in your library to avoid symbols mangling",
+      "range": {
+        "startLine": 69,
+        "startChar": 59,
+        "endLine": 69,
+        "endChar": 95
+      },
+      "revId": "6ba8819ef70b9f4e7caf6c8f8fc311a8e8644fef",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
