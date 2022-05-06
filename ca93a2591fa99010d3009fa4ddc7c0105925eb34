@@ -39,6 +39,30 @@
       },
       "revId": "ca93a2591fa99010d3009fa4ddc7c0105925eb34",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9291fb6_e6ea0f71",
+        "filename": "hidl/biometrics/fingerprint/BiometricsFingerprint.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2022-05-06T14:24:59Z",
+      "side": 1,
+      "message": "for xiaomiOnFingerUp and xiaomiOnFingerDown i\u0027d like to have some visible difference between the dlopened method and the method from the interface which we implement. Otherwise fine by me.",
+      "parentUuid": "e741e6d0_d28ca9e2",
+      "range": {
+        "startLine": 63,
+        "startChar": 5,
+        "endLine": 63,
+        "endChar": 12
+      },
+      "revId": "ca93a2591fa99010d3009fa4ddc7c0105925eb34",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
