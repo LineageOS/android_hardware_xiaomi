@@ -46,6 +46,30 @@
       },
       "revId": "c1685beb57d7315658eaa1f7e6e3519026651d71",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5af1f53_3a1c50d0",
+        "filename": "hidl/biometrics/fingerprint/BiometricsFingerprint.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2022-05-06T14:18:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "86e2b0b1_ffc74834",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 17
+      },
+      "revId": "c1685beb57d7315658eaa1f7e6e3519026651d71",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }

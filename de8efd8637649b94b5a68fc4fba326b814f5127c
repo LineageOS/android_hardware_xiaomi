@@ -121,6 +121,30 @@
       },
       "revId": "de8efd8637649b94b5a68fc4fba326b814f5127c",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95212f50_693c1e5b",
+        "filename": "hidl/biometrics/fingerprint/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2022-05-06T14:18:36Z",
+      "side": 1,
+      "message": "Moved to I9fff79d0052c09bc17fcd58489c828cb435c7498.",
+      "parentUuid": "e11cf238_24e4fcd8",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 0
+      },
+      "revId": "de8efd8637649b94b5a68fc4fba326b814f5127c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
