@@ -35,6 +35,23 @@
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7af45174_247b29de",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2022-05-06T07:44:45Z",
+      "side": 1,
+      "message": "How about dlopening a lib instead? e.g. the device builds vendor/lib64/libudfps.so and the HIDL will dlopen it if available",
+      "revId": "de8efd8637649b94b5a68fc4fba326b814f5127c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "15249eaa_e270d127",
