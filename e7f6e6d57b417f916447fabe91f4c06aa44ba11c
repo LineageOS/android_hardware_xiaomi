@@ -69,6 +69,24 @@
       "parentUuid": "bdef51c5_ee547df1",
       "revId": "e7f6e6d57b417f916447fabe91f4c06aa44ba11c",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48de4a50_d0b61892",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2022-05-06T22:20:15Z",
+      "side": 1,
+      "message": "HAL open attempts aren\u0027t a big deal, after all when you have a common fingerprint HIDL there\u0027s no way the list is the same for all the devices, plus:\n- Using hw_get_module_by_class has definitely less overhead than using recursive_directory_iterator + whatever you do to parse the filename\n- With this method you would kill both 32bit devices and devices that places fingerprint HALs in odm",
+      "parentUuid": "816aada9_795cfe48",
+      "revId": "e7f6e6d57b417f916447fabe91f4c06aa44ba11c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
