@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e508da0e_09ab8133",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2022-05-08T23:39:50Z",
+      "side": 1,
+      "message": "Redone the implementation, looks cleaner, use https://review.lineageos.org/c/LineageOS/android_device_xiaomi_sm8250-common/+/331085 for device-specific lib",
+      "revId": "9dc3a5fb6f0d8ca23dfbc9f661a454c4b4cefb55",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
