@@ -1,0 +1,18 @@
+//
+// Copyright (C) 2022 The LineageOS Project
+//
+// SPDX-License-Identifier: Apache-2.0
+//
+
+cc_library_shared {
+    name: "libMegviiFacepp-0.5.2",
+    vendor: true,
+    srcs: [
+        "megvii.c"
+    ],
+}
+
+cc_library_shared {
+    name: "libmegface",
+    vendor: true,
+}
