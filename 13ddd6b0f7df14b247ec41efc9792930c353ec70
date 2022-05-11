@@ -16,6 +16,24 @@
       "message": "The current guard works just fine and pragma once is not part of the c++ standard. There is no reason to change this and the google c++ style guide recommends not using pragma once \"Do not use #pragma once; instead use the standard Google include guards. The path in the include guards should be relative to the top of your project tree.\"\n\nhttps://google.github.io/styleguide/cppguide.html",
       "revId": "13ddd6b0f7df14b247ec41efc9792930c353ec70",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a941fa8_711b75fd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 23
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2022-05-11T10:16:32Z",
+      "side": 1,
+      "message": "https://cs.android.com/search?q\u003d%22%23pragma%20once%22\u0026ss\u003dandroid%2Fplatform%2Fsuperproject\nGoogle uses everywhere, including auto generated AIDL and HIDL C++ headers",
+      "parentUuid": "87f02846_f7435833",
+      "revId": "13ddd6b0f7df14b247ec41efc9792930c353ec70",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
