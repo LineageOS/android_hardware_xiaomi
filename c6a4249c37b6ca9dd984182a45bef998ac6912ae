@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2e12dcc_be5951b6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2022-05-11T08:26:49Z",
+      "side": 1,
+      "message": "In file included from build/make/core/soong_cc_prebuilt.mk:49:\nbuild/make/core/base_rules.mk:335: error: vendor/xiaomi/davinci: MODULE.TARGET.SHARED_LIBRARIES.libMegviiFacepp-0.5.2 already defined by hardware/xiaomi/megvii.\n\nWe could fix that by renaming one (then we should rename this dummy imo) but given that using the shim breaks face detection in camera apps there should be no need for this anyway.",
+      "revId": "c6a4249c37b6ca9dd984182a45bef998ac6912ae",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
