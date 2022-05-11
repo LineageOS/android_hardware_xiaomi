@@ -16,6 +16,23 @@
       "message": "Either this or we move it to device tree",
       "revId": "01b01c97c5ae1361787035de42a40dbe5f25597c",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e07df4e3_c2894ff1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2022-05-11T16:04:04Z",
+      "side": 1,
+      "message": "This should be renamed in my opinion. Using the original name raises the expectation that this is either the original one or provides similar functionality which it doesn\u0027t.\nInstead of building an empty libmegface lib we could remove the dependency from camera.qcom.so using patchelf. The dependency is unnecessary with the original libs too.",
+      "revId": "01b01c97c5ae1361787035de42a40dbe5f25597c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
