@@ -229,15 +229,7 @@ int PowerHintSession::setUclamp(int32_t min, bool update) {
     if (update) {
         mDescriptor->current_min = min;
     }
-    mDescriptor->transitioanl_min = min;
     return 0;
-}
-
-int PowerHintSession::restoreUclamp() {
-    if (mDescriptor->transitioanl_min == mDescriptor->current_min) {
-        return 1;
-    }
-    return setUclamp(mDescriptor->current_min, false);
 }
 
 ndk::ScopedAStatus PowerHintSession::pause() {
@@ -370,16 +362,10 @@ ndk::ScopedAStatus PowerHintSession::reportActualWorkDuration(
             &(mDescriptor->previous_error), getIdString());
 
     /* apply to all the threads in the group */
-    if (output != 0) {
-        int next_min = std::min(static_cast<int>(adpfConfig->mUclampMinHigh),
-                                mDescriptor->current_min + static_cast<int>(output));
-        next_min = std::max(static_cast<int>(adpfConfig->mUclampMinLow), next_min);
-        if (std::abs(mDescriptor->current_min - next_min) > adpfConfig->mUclampMinGranularity) {
-            setUclamp(next_min);
-        } else {
-            restoreUclamp();
-        }
-    }
+    int next_min = std::min(static_cast<int>(adpfConfig->mUclampMinHigh),
+                            mDescriptor->current_min + static_cast<int>(output));
+    next_min = std::max(static_cast<int>(adpfConfig->mUclampMinLow), next_min);
+    setUclamp(next_min);
 
     return ndk::ScopedAStatus::ok();
 }
