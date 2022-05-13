@@ -103,6 +103,24 @@
       "parentUuid": "0762e35f_2147cbb0",
       "revId": "01b01c97c5ae1361787035de42a40dbe5f25597c",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aca4c681_e42e58fa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2022-05-13T14:55:07Z",
+      "side": 1,
+      "message": "I see that this would be the easiest solution but naming this dummy after the original megvii implementation is wrong in my opinion. This does not really have much in common with the megvii implentation and instead the name should give a hint about this being a dummy face detection lib for the camera hal. \n\nThis also should not be considered as a plug and play replacement since this effectively breaks the face detection camera hal feature on all devices using this. Patching the camera hal to load a dummy instead of the real megvii libs makes this clear.",
+      "parentUuid": "c4a28d4e_14cafb71",
+      "revId": "01b01c97c5ae1361787035de42a40dbe5f25597c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
