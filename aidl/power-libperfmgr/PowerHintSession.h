@@ -41,7 +41,6 @@ using std::chrono::nanoseconds;
 using std::chrono::steady_clock;
 using std::chrono::time_point;
 
-static const int32_t kMaxUclampValue = 1024;
 struct AppHintDesc {
     AppHintDesc(int32_t tgid, int32_t uid, std::vector<int> threadIds)
         : tgid(tgid),
@@ -49,7 +48,6 @@ struct AppHintDesc {
           threadIds(std::move(threadIds)),
           duration(0LL),
           current_min(0),
-          transitioanl_min(0),
           is_active(true),
           update_count(0),
           integral_error(0),
@@ -62,7 +60,6 @@ struct AppHintDesc {
     const std::vector<int> threadIds;
     nanoseconds duration;
     int current_min;
-    int transitioanl_min;
     // status
     std::atomic<bool> is_active;
     // pid
@@ -87,14 +84,20 @@ class PowerHintSession : public BnPowerHintSession {
             const std::vector<WorkDuration> &actualDurations) override;
     bool isActive();
     bool isStale();
+    void wakeup();
+    void setStale();
     // Is this hint session for a user application
     bool isAppSession();
     const std::vector<int> &getTidList() const;
-    int restoreUclamp();
+    int getUclampMin();
 
   private:
     class HintTimerHandler : public MessageHandler {
       public:
+        enum MsgType {
+            TIMER = 0,
+            POKE,
+        };
         enum HintTimerState {
             STALE,
             MONITORING,
@@ -109,6 +112,7 @@ class PowerHintSession : public BnPowerHintSession {
         void handleMessage(const Message &message) override;
         // Update HintTimer by actual work duration.
         void updateHintTimer(int64_t actualDurationNs);
+        void updateHintTimerLocked(int64_t actualDurationNs);
         // Update HintTimer by a list of work durations which could be used for
         // calculating the work period.
         void updateHintTimer(const std::vector<WorkDuration> &actualDurations);
@@ -126,14 +130,13 @@ class PowerHintSession : public BnPowerHintSession {
     };
 
   private:
-    void setStale();
     void updateUniveralBoostMode();
-    int setUclamp(int32_t min, bool update = true);
+    int setSessionUclampMin(int32_t min);
     std::string getIdString() const;
     AppHintDesc *mDescriptor = nullptr;
     sp<HintTimerHandler> mHintTimerHandler;
     sp<MessageHandler> mPowerManagerHandler;
-    std::mutex mLock;
+    std::mutex mSessionLock;
     std::atomic<bool> mSessionClosed = false;
 };
 
