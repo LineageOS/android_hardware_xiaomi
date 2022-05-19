@@ -22,6 +22,7 @@
 #include <log/log.h>
 #include <perfmgr/HintManager.h>
 #include <processgroup/processgroup.h>
+#include <sys/syscall.h>
 #include <utils/Trace.h>
 
 namespace aidl {
@@ -32,6 +33,47 @@ namespace impl {
 namespace pixel {
 
 using ::android::perfmgr::HintManager;
+
+namespace {
+/* there is no glibc or bionic wrapper */
+struct sched_attr {
+    __u32 size;
+    __u32 sched_policy;
+    __u64 sched_flags;
+    __s32 sched_nice;
+    __u32 sched_priority;
+    __u64 sched_runtime;
+    __u64 sched_deadline;
+    __u64 sched_period;
+    __u32 sched_util_min;
+    __u32 sched_util_max;
+};
+
+static int sched_setattr(int pid, struct sched_attr *attr, unsigned int flags) {
+    if (!HintManager::GetInstance()->GetAdpfProfile()->mUclampMinOn) {
+        ALOGV("PowerSessionManager:%s: skip", __func__);
+        return 0;
+    }
+    return syscall(__NR_sched_setattr, pid, attr, flags);
+}
+
+static void set_uclamp_min(int tid, int min) {
+    static constexpr int32_t kMaxUclampValue = 1024;
+    min = std::max(0, min);
+    min = std::min(min, kMaxUclampValue);
+
+    sched_attr attr = {};
+    attr.size = sizeof(attr);
+
+    attr.sched_flags = (SCHED_FLAG_KEEP_ALL | SCHED_FLAG_UTIL_CLAMP_MIN);
+    attr.sched_util_min = min;
+
+    int ret = sched_setattr(tid, &attr, 0);
+    if (ret) {
+        ALOGW("sched_setattr failed for thread %d, err=%d", tid, errno);
+    }
+}
+}  // namespace
 
 void PowerSessionManager::updateHintMode(const std::string &mode, bool enabled) {
     ALOGV("PowerSessionManager::updateHintMode: mode: %s, enabled: %d", mode.c_str(), enabled);
@@ -49,6 +91,22 @@ void PowerSessionManager::updateHintMode(const std::string &mode, bool enabled) 
     }
 }
 
+void PowerSessionManager::updateHintBoost(const std::string &boost, int32_t durationMs) {
+    ATRACE_CALL();
+    ALOGV("PowerSessionManager::updateHintBoost: boost: %s, durationMs: %d", boost.c_str(),
+          durationMs);
+    if (boost.compare("DISPLAY_UPDATE_IMMINENT") == 0) {
+        wakeSessions();
+    }
+}
+
+void PowerSessionManager::wakeSessions() {
+    std::lock_guard<std::mutex> guard(mLock);
+    for (PowerHintSession *s : mSessions) {
+        s->wakeup();
+    }
+}
+
 int PowerSessionManager::getDisplayRefreshRate() {
     return mDisplayRefreshRate;
 }
@@ -56,6 +114,7 @@ int PowerSessionManager::getDisplayRefreshRate() {
 void PowerSessionManager::addPowerSession(PowerHintSession *session) {
     std::lock_guard<std::mutex> guard(mLock);
     for (auto t : session->getTidList()) {
+        mTidSessionListMap[t].insert(session);
         if (mTidRefCountMap.find(t) == mTidRefCountMap.end()) {
             if (!SetTaskProfiles(t, {"ResetUclampGrp"})) {
                 ALOGW("Failed to set ResetUclampGrp task profile for tid:%d", t);
@@ -80,6 +139,7 @@ void PowerSessionManager::removePowerSession(PowerHintSession *session) {
             ALOGE("Unexpected Error! Failed to look up tid:%d in TidRefCountMap", t);
             continue;
         }
+        mTidSessionListMap[t].erase(session);
         mTidRefCountMap[t]--;
         if (mTidRefCountMap[t] <= 0) {
             if (!SetTaskProfiles(t, {"NoResetUclampGrp"})) {
@@ -89,6 +149,25 @@ void PowerSessionManager::removePowerSession(PowerHintSession *session) {
         }
     }
     mSessions.erase(session);
+}
+
+void PowerSessionManager::setUclampMin(PowerHintSession *session, int val) {
+    std::lock_guard<std::mutex> guard(mLock);
+    setUclampMinLocked(session, val);
+}
+
+void PowerSessionManager::setUclampMinLocked(PowerHintSession *session, int val) {
+    for (auto t : session->getTidList()) {
+        // Get thex max uclamp.min across sessions which include the tid.
+        int tidMax = 0;
+        for (PowerHintSession *s : mTidSessionListMap[t]) {
+            if (!s->isActive() || s->isStale())
+                continue;
+            tidMax = std::max(tidMax, s->getUclampMin());
+        }
+        val = std::max(val, tidMax);
+        set_uclamp_min(t, val);
+    }
 }
 
 std::optional<bool> PowerSessionManager::isAnyAppSessionActive() {

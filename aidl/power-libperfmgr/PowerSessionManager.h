@@ -45,10 +45,13 @@ class PowerSessionManager : public MessageHandler {
   public:
     // current hint info
     void updateHintMode(const std::string &mode, bool enabled);
+    void updateHintBoost(const std::string &boost, int32_t durationMs);
     int getDisplayRefreshRate();
     // monitoring session status
     void addPowerSession(PowerHintSession *session);
     void removePowerSession(PowerHintSession *session);
+    void setUclampMin(PowerHintSession *session, int min);
+    void setUclampMinLocked(PowerHintSession *session, int min);
 
     void handleMessage(const Message &message) override;
 
@@ -59,21 +62,27 @@ class PowerSessionManager : public MessageHandler {
     }
 
   private:
+    void wakeSessions();
     std::optional<bool> isAnyAppSessionActive();
     void disableSystemTopAppBoost();
     void enableSystemTopAppBoost();
     const std::string kDisableBoostHintName;
+
     std::unordered_set<PowerHintSession *> mSessions;  // protected by mLock
     std::unordered_map<int, int> mTidRefCountMap;      // protected by mLock
+    std::unordered_map<int, std::unordered_set<PowerHintSession *>> mTidSessionListMap;
+    bool mActive;  // protected by mLock
+    /**
+     * mLock to pretect the above data objects opertions.
+     **/
     std::mutex mLock;
     int mDisplayRefreshRate;
-    bool mActive;  // protected by mLock
     // Singleton
     PowerSessionManager()
         : kDisableBoostHintName(::android::base::GetProperty(kPowerHalAdpfDisableTopAppBoost,
                                                              "ADPF_DISABLE_TA_BOOST")),
-          mDisplayRefreshRate(60),
-          mActive(false) {}
+          mActive(false),
+          mDisplayRefreshRate(60) {}
     PowerSessionManager(PowerSessionManager const &) = delete;
     void operator=(PowerSessionManager const &) = delete;
 };

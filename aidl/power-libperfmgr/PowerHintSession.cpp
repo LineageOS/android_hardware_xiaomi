@@ -47,27 +47,6 @@ using std::chrono::duration_cast;
 using std::chrono::nanoseconds;
 
 namespace {
-/* there is no glibc or bionic wrapper */
-struct sched_attr {
-    __u32 size;
-    __u32 sched_policy;
-    __u64 sched_flags;
-    __s32 sched_nice;
-    __u32 sched_priority;
-    __u64 sched_runtime;
-    __u64 sched_deadline;
-    __u64 sched_period;
-    __u32 sched_util_min;
-    __u32 sched_util_max;
-};
-
-static int sched_setattr(int pid, struct sched_attr *attr, unsigned int flags) {
-    if (!HintManager::GetInstance()->GetAdpfProfile()->mUclampMinOn) {
-        ALOGV("PowerHintSession:%s: skip", __func__);
-        return 0;
-    }
-    return syscall(__NR_sched_setattr, pid, attr, flags);
-}
 
 static inline int64_t ns_to_100us(int64_t ns) {
     return ns / 100000;
@@ -158,7 +137,7 @@ PowerHintSession::PowerHintSession(int32_t tgid, int32_t uid, const std::vector<
     }
     PowerSessionManager::getInstance()->addPowerSession(this);
     // init boost
-    setUclamp(HintManager::GetInstance()->GetAdpfProfile()->mUclampMinHigh);
+    setSessionUclampMin(HintManager::GetInstance()->GetAdpfProfile()->mUclampMinInit);
     ALOGV("PowerHintSession created: %s", mDescriptor->toString().c_str());
 }
 
@@ -203,33 +182,22 @@ void PowerHintSession::updateUniveralBoostMode() {
     }
 }
 
-int PowerHintSession::setUclamp(int32_t min, bool update) {
-    std::lock_guard<std::mutex> guard(mLock);
-    min = std::max(0, min);
-    min = std::min(min, kMaxUclampValue);
+int PowerHintSession::setSessionUclampMin(int32_t min) {
+    {
+        std::lock_guard<std::mutex> guard(mSessionLock);
+        mDescriptor->current_min = min;
+    }
+    PowerSessionManager::getInstance()->setUclampMin(this, min);
     if (ATRACE_ENABLED()) {
         const std::string idstr = getIdString();
         std::string sz = StringPrintf("adpf.%s-min", idstr.c_str());
         ATRACE_INT(sz.c_str(), min);
     }
-    for (const auto tid : mDescriptor->threadIds) {
-        sched_attr attr = {};
-        attr.size = sizeof(attr);
-
-        attr.sched_flags = (SCHED_FLAG_KEEP_ALL | SCHED_FLAG_UTIL_CLAMP);
-        attr.sched_util_min = min;
-        attr.sched_util_max = kMaxUclampValue;
-
-        int ret = sched_setattr(tid, &attr, 0);
-        if (ret) {
-            ALOGW("sched_setattr failed for thread %d, err=%d", tid, errno);
-        }
-        ALOGV("PowerHintSession tid: %d, uclamp(%d, %d)", tid, min, kMaxUclampValue);
-    }
-    if (update) {
-        mDescriptor->current_min = min;
-    }
     return 0;
+}
+
+int PowerHintSession::getUclampMin() {
+    return mDescriptor->current_min;
 }
 
 ndk::ScopedAStatus PowerHintSession::pause() {
@@ -240,8 +208,8 @@ ndk::ScopedAStatus PowerHintSession::pause() {
     if (!mDescriptor->is_active.load())
         return ndk::ScopedAStatus::fromExceptionCode(EX_ILLEGAL_STATE);
     // Reset to default uclamp value.
-    setUclamp(0, false);
     mDescriptor->is_active.store(false);
+    setStale();
     if (ATRACE_ENABLED()) {
         const std::string idstr = getIdString();
         std::string sz = StringPrintf("adpf.%s-active", idstr.c_str());
@@ -261,7 +229,7 @@ ndk::ScopedAStatus PowerHintSession::resume() {
     mDescriptor->is_active.store(true);
     mHintTimerHandler->updateHintTimer(0);
     // resume boost
-    setUclamp(mDescriptor->current_min, false);
+    setSessionUclampMin(mDescriptor->current_min);
     if (ATRACE_ENABLED()) {
         const std::string idstr = getIdString();
         std::string sz = StringPrintf("adpf.%s-active", idstr.c_str());
@@ -276,7 +244,7 @@ ndk::ScopedAStatus PowerHintSession::close() {
     if (!mSessionClosed.compare_exchange_strong(sessionClosedExpectedToBe, true)) {
         return ndk::ScopedAStatus::fromExceptionCode(EX_ILLEGAL_STATE);
     }
-    setUclamp(0);
+    setSessionUclampMin(0);
     PowerSessionManager::getInstance()->removePowerSession(this);
     updateUniveralBoostMode();
     return ndk::ScopedAStatus::ok();
@@ -340,21 +308,10 @@ ndk::ScopedAStatus PowerHintSession::reportActualWorkDuration(
                    actualDurations.back().durationNanos - mDescriptor->duration.count() > 0);
     }
 
-    if (PowerHintMonitor::getInstance()->isRunning() && isStale()) {
-        mDescriptor->integral_error =
-                std::max(adpfConfig->getPidIInitDivI(), mDescriptor->integral_error);
-        if (ATRACE_ENABLED()) {
-            const std::string idstr = getIdString();
-            std::string sz = StringPrintf("adpf.%s-wakeup", idstr.c_str());
-            ATRACE_INT(sz.c_str(), mDescriptor->integral_error);
-            ATRACE_INT(sz.c_str(), 0);
-        }
-    }
-
     mHintTimerHandler->updateHintTimer(actualDurations);
 
     if (!adpfConfig->mPidOn) {
-        setUclamp(adpfConfig->mUclampMinHigh);
+        setSessionUclampMin(adpfConfig->mUclampMinHigh);
         return ndk::ScopedAStatus::ok();
     }
     int64_t output = convertWorkDurationToBoostByPid(
@@ -365,7 +322,7 @@ ndk::ScopedAStatus PowerHintSession::reportActualWorkDuration(
     int next_min = std::min(static_cast<int>(adpfConfig->mUclampMinHigh),
                             mDescriptor->current_min + static_cast<int>(output));
     next_min = std::max(static_cast<int>(adpfConfig->mUclampMinLow), next_min);
-    setUclamp(next_min);
+    setSessionUclampMin(next_min);
 
     return ndk::ScopedAStatus::ok();
 }
@@ -406,13 +363,44 @@ const std::vector<int> &PowerHintSession::getTidList() const {
 
 void PowerHintSession::setStale() {
     // Reset to default uclamp value.
-    setUclamp(0, false);
+    PowerSessionManager::getInstance()->setUclampMin(this, 0);
     // Deliver a task to check if all sessions are inactive.
     updateUniveralBoostMode();
 }
 
+void PowerHintSession::wakeup() {
+    if (ATRACE_ENABLED()) {
+        std::string tag =
+                StringPrintf("wakeup.%s(a:%d,s:%d)", getIdString().c_str(), isActive(), isStale());
+        ATRACE_NAME(tag.c_str());
+    }
+    // We only wake up non-paused and stale sessions
+    if (!isActive() || !isStale())
+        return;
+    std::shared_ptr<AdpfConfig> adpfConfig = HintManager::GetInstance()->GetAdpfProfile();
+    int min = std::max(mDescriptor->current_min, static_cast<int>(adpfConfig->mUclampMinInit));
+    {
+        std::lock_guard<std::mutex> guard(mSessionLock);
+        mDescriptor->current_min = min;
+    }
+    PowerSessionManager::getInstance()->setUclampMinLocked(this, min);
+    PowerHintMonitor::getInstance()->getLooper()->removeMessages(mHintTimerHandler);
+    PowerHintMonitor::getInstance()->getLooper()->sendMessage(
+            mHintTimerHandler, Message(static_cast<int>(HintTimerHandler::POKE)));
+
+    if (ATRACE_ENABLED()) {
+        const std::string idstr = getIdString();
+        std::string sz = StringPrintf("adpf.%s-min", idstr.c_str());
+        ATRACE_INT(sz.c_str(), min);
+    }
+}
+
 void PowerHintSession::HintTimerHandler::updateHintTimer(int64_t actualDurationNs) {
     std::lock_guard<std::mutex> guard(mStaleLock);
+    PowerHintSession::HintTimerHandler::updateHintTimerLocked(actualDurationNs);
+}
+
+void PowerHintSession::HintTimerHandler::updateHintTimerLocked(int64_t actualDurationNs) {
     std::shared_ptr<AdpfConfig> adpfConfig = HintManager::GetInstance()->GetAdpfProfile();
     HintTimerState prevState = mState;
     mState = MONITORING;
@@ -422,7 +410,7 @@ void PowerHintSession::HintTimerHandler::updateHintTimer(int64_t actualDurationN
                                                     ? mSession->mDescriptor->work_period
                                                     : mSession->mDescriptor->duration.count()) -
                                            actualDurationNs);
-    mNextStartTime.store(now + nextStartDur);
+    mNextStartTime.store(actualDurationNs <= 0 ? now : now + nextStartDur);
     if (prevState != MONITORING) {
         int64_t next =
                 static_cast<int64_t>(duration_cast<nanoseconds>(getEarlyBoostTime() - now).count());
@@ -497,9 +485,13 @@ PowerHintSession::HintTimerHandler::~HintTimerHandler() {
     ATRACE_CALL();
 }
 
-void PowerHintSession::HintTimerHandler::handleMessage(const Message &) {
+void PowerHintSession::HintTimerHandler::handleMessage(const Message &msg) {
     std::lock_guard<std::mutex> guard(mStaleLock);
     if (mIsSessionDead) {
+        return;
+    }
+    if (msg.what == POKE) {
+        updateHintTimerLocked(0);
         return;
     }
     std::shared_ptr<AdpfConfig> adpfConfig = HintManager::GetInstance()->GetAdpfProfile();
@@ -513,7 +505,7 @@ void PowerHintSession::HintTimerHandler::handleMessage(const Message &) {
         // Schedule for the early hint check.
         PowerHintMonitor::getInstance()->getLooper()->removeMessages(mSession->mHintTimerHandler);
         PowerHintMonitor::getInstance()->getLooper()->sendMessageDelayed(
-                next, mSession->mHintTimerHandler, NULL);
+                next, mSession->mHintTimerHandler, static_cast<int>(HintTimerHandler::TIMER));
         if (ATRACE_ENABLED()) {
             const std::string idstr = mSession->getIdString();
             std::string sz = StringPrintf("adpf.%s-timer.nexthint", idstr.c_str());
@@ -525,13 +517,13 @@ void PowerHintSession::HintTimerHandler::handleMessage(const Message &) {
     } else {  // Check if it's time to do early boost.
         if (adpfConfig->mEarlyBoostOn) {
             mState = EARLY_BOOST;
-            mSession->setUclamp(adpfConfig->mUclampMinHigh);
+            mSession->setSessionUclampMin(adpfConfig->mUclampMinHigh);
         }
         int64_t next = static_cast<int64_t>(duration_cast<nanoseconds>(staleTime - now).count());
         // Schedule for the stale timeout check.
         PowerHintMonitor::getInstance()->getLooper()->removeMessages(mSession->mHintTimerHandler);
         PowerHintMonitor::getInstance()->getLooper()->sendMessageDelayed(
-                next, mSession->mHintTimerHandler, NULL);
+                next, mSession->mHintTimerHandler, static_cast<int>(HintTimerHandler::TIMER));
     }
     if (ATRACE_ENABLED()) {
         const std::string idstr = mSession->getIdString();

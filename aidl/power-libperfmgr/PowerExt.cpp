@@ -61,6 +61,7 @@ ndk::ScopedAStatus PowerExt::isModeSupported(const std::string &mode, bool *_aid
 
 ndk::ScopedAStatus PowerExt::setBoost(const std::string &boost, int32_t durationMs) {
     LOG(DEBUG) << "PowerExt setBoost: " << boost << " duration: " << durationMs;
+    PowerSessionManager::getInstance()->updateHintBoost(boost, durationMs);
 
     if (durationMs > 0) {
         HintManager::GetInstance()->DoHint(boost, std::chrono::milliseconds(durationMs));
