@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b5273e9b_af6242c0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2022-05-21T16:40:56Z",
+      "side": 1,
+      "message": "This sensor lib makes UDFPS work on AoD.\n\nHowever, it seems like there\u0027s no Xiaomi device using sensors 2.0 multiHAL, so this is not compatible.",
+      "revId": "7791bce71a7bc1ee0d3d23e41578a07326bc1261",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
