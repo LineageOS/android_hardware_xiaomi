@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a855355e_fef94ec8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2022-05-21T09:22:32Z",
+      "side": 1,
+      "message": "As far as I can see, this is the only open point to move forward. We need to get into an agreement.",
+      "revId": "4d66bb0eb4f40660c408ab160138de73a9ae3190",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
