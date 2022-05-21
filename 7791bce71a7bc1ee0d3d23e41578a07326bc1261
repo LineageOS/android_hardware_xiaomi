@@ -16,6 +16,24 @@
       "message": "This sensor lib makes UDFPS work on AoD.\n\nHowever, it seems like there\u0027s no Xiaomi device using sensors 2.0 multiHAL, so this is not compatible.",
       "revId": "7791bce71a7bc1ee0d3d23e41578a07326bc1261",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8a95b5b_139b1482",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2022-05-21T16:45:36Z",
+      "side": 1,
+      "message": "In my case, it goes along with https://review.lineageos.org/q/topic:mi845-udfps-aod. Obviously, I had to build sensors 2.0 multiHAL to make this lib load, but as a result all the rest of sensors don\u0027t register (sensors.ssc).",
+      "parentUuid": "b5273e9b_af6242c0",
+      "revId": "7791bce71a7bc1ee0d3d23e41578a07326bc1261",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
