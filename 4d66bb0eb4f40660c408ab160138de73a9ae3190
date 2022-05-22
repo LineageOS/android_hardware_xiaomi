@@ -70,6 +70,24 @@
       "parentUuid": "e98294ed_d21ad1ec",
       "revId": "4d66bb0eb4f40660c408ab160138de73a9ae3190",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "693dd246_7ff4ae46",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2022-05-22T16:52:22Z",
+      "side": 1,
+      "message": "This has nothing to do with \"ship and forget\", this is about getting rid of unnecessary hard codes for a specific set of devices.\nCould you please share the methods of libhardware which are a duplicate of this? I didn\u0027t find a similar functionality but even better if there are methods for this.\nRegarding your concerns about assuming the modules are actually fingerprint modules, in which case wouldn\u0027t we want to try available hwmodules with the class name \"fingerprint\"? I think it\u0027s fair to assume that hwmodules with the name fingerprint are fingerprint related. And even if it\u0027s not a valid module it would fail to load and the next one will be tried.\nAssuming all modules specified in the list are safe to load on all devices is not much (if at all) better in my opinion.",
+      "parentUuid": "86dac2fd_5249f731",
+      "revId": "4d66bb0eb4f40660c408ab160138de73a9ae3190",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
