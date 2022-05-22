@@ -52,6 +52,24 @@
       "parentUuid": "62b05d67_be86fcd3",
       "revId": "4d66bb0eb4f40660c408ab160138de73a9ae3190",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "86dac2fd_5249f731",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2022-05-22T13:21:28Z",
+      "side": 1,
+      "message": "This is not supposed to be a \"ship and forget\" HIDL, using glob to try to load all the files that start with \"fingerprint.\" is not a good idea, we\u0027re just duplicating what libhardware does and assuming that all the found files are actually fingerprint HALs is not a good approach.\nWe absolutely needs to hardcode the list of module classes, one way or another.\nUsing props to do it is one of the possible ways, or even using a Soong conditional to pass the list of accepted modules, else we could just keep the current array of classes names and just add one when we need it (as of now it supports 50+ devices, so I doubt it will happen anytime soon).\nAs a final note, we should only care about shipping devices, so blindly supporting all devices with an hack more than anything is not good.",
+      "parentUuid": "e98294ed_d21ad1ec",
+      "revId": "4d66bb0eb4f40660c408ab160138de73a9ae3190",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
