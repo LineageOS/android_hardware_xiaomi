@@ -34,6 +34,24 @@
       "parentUuid": "a855355e_fef94ec8",
       "revId": "4d66bb0eb4f40660c408ab160138de73a9ae3190",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e98294ed_d21ad1ec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2022-05-22T12:45:34Z",
+      "side": 1,
+      "message": "I do like this approach.",
+      "parentUuid": "62b05d67_be86fcd3",
+      "revId": "4d66bb0eb4f40660c408ab160138de73a9ae3190",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
