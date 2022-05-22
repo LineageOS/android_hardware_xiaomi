@@ -16,6 +16,24 @@
       "message": "As far as I can see, this is the only open point to move forward. We need to get into an agreement.",
       "revId": "4d66bb0eb4f40660c408ab160138de73a9ae3190",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62b05d67_be86fcd3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2022-05-22T12:40:20Z",
+      "side": 1,
+      "message": "The new patchset addressed the mentioned issue about not loading modules from odm. The advantages of this attempt are that we don\u0027t have to maintain a list with all ever seen fingerprint modules and we don\u0027t try to open fingerprint modules which are not shipped on the device (i\u0027m not talking about performance differences here, that does not significantly differ) and hence don\u0027t get failed open errors in logcat on every boot for exotic fingerprint modules.\nThe advantages of a pre defined list are that we have the full control here about which modules can be loaded and we can specify wether udfps is supported based on the module name and don\u0027t have to rely on the udfps lib.\n\nIn my opinion the advantages for this attempt overweigh the advantages of a pre defined list because this hal is only used for devices building a custom vendor image and hence we also control which fingerprint modules are shipped and if they are shipped we usually want them to be used.\n\nHowever if you all prefer the list instead of this attempt i can agree with that too, i don\u0027t have hard feelings regarding this topic.",
+      "parentUuid": "a855355e_fef94ec8",
+      "revId": "4d66bb0eb4f40660c408ab160138de73a9ae3190",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
