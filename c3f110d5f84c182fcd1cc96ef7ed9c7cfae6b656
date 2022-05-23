@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5778cda2_7f79d095",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2022-05-23T19:51:52Z",
+      "side": 1,
+      "message": "I am now wondering why don\u0027t we import fingerprint HIDL v2.3 right away, since we didn\u0027t make any custom changes till this point.",
+      "revId": "c3f110d5f84c182fcd1cc96ef7ed9c7cfae6b656",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
