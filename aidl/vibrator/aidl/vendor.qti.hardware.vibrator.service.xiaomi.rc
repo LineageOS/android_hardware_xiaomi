@@ -2,7 +2,7 @@ on late-init
     chown system system /sys/class/qcom-haptics/primitive_duration
     chmod 0600 /sys/class/qcom-haptics/primitive_duration
 
-service vendor.qti.vibrator /vendor/bin/hw/vendor.qti.hardware.vibrator.service
+service vendor.qti.vibrator /vendor/bin/hw/vendor.qti.hardware.vibrator.service.xiaomi
     class hal
     user system
     group system input

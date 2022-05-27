@@ -2,7 +2,7 @@ Common_CFlags = ["-Wall"]
 Common_CFlags += ["-Werror"]
 
 cc_library_shared {
-    name: "libqtivibratoreffect",
+    name: "libqtivibratoreffect.xiaomi",
     vendor: true,
     cflags: Common_CFlags,
     srcs: [
@@ -16,7 +16,7 @@ cc_library_shared {
 }
 
 cc_library_shared {
-    name: "libqtivibratoreffectoffload",
+    name: "libqtivibratoreffectoffload.xiaomi",
     vendor: true,
     cflags: Common_CFlags,
     srcs: [
