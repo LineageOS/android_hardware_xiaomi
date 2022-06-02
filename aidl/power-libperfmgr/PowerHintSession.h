@@ -51,9 +51,7 @@ struct AppHintDesc {
           is_active(true),
           update_count(0),
           integral_error(0),
-          previous_error(0),
-          work_period(0),
-          last_start(0) {}
+          previous_error(0) {}
     std::string toString() const;
     const int32_t tgid;
     const int32_t uid;
@@ -66,9 +64,6 @@ struct AppHintDesc {
     uint64_t update_count;
     int64_t integral_error;
     int64_t previous_error;
-    // earlyhint pace
-    int64_t work_period;
-    int64_t last_start;
 };
 
 class PowerHintSession : public BnPowerHintSession {
@@ -83,7 +78,7 @@ class PowerHintSession : public BnPowerHintSession {
     ndk::ScopedAStatus reportActualWorkDuration(
             const std::vector<WorkDuration> &actualDurations) override;
     bool isActive();
-    bool isStale();
+    bool isTimeout();
     void wakeup();
     void setStale();
     // Is this hint session for a user application
@@ -92,41 +87,42 @@ class PowerHintSession : public BnPowerHintSession {
     int getUclampMin();
     void dumpToStream(std::ostream &stream);
 
+    void updateWorkPeriod(const std::vector<WorkDuration> &actualDurations);
+    time_point<steady_clock> getEarlyBoostTime();
+    time_point<steady_clock> getStaleTime();
+
   private:
-    class HintTimerHandler : public MessageHandler {
+    class StaleTimerHandler : public MessageHandler {
       public:
-        enum MsgType {
-            TIMER = 0,
-            POKE,
-        };
-        enum HintTimerState {
-            STALE,
-            MONITORING,
-            EARLY_BOOST,
-        };
-        HintTimerHandler(PowerHintSession *session)
-            : mSession(session),
-              mState(STALE),
-              mLastUpdatedTime(steady_clock::now()),
-              mIsSessionDead(false) {}
-        ~HintTimerHandler();
+        StaleTimerHandler(PowerHintSession *session)
+            : mSession(session), mIsMonitoring(false), mIsSessionDead(false) {}
+        void updateTimer();
+        void updateTimer(time_point<steady_clock> staleTime);
         void handleMessage(const Message &message) override;
-        // Update HintTimer by actual work duration.
-        void updateHintTimer(int64_t actualDurationNs);
-        void updateHintTimerLocked(int64_t actualDurationNs);
-        // Update HintTimer by a list of work durations which could be used for
-        // calculating the work period.
-        void updateHintTimer(const std::vector<WorkDuration> &actualDurations);
-        time_point<steady_clock> getEarlyBoostTime();
-        time_point<steady_clock> getStaleTime();
         void setSessionDead();
 
       private:
         PowerHintSession *mSession;
-        HintTimerState mState;
-        std::atomic<time_point<steady_clock>> mLastUpdatedTime;
-        std::atomic<time_point<steady_clock>> mNextStartTime;
         std::mutex mStaleLock;
+        std::mutex mMessageLock;
+        std::atomic<time_point<steady_clock>> mStaleTime;
+        std::atomic<bool> mIsMonitoring;
+        bool mIsSessionDead;
+    };
+
+    class EarlyBoostHandler : public MessageHandler {
+      public:
+        EarlyBoostHandler(PowerHintSession *session) : mSession(session) {}
+        void updateTimer(time_point<steady_clock> boostTime);
+        void handleMessage(const Message &message) override;
+        void setSessionDead();
+
+      private:
+        PowerHintSession *mSession;
+        std::mutex mBoostLock;
+        std::mutex mMessageLock;
+        std::atomic<time_point<steady_clock>> mBoostTime;
+        std::atomic<bool> mIsMonitoring;
         bool mIsSessionDead;
     };
 
@@ -135,10 +131,16 @@ class PowerHintSession : public BnPowerHintSession {
     int setSessionUclampMin(int32_t min);
     std::string getIdString() const;
     AppHintDesc *mDescriptor = nullptr;
-    sp<HintTimerHandler> mHintTimerHandler;
+    sp<StaleTimerHandler> mStaleTimerHandler;
+    sp<EarlyBoostHandler> mEarlyBoostHandler;
+    std::atomic<time_point<steady_clock>> mLastUpdatedTime;
     sp<MessageHandler> mPowerManagerHandler;
     std::mutex mSessionLock;
     std::atomic<bool> mSessionClosed = false;
+    // These 3 variables are for earlyboost work period estimation.
+    int64_t mLastStartedTimeNs;
+    int64_t mLastDurationNs;
+    int64_t mWorkPeriodNs;
 };
 
 }  // namespace pixel

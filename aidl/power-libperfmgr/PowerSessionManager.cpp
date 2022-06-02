@@ -162,12 +162,11 @@ void PowerSessionManager::setUclampMinLocked(PowerHintSession *session, int val)
         // Get thex max uclamp.min across sessions which include the tid.
         int tidMax = 0;
         for (PowerHintSession *s : mTidSessionListMap[t]) {
-            if (!s->isActive() || s->isStale())
+            if (!s->isActive() || s->isTimeout())
                 continue;
             tidMax = std::max(tidMax, s->getUclampMin());
         }
-        val = std::max(val, tidMax);
-        set_uclamp_min(t, val);
+        set_uclamp_min(t, std::max(val, tidMax));
     }
 }
 
@@ -176,7 +175,7 @@ std::optional<bool> PowerSessionManager::isAnyAppSessionActive() {
     bool active = false;
     for (PowerHintSession *s : mSessions) {
         // session active and not stale is actually active.
-        if (s->isActive() && !s->isStale() && s->isAppSession()) {
+        if (s->isActive() && !s->isTimeout() && s->isAppSession()) {
             active = true;
             break;
         }
