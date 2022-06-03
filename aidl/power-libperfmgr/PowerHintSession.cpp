@@ -153,6 +153,10 @@ PowerHintSession::~PowerHintSession() {
         sz = sz = StringPrintf("adpf.%s-active", idstr.c_str());
         ATRACE_INT(sz.c_str(), 0);
     }
+    {
+        std::lock_guard<std::mutex> guard(mSessionLock);
+        mSessionClosed.store(true);
+    }
     mHintTimerHandler->setSessionDead();
     delete mDescriptor;
 }
@@ -376,20 +380,19 @@ void PowerHintSession::setStale() {
 }
 
 void PowerHintSession::wakeup() {
+    std::lock_guard<std::mutex> guard(mSessionLock);
+
+    // We only wake up non-paused and stale sessions
+    if (mSessionClosed || !isActive() || !isStale())
+        return;
     if (ATRACE_ENABLED()) {
         std::string tag =
                 StringPrintf("wakeup.%s(a:%d,s:%d)", getIdString().c_str(), isActive(), isStale());
         ATRACE_NAME(tag.c_str());
     }
-    // We only wake up non-paused and stale sessions
-    if (!isActive() || !isStale())
-        return;
     std::shared_ptr<AdpfConfig> adpfConfig = HintManager::GetInstance()->GetAdpfProfile();
     int min = std::max(mDescriptor->current_min, static_cast<int>(adpfConfig->mUclampMinInit));
-    {
-        std::lock_guard<std::mutex> guard(mSessionLock);
-        mDescriptor->current_min = min;
-    }
+    mDescriptor->current_min = min;
     PowerSessionManager::getInstance()->setUclampMinLocked(this, min);
     PowerHintMonitor::getInstance()->getLooper()->removeMessages(mHintTimerHandler);
     PowerHintMonitor::getInstance()->getLooper()->sendMessage(
