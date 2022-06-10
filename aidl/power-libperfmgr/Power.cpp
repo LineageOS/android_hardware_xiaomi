@@ -80,7 +80,10 @@ Power::Power()
 
 ndk::ScopedAStatus Power::setMode(Mode type, bool enabled) {
     LOG(DEBUG) << "Power setMode: " << toString(type) << " to: " << enabled;
-    PowerSessionManager::getInstance()->updateHintMode(toString(type), enabled);
+    if (HintManager::GetInstance()->GetAdpfProfile() &&
+        HintManager::GetInstance()->GetAdpfProfile()->mReportingRateLimitNs > 0) {
+        PowerSessionManager::getInstance()->updateHintMode(toString(type), enabled);
+    }
 #ifdef MODE_EXT
     if (setDeviceSpecificMode(type, enabled)) {
         return ndk::ScopedAStatus::ok();
@@ -151,7 +154,10 @@ ndk::ScopedAStatus Power::isModeSupported(Mode type, bool *_aidl_return) {
 
 ndk::ScopedAStatus Power::setBoost(Boost type, int32_t durationMs) {
     LOG(DEBUG) << "Power setBoost: " << toString(type) << " duration: " << durationMs;
-    PowerSessionManager::getInstance()->updateHintBoost(toString(type), durationMs);
+    if (HintManager::GetInstance()->GetAdpfProfile() &&
+        HintManager::GetInstance()->GetAdpfProfile()->mReportingRateLimitNs > 0) {
+        PowerSessionManager::getInstance()->updateHintBoost(toString(type), durationMs);
+    }
     switch (type) {
         case Boost::INTERACTION:
             if (mSustainedPerfModeOn) {

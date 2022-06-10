@@ -145,7 +145,7 @@ PowerHintSession::PowerHintSession(int32_t tgid, int32_t uid, const std::vector<
     }
     PowerSessionManager::getInstance()->addPowerSession(this);
     // init boost
-    wakeup();
+    setSessionUclampMin(HintManager::GetInstance()->GetAdpfProfile()->mUclampMinInit);
     ALOGV("PowerHintSession created: %s", mDescriptor->toString().c_str());
 }
 
@@ -160,10 +160,6 @@ PowerHintSession::~PowerHintSession() {
         ATRACE_INT(sz.c_str(), 0);
         sz = sz = StringPrintf("adpf.%s-active", idstr.c_str());
         ATRACE_INT(sz.c_str(), 0);
-    }
-    {
-        std::lock_guard<std::mutex> guard(mSessionLock);
-        mSessionClosed.store(true);
     }
     delete mDescriptor;
 }
@@ -265,11 +261,16 @@ ndk::ScopedAStatus PowerHintSession::close() {
     if (!mSessionClosed.compare_exchange_strong(sessionClosedExpectedToBe, true)) {
         return ndk::ScopedAStatus::fromExceptionCode(EX_ILLEGAL_STATE);
     }
+    // Remove the session from PowerSessionManager first to avoid racing.
+    PowerSessionManager::getInstance()->removePowerSession(this);
+    setSessionUclampMin(0);
+    {
+        std::lock_guard<std::mutex> guard(mSessionLock);
+        mSessionClosed.store(true);
+    }
     mDescriptor->is_active.store(false);
     mEarlyBoostHandler->setSessionDead();
     mStaleTimerHandler->setSessionDead();
-    setSessionUclampMin(0);
-    PowerSessionManager::getInstance()->removePowerSession(this);
     updateUniveralBoostMode();
     return ndk::ScopedAStatus::ok();
 }
@@ -439,8 +440,7 @@ void PowerHintSession::updateWorkPeriod(const std::vector<WorkDuration> &actualD
     }
     const WorkDuration &current = actualDurations.back();
     int64_t curr_start = current.timeStampNanos - current.durationNanos;
-    int64_t period = mDescriptor->duration.count();
-    period = curr_start - mLastStartedTimeNs;
+    int64_t period = curr_start - mLastStartedTimeNs;
     if (period > 0 && period < mDescriptor->duration.count() * 2) {
         // Accounting workload period with moving average for the last 10 workload.
         mWorkPeriodNs = 0.9 * mWorkPeriodNs + 0.1 * period;
