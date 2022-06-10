@@ -97,7 +97,7 @@ void PowerSessionManager::updateHintBoost(const std::string &boost, int32_t dura
     ALOGV("PowerSessionManager::updateHintBoost: boost: %s, durationMs: %d", boost.c_str(),
           durationMs);
     if (boost.compare("DISPLAY_UPDATE_IMMINENT") == 0) {
-        wakeSessions();
+        PowerHintMonitor::getInstance()->getLooper()->sendMessage(mWakeupHandler, NULL);
     }
 }
 
@@ -199,6 +199,10 @@ void PowerSessionManager::handleMessage(const Message &) {
     } else {
         enableSystemTopAppBoost();
     }
+}
+
+void PowerSessionManager::WakeupHandler::handleMessage(const Message &) {
+    PowerSessionManager::getInstance()->wakeSessions();
 }
 
 void PowerSessionManager::dumpToFd(int fd) {

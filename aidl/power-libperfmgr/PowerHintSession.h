@@ -112,7 +112,8 @@ class PowerHintSession : public BnPowerHintSession {
 
     class EarlyBoostHandler : public MessageHandler {
       public:
-        EarlyBoostHandler(PowerHintSession *session) : mSession(session) {}
+        EarlyBoostHandler(PowerHintSession *session)
+            : mSession(session), mIsMonitoring(false), mIsSessionDead(false) {}
         void updateTimer(time_point<steady_clock> boostTime);
         void handleMessage(const Message &message) override;
         void setSessionDead();
