@@ -16,6 +16,23 @@
       "message": "Works fine now\n\n@bruno can it be merged today (platina builds tomorrow)?\n",
       "revId": "a1633051c96997aea4c00dbdef7c734b1d4f8a9d",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "093eb4fa_fcb23c35",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 15734
+      },
+      "writtenOn": "2022-06-15T15:46:40Z",
+      "side": 1,
+      "message": "Looks reasonable, but I obviously can\u0027t test it.",
+      "revId": "a1633051c96997aea4c00dbdef7c734b1d4f8a9d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
