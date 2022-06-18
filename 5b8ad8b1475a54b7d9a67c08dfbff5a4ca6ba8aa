@@ -34,6 +34,24 @@
       "parentUuid": "602e89e6_cd1f148d",
       "revId": "5b8ad8b1475a54b7d9a67c08dfbff5a4ca6ba8aa",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ef6d582_d1dda458",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2022-06-18T21:34:51Z",
+      "side": 1,
+      "message": "I am currently bringing Xiaomi 12 up, that is using 2.1 multihal and this sub hal works. Xiaomi sm8350 is doing the same and i plan to get them shipped one day too. Since at least sm8150 generation there are some xiaomi devices using the multihal.",
+      "parentUuid": "12021b59_2ac63c8f",
+      "revId": "5b8ad8b1475a54b7d9a67c08dfbff5a4ca6ba8aa",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
