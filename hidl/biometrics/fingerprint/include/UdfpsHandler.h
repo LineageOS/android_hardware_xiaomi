@@ -16,6 +16,9 @@ class UdfpsHandler {
     virtual void init(fingerprint_device_t *device) = 0;
     virtual void onFingerDown(uint32_t x, uint32_t y, float minor, float major) = 0;
     virtual void onFingerUp() = 0;
+
+    virtual void onAcquired(int32_t result, int32_t vendorCode) = 0;
+    virtual void cancel() = 0;
 };
 
 struct UdfpsHandlerFactory {
