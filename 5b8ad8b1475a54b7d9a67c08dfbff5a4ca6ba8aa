@@ -16,6 +16,24 @@
       "message": "Can we restore this chain? It should be common on devices which use the sensors multihal",
       "revId": "5b8ad8b1475a54b7d9a67c08dfbff5a4ca6ba8aa",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "12021b59_2ac63c8f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2022-06-18T20:54:32Z",
+      "side": 1,
+      "message": "Is there any Xiaomi device using multihal 2.0?",
+      "parentUuid": "602e89e6_cd1f148d",
+      "revId": "5b8ad8b1475a54b7d9a67c08dfbff5a4ca6ba8aa",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
