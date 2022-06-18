@@ -227,6 +227,9 @@ Return<uint64_t> BiometricsFingerprint::getAuthenticatorId() {
 }
 
 Return<RequestStatus> BiometricsFingerprint::cancel() {
+    if (mUdfpsHandler) {
+        mUdfpsHandler->cancel();
+    }
     return ErrorFilter(mDevice->cancel(mDevice));
 }
 
@@ -354,6 +357,9 @@ void BiometricsFingerprint::notify(const fingerprint_msg_t* msg) {
             FingerprintAcquiredInfo result =
                     VendorAcquiredFilter(msg->data.acquired.acquired_info, &vendorCode);
             ALOGD("onAcquired(%d)", result);
+            if (thisPtr->mUdfpsHandler) {
+                thisPtr->mUdfpsHandler->onAcquired(static_cast<int32_t>(result), vendorCode);
+            }
             if (!thisPtr->mClientCallback->onAcquired(devId, result, vendorCode).isOk()) {
                 ALOGE("failed to invoke fingerprint onAcquired callback");
             }
