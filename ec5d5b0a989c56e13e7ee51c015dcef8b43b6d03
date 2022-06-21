@@ -16,6 +16,23 @@
       "message": "charter commit is merged, there\u0027s no reason to provide the original libs, timschumi also agrees that this should stay in hw/xiaomi",
       "revId": "ec5d5b0a989c56e13e7ee51c015dcef8b43b6d03",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b0d2501_fc1998fd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2022-06-21T16:35:45Z",
+      "side": 1,
+      "message": "Yes, agreed.",
+      "revId": "ec5d5b0a989c56e13e7ee51c015dcef8b43b6d03",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
