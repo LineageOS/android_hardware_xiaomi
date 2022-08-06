@@ -410,9 +410,16 @@ void PowerHintSession::setStale() {
 void PowerHintSession::wakeup() {
     std::lock_guard<std::mutex> guard(mSessionLock);
 
-    // We only wake up non-paused and stale sessions
-    if (mSessionClosed || !isActive() || !isTimeout())
+    // We only wake up non-paused session
+    if (mSessionClosed || !isActive()) {
         return;
+    }
+    // Update session's timer
+    mStaleTimerHandler->updateTimer();
+    // Skip uclamp update for stale session
+    if (!isTimeout()) {
+        return;
+    }
     if (ATRACE_ENABLED()) {
         std::string tag = StringPrintf("wakeup.%s(a:%d,s:%d)", getIdString().c_str(), isActive(),
                                        isTimeout());
@@ -422,7 +429,6 @@ void PowerHintSession::wakeup() {
     int min = std::max(mDescriptor->current_min, static_cast<int>(adpfConfig->mUclampMinInit));
     mDescriptor->current_min = min;
     PowerSessionManager::getInstance()->setUclampMinLocked(this, min);
-    mStaleTimerHandler->updateTimer();
 
     if (ATRACE_ENABLED()) {
         const std::string idstr = getIdString();
