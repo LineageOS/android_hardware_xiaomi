@@ -426,14 +426,13 @@ void PowerHintSession::wakeup() {
         ATRACE_NAME(tag.c_str());
     }
     std::shared_ptr<AdpfConfig> adpfConfig = HintManager::GetInstance()->GetAdpfProfile();
-    int min = std::max(mDescriptor->current_min, static_cast<int>(adpfConfig->mUclampMinInit));
-    mDescriptor->current_min = min;
-    PowerSessionManager::getInstance()->setUclampMinLocked(this, min);
+    mDescriptor->current_min =
+            std::max(mDescriptor->current_min, static_cast<int>(adpfConfig->mUclampMinInit));
 
     if (ATRACE_ENABLED()) {
         const std::string idstr = getIdString();
         std::string sz = StringPrintf("adpf.%s-min", idstr.c_str());
-        ATRACE_INT(sz.c_str(), min);
+        ATRACE_INT(sz.c_str(), mDescriptor->current_min);
     }
 }
 
