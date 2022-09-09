@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6dc1029_4e2da788",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2022-09-09T10:38:58Z",
+      "side": 1,
+      "message": "What do you think about this?\nWe can move this to lineage-20.0 to not break any devices shipping on 19.1.\n\nThis is particulary useful with vendor acquired message 21 which gets sent when it should listen for fod (on lockscreen and when turning screen off and fingerprint is set up). It can also be used to handle acquired good and cancel (cancel is called when unlocking with pin/pattern/password) events to immediately turn off hbm on local hbm devices (it shouldn\u0027t matter for global hbm devices since the layer is gone anyway then).",
+      "revId": "17631d04ff11f4e7b0ea8bf3ed5e4895f540fad1",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
