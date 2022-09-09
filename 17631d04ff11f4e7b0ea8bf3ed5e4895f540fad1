@@ -36,6 +36,24 @@
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6fcd28bf_3ef7eb5e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2022-09-09T12:06:50Z",
+      "side": 1,
+      "message": "Sure, even better.",
+      "parentUuid": "374059c8_f85d9464",
+      "revId": "17631d04ff11f4e7b0ea8bf3ed5e4895f540fad1",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7637185b_3de8a6ba",
@@ -49,6 +67,30 @@
       "writtenOn": "2022-09-09T11:58:49Z",
       "side": 1,
       "message": "static_cast\u003cint32_t\u003e(result)",
+      "range": {
+        "startLine": 361,
+        "startChar": 51,
+        "endLine": 361,
+        "endChar": 67
+      },
+      "revId": "17631d04ff11f4e7b0ea8bf3ed5e4895f540fad1",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4bc9833_a8cb255c",
+        "filename": "hidl/biometrics/fingerprint/BiometricsFingerprint.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2022-09-09T12:06:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7637185b_3de8a6ba",
       "range": {
         "startLine": 361,
         "startChar": 51,
