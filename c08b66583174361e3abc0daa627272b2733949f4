@@ -16,6 +16,23 @@
       "message": "Verified on Xiaomi 12 with this udfps handler: https://github.com/cupid-development/android_device_xiaomi_sm8450-common/blob/05f9132b80c1a22d0dac0df7bec2cf6d4d4b8f94/udfps/UdfpsHandler.cpp",
       "revId": "c08b66583174361e3abc0daa627272b2733949f4",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bfe18fa0_6ce02d56",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2022-09-09T13:41:29Z",
+      "side": 1,
+      "message": "I am fine with it. Seba: just let me know when it\u0027s good to go from your end.",
+      "revId": "c08b66583174361e3abc0daa627272b2733949f4",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
