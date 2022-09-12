@@ -18,8 +18,8 @@ public:
     LED(std::string type);
 
     bool exists();
-    bool setBreath(uint32_t value);
-    bool setBrightness(uint32_t value);
+    bool setBreath(uint8_t value);
+    bool setBrightness(uint8_t value);
 private:
     std::string mBasePath;
     uint32_t mMaxBrightness;

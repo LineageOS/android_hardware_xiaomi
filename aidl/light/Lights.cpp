@@ -112,7 +112,7 @@ ndk::ScopedAStatus Lights::getLights(std::vector<HwLight> *_aidl_return) {
 void Lights::setLED(const HwLightState& state) {
     bool rc = true;
     argb_t color = colorToArgb(state.color);
-    uint32_t blink = (state.flashOnMs != 0 && state.flashOffMs != 0);
+    uint8_t blink = (state.flashOnMs != 0 && state.flashOffMs != 0);
 
     switch (state.flashMode) {
         case FlashMode::HARDWARE:
