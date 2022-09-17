@@ -16,6 +16,23 @@
       "message": "Maybe this one should be renamed (and eventually placed in a \"legacy\" subfolder or something) if https://review.lineageos.org/c/LineageOS/android_hardware_xiaomi/+/331605 ever comes back for those that will want multiHAL 2.x.",
       "revId": "598e5a3c7f27071c78b12bff182589cfdbde6667",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "40161e89_b3dd587d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2022-09-17T14:49:56Z",
+      "side": 1,
+      "message": "Let me know what you think about my previous comments. I have verified this on mi845 and it works nicely.",
+      "revId": "598e5a3c7f27071c78b12bff182589cfdbde6667",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
