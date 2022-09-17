@@ -1,0 +1,22 @@
+//
+// Copyright (C) 2022 The LineageOS Project
+//
+// SPDX-License-Identifier: Apache-2.0
+//
+
+cc_library_shared {
+    name: "sensors.udfps",
+    defaults: ["hidl_defaults"],
+    srcs: [
+        "udfps_hal.cpp",
+    ],
+    shared_libs: [
+        "libcutils",
+        "liblog",
+        "libutils",
+    ],
+    header_libs: [
+        "libhardware_headers",
+    ],
+    vendor: true,
+}
