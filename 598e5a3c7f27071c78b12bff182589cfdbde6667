@@ -33,6 +33,24 @@
       "message": "Let me know what you think about my previous comments. I have verified this on mi845 and it works nicely.",
       "revId": "598e5a3c7f27071c78b12bff182589cfdbde6667",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dafa25d2_5da71989",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2022-09-19T10:00:25Z",
+      "side": 1,
+      "message": "As mentioned in https://review.lineageos.org/c/LineageOS/android_hardware_xiaomi/+/331612/ i\u0027d definitely want the 2.x multihal change to be restored.\nMoving both to subdirs sounds good to me and can be done when a device which wants to use the new one gets closer to shipping.",
+      "parentUuid": "1c1f8af9_18309175",
+      "revId": "598e5a3c7f27071c78b12bff182589cfdbde6667",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
