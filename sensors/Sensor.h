@@ -149,6 +149,17 @@ class SingleTapSensor : public SysfsPollingOneShotSensor {
                                           2)) {}
 };
 
+class DoubleTapSensor : public SysfsPollingOneShotSensor {
+  public:
+    DoubleTapSensor(int32_t sensorHandle, ISensorsEventCallback* callback)
+        : SysfsPollingOneShotSensor(
+                  sensorHandle, callback, "/sys/class/touch/touch_dev/gesture_double_tap_state",
+                  "/sys/class/touch/touch_dev/gesture_double_tap_enabled", "Double Tap Sensor",
+                  "org.lineageos.sensor.double_tap",
+                  static_cast<SensorType>(static_cast<int32_t>(SensorType::DEVICE_PRIVATE_BASE) +
+                                          3)) {}
+};
+
 }  // namespace implementation
 }  // namespace subhal
 }  // namespace V2_1
