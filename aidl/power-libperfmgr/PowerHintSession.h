@@ -103,7 +103,7 @@ class PowerHintSession : public BnPowerHintSession {
 
       private:
         PowerHintSession *mSession;
-        std::mutex mStaleLock;
+        std::mutex mClosedLock;
         std::mutex mMessageLock;
         std::atomic<time_point<steady_clock>> mStaleTime;
         std::atomic<bool> mIsMonitoring;
