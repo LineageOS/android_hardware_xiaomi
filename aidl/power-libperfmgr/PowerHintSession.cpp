@@ -352,7 +352,6 @@ ndk::ScopedAStatus PowerHintSession::reportActualWorkDuration(
                             mDescriptor->current_min + static_cast<int>(output));
     next_min = std::max(static_cast<int>(adpfConfig->mUclampMinLow), next_min);
     setSessionUclampMin(next_min);
-    mStaleTimerHandler->updateTimer(getStaleTime());
 
     return ndk::ScopedAStatus::ok();
 }
@@ -384,7 +383,12 @@ bool PowerHintSession::isActive() {
 
 bool PowerHintSession::isTimeout() {
     auto now = std::chrono::steady_clock::now();
-    return now >= getStaleTime();
+    time_point<steady_clock> staleTime =
+            mLastUpdatedTime.load() +
+            nanoseconds(static_cast<int64_t>(
+                    mDescriptor->duration.count() *
+                    HintManager::GetInstance()->GetAdpfProfile()->mStaleTimeFactor));
+    return now >= staleTime;
 }
 
 const std::vector<int> &PowerHintSession::getTidList() const {
@@ -432,31 +436,19 @@ void PowerHintSession::wakeup() {
     }
 }
 
-time_point<steady_clock> PowerHintSession::getStaleTime() {
-    return mLastUpdatedTime.load() +
-           nanoseconds(static_cast<int64_t>(
-                   mDescriptor->duration.count() *
-                   HintManager::GetInstance()->GetAdpfProfile()->mStaleTimeFactor));
-}
-
 void PowerHintSession::StaleTimerHandler::updateTimer() {
-    time_point<steady_clock> staleTime =
-            std::chrono::steady_clock::now() +
-            nanoseconds(static_cast<int64_t>(
-                    mSession->mDescriptor->duration.count() *
-                    HintManager::GetInstance()->GetAdpfProfile()->mStaleTimeFactor));
-    updateTimer(staleTime);
-}
-
-void PowerHintSession::StaleTimerHandler::updateTimer(time_point<steady_clock> staleTime) {
-    mStaleTime.store(staleTime);
+    auto now = std::chrono::steady_clock::now();
+    nanoseconds staleDuration = std::chrono::nanoseconds(
+            static_cast<int64_t>(mSession->mDescriptor->duration.count() *
+                                 HintManager::GetInstance()->GetAdpfProfile()->mStaleTimeFactor));
+    mStaleTime.store(now + staleDuration);
+    int64_t next = static_cast<int64_t>(staleDuration.count());
     {
         std::lock_guard<std::mutex> guard(mMessageLock);
         PowerHintMonitor::getInstance()->getLooper()->removeMessages(mSession->mStaleTimerHandler);
-        PowerHintMonitor::getInstance()->getLooper()->sendMessage(mSession->mStaleTimerHandler,
-                                                                  NULL);
+        PowerHintMonitor::getInstance()->getLooper()->sendMessageDelayed(
+                next, mSession->mStaleTimerHandler, NULL);
     }
-    mIsMonitoring.store(true);
     if (ATRACE_ENABLED()) {
         const std::string idstr = mSession->getIdString();
         std::string sz = StringPrintf("adpf.%s-timer.stale", idstr.c_str());
@@ -480,12 +472,11 @@ void PowerHintSession::StaleTimerHandler::handleMessage(const Message &) {
                 next, mSession->mStaleTimerHandler, NULL);
     } else {
         mSession->setStale();
-        mIsMonitoring.store(false);
     }
     if (ATRACE_ENABLED()) {
         const std::string idstr = mSession->getIdString();
         std::string sz = StringPrintf("adpf.%s-timer.stale", idstr.c_str());
-        ATRACE_INT(sz.c_str(), mIsMonitoring ? 0 : 1);
+        ATRACE_INT(sz.c_str(), next > 0 ? 0 : 1);
     }
 }
 
