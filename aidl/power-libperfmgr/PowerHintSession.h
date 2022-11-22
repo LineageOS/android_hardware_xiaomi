@@ -79,7 +79,6 @@ class PowerHintSession : public BnPowerHintSession {
             const std::vector<WorkDuration> &actualDurations) override;
     bool isActive();
     bool isTimeout();
-    void wakeup();
     void setStale();
     // Is this hint session for a user application
     bool isAppSession();
