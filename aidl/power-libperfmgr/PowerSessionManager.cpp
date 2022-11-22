@@ -97,37 +97,6 @@ void PowerSessionManager::updateHintBoost(const std::string &boost, int32_t dura
     ATRACE_CALL();
     ALOGV("PowerSessionManager::updateHintBoost: boost: %s, durationMs: %d", boost.c_str(),
           durationMs);
-    if (boost.compare("DISPLAY_UPDATE_IMMINENT") == 0) {
-        PowerHintMonitor::getInstance()->getLooper()->sendMessage(mWakeupHandler, NULL);
-    }
-}
-
-void PowerSessionManager::wakeSessions() {
-    std::lock_guard<std::mutex> guard(mLock);
-    std::shared_ptr<AdpfConfig> adpfConfig = HintManager::GetInstance()->GetAdpfProfile();
-    std::unordered_set<PowerHintSession *> wakeupList;
-    const int wakeupBoostValue = static_cast<int>(adpfConfig->mUclampMinInit);
-    for (auto &it : mTidSessionListMap) {
-        int tid = it.first;
-        int maxboost = -1;
-        // Find the max boost value among all the sessions that include the same TID.
-        for (PowerHintSession *s : it.second) {
-            if (!s->isActive())
-                continue;
-            // all active sessions need to be awakened.
-            wakeupList.insert(s);
-            if (s->isTimeout()) {
-                maxboost = std::max(maxboost, s->getUclampMin());
-            }
-        }
-        // Found the max boost and actally set to the task.
-        if (maxboost != -1) {
-            set_uclamp_min(tid, std::max(maxboost, wakeupBoostValue));
-        }
-    }
-    for (PowerHintSession *s : wakeupList) {
-        s->wakeup();
-    }
 }
 
 int PowerSessionManager::getDisplayRefreshRate() {
@@ -221,10 +190,6 @@ void PowerSessionManager::handleMessage(const Message &) {
     } else {
         enableSystemTopAppBoost();
     }
-}
-
-void PowerSessionManager::WakeupHandler::handleMessage(const Message &) {
-    PowerSessionManager::getInstance()->wakeSessions();
 }
 
 void PowerSessionManager::dumpToFd(int fd) {
