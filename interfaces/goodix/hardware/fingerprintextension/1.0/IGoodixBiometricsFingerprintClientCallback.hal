@@ -1,0 +1,91 @@
+/*
+ * Copyright (C) 2017 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package vendor.goodix.hardware.fingerprintextension@1.0;
+
+interface IGoodixBiometricsFingerprintClientCallback {
+    /**
+     * Sent when one enrollment step is complete.
+     * @param deviceId the instance of this fingerprint device
+     * @param fingerId the fingerprint templetate being enrolled
+     * @param groupId the groupid for the template being enrolled
+     * @param remaining the number of remaining steps before enrolllment is complete
+     */
+    oneway onEnrollResult(uint64_t deviceId, uint32_t fingerId, uint32_t groupId, uint32_t remaining);
+
+    /**
+     * Sent when a fingerprint image is acquired by the sensor
+     * @param deviceId the instance of this fingerprint device
+     * @param acquiredInfo a message about the quality of the acquired image
+     */
+    oneway onAcquired(uint64_t deviceId, uint32_t acquiredInfo);
+
+    /**
+     * Sent when a fingerprint is authenticated
+     * @param deviceId the instance of this fingerprint device
+     * @param fingerId the fingerprint templetate that was authenticated
+     * @param groupId the groupid for the template that was authenticated
+     * @param token the hardware authentication token to pass to Keystore.addAuthToken()
+     */
+    oneway onAuthenticated(uint64_t deviceId, uint32_t fingerId, uint32_t groupId, vec<uint8_t> token);
+
+    /**
+     * Sent when a fingerprint is authenticated for fido
+     * @param devId the instance of this fingerprint device
+     * @param fpId the fingerprint templetate that was authenticated
+     * @param uvtData the uvtData
+     */
+    oneway onAuthenticatedFido(uint64_t devId, uint32_t fpId, vec<uint8_t> uvtData);
+
+    /**
+     * Sent on a dump
+     * @param devId the instance of this fingerprint device
+     * @param cmdId the id of the command sent
+     * @param data the dumped data
+     */
+    oneway onDump(int64_t devId, int32_t cmdId, vec<uint8_t> data);
+
+    /**
+     * Sent when a fingerprint error occurs
+     * @param deviceId the instance of this fingerprint device
+     * @param error a message about the error that occurred
+     */
+    oneway onError(uint64_t deviceId, uint32_t error);
+
+    /**
+     * Sent when one template is removed
+     * @param deviceId the instance of this fingerprint device
+     * @param fingerId the fingerprint templetate being removed
+     * @param groupId the groupid for the template being removed
+     */
+    oneway onRemoved(uint64_t deviceId, uint32_t fingerId, uint32_t groupId);
+
+    /**
+     * Sent when a test command is completed
+     * @param deviceId the instance of this fingerprint device
+     * @param cmdId the id of the command sent
+     * @param result the result of the command
+     */
+    oneway onTestCmd(uint64_t deviceId, uint32_t cmdId, vec<uint8_t> result);
+
+    /**
+     * Sent for hbd data
+     * @param devId the instance of this fingerprint device
+     * @param heartBeatRate the heart beat rate
+     * @param data the hbd data
+     */
+    oneway onHbdData(uint64_t devId, uint32_t heartBeatRate, uint32_t status, vec<uint8_t> data);
+};

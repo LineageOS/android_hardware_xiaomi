@@ -1,0 +1,42 @@
+/*
+ * Copyright (C) 2022 bengris32
+ *               2024 The LineageOS Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package vendor.goodix.hardware.fingerprintextension@1.0;
+
+import IGoodixBiometricsFingerprintClientCallback;
+
+interface IGoodixBiometricsFingerprint {
+    authenticateFido(uint32_t groupId, vec<uint8_t> aaid, vec<uint8_t> finalChallenge) generates (uint32_t ret);
+    cameraCapture() generates (uint32_t ret);
+    dumpCmd(uint32_t cmdId, vec<uint8_t> param) generates (uint32_t ret);
+    enableFfFeature(uint8_t enableFlag) generates (uint32_t ret);
+    enableFingerprintModule(uint8_t enableFlag) generates (uint32_t ret);
+    getIdList(uint32_t groupId) generates (uint32_t i, vec<uint32_t> arrayList);
+    invoke_fido_command(vec<uint8_t> in_buf) generates (uint32_t i, vec<uint8_t> arrayList);
+    isIdValid(uint32_t groupId, uint32_t fingerId) generates (uint32_t ret);
+    navigate(uint32_t navMode) generates (uint32_t ret);
+    screenOff() generates (uint32_t ret);
+    screenOn() generates (uint32_t ret);
+    setSafeClass(uint32_t safeClass) generates (uint32_t ret);
+    startHbd() generates (uint32_t ret);
+    stopAuthenticateFido() generates (uint32_t ret);
+    stopCameraCapture() generates (uint32_t ret);
+    stopHbd() generates (uint32_t ret);
+    stopNavigation() generates (uint32_t ret);
+    testCmd(uint32_t cmdId, vec<uint8_t> param) generates (uint32_t ret);
+    testInit(IGoodixBiometricsFingerprintClientCallback callback) generates (uint32_t ret);
+};
