@@ -101,8 +101,11 @@ bool patchXiaomiPickupSensor(V2_1::SensorInfo& sensor) {
 }
 
 HalProxy::HalProxy() {
-    const char* kMultiHalConfigFile = "/vendor/etc/sensors/hals.conf";
-    initializeSubHalListFromConfigFile(kMultiHalConfigFile);
+    static const std::string kMultiHalConfigFiles[] = {"/vendor/etc/sensors/hals.conf",
+                                                       "/odm/etc/sensors/hals.conf"};
+    for (const std::string& configFile : kMultiHalConfigFiles) {
+        initializeSubHalListFromConfigFile(configFile.c_str());
+    }
     init();
 }
 
