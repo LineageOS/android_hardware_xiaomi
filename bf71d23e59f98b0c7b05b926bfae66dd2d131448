@@ -16,6 +16,24 @@
       "message": "Was it intentional to write a boolean value to the brightness node?\nOn sagit the button backlight has a variable brightness and 1 is literally not visible. Additionally the brightness can\u0027t be changed like this obviously.",
       "revId": "bf71d23e59f98b0c7b05b926bfae66dd2d131448",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "932d15ae_96f06b2f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2023-01-03T17:52:39Z",
+      "side": 1,
+      "message": "Does your button driver expose a max_brightness node? We could implement a ButtonDevice class like I did for screen backlight management\nOther than that yes, I implemented button backlight for tissot, where it\u0027s either on or off",
+      "parentUuid": "7a5b6846_bc935ee7",
+      "revId": "bf71d23e59f98b0c7b05b926bfae66dd2d131448",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
