@@ -34,6 +34,24 @@
       "parentUuid": "7a5b6846_bc935ee7",
       "revId": "bf71d23e59f98b0c7b05b926bfae66dd2d131448",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79986cdc_87c24448",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2023-01-03T17:54:06Z",
+      "side": 1,
+      "message": "Yes, we have a max_brightness node.",
+      "parentUuid": "932d15ae_96f06b2f",
+      "revId": "bf71d23e59f98b0c7b05b926bfae66dd2d131448",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
