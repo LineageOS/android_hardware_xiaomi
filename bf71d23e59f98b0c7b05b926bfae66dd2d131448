@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a5b6846_bc935ee7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2023-01-03T17:41:46Z",
+      "side": 1,
+      "message": "Was it intentional to write a boolean value to the brightness node?\nOn sagit the button backlight has a variable brightness and 1 is literally not visible. Additionally the brightness can\u0027t be changed like this obviously.",
+      "revId": "bf71d23e59f98b0c7b05b926bfae66dd2d131448",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
