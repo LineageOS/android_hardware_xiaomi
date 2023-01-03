@@ -6,7 +6,10 @@
 
 #pragma once
 
+#include <aidl/android/hardware/light/BnLights.h>
 #include <string>
+
+using ::aidl::android::hardware::light::HwLightState;
 
 namespace aidl {
 namespace android {
@@ -18,7 +21,7 @@ public:
     LED(std::string type);
 
     bool exists();
-    bool setBreath(uint8_t value);
+    bool setBreath(const HwLightState& state, uint32_t brightness);
     bool setBrightness(uint8_t value);
 private:
     std::string mBasePath;

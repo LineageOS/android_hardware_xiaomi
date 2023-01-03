@@ -107,20 +107,19 @@ ndk::ScopedAStatus Lights::getLights(std::vector<HwLight> *_aidl_return) {
 void Lights::setLED(const HwLightState& state) {
     bool rc = true;
     rgb_t color(state.color);
-    uint8_t blink = (state.flashOnMs != 0 && state.flashOffMs != 0);
 
     switch (state.flashMode) {
         case FlashMode::HARDWARE:
         case FlashMode::TIMED:
             if (mWhiteLED) {
-                rc = kLEDs[WHITE].setBreath(blink);
+                rc = kLEDs[WHITE].setBreath(state, color.toBrightness());
             } else {
                 if (!!color.red)
-                    rc &= kLEDs[RED].setBreath(blink);
+                    rc &= kLEDs[RED].setBreath(state, color.red);
                 if (!!color.green)
-                    rc &= kLEDs[GREEN].setBreath(blink);
+                    rc &= kLEDs[GREEN].setBreath(state, color.green);
                 if (!!color.blue)
-                    rc &= kLEDs[BLUE].setBreath(blink);
+                    rc &= kLEDs[BLUE].setBreath(state, color.blue);
             }
             if (rc)
                 break;
