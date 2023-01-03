@@ -76,7 +76,7 @@ ndk::ScopedAStatus Lights::setLightState(int32_t id, const HwLightState& state) 
             break;
         case LightType::BUTTONS:
             for (auto& buttons : mButtonsPaths)
-                writeToFile(buttons, color.isLit());
+                writeToFile(buttons, color.toBrightness());
             break;
         case LightType::BATTERY:
         case LightType::NOTIFICATIONS:
