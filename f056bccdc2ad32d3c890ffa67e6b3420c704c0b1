@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e35c47ba_e78e4efb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 30475
+      },
+      "writtenOn": "2023-01-04T17:47:36Z",
+      "side": 1,
+      "message": "I have tested this on pyxis and found the following:\n\n1) If pause_lo and pause_hi should be taken into account then lut_flags have to contain 8 and 16 in the bitmask. So one solution is to set lut_flags sysfs in the HAL or set them in dts as: qcom,lut-flags \u003d \u003c31\u003e;\n\n2) duty_pcts are shared across all leds at least for pyxis case (and grus probably as well). So result is OK only if R, G, B values are either 255 or 0.",
+      "revId": "f056bccdc2ad32d3c890ffa67e6b3420c704c0b1",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
