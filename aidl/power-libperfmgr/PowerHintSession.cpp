@@ -341,6 +341,9 @@ ndk::ScopedAStatus PowerHintSession::reportActualWorkDuration(
 
     mLastUpdatedTime.store(std::chrono::steady_clock::now());
     if (isFirstFrame) {
+        if (isAppSession()) {
+            tryToSendPowerHint("ADPF_FIRST_FRAME");
+        }
         updateUniveralBoostMode();
     }
 
