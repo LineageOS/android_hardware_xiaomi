@@ -1,0 +1,27 @@
+//
+// Copyright (C) 2023 The LineageOS Project
+//
+// SPDX-License-Identifier: Apache-2.0
+//
+
+android_app {
+    name: "XiaomiDoze",
+
+    srcs: ["src/**/*.kt"],
+    resource_dirs: ["res"],
+    manifest: "AndroidManifest.xml",
+
+    certificate: "platform",
+    platform_apis: true,
+    system_ext_specific: true,
+
+    static_libs: [
+        "androidx.core_core",
+        "androidx.preference_preference",
+        "org.lineageos.settings.resources",
+    ],
+
+    optimize: {
+        proguard_flags_files: ["proguard.flags"],
+    },
+}

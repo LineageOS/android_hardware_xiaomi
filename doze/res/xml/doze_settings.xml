@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2015 The CyanogenMod Project
+     SPDX-FileCopyrightText: 2018-2023 The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/ambient_display_title">
+
+    <com.android.settingslib.widget.MainSwitchPreference
+        android:defaultValue="false"
+        android:key="doze_enable"
+        android:title="@string/ambient_enable" />
+
+    <SwitchPreference
+        android:key="always_on_display"
+        android:disableDependentsState="true"
+        android:title="@string/ambient_display_always_on_title"
+        android:summary="@string/ambient_display_always_on_summary"
+        android:persistent="false" />
+
+    <PreferenceCategory
+        android:key="pickup_sensor"
+        android:title="@string/pickup_sensor_title">
+
+        <SwitchPreference
+            android:key="gesture_pick_up"
+            android:defaultValue="false"
+            android:icon="@drawable/ic_pickup"
+            android:title="@string/pick_up_gesture_title"
+            android:summary="@string/pick_up_gesture_summary" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="proximity_sensor"
+        android:title="@string/proximity_sensor_title">
+
+        <SwitchPreference
+            android:key="gesture_hand_wave"
+            android:defaultValue="false"
+            android:icon="@drawable/ic_hand"
+            android:title="@string/hand_wave_gesture_title"
+            android:summary="@string/hand_wave_gesture_summary" />
+
+        <SwitchPreference
+            android:key="gesture_pocket"
+            android:defaultValue="false"
+            android:icon="@drawable/ic_pocket"
+            android:title="@string/pocket_gesture_title"
+            android:summary="@string/pocket_gesture_summary" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
