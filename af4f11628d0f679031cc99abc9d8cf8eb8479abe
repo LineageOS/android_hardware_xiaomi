@@ -16,6 +16,40 @@
       "message": "I do plan to reimplement stuff like thermal, dirac and popup camera parts but as separate packages",
       "revId": "af4f11628d0f679031cc99abc9d8cf8eb8479abe",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "462824ad_6662572e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2023-03-19T20:59:25Z",
+      "side": 1,
+      "message": "I\u0027m unsure if this is something we should encourage to use.\nAOSP already has config_dozePulsePickup which uses the pickup sensor to wake the device. If showing ambient display instead of waking the screen is a relevant thing it would probably be better to extend the aosp functionality across all devices there instead of overwriting the settings with a custom app in my opinion.",
+      "revId": "af4f11628d0f679031cc99abc9d8cf8eb8479abe",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "539050c7_fcdab0ac",
+        "filename": "doze/src/org/lineageos/settings/doze/PickupSensor.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2023-03-19T20:59:25Z",
+      "side": 1,
+      "message": "We might want to make this configurable, at least msm8998 uses tilt sensor for this currently as there is no dedicated pickup sensor available.",
+      "revId": "af4f11628d0f679031cc99abc9d8cf8eb8479abe",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
