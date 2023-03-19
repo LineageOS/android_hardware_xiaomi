@@ -86,6 +86,24 @@
       "parentUuid": "539050c7_fcdab0ac",
       "revId": "af4f11628d0f679031cc99abc9d8cf8eb8479abe",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ae58b0c_c6658135",
+        "filename": "doze/src/org/lineageos/settings/doze/PickupSensor.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2023-03-19T21:09:02Z",
+      "side": 1,
+      "message": "ack, cool",
+      "parentUuid": "878ac5c9_a0b82ccb",
+      "revId": "af4f11628d0f679031cc99abc9d8cf8eb8479abe",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
