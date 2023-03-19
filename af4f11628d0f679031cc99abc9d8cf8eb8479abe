@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be8e2e52_d2202624",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2023-03-19T17:15:11Z",
+      "side": 1,
+      "message": "I do plan to reimplement stuff like thermal, dirac and popup camera parts but as separate packages",
+      "revId": "af4f11628d0f679031cc99abc9d8cf8eb8479abe",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
