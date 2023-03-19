@@ -35,6 +35,24 @@
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "be1b8065_8f72abb9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2023-03-19T21:08:54Z",
+      "side": 1,
+      "message": "This uses Lineage\u0027s pulse feature which triggers AOD for a few seconds, I would say this shouldn\u0027t be discussed here, feel free to raise this on Discord",
+      "parentUuid": "462824ad_6662572e",
+      "revId": "af4f11628d0f679031cc99abc9d8cf8eb8479abe",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "539050c7_fcdab0ac",
