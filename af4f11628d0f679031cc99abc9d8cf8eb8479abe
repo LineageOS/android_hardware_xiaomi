@@ -53,6 +53,24 @@
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "746b4533_366bda07",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2023-03-21T15:11:37Z",
+      "side": 1,
+      "message": "By this you mean that \"Doze\" will always be a separate app? Right now I have everything in one single app called XiaomiParts.",
+      "parentUuid": "be8e2e52_d2202624",
+      "revId": "af4f11628d0f679031cc99abc9d8cf8eb8479abe",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "539050c7_fcdab0ac",
