@@ -22,6 +22,30 @@
       },
       "revId": "4bcc1c09a4bcff229c00663140a4f76933320d20",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6d61ffc_46a26887",
+        "filename": "hidl/sensors/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2023-03-29T15:21:14Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "490b7388_8b8c89b9",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 65
+      },
+      "revId": "4bcc1c09a4bcff229c00663140a4f76933320d20",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
