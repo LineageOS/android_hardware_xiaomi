@@ -46,6 +46,30 @@
       },
       "revId": "3b323a77f8c8b87413ec4c858e9740724105d68c",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b170298_cdd89538",
+        "filename": "sensors/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2023-04-02T13:31:42Z",
+      "side": 1,
+      "message": "Then it\u0027s probably better to rename the v1 one",
+      "parentUuid": "2fb516bd_30063d65",
+      "range": {
+        "startLine": 8,
+        "startChar": 11,
+        "endLine": 8,
+        "endChar": 25
+      },
+      "revId": "3b323a77f8c8b87413ec4c858e9740724105d68c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
