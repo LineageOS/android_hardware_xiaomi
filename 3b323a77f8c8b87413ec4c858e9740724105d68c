@@ -22,6 +22,30 @@
       },
       "revId": "3b323a77f8c8b87413ec4c858e9740724105d68c",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fb516bd_30063d65",
+        "filename": "sensors/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2023-04-02T13:30:48Z",
+      "side": 1,
+      "message": "This sensors sub hal doesn\u0027t have to be limited to the udfps sensor in future - this also matches the name of other devices using the same one.",
+      "parentUuid": "1e0f5c32_a7774d09",
+      "range": {
+        "startLine": 8,
+        "startChar": 11,
+        "endLine": 8,
+        "endChar": 25
+      },
+      "revId": "3b323a77f8c8b87413ec4c858e9740724105d68c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
