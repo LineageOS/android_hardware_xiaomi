@@ -22,6 +22,30 @@
       },
       "revId": "737a22c12193683d1b48682fa804b5e2d5d1fd7f",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fe09bb9_24261e96",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2023-04-13T16:28:11Z",
+      "side": 1,
+      "message": "Done. I have pushed the least diff from the original change. If needed be, we can bring back your stuff in a different commit, but I\u0027d rather stick to opt-in.",
+      "parentUuid": "16a9adb9_30c68a0d",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 6
+      },
+      "revId": "737a22c12193683d1b48682fa804b5e2d5d1fd7f",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
