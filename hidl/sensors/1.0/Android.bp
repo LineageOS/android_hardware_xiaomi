@@ -8,7 +8,10 @@ cc_library_shared {
     defaults: ["hidl_defaults"],
     proprietary: true,
     relative_install_path: "hw",
-    srcs: ["Sensors.cpp"],
+    srcs: [
+        "Sensors.cpp",
+        "convert.cpp",
+    ],
     shared_libs: [
         "liblog",
         "libcutils",
@@ -19,29 +22,7 @@ cc_library_shared {
         "android.hardware.sensors@1.0",
     ],
     static_libs: [
-        "android.hardware.sensors@1.0-convert",
         "multihal",
     ],
     local_include_dirs: ["include/sensors"],
-}
-
-cc_library_static {
-    name: "android.hardware.sensors@1.0-convert",
-    vendor_available: true,
-    defaults: ["hidl_defaults"],
-    srcs: ["convert.cpp"],
-    export_include_dirs: ["include"],
-    shared_libs: [
-        "liblog",
-        "libcutils",
-        "libhardware",
-        "libbase",
-        "libutils",
-        "libhidlbase",
-        "android.hardware.sensors@1.0",
-    ],
-    local_include_dirs: ["include/sensors"],
-    export_shared_lib_headers: [
-        "libhardware",
-    ],
 }
