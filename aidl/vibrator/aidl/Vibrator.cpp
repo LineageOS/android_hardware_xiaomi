@@ -136,7 +136,8 @@ InputFFDevice::InputFFDevice()
             continue;
         }
 
-        if (strcmp(name, "qcom-hv-haptics") && strcmp(name, "qti-haptics")) {
+        if (strcmp(name, "qcom-hv-haptics") && strcmp(name, "qti-haptics")
+            && strcmp(name, "aw8624_haptic")) {
             ALOGD("not a qcom/qti haptics device\n");
             close(fd);
             continue;

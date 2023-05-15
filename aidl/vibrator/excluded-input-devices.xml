@@ -28,4 +28,5 @@
 <devices>
     <device name="qti-haptics"/>
     <device name="qcom-hv-haptics"/>
+    <device name="aw8624_haptic"/>
 </devices>
