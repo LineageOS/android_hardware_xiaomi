@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d3bde33_fc55f51b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2023-06-01T15:08:57Z",
+      "side": 1,
+      "message": "What impl needs this? Supposedly it\u0027s the framework that must call the callbacks properly",
+      "revId": "76d6937bd5aacf6bc5b2880ac9f911b2f3d95d44",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
