@@ -16,6 +16,24 @@
       "message": "What impl needs this? Supposedly it\u0027s the framework that must call the callbacks properly",
       "revId": "76d6937bd5aacf6bc5b2880ac9f911b2f3d95d44",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "edeef695_730d8a95",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 32042
+      },
+      "writtenOn": "2023-06-02T04:09:57Z",
+      "side": 1,
+      "message": "Using 8350 as an example, if this submission does not exist, then the fod_status node status will always be 1 after registration and after authentication, and touching the fingerprint recognition area again after fingerprint unlocking still triggers HBM.\nhttps://github.com/xiaomi-venus-devs/android_device_xiaomi_sm8350-common/commit/ebe6b2d186e3e79689a8e729504a78acdd623eda",
+      "parentUuid": "2d3bde33_fc55f51b",
+      "revId": "76d6937bd5aacf6bc5b2880ac9f911b2f3d95d44",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
