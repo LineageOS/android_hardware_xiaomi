@@ -34,6 +34,24 @@
       "parentUuid": "2d3bde33_fc55f51b",
       "revId": "76d6937bd5aacf6bc5b2880ac9f911b2f3d95d44",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5625adad_c333c287",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2023-06-13T15:24:19Z",
+      "side": 1,
+      "message": "then fix your extension and disable fod_status in cancel() and onAcquired if (result \u003d\u003d FINGERPRINT_ACQUIRED_GOOD)\n\nsomething like this: https://github.com/LineageOS/android_device_xiaomi_sm6150-common/commit/5104523fa7c3b010246b82e90b4034605d0e6755",
+      "parentUuid": "edeef695_730d8a95",
+      "revId": "76d6937bd5aacf6bc5b2880ac9f911b2f3d95d44",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
