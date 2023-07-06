@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "48e4f807_725050ec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 19841
+      },
+      "writtenOn": "2023-07-06T19:12:51Z",
+      "side": 1,
+      "message": "* Fixed FP on some devices on enforcing (like redwood/vili)",
+      "revId": "e7d8920242a06b87ce5eba29932c1d6e913bd0cc",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
