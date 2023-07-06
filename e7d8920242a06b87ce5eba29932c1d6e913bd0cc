@@ -16,6 +16,23 @@
       "message": "* Fixed FP on some devices on enforcing (like redwood/vili)",
       "revId": "e7d8920242a06b87ce5eba29932c1d6e913bd0cc",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36008733_fda6f804",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 19841
+      },
+      "writtenOn": "2023-07-06T21:40:46Z",
+      "side": 1,
+      "message": "* on vili fpc works / goodix redwood still dead. We will have to migrate to our own.",
+      "revId": "e7d8920242a06b87ce5eba29932c1d6e913bd0cc",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
