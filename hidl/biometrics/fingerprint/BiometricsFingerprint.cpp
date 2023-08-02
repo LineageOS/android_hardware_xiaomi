@@ -209,16 +209,25 @@ Return<uint64_t> BiometricsFingerprint::setNotify(
 }
 
 Return<uint64_t> BiometricsFingerprint::preEnroll() {
+    if (mUdfpsHandler) {
+        mUdfpsHandler->preEnroll();
+    }
     return mDevice->pre_enroll(mDevice);
 }
 
 Return<RequestStatus> BiometricsFingerprint::enroll(const hidl_array<uint8_t, 69>& hat,
                                                     uint32_t gid, uint32_t timeoutSec) {
+    if (mUdfpsHandler) {
+        mUdfpsHandler->enroll();
+    }
     const hw_auth_token_t* authToken = reinterpret_cast<const hw_auth_token_t*>(hat.data());
     return ErrorFilter(mDevice->enroll(mDevice, authToken, gid, timeoutSec));
 }
 
 Return<RequestStatus> BiometricsFingerprint::postEnroll() {
+    if (mUdfpsHandler) {
+        mUdfpsHandler->postEnroll();
+    }
     return ErrorFilter(mDevice->post_enroll(mDevice));
 }
 
