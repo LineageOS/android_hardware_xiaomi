@@ -117,6 +117,9 @@ const struct effect_stream* get_effect_stream(uint32_t effectId) {
                 auto result = sEffectStreams.emplace(effectId, *newEffectStream);
                 return &result.first->second;
             }
+        } else if (effectId != (uint32_t)Effect::CLICK) {
+            LOG(VERBOSE) << "Could not get effect " << effectId << ", falling back to click effect";
+            return get_effect_stream((uint32_t)Effect::CLICK);
         }
     } else {
         return &it->second;
