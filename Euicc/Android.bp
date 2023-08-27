@@ -11,8 +11,30 @@ android_app {
 
     sdk_version: "current",
     product_specific: true,
+    certificate: "platform",
+    privileged: true,
 
     optimize: {
         proguard_flags_files: ["proguard.flags"],
     },
+    required: [
+        "org.lineageos.euicc.xml",
+        "hidden-api-whitelist-org.lineageos.euicc.xml",
+    ],
+}
+
+prebuilt_etc {
+    name: "org.lineageos.euicc.xml",
+    relative_install_path: "permissions",
+    filename: "org.lineageos.euicc.xml",
+    src: "org.lineageos.euicc.xml",
+    product_specific: true,
+}
+
+prebuilt_etc {
+    name: "hidden-api-whitelist-org.lineageos.euicc.xml",
+    relative_install_path: "sysconfig",
+    filename: "hidden-api-whitelist-org.lineageos.euicc.xml",
+    src: "hidden-api-whitelist-org.lineageos.euicc.xml",
+    product_specific: true,
 }
