@@ -12,7 +12,9 @@
         <package android:name="com.google.android.euicc" />
     </queries>
 
+    <uses-permission android:name="android.permission.CHANGE_COMPONENT_ENABLED_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WRITE_EMBEDDED_SUBSCRIPTIONS" />
 
     <application
         android:persistent="true"
