@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59fc3d36_a21b5bce",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2023-11-06T08:27:55Z",
+      "side": 1,
+      "message": "This would be useful for at least courbet (sm7150), renoir (sm7350) and haydn (sm8350) which all use qcom-haptics.\nMany new devices use an awinic vibrator which loads the proper effects by default though.",
+      "revId": "b9edc81d46680d4368173f4223e49a097f5a6933",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
