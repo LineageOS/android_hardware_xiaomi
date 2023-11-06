@@ -63,6 +63,30 @@
       },
       "revId": "b9edc81d46680d4368173f4223e49a097f5a6933",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e509a83c_b571f645",
+        "filename": "vibrator/effect/effect.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2023-11-06T08:48:18Z",
+      "side": 1,
+      "message": "https://cs.android.com/android/platform/superproject/main/+/main:system/core/init/firmware_handler.h\nThis is the code that handles uevent fw requests from the kernel (see `request_firmware()`), but technically userspace isn\u0027t supposed to request firmware...\nSince this breaks common Linux assumptions, I\u0027ll leave that to you, might even be worth moving those outside `firmware/` with a less specific name (e.g. `vendor/etc/vib_effects/click.bin`?)",
+      "parentUuid": "5c350ada_23eca889",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 137,
+        "endChar": 2
+      },
+      "revId": "b9edc81d46680d4368173f4223e49a097f5a6933",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
