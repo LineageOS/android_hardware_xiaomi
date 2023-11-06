@@ -39,6 +39,30 @@
       },
       "revId": "b9edc81d46680d4368173f4223e49a097f5a6933",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c350ada_23eca889",
+        "filename": "vibrator/effect/effect.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2023-11-06T08:33:55Z",
+      "side": 1,
+      "message": "Sounds good, will look into it soon :)",
+      "parentUuid": "7ec8f513_5c70de89",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 137,
+        "endChar": 2
+      },
+      "revId": "b9edc81d46680d4368173f4223e49a097f5a6933",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
