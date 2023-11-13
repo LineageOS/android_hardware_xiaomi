@@ -37,6 +37,7 @@ class Lights : public BnLights {
     std::mutex mLEDMutex;
     HwLightState mLastBatteryState;
     HwLightState mLastNotificationState;
+    HwLightState mLastAttentionState;
 };
 
 }  // namespace light

@@ -56,6 +56,7 @@ Lights::Lights() {
 
     mLights.push_back(AutoHwLight(LightType::BATTERY));
     mLights.push_back(AutoHwLight(LightType::NOTIFICATIONS));
+    mLights.push_back(AutoHwLight(LightType::ATTENTION));
 }
 
 ndk::ScopedAStatus Lights::setLightState(int32_t id, const HwLightState& state) {
@@ -72,14 +73,25 @@ ndk::ScopedAStatus Lights::setLightState(int32_t id, const HwLightState& state) 
             break;
         case LightType::BATTERY:
         case LightType::NOTIFICATIONS:
+        case LightType::ATTENTION:
             mLEDMutex.lock();
+
             if (type == LightType::BATTERY)
                 mLastBatteryState = state;
-            else
+            else if (type == LightType::NOTIFICATIONS)
                 mLastNotificationState = state;
-            batteryStateColor = rgb(mLastBatteryState.color);
-            setLED(batteryStateColor.isLit() ? mLastBatteryState : mLastNotificationState);
+            else if (type == LightType::ATTENTION)
+                mLastAttentionState = state;
+
+            bool isBatteryLit = rgb(mLastBatteryState.color).isLit();
+            bool isAttentionLit = rgb(mLastAttentionState.color).isLit();
+
+            setLED(isBatteryLit     ? mLastBatteryState
+                   : isAttentionLit ? mLastAttentionState
+                                    : mLastNotificationState);
+
             mLEDMutex.unlock();
+
             break;
         default:
             return ndk::ScopedAStatus::fromExceptionCode(EX_UNSUPPORTED_OPERATION);
