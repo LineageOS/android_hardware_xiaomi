@@ -1,0 +1,13 @@
+/*
+ * Copyright (C) 2023 The LineageOS Project
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+package com.fingerprints.extension@1.0;
+
+import ICalibrationCallback;
+
+interface IFingerprintCalibration {
+    oneway calibrate(ICalibrationCallback callback);
+};

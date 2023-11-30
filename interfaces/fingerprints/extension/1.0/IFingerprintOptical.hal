@@ -1,0 +1,52 @@
+/*
+ * Copyright (C) 2023 The LineageOS Project
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+package com.fingerprints.extension@1.0;
+
+import IFingerprintOpticalCallback;
+
+interface IFingerprintOptical {
+    struct HotZoneData {
+        int32_t left;
+        int32_t right;
+        int32_t top;
+        int32_t bottom;
+        int32_t update;
+    };
+
+    struct TouchEventData {
+        int32_t hotzone_top;
+        int32_t hotzone_left;
+        int32_t hotzone_right;
+        int32_t hotzone_bottom;
+        int32_t pos_x;
+        int32_t pos_y;
+        float pressure;
+        float size;
+        int32_t major;
+        int32_t minor;
+    };
+
+    oneway setNotify(IFingerprintOpticalCallback callback);
+
+    oneway setIlluminationStatus(uint32_t value);
+
+    oneway etFingerListenerStatus(uint32_t value);
+
+    setExposure(uint16_t exposureTime) generates (bool result);
+
+    getExposure() generates (int16_t retVal);
+
+    setAnalogGain(uint16_t gain) generates (bool result);
+
+    getAnalogGain() generates (int16_t retVal);
+
+    oneway setHotZoneData(HotZoneData hotZoneData);
+
+    oneway setTouchEventData(TouchEventData touchEventData);
+
+    getToutchEventData() generates (TouchEventData touchEventData);
+};

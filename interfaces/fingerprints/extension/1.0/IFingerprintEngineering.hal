@@ -1,0 +1,68 @@
+/*
+ * Copyright (C) 2023 The LineageOS Project
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+package com.fingerprints.extension@1.0;
+
+import IImageCaptureCallback;
+import IImageInjectionCallback;
+import ICryptCallback;
+import ICalibrationCallback;
+import IIlluminationTuningCallback;
+
+interface IFingerprintEngineering {
+    struct SensorSize {
+        int32_t width;
+        int32_t height;
+    };
+
+    getSensorSize() generates (SensorSize sensorSize); 
+
+    oneway startImageSubscription(IImageCaptureCallback callback);
+
+    oneway stopImageSubscription();
+
+    oneway startImageInjection(IImageInjectionCallback callback);
+
+    oneway stopImageInjection();
+
+    oneway startCapture(IImageCaptureCallback callback, uint32_t mode);
+
+    oneway cancelCapture();
+
+    oneway setEnrollToken(vec<uint8_t> token);
+
+    getEnrollChallenge() generates (int64_t enrollChallenge);
+
+    getBuildInfo() generates (string buildInfo);
+
+    oneway cryptBlob(ICryptCallback callback, uint32_t mode);
+
+    oneway startCalibration(ICalibrationCallback callback);
+
+    oneway captureCalibration(ICalibrationCallback callback, uint32_t type, uint32_t level);
+
+    oneway finishCalibration(ICalibrationCallback callback, uint32_t level);
+
+    oneway saveCalibration(ICalibrationCallback callback, uint32_t level);
+
+    oneway saveCalibrationDecrypted(ICalibrationCallback callback, uint32_t level);
+
+    oneway cancelCalibration(ICalibrationCallback callback);
+
+    oneway getCalibrationData(ICalibrationCallback callback);
+
+    oneway startBarTarget(ICalibrationCallback callback);
+
+    oneway captureBarTarget(ICalibrationCallback callback, uint32_t level);
+
+    oneway finishBarTarget(ICalibrationCallback callback, uint32_t level);
+
+    oneway saveBarTarget(ICalibrationCallback callback, uint32_t level);
+
+    oneway cancelBarTarget(ICalibrationCallback callback);
+
+    oneway setIlluminationLevel(IIlluminationTuningCallback callback, uint32_t level);
+};
