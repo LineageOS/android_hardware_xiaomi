@@ -15,6 +15,7 @@
 #include "UdfpsHandler.h"
 
 #include <android-base/properties.h>
+#include <fstream>
 #include <inttypes.h>
 #include <unistd.h>
 
@@ -47,6 +48,16 @@ using RequestStatus = android::hardware::biometrics::fingerprint::V2_1::RequestS
 using ::android::base::SetProperty;
 using ::android::base::StartsWith;
 
+namespace {
+
+template <typename T>
+static void set(const std::string& path, const T& value) {
+    std::ofstream file(path);
+    file << value;
+}
+
+}  // anonymous namespace
+
 BiometricsFingerprint* BiometricsFingerprint::sInstance = nullptr;
 
 BiometricsFingerprint::BiometricsFingerprint()
@@ -64,6 +75,7 @@ BiometricsFingerprint::BiometricsFingerprint()
 
         ALOGI("Opened fingerprint HAL, class %s", class_name);
         mIsUdfps = is_udfps;
+        mIsFpcFod = class_name == "fpc_fod";
         SetProperty("persist.vendor.sys.fp.vendor", class_name);
         break;
     }
@@ -209,6 +221,10 @@ Return<uint64_t> BiometricsFingerprint::setNotify(
 }
 
 Return<uint64_t> BiometricsFingerprint::preEnroll() {
+    if (mIsFpcFod) {
+        set(DISP_PARAM_PATH,
+            std::string(DISP_PARAM_HBM_MODE) + " " + DISP_PARAM_HBM_ON);
+    }
     return mDevice->pre_enroll(mDevice);
 }
 
@@ -219,6 +235,10 @@ Return<RequestStatus> BiometricsFingerprint::enroll(const hidl_array<uint8_t, 69
 }
 
 Return<RequestStatus> BiometricsFingerprint::postEnroll() {
+    if (mIsFpcFod) {
+        set(DISP_PARAM_PATH,
+            std::string(DISP_PARAM_HBM_MODE) + " " + DISP_PARAM_HBM_OFF);
+    }
     return ErrorFilter(mDevice->post_enroll(mDevice));
 }
 
