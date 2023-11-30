@@ -16,6 +16,13 @@
 #include "UdfpsHandler.h"
 #include "fingerprint.h"
 
+#define DISP_PARAM_PATH "sys/devices/virtual/mi_display/disp_feature/disp-DSI-0/disp_param"
+
+// For fpc_fod
+#define DISP_PARAM_HBM_MODE "1"
+#define DISP_PARAM_HBM_OFF "0"
+#define DISP_PARAM_HBM_ON "1"
+
 namespace android {
 namespace hardware {
 namespace biometrics {
@@ -76,6 +83,7 @@ struct BiometricsFingerprint : public IBiometricsFingerprint {
     sp<IBiometricsFingerprintClientCallback> mClientCallback;
     fingerprint_device_t* mDevice;
     bool mIsUdfps;
+    bool mIsFpcFod;
     UdfpsHandlerFactory* mUdfpsHandlerFactory;
     UdfpsHandler* mUdfpsHandler;
 };
