@@ -1,0 +1,17 @@
+/*
+ * Copyright (C) 2023 The LineageOS Project
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+package com.fingerprints.extension@1.0;
+
+import IVerifyUserCallback;
+
+interface IFingerprintAuthenticator {
+    verifyUser(IVerifyUserCallback callback, vec<uint8_t> fido_auth_input_1, vec<uint8_t> fido_auth_input_2, vec<uint8_t> dstAppName) generates (int32_t result);
+
+    isUserValid(uint64_t userId) generates (bool userValid);
+
+    oneway cancel();
+};

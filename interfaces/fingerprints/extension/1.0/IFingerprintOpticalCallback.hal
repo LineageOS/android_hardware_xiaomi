@@ -1,0 +1,17 @@
+/*
+ * Copyright (C) 2023 The LineageOS Project
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+package com.fingerprints.extension@1.0;
+
+interface IFingerprintOpticalCallback {
+    oneway onStartWaitingForFinger();
+
+    oneway onStopWaitingForFinger();
+
+    oneway onFingerDown();
+
+    oneway onFingerLost();
+};

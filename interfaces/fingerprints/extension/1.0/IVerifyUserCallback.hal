@@ -1,0 +1,13 @@
+/*
+ * Copyright (C) 2023 The LineageOS Project
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+package com.fingerprints.extension@1.0;
+
+interface IVerifyUserCallback {
+    oneway onResult(uint32_t result, uint64_t userId, uint64_t userEntityId, vec<uint8_t> encapsulatedResult);
+
+    oneway onHelp(uint32_t helpCode);
+};

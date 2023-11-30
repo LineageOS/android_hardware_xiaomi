@@ -1,0 +1,17 @@
+/*
+ * Copyright (C) 2023 The LineageOS Project
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+package com.fingerprints.extension@1.0;
+
+import IRecalibrationCallback;
+
+interface IFingerprintRecalibration {
+    oneway recalibrate(vec<uint8_t> token, IRecalibrationCallback callback);
+
+    preRecalibrate() generates (int64_t challenge);
+
+    oneway cancel();
+};
