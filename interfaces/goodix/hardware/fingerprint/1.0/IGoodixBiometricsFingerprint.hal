@@ -1,0 +1,55 @@
+/*
+ * Copyright (C) 2023 The LineageOS Project
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+package vendor.goodix.hardware.fingerprint@1.0;
+
+import IGoodixBiometricsFingerprintClientCallback;
+
+interface IGoodixBiometricsFingerprint {
+    setSafeClass(uint32_t safeClass) generates (uint32_t retval);
+
+    navigate(uint32_t navMode) generates (uint32_t retval);
+
+    stopNavigation() generates (uint32_t retval);
+
+    enableFingerprintModule(uint8_t enableFlag) generates (uint32_t retval);
+
+    cameraCapture() generates (uint32_t retval);
+
+    stopCameraCapture() generates (uint32_t retval);
+
+    enableFfFeature(uint8_t enableFlag) generates (uint32_t retval);
+
+    testInit(IGoodixBiometricsFingerprintClientCallback callback) generates (uint32_t retval);
+
+    testCmd(uint32_t cmdId, vec<uint8_t> param) generates (uint32_t retval);
+
+    screenOn() generates (uint32_t retval);
+
+    screenOff() generates (uint32_t retval);
+
+    startHbd() generates (uint32_t retval);
+
+    stopHbd() generates (uint32_t retval);
+
+    enumerate() generates (uint32_t retval);
+
+    reset_lockout(vec<uint8_t> token) generates (uint32_t retval);
+
+    enableBioAssayFeature(uint8_t enableFlag) generates (uint32_t retval);
+
+    dumpCmd(uint32_t cmdId, vec<uint8_t> param) generates (uint32_t retval);
+
+    authenticateFido(uint32_t groupId, vec<uint8_t> aaid, vec<uint8_t> finalChallenge) generates (uint32_t retval);
+
+    stopAuthenticateFido() generates (uint32_t retval);
+
+    isIdValid(uint32_t groupId, uint32_t fingerId) generates (uint32_t retval);
+
+    getIdList(uint32_t groupId) generates (uint32_t retval, vec<uint32_t> list);
+
+    invoke_fido_command(vec<uint8_t> in_buf) generates (uint32_t retval, vec<uint8_t> list);
+};

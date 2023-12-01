@@ -1,0 +1,27 @@
+/*
+ * Copyright (C) 2023 The LineageOS Project
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+package vendor.goodix.hardware.fingerprint@1.0;
+
+interface IGoodixBiometricsFingerprintClientCallback {
+    oneway onEnrollResult(uint64_t devId, uint32_t fpId, uint32_t gpId, uint32_t rem);
+
+    oneway onAcquired(uint64_t devId, uint32_t acquiredInfo);
+
+    oneway onAuthenticated(uint64_t devId, uint32_t fingerId, uint32_t groupId, vec<uint8_t> token);
+
+    oneway onError(uint64_t devId, uint32_t error);
+
+    oneway onRemoved(uint64_t devId, uint32_t fingerId, uint32_t groupId);
+
+    oneway onTestCmd(uint64_t devId, uint32_t cmdId, vec<uint8_t> result);
+
+    oneway onHbdData(uint64_t devId, uint32_t heartBeatRate, uint32_t status, vec<uint8_t> displayData);
+
+    oneway onDump(uint64_t devId, uint32_t cmdId, vec<uint8_t> data);
+
+    oneway onAuthenticatedFido(uint64_t devId, uint32_t fpId, vec<uint8_t> uvtData);
+};
