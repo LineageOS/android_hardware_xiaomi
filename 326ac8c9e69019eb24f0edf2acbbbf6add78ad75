@@ -16,6 +16,24 @@
       "message": "Do it from udfps_handler",
       "revId": "326ac8c9e69019eb24f0edf2acbbbf6add78ad75",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47a4ecb3_b379c4b9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 32683
+      },
+      "writtenOn": "2023-12-02T08:17:41Z",
+      "side": 1,
+      "message": "\u003cdel\u003eIn udfpshandler, there is not way to do this only for enrollment.\u003c/del\u003e\n\nOh, the merge conflict link links to a change that allow me to do it in udfpshandler. I will check that.",
+      "parentUuid": "de6fd835_edc0d4ff",
+      "revId": "326ac8c9e69019eb24f0edf2acbbbf6add78ad75",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
