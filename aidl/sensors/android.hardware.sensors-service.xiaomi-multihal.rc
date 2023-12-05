@@ -1,4 +1,4 @@
-service vendor.sensors-hal-multihal /vendor/bin/hw/android.hardware.sensors-service.multihal
+service vendor.sensors-hal-multihal /vendor/bin/hw/android.hardware.sensors-service.xiaomi-multihal
     class hal
     user system
     group system wakelock context_hub input uhid
