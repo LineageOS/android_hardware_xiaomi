@@ -1,0 +1,17 @@
+/*
+ * Copyright (C) 2024 The LineageOS Project
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+package vendor.xiaomi.hardware.mtdservice@1.3;
+
+import @1.2::IMTService;
+
+interface IMTService extends @1.2::IMTService {
+    external_id_load(int32_t id) generates (bool result);
+    getTAVersion() generates (string version);
+    get_device_rpmb_counter() generates (int32_t counter);
+    get_device_secure_status() generates (vec<int32_t> status);
+    refreash_device_rpmb_status() generates (int32_t result);
+};
