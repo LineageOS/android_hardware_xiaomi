@@ -24,7 +24,7 @@ package {
 }
 
 cc_binary {
-    name: "android.hardware.sensors-service.multihal",
+    name: "android.hardware.sensors-service.xiaomi-multihal",
     vendor: true,
     relative_install_path: "hw",
     srcs: [
@@ -36,8 +36,8 @@ cc_binary {
         "android.hardware.sensors@2.X-multihal.header",
         "android.hardware.sensors@2.X-shared-utils",
     ],
-    init_rc: ["android.hardware.sensors-service-multihal.rc"],
-    vintf_fragments: ["android.hardware.sensors-multihal.xml"],
+    init_rc: ["android.hardware.sensors-service.xiaomi-multihal.rc"],
+    vintf_fragments: ["android.hardware.sensors.xiaomi-multihal.xml"],
     shared_libs: [
         "android.hardware.sensors@2.0-ScopedWakelock",
         "android.hardware.sensors@2.0",
