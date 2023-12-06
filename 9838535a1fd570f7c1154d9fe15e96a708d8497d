@@ -16,6 +16,23 @@
       "message": "Can be merged",
       "revId": "9838535a1fd570f7c1154d9fe15e96a708d8497d",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "00747dfe_27d9299b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 18990
+      },
+      "writtenOn": "2023-12-06T15:43:43Z",
+      "side": 1,
+      "message": "The method ordering is incorrect, leading to IllegalArgumentException. The ordering should be same as the older interface.",
+      "revId": "9838535a1fd570f7c1154d9fe15e96a708d8497d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
