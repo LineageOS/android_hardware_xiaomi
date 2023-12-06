@@ -1,0 +1,11 @@
+/*
+ * Copyright (C) 2024 The LineageOS Project
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+package vendor.goodix.hardware.biometrics.fingerprint@2.1;
+
+interface IGoodixFingerprintDaemonExtCallback {
+    oneway onDump(uint64_t devId, uint32_t cmdId, vec<uint8_t> data);
+};

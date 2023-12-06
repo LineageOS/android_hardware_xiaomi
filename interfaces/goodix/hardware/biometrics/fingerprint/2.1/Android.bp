@@ -7,6 +7,12 @@ hidl_interface {
     srcs: [
         "IGoodixFingerprintDaemon.hal",
         "IGoodixFingerprintDaemonCallback.hal",
+        "IGoodixFingerprintDaemonExt.hal",
+        "IGoodixFingerprintDaemonExtCallback.hal",
+        "IGoodixFingerprintDaemonFido.hal",
+        "IGoodixFingerprintDaemonFidoCallback.hal",
+        "IGoodixFingerprintDaemonHbd.hal",
+        "IGoodixFingerprintDaemonHbdCallback.hal",
     ],
     interfaces: [
         "android.hidl.base@1.0",
