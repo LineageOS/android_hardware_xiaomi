@@ -1,0 +1,43 @@
+/*
+ * Copyright (C) 2024 The LineageOS Project
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+package vendor.goodix.hardware.biometrics.fingerprint@2.1;
+
+import IGoodixFingerprintDaemonExtCallback;
+
+interface IGoodixFingerprintDaemonExt {
+    oneway initCallback(IGoodixFingerprintDaemonExtCallback callback);
+
+    setSafeClass(uint32_t safeClass) generates (int32_t debugErrno);
+
+    navigate(uint32_t navMode) generates (int32_t debugErrno);
+
+    stopNavigation() generates (int32_t debugErrno);
+
+    enableFingerprintModule(uint8_t enableFlag) generates (int32_t debugErrno);
+
+    cameraCapture() generates (int32_t debugErrno);
+
+    stopCameraCapture() generates (int32_t debugErrno);
+
+    enableFfFeature(uint8_t enableFlag) generates (int32_t debugErrno);
+
+    screenOn() generates (int32_t debugErrno);
+
+    screenOff() generates (int32_t debugErrno);
+
+    enumerate() generates (int32_t debugErrno);
+
+    reset_lockout() generates (int32_t debugErrno);
+
+    dumpCmd(uint32_t cmdId, vec<uint8_t> param) generates (int32_t debugErrno);
+
+    lockout() generates (int32_t debugErrno);
+
+    pauseEnroll() generates (int32_t debugErrno);
+
+    resumeEnroll() generates (int32_t debugErrno);
+};
