@@ -375,7 +375,8 @@ int convertFromRateLevel(RateLevel rate) {
 }
 
 bool patchXiaomiPickupSensor(SensorInfo& sensor) {
-    if (sensor.typeAsString != "xiaomi.sensor.pickup") {
+    if (sensor.typeAsString != "xiaomi.sensor.pickup" &&
+        sensor.typeAsString != "xiaomi pick up sensor") {
         return true;
     }
 
