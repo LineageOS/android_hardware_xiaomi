@@ -1,0 +1,23 @@
+/*
+ * Copyright (C) 2024 The LineageOS Project
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+package vendor.goodix.hardware.biometrics.fingerprint@2.1;
+
+import IGoodixFingerprintDaemonFidoCallback;
+
+interface IGoodixFingerprintDaemonFido {
+    oneway initCallback(IGoodixFingerprintDaemonFidoCallback callback);
+
+    authenticateFido(uint32_t groupId, vec<uint8_t> aaid, vec<uint8_t> finalChallenge) generates (int32_t debugErrno);
+
+    stopAuthenticateFido() generates (int32_t debugErrno);
+
+    isIdValid(uint32_t groupId, uint32_t fingerId) generates (int32_t debugErrno);
+
+    getIdList(uint32_t groupId) generates (int32_t debugErrno, vec<int32_t> list);
+
+    invokeFidoCommand(vec<uint8_t> in_buf) generates (int32_t out_buf_len, vec<int8_t> out_buf);
+};

@@ -1,0 +1,19 @@
+/*
+ * Copyright (C) 2024 The LineageOS Project
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+package vendor.goodix.hardware.biometrics.fingerprint@2.1;
+
+import IGoodixFingerprintDaemonHbdCallback;
+
+interface IGoodixFingerprintDaemonHbd {
+    oneway initCallback(IGoodixFingerprintDaemonHbdCallback callback);
+
+    startHbd() generates (int32_t debugErrno);
+
+    stopHbd() generates (int32_t debugErrno);
+
+    enableBioAssayFeature(uint8_t enableFlag) generates (int32_t debugErrno);
+};
