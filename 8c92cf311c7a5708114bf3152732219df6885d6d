@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1dc1228f_2e33dd4b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2023-12-10T11:01:25Z",
+      "side": 1,
+      "message": "Didn\u0027t get to it yet, but it might make more sense to not hardcode the paths for each id and instead load something like {id}_effect.bin when that id is requested.",
+      "revId": "8c92cf311c7a5708114bf3152732219df6885d6d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
