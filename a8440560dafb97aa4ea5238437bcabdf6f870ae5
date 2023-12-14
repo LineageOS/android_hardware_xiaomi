@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "baf4c5bd_1316c8fa",
+        "filename": "vibrator/effect/effect.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2023-12-14T16:54:18Z",
+      "side": 1,
+      "message": "A global static effect object smells like a race condition, especially since you change its content and throw around a reference to it every time you need an effect\n\nWould rather convert this into a map of effect ID to effect_stream with a proper mutex lock when you cache new entries, this way you achieve both caching and you fix any kind of threading issue",
+      "range": {
+        "startLine": 119,
+        "startChar": 21,
+        "endLine": 119,
+        "endChar": 27
+      },
+      "revId": "a8440560dafb97aa4ea5238437bcabdf6f870ae5",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
