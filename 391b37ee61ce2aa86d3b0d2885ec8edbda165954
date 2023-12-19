@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8265d51b_a1b73cea",
+        "filename": "vibrator/effect/effect.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2023-12-19T15:45:34Z",
+      "side": 1,
+      "message": "nvm, when compiling the qti vibrator hal with the updated header it doesn\u0027t work anymore, since it then considers the whole vector and the driver checks if the struct size is equal to the kernel side struct.\n\nSo we need another way to provide a struct with just a pointer to the first element as the 4th object.\n\nFor this, i see the option to maintain another map only for internal usage which holds the actual data and we just fill the data in here.\nDoes that sound sane enough, or do you have some other ideas?",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 2
+      },
+      "revId": "391b37ee61ce2aa86d3b0d2885ec8edbda165954",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
