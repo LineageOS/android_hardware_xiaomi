@@ -16,6 +16,29 @@
       "message": "latest ps replaced it with a map.\nWhen would you suggest to lock a mutex? Always when getting an effect or just while reading one?\n\nRegarding the primitives - their effect id\u0027s are offestted by 32768, current patch set would just expect to find the primitive effect with id 0 as effect_32768.bin - would we rather want some more extensive logic to read primitive_effect_0.bin instead?",
       "revId": "0ba9b31d6e6bcdc60bf9efad6bbbf17724ac84fc",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "848ef6fd_77afdd35",
+        "filename": "vibrator/effect/effect.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2023-12-19T14:49:06Z",
+      "side": 1,
+      "message": "This should ensure that the data ownership is right and it doesn\u0027t get garbage after a while - and plays well with the qti vibrator hal\u0027s usage of it.",
+      "range": {
+        "startLine": 38,
+        "startChar": 4,
+        "endLine": 39,
+        "endChar": 1
+      },
+      "revId": "0ba9b31d6e6bcdc60bf9efad6bbbf17724ac84fc",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
