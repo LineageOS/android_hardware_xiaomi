@@ -39,6 +39,30 @@
       },
       "revId": "0ba9b31d6e6bcdc60bf9efad6bbbf17724ac84fc",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "64b92c46_56102516",
+        "filename": "vibrator/effect/effect.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2023-12-19T14:49:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "848ef6fd_77afdd35",
+      "range": {
+        "startLine": 38,
+        "startChar": 4,
+        "endLine": 39,
+        "endChar": 1
+      },
+      "revId": "0ba9b31d6e6bcdc60bf9efad6bbbf17724ac84fc",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
