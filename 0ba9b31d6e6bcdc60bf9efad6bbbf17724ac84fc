@@ -53,6 +53,42 @@
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0a6b8dd_34b2e898",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2023-12-19T15:21:12Z",
+      "side": 1,
+      "message": "Agreed that this sounds overkill :\u0027)\nclang-format with hw/xiaomi/.clang-format was run.",
+      "parentUuid": "51577377_295b1f5d",
+      "revId": "0ba9b31d6e6bcdc60bf9efad6bbbf17724ac84fc",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8311b1c6_2fa52e4c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2023-12-19T15:21:12Z",
+      "side": 1,
+      "message": "Well yes, but i mostly meant the file where we expect them to be the effect id\u0027s are duplicated for primitives and regular effects (effect 0,1,.. exist for both).\nI changed it to read primitive_effect_0.bin instead of effect_32768.bin now",
+      "parentUuid": "4e4902f4_fa696dad",
+      "revId": "0ba9b31d6e6bcdc60bf9efad6bbbf17724ac84fc",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "70dd1945_ff85f16d",
@@ -66,6 +102,30 @@
       "writtenOn": "2023-12-19T15:12:50Z",
       "side": 1,
       "message": "\\n",
+      "range": {
+        "startLine": 46,
+        "startChar": 10,
+        "endLine": 46,
+        "endChar": 11
+      },
+      "revId": "0ba9b31d6e6bcdc60bf9efad6bbbf17724ac84fc",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c9b4079_fcd7665f",
+        "filename": "vibrator/effect/effect.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2023-12-19T15:21:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "70dd1945_ff85f16d",
       "range": {
         "startLine": 46,
         "startChar": 10,
@@ -99,6 +159,30 @@
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac7dbde3_9358a4bb",
+        "filename": "vibrator/effect/effect.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2023-12-19T15:21:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b55dfff_0f5dd20d",
+      "range": {
+        "startLine": 48,
+        "startChar": 44,
+        "endLine": 48,
+        "endChar": 58
+      },
+      "revId": "0ba9b31d6e6bcdc60bf9efad6bbbf17724ac84fc",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2983994f_358f5f30",
@@ -112,6 +196,30 @@
       "writtenOn": "2023-12-19T15:12:50Z",
       "side": 1,
       "message": "\\n",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 1
+      },
+      "revId": "0ba9b31d6e6bcdc60bf9efad6bbbf17724ac84fc",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e2be02a_160fdc42",
+        "filename": "vibrator/effect/effect.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2023-12-19T15:21:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2983994f_358f5f30",
       "range": {
         "startLine": 69,
         "startChar": 0,
