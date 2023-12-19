@@ -22,6 +22,30 @@
       },
       "revId": "a8440560dafb97aa4ea5238437bcabdf6f870ae5",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3bd00358_dfa62326",
+        "filename": "vibrator/effect/effect.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2023-12-19T15:12:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "baf4c5bd_1316c8fa",
+      "range": {
+        "startLine": 119,
+        "startChar": 21,
+        "endLine": 119,
+        "endChar": 27
+      },
+      "revId": "a8440560dafb97aa4ea5238437bcabdf6f870ae5",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }

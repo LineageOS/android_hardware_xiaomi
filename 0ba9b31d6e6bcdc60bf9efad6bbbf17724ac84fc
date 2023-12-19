@@ -18,6 +18,110 @@
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e4902f4_fa696dad",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2023-12-19T15:12:50Z",
+      "side": 1,
+      "message": "`effect_id - 32768`? xd",
+      "parentUuid": "c61e49cc_afab18b9",
+      "revId": "0ba9b31d6e6bcdc60bf9efad6bbbf17724ac84fc",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "51577377_295b1f5d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2023-12-19T15:12:50Z",
+      "side": 1,
+      "message": "This is better, each pointer\u0027s reference you return from `get_effect_stream` now doesn\u0027t get changed if another effect is requested by the HAL :D\n\nThis now doesn\u0027t need a lock, although if a firmware is requested two times at the same time `readEffectStreamFromFile` is called two times, but it\u0027s overkill to care about this\n\nOtherwise lgtm, make sure to run clang-format",
+      "revId": "0ba9b31d6e6bcdc60bf9efad6bbbf17724ac84fc",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70dd1945_ff85f16d",
+        "filename": "vibrator/effect/effect.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2023-12-19T15:12:50Z",
+      "side": 1,
+      "message": "\\n",
+      "range": {
+        "startLine": 46,
+        "startChar": 10,
+        "endLine": 46,
+        "endChar": 11
+      },
+      "revId": "0ba9b31d6e6bcdc60bf9efad6bbbf17724ac84fc",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b55dfff_0f5dd20d",
+        "filename": "vibrator/effect/effect.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2023-12-19T15:12:50Z",
+      "side": 1,
+      "message": "sEffectStreams",
+      "range": {
+        "startLine": 48,
+        "startChar": 44,
+        "endLine": 48,
+        "endChar": 58
+      },
+      "revId": "0ba9b31d6e6bcdc60bf9efad6bbbf17724ac84fc",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2983994f_358f5f30",
+        "filename": "vibrator/effect/effect.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2023-12-19T15:12:50Z",
+      "side": 1,
+      "message": "\\n",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 1
+      },
+      "revId": "0ba9b31d6e6bcdc60bf9efad6bbbf17724ac84fc",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "848ef6fd_77afdd35",
