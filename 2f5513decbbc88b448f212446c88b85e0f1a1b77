@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d2c5f03_63713c38",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 22465
+      },
+      "writtenOn": "2024-01-07T16:16:04Z",
+      "side": 1,
+      "message": "Works fine on my Redmi K60 Pro :)",
+      "revId": "2f5513decbbc88b448f212446c88b85e0f1a1b77",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
