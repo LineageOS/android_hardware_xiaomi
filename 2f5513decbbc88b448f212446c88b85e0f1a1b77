@@ -16,6 +16,23 @@
       "message": "Works fine on my Redmi K60 Pro :)",
       "revId": "2f5513decbbc88b448f212446c88b85e0f1a1b77",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1faf539_72af27d2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2024-01-08T11:41:16Z",
+      "side": 1,
+      "message": "Mostly regarding commits - for the header changes, a seperate clang-format might be nice?\n\nOtherwise, we could just not import the caf one before, ours is completely rewritten except for the struct.\n\nBruno/Seba do you have opinions on that?",
+      "revId": "2f5513decbbc88b448f212446c88b85e0f1a1b77",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
