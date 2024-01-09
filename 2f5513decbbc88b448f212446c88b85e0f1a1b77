@@ -33,6 +33,24 @@
       "message": "Mostly regarding commits - for the header changes, a seperate clang-format might be nice?\n\nOtherwise, we could just not import the caf one before, ours is completely rewritten except for the struct.\n\nBruno/Seba do you have opinions on that?",
       "revId": "2f5513decbbc88b448f212446c88b85e0f1a1b77",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6932cd33_d83c0297",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2024-01-09T22:04:25Z",
+      "side": 1,
+      "message": "https://review.lineageos.org/c/LineageOS/android_hardware_xiaomi/+/372459/3#message-f87370861e01652db24b416772ae7bea3203a440",
+      "parentUuid": "e1faf539_72af27d2",
+      "revId": "2f5513decbbc88b448f212446c88b85e0f1a1b77",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
