@@ -20,7 +20,6 @@ object EuiccDisabler {
 
     private val EUICC_PACKAGES = listOf(
         "com.google.android.euicc",
-        "com.google.euiccpixel",
         "com.google.android.ims",
     )
 
