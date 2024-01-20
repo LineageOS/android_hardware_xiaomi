@@ -16,6 +16,24 @@
       "message": "Even displayfeature is needed? would kinda hope people never used it on custom ROMs",
       "revId": "1394afe49dd68afc51bc785a1047b106a4cf706b",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f89435c_c5386533",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2024-01-20T10:51:40Z",
+      "side": 1,
+      "message": "I personally don\u0027t need displayfeature (though i see many people using it on modern devices), but thought it might make sense to add since we provide the displayfeature interface from here too.",
+      "parentUuid": "de9a8722_2d5dcf68",
+      "revId": "1394afe49dd68afc51bc785a1047b106a4cf706b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
