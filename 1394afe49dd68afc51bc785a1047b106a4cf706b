@@ -52,6 +52,24 @@
       "parentUuid": "6f89435c_c5386533",
       "revId": "1394afe49dd68afc51bc785a1047b106a4cf706b",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "63f60b9b_36888d5a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2024-01-20T11:02:03Z",
+      "side": 1,
+      "message": "I don\u0027t really see a problem with including it, it would just simplify bringups with nearly stock vendor and don\u0027t harm others.\nBut no hard feelings here, if you really want it gone in this change, i can do it.",
+      "parentUuid": "40daa90f_5d4fc4c6",
+      "revId": "1394afe49dd68afc51bc785a1047b106a4cf706b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
