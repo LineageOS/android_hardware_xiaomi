@@ -33,6 +33,24 @@
       "message": "Maybe move to the root? It can also contain AIDL interfaces.",
       "revId": "41bb640cd2e9c625dda27f82a99d2f3b7f9c3980",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "51d6e3c6_eabb692f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2024-01-20T10:36:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ac9075d_0a8a74e9",
+      "revId": "41bb640cd2e9c625dda27f82a99d2f3b7f9c3980",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
