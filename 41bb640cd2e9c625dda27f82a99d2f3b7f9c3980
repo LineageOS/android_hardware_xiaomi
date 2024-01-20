@@ -16,6 +16,23 @@
       "message": "This should include the xiaomi hals from xiaomi sm8450 devices.",
       "revId": "41bb640cd2e9c625dda27f82a99d2f3b7f9c3980",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ac9075d_0a8a74e9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2024-01-20T10:21:56Z",
+      "side": 1,
+      "message": "Maybe move to the root? It can also contain AIDL interfaces.",
+      "revId": "41bb640cd2e9c625dda27f82a99d2f3b7f9c3980",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
