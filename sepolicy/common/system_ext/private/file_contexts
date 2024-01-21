@@ -1,0 +1,2 @@
+# IR devices
+/dev/lirc[0-9]+                                                                                     u:object_r:ir_device:s0

@@ -1,0 +1,12 @@
+#####################################
+# vendor_hal_attribute(hal_name)
+# Add an attribute for vendor hal implementations along with necessary
+# restrictions.
+define(`vendor_hal_attribute', `
+attribute vendor_hal_$1;
+expandattribute vendor_hal_$1 true;
+attribute vendor_hal_$1_client;
+expandattribute vendor_hal_$1_client true;
+attribute vendor_hal_$1_server;
+expandattribute vendor_hal_$1_server false;
+')
