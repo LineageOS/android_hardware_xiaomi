@@ -1,0 +1,2 @@
+# Light
+genfscon sysfs /class/backlight                        u:object_r:sysfs_backlight:s0
