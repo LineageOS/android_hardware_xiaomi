@@ -1,0 +1,5 @@
+# Mlipay
+vendor_hal_attribute(xiaomi_mlipay)
+
+# Motor
+vendor_hal_attribute(xiaomi_motor)

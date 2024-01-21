@@ -1,0 +1,1 @@
+type sysfs_backlight, fs_type, sysfs_type;
