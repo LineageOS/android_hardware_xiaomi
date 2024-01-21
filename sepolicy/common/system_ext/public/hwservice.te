@@ -1,0 +1,5 @@
+# Mlipay
+type vendor_hal_xiaomi_mlipay_hwservice, hwservice_manager_type, protected_hwservice;
+
+# Motor
+type vendor_hal_xiaomi_motor_hwservice, hwservice_manager_type, protected_hwservice;
