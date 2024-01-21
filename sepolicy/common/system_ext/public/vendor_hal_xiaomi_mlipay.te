@@ -1,0 +1,5 @@
+# HwBinder IPC from client to server, and callbacks
+binder_call(vendor_hal_xiaomi_mlipay_client, vendor_hal_xiaomi_mlipay_server)
+binder_call(vendor_hal_xiaomi_mlipay_server, vendor_hal_xiaomi_mlipay_client)
+
+hal_attribute_hwservice(vendor_hal_xiaomi_mlipay, vendor_hal_xiaomi_mlipay_hwservice)
