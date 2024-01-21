@@ -1,0 +1,26 @@
+# Biometrics
+/(vendor|system/vendor)/bin/hw/android\.hardware\.biometrics\.fingerprint@2.3-service\.xiaomi       u:object_r:hal_fingerprint_default_exec:s0
+
+# IR
+/(vendor|system/vendor)/bin/hw/android\.hardware\.ir@1\.0-service\.xiaomi                           u:object_r:hal_ir_default_exec:s0
+
+# Light
+/(vendor|system/vendor)/bin/hw/android\.hardware\.light-service\.xiaomi                             u:object_r:hal_light_default_exec:s0
+
+# Mlipay
+/(vendor|system/vendor)/bin/mlipayd@1\.1                                                            u:object_r:vendor_hal_xiaomi_mlipay_default_exec:s0
+
+# Motor
+/(vendor|system/vendor)/bin/hw/vendor\.xiaomi\.hardware\.motor@1.0-service                          u:object_r:vendor_hal_xiaomi_motor_default_exec:s0
+
+# Power
+/(vendor|system/vendor)/bin/hw/android\.hardware\.power-service\.xiaomi-libperfmgr                  u:object_r:hal_power_default_exec:s0
+
+# Powershare
+/(vendor|system/vendor)/bin/hw/vendor\.lineage\.powershare@1\.0-service\.xiaomi                     u:object_r:hal_lineage_powershare_default_exec:s0
+
+# Sensors
+/(vendor|system/vendor)/bin/hw/android\.hardware\.sensors@2.1-service\.xiaomi-multihal              u:object_r:hal_sensors_default_exec:s0
+
+# Touch
+/(vendor|system/vendor)/bin/hw/vendor\.lineage\.touch@1\.0-service\.xiaomi                          u:object_r:hal_lineage_touch_default_exec:s0

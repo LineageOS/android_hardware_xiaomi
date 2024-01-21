@@ -1,0 +1,7 @@
+# Let the light HAL read/write the sysfs files under /sys/class/leds
+allow hal_light_default sysfs_leds:file rw_file_perms;
+r_dir_file(hal_light_default, sysfs_leds)
+
+# Let the light HAL read/write the sysfs files under /sys/class/backlight
+allow hal_light_default sysfs_backlight:file rw_file_perms;
+r_dir_file(hal_light_default, sysfs_backlight)

@@ -1,0 +1,5 @@
+# Let the IR HAL access the IR devices
+allow hal_ir_default ir_device:{
+  chr_file
+  file
+} rw_file_perms;
