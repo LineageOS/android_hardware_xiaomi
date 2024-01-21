@@ -1,0 +1,5 @@
+# HwBinder IPC from client to server, and callbacks
+binder_call(vendor_hal_xiaomi_motor_client, vendor_hal_xiaomi_motor_server)
+binder_call(vendor_hal_xiaomi_motor_server, vendor_hal_xiaomi_motor_client)
+
+hal_attribute_hwservice(vendor_hal_xiaomi_motor, vendor_hal_xiaomi_motor_hwservice)
