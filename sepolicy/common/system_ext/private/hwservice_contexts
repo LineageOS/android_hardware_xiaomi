@@ -1,0 +1,5 @@
+# Mlipay
+vendor.xiaomi.hardware.mlipay::IMlipayService       u:object_r:vendor_hal_xiaomi_mlipay_hwservice:s0
+
+# Motor
+vendor.xiaomi.hardware.motor::IMotor                u:object_r:vendor_hal_xiaomi_motor_hwservice:s0
