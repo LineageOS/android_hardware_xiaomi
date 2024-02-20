@@ -50,6 +50,23 @@
       "message": "I am checking if all still works on mi845, since most targets there have these prebuilt and don\u0027t set BUILD_BROKEN_DUP_RULES to true.",
       "revId": "8c93e3282ddde9668a6746a563401f25d28c7cc0",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "752e00d8_42523ce1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2024-02-20T10:53:39Z",
+      "side": 1,
+      "message": "Waiting for chiron and eventually sagit builds to be ready and then ship.",
+      "revId": "8c93e3282ddde9668a6746a563401f25d28c7cc0",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
