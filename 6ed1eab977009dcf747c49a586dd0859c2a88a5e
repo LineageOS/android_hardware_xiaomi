@@ -33,6 +33,24 @@
       "message": "Indentation seems wrong. Did you run clang-format?",
       "revId": "6ed1eab977009dcf747c49a586dd0859c2a88a5e",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7509a374_1b24ae13",
+        "filename": "hidl/sensors/1.0/convert.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 32222
+      },
+      "writtenOn": "2024-02-20T22:44:45Z",
+      "side": 1,
+      "message": "Yep, ran clang-format on both before submitting.\n\n[ben@ben-desktop xiaomi]$ clang-format -i hidl/sensors/1.0/convert.cpp \n[ben@ben-desktop xiaomi]$ git diff\n[ben@ben-desktop xiaomi]$",
+      "parentUuid": "274c004f_1ed77314",
+      "revId": "6ed1eab977009dcf747c49a586dd0859c2a88a5e",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
