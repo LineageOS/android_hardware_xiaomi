@@ -51,6 +51,24 @@
       "parentUuid": "274c004f_1ed77314",
       "revId": "6ed1eab977009dcf747c49a586dd0859c2a88a5e",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc02c6f5_4702175e",
+        "filename": "hidl/sensors/1.0/convert.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2024-02-20T22:45:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7509a374_1b24ae13",
+      "revId": "6ed1eab977009dcf747c49a586dd0859c2a88a5e",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
