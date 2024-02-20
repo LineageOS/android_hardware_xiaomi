@@ -85,6 +85,24 @@
       "parentUuid": "752e00d8_42523ce1",
       "revId": "8c93e3282ddde9668a6746a563401f25d28c7cc0",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3ec65af_42731e48",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2024-02-20T11:55:36Z",
+      "side": 1,
+      "message": "Yes, I will come to that later, since equuleus and ursa use that 2.1 interface. Lets see if I can also use it.",
+      "parentUuid": "abea5628_ee992246",
+      "revId": "8c93e3282ddde9668a6746a563401f25d28c7cc0",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
