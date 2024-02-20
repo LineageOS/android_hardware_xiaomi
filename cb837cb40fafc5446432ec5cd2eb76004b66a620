@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "321c4457_d848cb92",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 32222
+      },
+      "writtenOn": "2024-02-20T21:55:27Z",
+      "side": 1,
+      "message": "Tested on plato (mt6895) and ruby (mt6877).",
+      "revId": "cb837cb40fafc5446432ec5cd2eb76004b66a620",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
