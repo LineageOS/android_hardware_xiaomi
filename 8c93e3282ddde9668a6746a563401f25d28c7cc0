@@ -67,6 +67,24 @@
       "message": "Waiting for chiron and eventually sagit builds to be ready and then ship.",
       "revId": "8c93e3282ddde9668a6746a563401f25d28c7cc0",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "abea5628_ee992246",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 32253
+      },
+      "writtenOn": "2024-02-20T11:14:24Z",
+      "side": 1,
+      "message": "Mind merging https://review.lineageos.org/c/LineageOS/android_hardware_xiaomi/+/379345 as well :D ?",
+      "parentUuid": "752e00d8_42523ce1",
+      "revId": "8c93e3282ddde9668a6746a563401f25d28c7cc0",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
