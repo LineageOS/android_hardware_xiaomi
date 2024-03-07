@@ -16,6 +16,23 @@
       "message": "needed for some fpc devices",
       "revId": "c682da8098901d7e6a4d4096ca9ea2d8b896fd70",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac2d92d3_fcdb4caa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2024-03-07T18:44:38Z",
+      "side": 1,
+      "message": "might aswell add the 1.0 version and vendor.goodix.hardware.fingerprintextension for older devices",
+      "revId": "c682da8098901d7e6a4d4096ca9ea2d8b896fd70",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
