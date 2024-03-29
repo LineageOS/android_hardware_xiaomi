@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e5a579b_c035ca18",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2024-03-29T17:23:50Z",
+      "side": 1,
+      "message": "the xiaomi fingerprint extension should be unnecessary, our biometrics hal here replaces that.",
+      "revId": "a192331b9d776547f7f6bb27cfd22657f35b13a3",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
