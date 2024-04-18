@@ -4,7 +4,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-#include "Utils.h"
+#pragma once
+
+#include <cstdint>
+#include <string>
 
 namespace aidl {
 namespace android {
@@ -13,13 +16,15 @@ namespace light {
 
 class BacklightDevice {
   public:
-    virtual ~BacklightDevice() = default;
+    BacklightDevice(std::string name);
 
-    virtual void setBacklight(uint8_t value) = 0;
-    virtual bool exists() = 0;
+    bool exists();
+    void setBrightness(float value);
+
+  private:
+    std::string mBasePath;
+    uint32_t mMaxBrightness;
 };
-
-BacklightDevice* getBacklightDevice();
 
 }  // namespace light
 }  // namespace hardware

@@ -6,6 +6,8 @@
 
 #include "Lights.h"
 
+#define LOG_TAG "android.hardware.light-service.xiaomi"
+
 #include <android-base/logging.h>
 #include <android/binder_manager.h>
 #include <android/binder_process.h>

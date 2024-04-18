@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include <cstdint>
 #include <string>
 
 namespace aidl {
@@ -14,21 +15,21 @@ namespace hardware {
 namespace light {
 
 struct rgb {
-    rgb(uint8_t r, uint8_t g, uint8_t b) : red(r), green(g), blue(b){};
+    rgb(float r, float g, float b) : red(r), green(g), blue(b){};
     rgb(uint32_t color);
-    rgb() : red(0), green(0), blue(0){};
+    rgb() : red(0.0f), green(0.0f), blue(0.0f){};
 
-    uint8_t red;
-    uint8_t green;
-    uint8_t blue;
+    float red;
+    float green;
+    float blue;
 
     bool isLit();
-    uint8_t toBrightness();
+    float toBrightness();
 };
 
 bool fileWriteable(const std::string& file);
-bool readFromFile(const std::string& file, std::string* content);
-bool readFromFile(const std::string& file, uint32_t* content);
+bool readFromFile(const std::string& file, std::string& content);
+bool readFromFile(const std::string& file, uint32_t& content);
 bool writeToFile(const std::string& file, uint32_t content);
 
 }  // namespace light
