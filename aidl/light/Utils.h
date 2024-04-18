@@ -6,6 +6,8 @@
 
 #pragma once
 
+#include <cstdint>
+#include <fstream>
 #include <string>
 
 namespace aidl {
@@ -14,9 +16,9 @@ namespace hardware {
 namespace light {
 
 struct rgb {
-    rgb(uint8_t r, uint8_t g, uint8_t b) : red(r), green(g), blue(b){};
+    rgb();
+    rgb(uint8_t r, uint8_t g, uint8_t b);
     rgb(uint32_t color);
-    rgb() : red(0), green(0), blue(0){};
 
     uint8_t red;
     uint8_t green;
@@ -26,10 +28,29 @@ struct rgb {
     uint8_t toBrightness();
 };
 
-bool fileWriteable(const std::string& file);
-bool readFromFile(const std::string& file, std::string* content);
-bool readFromFile(const std::string& file, uint32_t* content);
-bool writeToFile(const std::string& file, uint32_t content);
+template <typename T>
+bool readFromFile(const std::string& file, T& content) {
+    std::ifstream fileStream(file);
+
+    if (!fileStream.is_open()) {
+        return false;
+    }
+
+    fileStream >> content;
+    return true;
+}
+
+template <typename T>
+bool writeToFile(const std::string& file, const T content) {
+    std::ofstream fileStream(file);
+
+    if (!fileStream.is_open()) {
+        return false;
+    }
+
+    fileStream << content;
+    return true;
+}
 
 }  // namespace light
 }  // namespace hardware
