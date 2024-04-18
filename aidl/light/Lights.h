@@ -8,7 +8,7 @@
 
 #include <aidl/android/hardware/light/BnLights.h>
 #include <mutex>
-#include "Backlight.h"
+#include "Devices.h"
 
 using ::aidl::android::hardware::light::HwLight;
 using ::aidl::android::hardware::light::HwLightState;
@@ -26,19 +26,16 @@ class Lights : public BnLights {
     ndk::ScopedAStatus getLights(std::vector<HwLight>* _aidl_return) override;
 
   private:
-    void setLED();
-
     std::vector<HwLight> mLights;
 
-    BacklightDevice* mBacklightDevice;
-    std::vector<std::string> mButtonsPaths;
-    bool mWhiteLED;
-
-    std::mutex mLEDMutex;
+    Devices mDevices;
 
     HwLightState mLastBatteryState;
-    HwLightState mLastNotificationState;
+    HwLightState mLastNotificationsState;
     HwLightState mLastAttentionState;
+    std::mutex mLedMutex;
+
+    void updateNotificationColor();
 };
 
 }  // namespace light
