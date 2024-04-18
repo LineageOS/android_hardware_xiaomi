@@ -10,9 +10,11 @@ cc_binary {
     init_rc: ["android.hardware.light-service.xiaomi.rc"],
     vintf_fragments: ["android.hardware.light-service.xiaomi.xml"],
     srcs: [
-        "Backlight.cpp",
+        "BacklightDevice.cpp",
+        "ButtonDevice.cpp",
+        "LedDevice.cpp",
         "Lights.cpp",
-        "LED.cpp",
+        "NotificationDevice.cpp",
         "Utils.cpp",
         "service.cpp",
     ],

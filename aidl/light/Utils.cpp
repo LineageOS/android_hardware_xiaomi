@@ -6,9 +6,6 @@
 
 #include "Utils.h"
 
-#define LOG_TAG "android.hardware.light-service.xiaomi"
-
-#include <android-base/file.h>
 #include <android-base/logging.h>
 #include <unistd.h>
 
@@ -24,11 +21,11 @@ bool fileWriteable(const std::string& file) {
     return !access(file.c_str(), W_OK);
 }
 
-bool readFromFile(const std::string& file, std::string* content) {
-    return ReadFileToString(file, content, true);
+bool readFromFile(const std::string& file, std::string& content) {
+    return ReadFileToString(file, *content, true);
 }
 
-bool readFromFile(const std::string& file, uint32_t* content) {
+bool readFromFile(const std::string& file, uint32_t& content) {
     std::string content_str;
     if (readFromFile(file, &content_str))
         *content = std::stoi(content_str);
@@ -37,11 +34,11 @@ bool readFromFile(const std::string& file, uint32_t* content) {
     return true;
 }
 
-bool writeToFile(const std::string& file, std::string content) {
+bool writeToFile(const std::string& file, const std::string content) {
     return WriteStringToFile(content, file);
 }
 
-bool writeToFile(const std::string& file, uint32_t content) {
+bool writeToFile(const std::string& file, const uint32_t content) {
     return writeToFile(file, std::to_string(content));
 }
 

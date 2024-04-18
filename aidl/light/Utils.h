@@ -27,8 +27,8 @@ struct rgb {
 };
 
 bool fileWriteable(const std::string& file);
-bool readFromFile(const std::string& file, std::string* content);
-bool readFromFile(const std::string& file, uint32_t* content);
+bool readFromFile(const std::string& file, std::string& content);
+bool readFromFile(const std::string& file, uint32_t& content);
 bool writeToFile(const std::string& file, uint32_t content);
 
 }  // namespace light

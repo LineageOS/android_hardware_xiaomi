@@ -7,7 +7,8 @@
 #include "Lights.h"
 
 #include <android-base/logging.h>
-#include "LED.h"
+#include "Button.h"
+#include "Led.h"
 #include "Utils.h"
 
 namespace aidl {
@@ -15,44 +16,21 @@ namespace android {
 namespace hardware {
 namespace light {
 
-static const std::string kAllButtonsPaths[] = {
-        "/sys/class/leds/button-backlight/brightness",
-        "/sys/class/leds/button-backlight1/brightness",
-};
-
-enum led_type {
-    RED,
-    GREEN,
-    BLUE,
-    WHITE,
-    MAX_LEDS,
-};
-
-static LED kLEDs[MAX_LEDS] = {
-        [RED] = LED("red"),
-        [GREEN] = LED("green"),
-        [BLUE] = LED("blue"),
-        [WHITE] = LED("white"),
-};
-
 #define AutoHwLight(light) \
     { .id = (int32_t)light, .type = light, .ordinal = 0 }
 
 Lights::Lights() {
-    mBacklightDevice = getBacklightDevice();
-    if (mBacklightDevice) {
+    mBacklightDevices = getBacklightDevice();
+    if (!mBacklightDevices.empty()) {
         mLights.push_back(AutoHwLight(LightType::BACKLIGHT));
     }
 
-    for (auto& buttons : kAllButtonsPaths) {
-        if (!fileWriteable(buttons)) continue;
-
-        mButtonsPaths.push_back(buttons);
+    mButtonDevices = getButtonDevices();
+    if (!mButtonDevices.empty()) {
+        mLights.push_back(AutoHwLight(LightType::BUTTONS));
     }
 
-    if (!mButtonsPaths.empty()) mLights.push_back(AutoHwLight(LightType::BUTTONS));
-
-    mWhiteLED = kLEDs[WHITE].exists();
+    mWhiteLED = LedDevice::kDefaultLeds[LedDevice::Type::WHITE].exists();
 
     mLights.push_back(AutoHwLight(LightType::BATTERY));
     mLights.push_back(AutoHwLight(LightType::NOTIFICATIONS));
