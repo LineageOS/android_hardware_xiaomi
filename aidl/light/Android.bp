@@ -1,18 +1,22 @@
 //
-// Copyright (C) 2021-2022 The LineageOS Project
+// Copyright (C) 2021-2024 The LineageOS Project
 //
 // SPDX-License-Identifier: Apache-2.0
 //
 
 cc_binary {
     name: "android.hardware.light-service.xiaomi",
+    defaults: ["hidl_defaults"],
+    vendor: true,
     relative_install_path: "hw",
     init_rc: ["android.hardware.light-service.xiaomi.rc"],
     vintf_fragments: ["android.hardware.light-service.xiaomi.xml"],
     srcs: [
-        "Backlight.cpp",
+        "BacklightDevice.cpp",
+        "Devices.cpp",
+        "LedDevice.cpp",
         "Lights.cpp",
-        "LED.cpp",
+        "RgbLedDevice.cpp",
         "Utils.cpp",
         "service.cpp",
     ],
@@ -21,5 +25,4 @@ cc_binary {
         "libbinder_ndk",
         "android.hardware.light-V2-ndk",
     ],
-    vendor: true,
 }
