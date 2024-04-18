@@ -1,10 +1,12 @@
 /*
- * Copyright (C) 2021 The LineageOS Project
+ * Copyright (C) 2021-2024 The LineageOS Project
  *
  * SPDX-License-Identifier: Apache-2.0
  */
 
 #include "Lights.h"
+
+#define LOG_TAG "android.hardware.light-service.xiaomi"
 
 #include <android-base/logging.h>
 #include <android/binder_manager.h>
