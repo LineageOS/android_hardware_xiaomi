@@ -6,8 +6,11 @@
 
 #include "Lights.h"
 
+#define LOG_TAG "Lights"
+
 #include <android-base/logging.h>
-#include "LED.h"
+#include "Devices.h"
+#include "LedDevice.h"
 #include "Utils.h"
 
 namespace aidl {
@@ -15,48 +18,32 @@ namespace android {
 namespace hardware {
 namespace light {
 
-static const std::string kAllButtonsPaths[] = {
-        "/sys/class/leds/button-backlight/brightness",
-        "/sys/class/leds/button-backlight1/brightness",
-};
-
-enum led_type {
-    RED,
-    GREEN,
-    BLUE,
-    WHITE,
-    MAX_LEDS,
-};
-
-static LED kLEDs[MAX_LEDS] = {
-        [RED] = LED("red"),
-        [GREEN] = LED("green"),
-        [BLUE] = LED("blue"),
-        [WHITE] = LED("white"),
-};
-
 #define AutoHwLight(light) \
     { .id = (int32_t)light, .type = light, .ordinal = 0 }
 
-Lights::Lights() {
-    mBacklightDevice = getBacklightDevice();
-    if (mBacklightDevice) {
+Lights::Lights() : mRgbLedDevice(getRgbLedDevice()), mWhiteLed(getWhiteLedDevice()) {
+    mBacklightDevices = getBacklightDevices();
+    mBacklightLedDevices = getBacklightLedDevices();
+    if (!mBacklightDevices.empty() || !mBacklightLedDevices.empty()) {
         mLights.push_back(AutoHwLight(LightType::BACKLIGHT));
+    } else {
+        LOG(INFO) << "No backlight device found";
     }
 
-    for (auto& buttons : kAllButtonsPaths) {
-        if (!fileWriteable(buttons)) continue;
-
-        mButtonsPaths.push_back(buttons);
+    mButtonLedDevices = getButtonLedDevices();
+    if (!mButtonLedDevices.empty()) {
+        mLights.push_back(AutoHwLight(LightType::BUTTONS));
+    } else {
+        LOG(INFO) << "No button device found";
     }
 
-    if (!mButtonsPaths.empty()) mLights.push_back(AutoHwLight(LightType::BUTTONS));
-
-    mWhiteLED = kLEDs[WHITE].exists();
-
-    mLights.push_back(AutoHwLight(LightType::BATTERY));
-    mLights.push_back(AutoHwLight(LightType::NOTIFICATIONS));
-    mLights.push_back(AutoHwLight(LightType::ATTENTION));
+    if (mRgbLedDevice.exists() || mWhiteLed.exists()) {
+        mLights.push_back(AutoHwLight(LightType::BATTERY));
+        mLights.push_back(AutoHwLight(LightType::NOTIFICATIONS));
+        mLights.push_back(AutoHwLight(LightType::ATTENTION));
+    } else {
+        LOG(INFO) << "No notifications device found";
+    }
 }
 
 ndk::ScopedAStatus Lights::setLightState(int32_t id, const HwLightState& state) {
@@ -65,27 +52,29 @@ ndk::ScopedAStatus Lights::setLightState(int32_t id, const HwLightState& state) 
     LightType type = static_cast<LightType>(id);
     switch (type) {
         case LightType::BACKLIGHT:
-            if (mBacklightDevice) mBacklightDevice->setBacklight(color.toBrightness());
+            for (auto& device : mBacklightDevices) {
+                device.setBrightness(color.toBrightness());
+            }
+            for (auto& device : mBacklightLedDevices) {
+                device.setBrightness(color.toBrightness());
+            }
             break;
         case LightType::BUTTONS:
-            for (auto& buttons : mButtonsPaths) writeToFile(buttons, color.isLit());
+            for (auto& device : mButtonLedDevices) {
+                device.setBrightness(color.toBrightness());
+            }
             break;
         case LightType::BATTERY:
+            mLastBatteryState = state;
+            updateLeds();
+            break;
         case LightType::NOTIFICATIONS:
+            mLastNotificationsState = state;
+            updateLeds();
+            break;
         case LightType::ATTENTION:
-            mLEDMutex.lock();
-
-            if (type == LightType::BATTERY)
-                mLastBatteryState = state;
-            else if (type == LightType::NOTIFICATIONS)
-                mLastNotificationState = state;
-            else if (type == LightType::ATTENTION)
-                mLastAttentionState = state;
-
-            setLED();
-
-            mLEDMutex.unlock();
-
+            mLastAttentionState = state;
+            updateLeds();
             break;
         default:
             return ndk::ScopedAStatus::fromExceptionCode(EX_UNSUPPORTED_OPERATION);
@@ -96,12 +85,16 @@ ndk::ScopedAStatus Lights::setLightState(int32_t id, const HwLightState& state) 
 }
 
 ndk::ScopedAStatus Lights::getLights(std::vector<HwLight>* _aidl_return) {
-    for (const auto& light : mLights) _aidl_return->push_back(light);
+    for (const auto& light : mLights) {
+        _aidl_return->push_back(light);
+    }
 
     return ndk::ScopedAStatus::ok();
 }
 
-void Lights::setLED() {
+void Lights::updateLeds() {
+    std::lock_guard<std::mutex> lock(mLedMutex);
+
     bool rc = true;
 
     bool isBatteryLit = rgb(mLastBatteryState.color).isLit();
@@ -109,30 +102,31 @@ void Lights::setLED() {
 
     const HwLightState state = isBatteryLit     ? mLastBatteryState
                                : isAttentionLit ? mLastAttentionState
-                                                : mLastNotificationState;
+                                                : mLastNotificationsState;
 
     rgb color(state.color);
-    uint8_t blink = (state.flashOnMs != 0 && state.flashOffMs != 0);
+    float blink = (state.flashOnMs != 0 && state.flashOffMs != 0) ? 1.0f : 0.0f;
 
     switch (state.flashMode) {
-        case FlashMode::HARDWARE:
         case FlashMode::TIMED:
-            if (mWhiteLED) {
-                rc = kLEDs[WHITE].setBreath(blink);
+        case FlashMode::HARDWARE:
+            if (mWhiteLed.exists()) {
+                rc &= mWhiteLed.setBrightness(color.toBrightness(), LightMode::BREATH);
             } else {
-                rc = kLEDs[RED].setBreath(blink && color.red);
-                rc &= kLEDs[GREEN].setBreath(blink && color.green);
-                rc &= kLEDs[BLUE].setBreath(blink && color.blue);
+                rc &= mRgbLedDevice.setBrightness(color, LightMode::BREATH);
             }
-            if (rc) break;
+
+            if (rc) {
+                break;
+            }
+            // Fall back to normal mode if hardware timed mode is not supported
+            rc = true;
             FALLTHROUGH_INTENDED;
         default:
-            if (mWhiteLED) {
-                rc = kLEDs[WHITE].setBrightness(color.toBrightness());
+            if (mWhiteLed.exists()) {
+                rc &= mWhiteLed.setBrightness(color.toBrightness(), LightMode::STATIC);
             } else {
-                rc = kLEDs[RED].setBrightness(color.red);
-                rc &= kLEDs[GREEN].setBrightness(color.green);
-                rc &= kLEDs[BLUE].setBrightness(color.blue);
+                rc &= mRgbLedDevice.setBrightness(color, LightMode::STATIC);
             }
             break;
     }
