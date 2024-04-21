@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (C) 2023 The LineageOS Project
+    SPDX-License-Identifier: Apache-2.0
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="org.lineageos.euicc">
+
+    <application android:usesNonSdkApi="true">
+        <receiver
+            android:directBootAware="true"
+            android:exported="true"
+            android:name=".EuiccReceiver"
+            android:permission="android.permission.WRITE_EMBEDDED_SUBSCRIPTIONS">
+            <intent-filter>
+                <action android:name="com.google.android.euicc.action.PARTNER_CUSTOMIZATION"/>
+            </intent-filter>
+        </receiver>
+    </application>
+</manifest>
