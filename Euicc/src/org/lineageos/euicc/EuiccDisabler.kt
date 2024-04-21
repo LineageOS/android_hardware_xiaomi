@@ -9,6 +9,16 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.content.pm.PackageManager.PackageInfoFlags
 import android.util.Log
+import java.lang.reflect.Method
+
+object SystemProperties {
+    private val systemPropertiesClass: Class<*> = Class.forName("android.os.SystemProperties")
+    private val getMethod: Method = systemPropertiesClass.getMethod("get", String::class.java)
+
+    fun get(property: String): String {
+        return getMethod.invoke(null, property) as String
+    }
+}
 
 object EuiccDisabler {
     private const val TAG = "XiaomiEuiccDisabler"
@@ -30,7 +40,13 @@ object EuiccDisabler {
 
     fun enableOrDisableEuicc(context: Context) {
         val pm = context.packageManager
-        val disable = EUICC_DEPENDENCIES.any { !isInstalledAndEnabled(pm, it) }
+        val sku = SystemProperties.get("ro.boot.product.hardware.sku")
+        val disable = if (sku != "GL") {
+            Log.d(TAG, "Disabling apps due to non-GL SKU")
+            true // Disable if SKU is not GL
+        } else {
+            EUICC_DEPENDENCIES.any { !isInstalledAndEnabled(pm, it) }
+        }
         val flag = if (disable) {
             PackageManager.COMPONENT_ENABLED_STATE_DISABLED
         } else {
