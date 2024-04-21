@@ -1,0 +1,19 @@
+//
+// Copyright (C) 2023 The LineageOS Project
+//
+// SPDX-License-Identifier: Apache-2.0
+//
+
+android_app {
+    name: "XiaomiEuicc",
+
+    srcs: ["src/**/*.kt"],
+    resource_dirs: ["res"],
+
+    sdk_version: "current",
+    product_specific: true,
+
+    optimize: {
+        proguard_flags_files: ["proguard.flags"],
+    },
+}

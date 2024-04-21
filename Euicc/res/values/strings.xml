@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (C) 2023 The LineageOS Project
+    SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <string name="sim_illustration_lottie_mappings_json">{\"sim_illustration_lottie_mappings\":[{\"devices\":[\"fuxi\"],\"illustration_lottie\":\"sim_illustration_lottie_bottom\"}]}</string>
+    <string name="sim_slot_mappings_json">{\"sim-slot-mappings\":[{\"devices\":[\"fuxi\"],\"esim-slot-ids\":[1],\"psim-slot-ids\":[0]}]}</string>
+</resources>
