@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f34b4991_c35d83fb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 28223
+      },
+      "writtenOn": "2024-04-30T00:06:02Z",
+      "side": 1,
+      "message": "I think it\u0027s fine being here seeing how a few devices still use and have it in their device FCM. Adding it here would let us drop the in tree FCM.",
+      "revId": "58f56fff796146c6513515d26dd9c839bb644323",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
