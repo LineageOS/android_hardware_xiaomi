@@ -1,0 +1,11 @@
+<!--
+    SPDX-FileCopyrightText: 2024 The LineageOS Project
+    SPDX-License-Identifier: Apache-2.0
+-->
+<manifest version="1.0" type="device">
+    <hal format="aidl">
+        <name>vendor.lineage.accessories</name>
+        <version>1</version>
+        <fqname>IAccessories/default</fqname>
+    </hal>
+</manifest>
