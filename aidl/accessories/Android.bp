@@ -1,0 +1,27 @@
+//
+// SPDX-FileCopyrightText: 2024 The LineageOS Project
+// SPDX-License-Identifier: Apache-2.0
+//
+
+cc_binary {
+    name: "vendor.lineage.accessories-service.xiaomi",
+    defaults: [
+        "hidl_defaults",
+        "vendor.lineage.accessories-support-ndk-defaults",
+    ],
+    relative_install_path: "hw",
+    vendor: true,
+    init_rc: ["vendor.lineage.accessories-service.xiaomi.rc"],
+    vintf_fragments: ["vendor.lineage.accessories-service.xiaomi.xml"],
+    srcs: [
+        "MiPad5Keyboard.cpp",
+        "SysfsPoller.cpp",
+        "XiaomiAccessories.cpp",
+        "XiaomiSmartPen.cpp",
+        "service.cpp",
+    ],
+    shared_libs: [
+        "libbase",
+        "libbinder_ndk",
+    ],
+}
