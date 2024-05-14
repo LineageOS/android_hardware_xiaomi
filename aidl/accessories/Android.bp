@@ -1,0 +1,45 @@
+//
+// SPDX-FileCopyrightText: The LineageOS Project
+// SPDX-License-Identifier: Apache-2.0
+//
+
+cc_defaults {
+    name: "vendor.lineage.accessories-xiaomi-defaults",
+    defaults: [
+        "hidl_defaults",
+        "vendor.lineage.accessories-support-ndk-defaults",
+    ],
+    vendor: true,
+    shared_libs: [
+        "libbase",
+        "libbinder_ndk",
+    ],
+}
+
+// Common Xiaomi accessories and helpers, for devices adding their own accessories
+cc_library_static {
+    name: "libxiaomiaccessories",
+    defaults: ["vendor.lineage.accessories-xiaomi-defaults"],
+    srcs: [
+        "xiaomismartpen/XiaomiSmartPen.cpp",
+        "SysfsPoller.cpp",
+        "XiaomiAccessories.cpp",
+    ],
+    export_include_dirs: ["."],
+}
+
+// Defaults for device specific accessories services
+cc_defaults {
+    name: "vendor.lineage.accessories-service.xiaomi-defaults",
+    defaults: ["vendor.lineage.accessories-xiaomi-defaults"],
+    relative_install_path: "hw",
+    static_libs: ["//hardware/xiaomi:libxiaomiaccessories"],
+}
+
+cc_binary {
+    name: "vendor.lineage.accessories-service.xiaomi",
+    defaults: ["vendor.lineage.accessories-service.xiaomi-defaults"],
+    init_rc: ["vendor.lineage.accessories-service.xiaomi.rc"],
+    vintf_fragments: ["vendor.lineage.accessories-service.xiaomi.xml"],
+    srcs: ["service.cpp"],
+}

@@ -1,0 +1,14 @@
+#
+# SPDX-FileCopyrightText: The LineageOS Project
+# SPDX-License-Identifier: Apache-2.0
+#
+
+on boot
+    # Xiaomi Smart Pen
+    chown root root /sys/touchpanel/pen
+
+service vendor.accessories-default /vendor/bin/hw/vendor.lineage.accessories-service.xiaomi
+    class hal
+    user root
+    group root
+    shutdown critical
