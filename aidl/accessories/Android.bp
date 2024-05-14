@@ -1,0 +1,22 @@
+//
+// SPDX-FileCopyrightText: 2024 The LineageOS Project
+// SPDX-License-Identifier: Apache-2.0
+//
+
+cc_binary {
+    name: "vendor.lineage.accessories-service.xiaomi",
+    relative_install_path: "hw",
+    vendor: true,
+    init_rc: ["vendor.lineage.accessories-service.xiaomi.rc"],
+    vintf_fragments: ["vendor.lineage.accessories-service.xiaomi.xml"],
+    srcs: [
+        "Accessories.cpp",
+        "Accessory.cpp",
+        "service.cpp",
+    ],
+    shared_libs: [
+        "libbase",
+        "libbinder_ndk",
+        "vendor.lineage.accessories-V1-ndk",
+    ],
+}
