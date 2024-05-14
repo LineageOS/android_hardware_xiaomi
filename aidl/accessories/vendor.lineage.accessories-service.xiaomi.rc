@@ -1,0 +1,19 @@
+#
+# SPDX-FileCopyrightText: 2024 The LineageOS Project
+# SPDX-License-Identifier: Apache-2.0
+#
+
+on boot
+    # Xiaomi Mi Pad 5 keyboard
+    chown system system /sys/devices/platform/soc/soc:xiaomi_keyboard/xiaomi_keyboard_conn_status
+    chown system system /sys/devices/platform/soc/soc:xiaomi_keyboard/xiaomi_keyboard_connected
+    chown system system /sys/devices/platform/soc/soc:xiaomi_keyboard/xiaomi_keyboard_enabled
+
+    # Xiaomi Smart Pen
+    chown system system /sys/touchpanel/pen
+
+service vendor.accessories-default /vendor/bin/hw/vendor.lineage.accessories-service.xiaomi
+    class hal
+    user system
+    group system
+    shutdown critical
