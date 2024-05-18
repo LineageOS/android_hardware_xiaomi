@@ -34,6 +34,24 @@
       "parentUuid": "6bd3e8dc_ab82aa47",
       "revId": "44cf4e0f85fc0c9c500052188f9336ce54675709",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "90a305f5_e52fc252",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2024-05-18T13:13:41Z",
+      "side": 1,
+      "message": "Indeed, I already use tp_common for all of my devices already",
+      "parentUuid": "8e86920f_a43427a6",
+      "revId": "44cf4e0f85fc0c9c500052188f9336ce54675709",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
