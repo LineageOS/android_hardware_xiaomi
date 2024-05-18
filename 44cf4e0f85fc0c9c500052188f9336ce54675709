@@ -16,6 +16,24 @@
       "message": "We still need to port https://review.lineageos.org/c/LineageOS/android_hardware_lineage_interfaces/+/328914 and I don\u0027t have time today. Feel free to step up.",
       "revId": "44cf4e0f85fc0c9c500052188f9336ce54675709",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e86920f_a43427a6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2024-05-18T13:11:28Z",
+      "side": 1,
+      "message": "We (xiaomi sm6150) plan to add a sysfs node to our xiaomi touch driver, which would eliminate the need for something like this.",
+      "parentUuid": "6bd3e8dc_ab82aa47",
+      "revId": "44cf4e0f85fc0c9c500052188f9336ce54675709",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
