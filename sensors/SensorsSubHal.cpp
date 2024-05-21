@@ -17,6 +17,7 @@
 #include "SensorsSubHal.h"
 
 #include <android/hardware/sensors/2.1/types.h>
+#include <cutils/properties.h>
 #include <log/log.h>
 
 using ::android::hardware::sensors::V2_1::implementation::ISensorsSubHal;
@@ -32,7 +33,11 @@ namespace implementation {
 using ::android::hardware::Void;
 using ::android::hardware::sensors::V2_0::implementation::ScopedWakelock;
 
-SensorsSubHal::SensorsSubHal() : mCallback(nullptr), mNextHandle(1) {}
+SensorsSubHal::SensorsSubHal() : mCallback(nullptr), mNextHandle(1) {
+    if (property_get_bool("ro.vendor.sensors.xiaomi.udfps", false)) {
+        AddSensor<UdfpsSensor>();
+    }
+}
 
 Return<void> SensorsSubHal::getSensorsList_2_1(ISensors::getSensorsList_2_1_cb _hidl_cb) {
     std::vector<SensorInfo> sensors;

@@ -45,6 +45,28 @@ static bool readBool(int fd, bool seek) {
     return c != '0';
 }
 
+static bool readFpState(int fd, int& screenX, int& screenY) {
+    char buffer[512];
+    int state = 0;
+    int rc;
+    rc = lseek(fd, 0, SEEK_SET);
+    if (rc) {
+        ALOGE("failed to seek: %d", rc);
+        return false;
+    }
+    rc = read(fd, &buffer, sizeof(buffer));
+    if (rc < 0) {
+        ALOGE("failed to read state: %d", rc);
+        return false;
+    }
+    rc = sscanf(buffer, "%d,%d,%d", &screenX, &screenY, &state);
+    if (rc < 0) {
+        ALOGE("failed to parse fp state: %d", rc);
+        return false;
+    }
+    return state > 0;
+}
+
 }  // anonymous namespace
 
 namespace android {
@@ -366,6 +388,15 @@ void SysfsPollingOneShotSensor::fillEventData(Event& event) {
 
 bool SysfsPollingOneShotSensor::readFd(const int mPollFd) {
     return readBool(mPollFd, true /* seek */);
+}
+
+void UdfpsSensor::fillEventData(Event& event) {
+    event.u.data[0] = mScreenX;
+    event.u.data[1] = mScreenY;
+}
+
+bool UdfpsSensor::readFd(const int mPollFd) {
+    return readFpState(mPollFd, mScreenX, mScreenY);
 }
 
 }  // namespace implementation
