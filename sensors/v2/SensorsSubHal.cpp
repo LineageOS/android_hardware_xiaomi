@@ -17,6 +17,7 @@
 #include "SensorsSubHal.h"
 
 #include <android/hardware/sensors/2.1/types.h>
+#include <cutils/properties.h>
 #include <log/log.h>
 
 using ::android::hardware::sensors::V2_1::implementation::ISensorsSubHal;
@@ -38,6 +39,9 @@ SensorsSubHal::SensorsSubHal() : mCallback(nullptr), mNextHandle(1) {
     }
     if (property_get_bool("ro.vendor.sensors.xiaomi.single_tap", false)) {
         AddSensor<SingleTapSensor>();
+    }
+    if (property_get_bool("ro.vendor.sensors.xiaomi.udfps", false)) {
+        AddSensor<UdfpsSensor>();
     }
 }
 
