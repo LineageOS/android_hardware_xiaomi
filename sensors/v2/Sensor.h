@@ -121,6 +121,23 @@ class SysfsPollingOneShotSensor : public OneShotSensor {
     int mPollFd;
 };
 
+class UdfpsSensor : public SysfsPollingOneShotSensor {
+  public:
+    UdfpsSensor(int32_t sensorHandle, ISensorsEventCallback* callback)
+        : SysfsPollingOneShotSensor(
+                  sensorHandle, callback, "/sys/class/touch/touch_dev/fod_press_status",
+                  "/sys/class/touch/touch_dev/fod_longpress_gesture_enabled", "UDFPS Sensor",
+                  "org.lineageos.sensor.udfps",
+                  static_cast<SensorType>(static_cast<int32_t>(SensorType::DEVICE_PRIVATE_BASE) +
+                                          1)) {}
+    virtual void fillEventData(Event& event);
+    virtual bool readFd(const int fd);
+
+  private:
+    int mScreenX;
+    int mScreenY;
+};
+
 }  // namespace implementation
 }  // namespace subhal
 }  // namespace V2_1
