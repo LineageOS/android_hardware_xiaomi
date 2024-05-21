@@ -34,6 +34,7 @@
 
 #define LOG_TAG "libqtivibratoreffect.xiaomi"
 
+#include <aidl/android/hardware/vibrator/Effect.h>
 #include <android-base/logging.h>
 #include <filesystem>
 #include <fstream>
@@ -42,6 +43,8 @@
 #include <vector>
 
 #include "effect.h"
+
+using aidl::android::hardware::vibrator::Effect;
 
 namespace {
 
@@ -81,6 +84,21 @@ std::unique_ptr<effect_stream> readEffectStreamFromFile(uint32_t uniqueEffectId)
                                            result.first->second.data());
 }
 
+std::unique_ptr<effect_stream> duplicateEffect(const effect_stream* effectStream,
+                                               uint32_t newEffectId) {
+    const std::uint32_t newEffectLength = effectStream->length * 4;
+    std::vector<int8_t> fifoData(newEffectLength);
+
+    std::copy(effectStream->data, effectStream->data + effectStream->length, fifoData.begin());
+    std::copy(effectStream->data, effectStream->data + effectStream->length,
+              fifoData.begin() + newEffectLength - effectStream->length);
+
+    auto result = sEffectFifoData.emplace(newEffectId, std::move(fifoData));
+
+    return std::make_unique<effect_stream>(newEffectId, newEffectLength, kDefaultPlayRateHz,
+                                           result.first->second.data());
+}
+
 }  // namespace
 
 const struct effect_stream* get_effect_stream(uint32_t effectId) {
@@ -91,6 +109,14 @@ const struct effect_stream* get_effect_stream(uint32_t effectId) {
         if (newEffectStream) {
             auto result = sEffectStreams.emplace(effectId, *newEffectStream);
             return &result.first->second;
+        } else if (effectId == (uint32_t)Effect::DOUBLE_CLICK) {
+            LOG(VERBOSE) << "Could not get double click effect, duplicating click effect";
+            newEffectStream = duplicateEffect(get_effect_stream((uint32_t)Effect::CLICK),
+                                              (uint32_t)Effect::DOUBLE_CLICK);
+            if (newEffectStream) {
+                auto result = sEffectStreams.emplace(effectId, *newEffectStream);
+                return &result.first->second;
+            }
         }
     } else {
         return &it->second;

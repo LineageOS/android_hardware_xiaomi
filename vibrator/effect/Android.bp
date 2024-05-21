@@ -9,6 +9,7 @@ cc_library_shared {
         "effect.cpp",
     ],
     shared_libs: [
+        "android.hardware.vibrator-V2-ndk",
         "libbase",
         "libcutils",
         "libutils",
