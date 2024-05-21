@@ -230,7 +230,9 @@ SysfsPollingOneShotSensor::SysfsPollingOneShotSensor(
     mSensorInfo.power = 0;
     mSensorInfo.flags |= SensorFlagBits::WAKE_UP;
 
-    mEnableStream.open(enablePath);
+    if (enablePath != "") {
+        mEnableStream.open(enablePath);
+    }
 
     int rc;
 
@@ -261,6 +263,11 @@ SysfsPollingOneShotSensor::SysfsPollingOneShotSensor(
             .events = POLLERR | POLLPRI,
     };
 }
+
+SysfsPollingOneShotSensor::SysfsPollingOneShotSensor(
+        int32_t sensorHandle, ISensorsEventCallback* callback, const std::string& pollPath,
+        const std::string& name, const std::string& typeAsString, SensorType type)
+    : SysfsPollingOneShotSensor(sensorHandle, callback, pollPath, "", name, typeAsString, type) {}
 
 SysfsPollingOneShotSensor::~SysfsPollingOneShotSensor() {
     interruptPoll();
