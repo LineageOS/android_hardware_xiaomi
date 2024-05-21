@@ -32,7 +32,9 @@ namespace implementation {
 using ::android::hardware::Void;
 using ::android::hardware::sensors::V2_0::implementation::ScopedWakelock;
 
-SensorsSubHal::SensorsSubHal() : mCallback(nullptr), mNextHandle(1) {}
+SensorsSubHal::SensorsSubHal() : mCallback(nullptr), mNextHandle(1) {
+    AddSensor<UdfpsSensor>();
+}
 
 Return<void> SensorsSubHal::getSensorsList_2_1(ISensors::getSensorsList_2_1_cb _hidl_cb) {
     std::vector<SensorInfo> sensors;
