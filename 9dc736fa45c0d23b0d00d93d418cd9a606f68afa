@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "569df5c3_c0e62a8b",
+        "filename": "sensors/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2024-05-30T14:33:30Z",
+      "side": 1,
+      "message": "Would appreciate having a way to properly name v1 and v2 sensor HALs, would be fine with `sensors.xiaomi.v{1,2}`",
+      "range": {
+        "startLine": 8,
+        "startChar": 11,
+        "endLine": 8,
+        "endChar": 25
+      },
+      "revId": "9dc736fa45c0d23b0d00d93d418cd9a606f68afa",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
