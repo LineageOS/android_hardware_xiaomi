@@ -37,6 +37,9 @@ SensorsSubHal::SensorsSubHal() : mCallback(nullptr), mNextHandle(1) {
     if (property_get_bool("ro.vendor.sensors.xiaomi.udfps", false)) {
         AddSensor<UdfpsSensor>();
     }
+    if (property_get_bool("ro.vendor.sensors.xiaomi.single_tap", false)) {
+        AddSensor<SingleTapSensor>();
+    }
 }
 
 Return<void> SensorsSubHal::getSensorsList_2_1(ISensors::getSensorsList_2_1_cb _hidl_cb) {
