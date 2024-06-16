@@ -34,6 +34,24 @@
       "parentUuid": "00c9c13d_596e7820",
       "revId": "3ce92852d761593bdfa10699ad9fd4ad71f6a857",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76bba619_d4085cbe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2024-06-16T22:51:28Z",
+      "side": 1,
+      "message": "Oh popup, right\n\nThe supposedly left side (at least that\u0027s the case for lmi and raphael) should be hidden when the popup camera is closed, so I didn\u0027t bother adding them, so idk?",
+      "parentUuid": "10798f3e_07c21e45",
+      "revId": "3ce92852d761593bdfa10699ad9fd4ad71f6a857",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
