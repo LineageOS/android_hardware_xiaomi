@@ -32,6 +32,7 @@ class Lights : public BnLights {
 
     BacklightDevice* mBacklightDevice;
     std::vector<std::string> mButtonsPaths;
+    bool mLeftLED;
     bool mWhiteLED;
 
     std::mutex mLEDMutex;
