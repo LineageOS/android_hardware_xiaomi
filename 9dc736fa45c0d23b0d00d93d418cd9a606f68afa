@@ -46,6 +46,30 @@
       },
       "revId": "9dc736fa45c0d23b0d00d93d418cd9a606f68afa",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87739da4_465b98a6",
+        "filename": "sensors/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2024-06-16T23:12:21Z",
+      "side": 1,
+      "message": "Nope, v1 and v2 multihal works differently\n\nSee https://github.com/LineageOS/android_hardware_xiaomi/blob/lineage-21/sensors/udfps_hal.cpp\n\nThat\u0027s also the reason why we can\u0027t uprev sensors service to @2.0 on devices using @1.0",
+      "parentUuid": "0ce8a549_070ae6c5",
+      "range": {
+        "startLine": 8,
+        "startChar": 11,
+        "endLine": 8,
+        "endChar": 25
+      },
+      "revId": "9dc736fa45c0d23b0d00d93d418cd9a606f68afa",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
