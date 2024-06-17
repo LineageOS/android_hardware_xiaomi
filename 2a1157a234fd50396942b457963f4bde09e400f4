@@ -16,6 +16,24 @@
       "message": "Is it close to ready? I am switching to this on mi845 for QPR3.\n\nBy the way, bump copyrights on the rest of the files you touched.",
       "revId": "2a1157a234fd50396942b457963f4bde09e400f4",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02c4f9be_6b6e5970",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2024-06-17T20:22:31Z",
+      "side": 1,
+      "message": "It seems to be missing the advanced RGB control that msm8998/sdm845 use via start_idx/duty_pcts/pause_lo/pause_hi/ramp_step_ms sysfs",
+      "parentUuid": "037d2650_3676f463",
+      "revId": "2a1157a234fd50396942b457963f4bde09e400f4",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
