@@ -34,6 +34,24 @@
       "parentUuid": "037d2650_3676f463",
       "revId": "2a1157a234fd50396942b457963f4bde09e400f4",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79f22d53_769c885e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2024-06-17T21:04:14Z",
+      "side": 1,
+      "message": "The HAL is probably ready, I don\u0027t have a device supporting those nodes so it just supports simple breath/blink",
+      "parentUuid": "02c4f9be_6b6e5970",
+      "revId": "2a1157a234fd50396942b457963f4bde09e400f4",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
