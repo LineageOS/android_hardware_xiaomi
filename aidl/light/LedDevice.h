@@ -18,6 +18,7 @@ namespace light {
 enum LightMode {
     STATIC,
     BREATH,
+    TIMED,
 };
 
 /**
@@ -59,13 +60,23 @@ class LedDevice : public IDumpable {
     bool supportsBreath() const;
 
     /**
+     * Return whether this LED device supports timed mode.
+     * When it doesn't, calling setBrightness with LightMode::TIMED will behave like
+     * LightMode::BREATH.
+     *
+     * @return bool true if the LED device supports timed mode, false otherwise
+     */
+    bool supportsTimed() const;
+
+    /**
      * Set the brightness of the LED device.
      *
      * @param value The brightness value to set
      * @param mode The light mode to use
      * @return bool true if the brightness was set successfully, false otherwise
      */
-    bool setBrightness(uint8_t value, LightMode mode = LightMode::STATIC);
+    bool setBrightness(uint8_t value, LightMode mode = LightMode::STATIC, uint32_t flashOnMs = 0,
+                       uint32_t flashOffMs = 0);
 
     void dump(int fd) const override;
 
@@ -74,6 +85,7 @@ class LedDevice : public IDumpable {
     std::string mBasePath;
     uint32_t mMaxBrightness;
     std::string mBreathNode;
+    bool mSupportsTimed;
 };
 
 }  // namespace light

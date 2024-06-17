@@ -52,13 +52,24 @@ class RgbLedDevice : public IDumpable {
     bool supportsBreath() const;
 
     /**
+     * Return whether this RGB LED device supports timed mode.
+     * This is true when all existing LEDs support timed mode.
+     * In case this is false, calling setBrightness with LightMode::TIMED will behave like
+     * LightMode::BREATH.
+     *
+     * @return bool true if the RGB LED device supports timed mode, false otherwise
+     */
+    bool supportsTimed() const;
+
+    /**
      * Set the brightness of this RGB LED device.
      *
      * @param color The color to set
      * @param mode The mode to set
      * @return bool true if the brightness was set successfully, false otherwise
      */
-    bool setBrightness(rgb color, LightMode mode = LightMode::STATIC);
+    bool setBrightness(rgb color, LightMode mode = LightMode::STATIC, uint32_t flashOnMs = 0,
+                       uint32_t flashOffMs = 0);
 
     void dump(int fd) const override;
 

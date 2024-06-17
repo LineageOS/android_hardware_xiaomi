@@ -109,6 +109,8 @@ void Lights::updateNotificationColor() {
             lightMode = LightMode::STATIC;
             break;
         case FlashMode::TIMED:
+            lightMode = LightMode::TIMED;
+            break;
         case FlashMode::HARDWARE:
             lightMode = LightMode::BREATH;
             break;
@@ -118,7 +120,7 @@ void Lights::updateNotificationColor() {
             break;
     }
 
-    mDevices.setNotificationColor(color, lightMode);
+    mDevices.setNotificationColor(color, lightMode, state.flashOnMs, state.flashOffMs);
 
     return;
 }

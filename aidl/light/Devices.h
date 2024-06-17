@@ -28,7 +28,8 @@ class Devices : public IDumpable {
 
     void setBacklightColor(rgb color);
     void setButtonsColor(rgb color);
-    void setNotificationColor(rgb color, LightMode mode = LightMode::STATIC);
+    void setNotificationColor(rgb color, LightMode mode = LightMode::STATIC, uint32_t flashOnMs = 0,
+                              uint32_t flashOffMs = 0);
 
     void dump(int fd) const override;
 
