@@ -158,13 +158,14 @@ void Devices::setButtonsColor(rgb color) {
     }
 }
 
-void Devices::setNotificationColor(rgb color, LightMode mode) {
+void Devices::setNotificationColor(rgb color, LightMode mode, uint32_t flashOnMs,
+                                   uint32_t flashOffMs) {
     for (auto& device : mNotificationRgbLedDevices) {
-        device.setBrightness(color, mode);
+        device.setBrightness(color, mode, flashOnMs, flashOffMs);
     }
 
     for (auto& device : mNotificationLedDevices) {
-        device.setBrightness(color.toBrightness(), mode);
+        device.setBrightness(color.toBrightness(), mode, flashOnMs, flashOffMs);
     }
 }
 
