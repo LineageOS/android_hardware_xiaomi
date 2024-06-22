@@ -39,7 +39,8 @@ static const std::string kRampStepMsNode = "ramp_step_ms";
 static constexpr int kRampSteps = 8;
 static constexpr int kRampMaxStepDurationMs = 50;
 
-LedDevice::LedDevice(std::string name) : mName(name), mBasePath(kBaseLedsPath + name + "/") {
+LedDevice::LedDevice(std::string name)
+    : mIdx(0), mName(name), mBasePath(kBaseLedsPath + name + "/") {
     if (!readFromFile(mBasePath + kMaxBrightnessNode, mMaxBrightness)) {
         mMaxBrightness = kDefaultMaxBrightness;
     }
@@ -77,7 +78,7 @@ bool LedDevice::exists() const {
 
 static std::string getScaledDutyPercent(uint8_t brightness) {
     std::string output;
-    for (int i = 0; i <= kRampSteps; i++) {
+    for (int i = 0; i < kRampSteps; i++) {
         if (i != 0) {
             output += ",";
         }
@@ -108,7 +109,7 @@ bool LedDevice::setBrightness(uint8_t value, LightMode mode, uint32_t flashOnMs,
                     pauseHi = 0;
                 }
 
-                return writeToFile(mBasePath + kStartIdxNode, 0) &&
+                return writeToFile(mBasePath + kStartIdxNode, mIdx * kRampSteps) &&
                        writeToFile(mBasePath + kDutyPctsNode, getScaledDutyPercent(value)) &&
                        writeToFile(mBasePath + kPauseLoNode, pauseLo) &&
                        writeToFile(mBasePath + kPauseHiNode, pauseHi) &&
@@ -134,6 +135,10 @@ bool LedDevice::setBrightness(uint8_t value, LightMode mode, uint32_t flashOnMs,
             return false;
             break;
     }
+}
+
+void LedDevice::setIdx(int idx) {
+    mIdx = idx;
 }
 
 void LedDevice::dump(int fd) const {

@@ -87,6 +87,8 @@ on early-boot
     chown system system /sys/class/leds/red/ramp_step_ms
     chown system system /sys/class/leds/red/start_idx
 
+    chown system system /sys/class/leds/rgb/rgb_blink
+
     chown system system /sys/class/leds/white/blink
     chown system system /sys/class/leds/white/breath
     chown system system /sys/class/leds/white/brightness
