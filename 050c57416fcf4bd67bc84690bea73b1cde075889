@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d5040b0_2f102789",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 10067
+      },
+      "writtenOn": "2024-06-22T15:37:49Z",
+      "side": 1,
+      "message": "I removed custom idx for when rgb sync is unsupported.",
+      "revId": "050c57416fcf4bd67bc84690bea73b1cde075889",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
