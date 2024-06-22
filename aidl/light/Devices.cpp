@@ -72,23 +72,23 @@ static std::vector<LedDevice> getButtonLedDevices() {
     return devices;
 }
 
-static const std::string kRgbLedDevices[][3] = {
-        {"red", "green", "blue"},
+static const std::string kRgbLedDevices[][4] = {
+        {"red", "green", "blue", "/sys/class/leds/rgb/rgb_blink"},
 };
 
 static std::vector<RgbLedDevice> getNotificationRgbLedDevices() {
     std::vector<RgbLedDevice> devices;
 
     for (const auto& device : kRgbLedDevices) {
-        LedDevice red(device[0]);
-        LedDevice green(device[1]);
-        LedDevice blue(device[2]);
+        LedDevice red(0, device[0]);
+        LedDevice green(1, device[1]);
+        LedDevice blue(2, device[2]);
 
-        RgbLedDevice rgbLedDevice(red, green, blue);
+        RgbLedDevice rgbLedDevice(red, green, blue, device[3]);
         if (rgbLedDevice.exists()) {
             LOG(INFO) << "Found notification RGB LED device: " << red.getName() << ", "
                       << green.getName() << ", " << blue.getName();
-            devices.emplace_back(red, green, blue);
+            devices.emplace_back(red, green, blue, device[3]);
         }
     }
 
