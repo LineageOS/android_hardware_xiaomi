@@ -67,6 +67,16 @@ on early-boot
     chown system system /sys/class/leds/lcd-backlight/ramp_step_ms
     chown system system /sys/class/leds/lcd-backlight/start_idx
 
+    chown system system /sys/class/leds/left/blink
+    chown system system /sys/class/leds/left/breath
+    chown system system /sys/class/leds/left/brightness
+    chown system system /sys/class/leds/left/duty_pcts
+    chown system system /sys/class/leds/left/max_brightness
+    chown system system /sys/class/leds/left/pause_hi
+    chown system system /sys/class/leds/left/pause_lo
+    chown system system /sys/class/leds/left/ramp_step_ms
+    chown system system /sys/class/leds/left/start_idx
+
     chown system system /sys/class/leds/red/blink
     chown system system /sys/class/leds/red/breath
     chown system system /sys/class/leds/red/brightness
