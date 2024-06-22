@@ -96,10 +96,12 @@ void Lights::updateNotificationColor() {
 
     bool isBatteryLit = rgb(mLastBatteryState.color).isLit();
     bool isAttentionLit = rgb(mLastAttentionState.color).isLit();
+    bool isNotificationsLit = rgb(mLastNotificationsState.color).isLit();
 
-    const HwLightState state = isBatteryLit     ? mLastBatteryState
-                               : isAttentionLit ? mLastAttentionState
-                                                : mLastNotificationsState;
+    const HwLightState state = isNotificationsLit ? mLastNotificationsState
+                               : isAttentionLit   ? mLastAttentionState
+                               : isBatteryLit     ? mLastBatteryState
+                                                  : HwLightState();
 
     rgb color(state.color);
 
