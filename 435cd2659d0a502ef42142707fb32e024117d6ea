@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d38007b5_3fcd4026",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2024-06-22T10:52:59Z",
+      "side": 1,
+      "message": "I don\u0027t want to leave -1 because it isn\u0027t that bad, but if your popup camera LED is a single color LED then you should rename it in dts to the name of the actual color",
+      "revId": "435cd2659d0a502ef42142707fb32e024117d6ea",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
