@@ -9,14 +9,15 @@
 #define LOG_TAG "RgbLedDevice"
 
 #include <android-base/logging.h>
+#include "Utils.h"
 
 namespace aidl {
 namespace android {
 namespace hardware {
 namespace light {
 
-RgbLedDevice::RgbLedDevice(LedDevice red, LedDevice green, LedDevice blue)
-    : mRed(red), mGreen(green), mBlue(blue), mColors(Color::NONE) {
+RgbLedDevice::RgbLedDevice(LedDevice red, LedDevice green, LedDevice blue, std::string rgbSyncNode)
+    : mRed(red), mGreen(green), mBlue(blue), mRgbSyncNode(rgbSyncNode), mColors(Color::NONE) {
     if (mRed.exists()) {
         mColors |= Color::RED;
     }
@@ -25,6 +26,11 @@ RgbLedDevice::RgbLedDevice(LedDevice red, LedDevice green, LedDevice blue)
     }
     if (mBlue.exists()) {
         mColors |= Color::BLUE;
+    }
+    if (supportsRgbSync()) {
+        mRed.setIdx(0);
+        mGreen.setIdx(1);
+        mBlue.setIdx(2);
     }
 }
 
@@ -44,6 +50,10 @@ bool RgbLedDevice::supportsTimed() const {
            (!mBlue.exists() || mBlue.supportsTimed());
 }
 
+bool RgbLedDevice::supportsRgbSync() const {
+    return std::ifstream(mRgbSyncNode).good();
+}
+
 bool RgbLedDevice::setBrightness(rgb color, LightMode mode, uint32_t flashOnMs,
                                  uint32_t flashOffMs) {
     bool rc = true;
@@ -61,6 +71,10 @@ bool RgbLedDevice::setBrightness(rgb color, LightMode mode, uint32_t flashOnMs,
     if (mode == LightMode::BREATH && !supportsBreath()) {
         // Not all LEDs support breathing, force static mode
         mode = LightMode::STATIC;
+    }
+
+    if (mode == LightMode::TIMED && supportsRgbSync()) {
+        rc &= writeToFile(mRgbSyncNode, 0);
     }
 
     if (mColors == Color::ALL) {
@@ -95,6 +109,10 @@ bool RgbLedDevice::setBrightness(rgb color, LightMode mode, uint32_t flashOnMs,
         }
     }
 
+    if (mode == LightMode::TIMED && supportsRgbSync()) {
+        rc &= writeToFile(mRgbSyncNode, 1);
+    }
+
     return rc;
 }
 
@@ -102,6 +120,7 @@ void RgbLedDevice::dump(int fd) const {
     dprintf(fd, "Exists: %d", exists());
     dprintf(fd, ", supports breath: %d", supportsBreath());
     dprintf(fd, ", supports timed: %d", supportsTimed());
+    dprintf(fd, ", supports RGB sync: %d", supportsRgbSync());
     dprintf(fd, ", colors:");
     if (mColors != Color::NONE) {
         if (mColors & Color::RED) {
