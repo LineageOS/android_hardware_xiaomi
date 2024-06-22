@@ -78,10 +78,18 @@ class LedDevice : public IDumpable {
     bool setBrightness(uint8_t value, LightMode mode = LightMode::STATIC, uint32_t flashOnMs = 0,
                        uint32_t flashOffMs = 0);
 
+    /**
+     * Set the index of the LED device.
+     *
+     * @param idx The index to set
+     */
+    void setIdx(int idx);
+
     void dump(int fd) const override;
 
   private:
     std::string mName;
+    int mIdx;
     std::string mBasePath;
     uint32_t mMaxBrightness;
     std::string mBreathNode;

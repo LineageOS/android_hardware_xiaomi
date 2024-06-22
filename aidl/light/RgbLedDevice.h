@@ -30,8 +30,9 @@ class RgbLedDevice : public IDumpable {
      * @param red The red LED device
      * @param green The green LED device
      * @param blue The blue LED device
+     * @param rgbSyncNode The path to RGB sync trigger
      */
-    RgbLedDevice(LedDevice red, LedDevice green, LedDevice blue);
+    RgbLedDevice(LedDevice red, LedDevice green, LedDevice blue, std::string rgbSyncNode);
 
     /**
      * Return whether this RGB LED device exists.
@@ -62,6 +63,13 @@ class RgbLedDevice : public IDumpable {
     bool supportsTimed() const;
 
     /**
+     * Return whether this RGB LED device supports RGB sync.
+     *
+     * @return bool true if the RGB LED device supports RGB sync, false otherwise
+     */
+    bool supportsRgbSync() const;
+
+    /**
      * Set the brightness of this RGB LED device.
      *
      * @param color The color to set
@@ -85,6 +93,7 @@ class RgbLedDevice : public IDumpable {
     LedDevice mRed;
     LedDevice mGreen;
     LedDevice mBlue;
+    std::string mRgbSyncNode;
 
     int mColors;
 };
