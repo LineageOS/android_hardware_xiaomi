@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0007cf58_a6c9f8ba",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 22465
+      },
+      "writtenOn": "2024-06-22T10:30:41Z",
+      "side": 1,
+      "message": "I\u0027ll adapt this for the new refactored HAL.",
+      "revId": "8ae1e716f8d70d4383b31afb102bf1f9b357d761",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
