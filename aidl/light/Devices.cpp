@@ -55,6 +55,7 @@ static std::vector<LedDevice> getBacklightLedDevices() {
 static const std::string kButtonLedDevices[] = {
         "button-backlight",
         "button-backlight1",
+        "button-backlight2",
 };
 
 static std::vector<LedDevice> getButtonLedDevices() {
