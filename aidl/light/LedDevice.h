@@ -33,8 +33,9 @@ class LedDevice : public IDumpable {
      * Constructor.
      *
      * @param name The name of the LED device
+     * @param idx The index of the LED device
      */
-    LedDevice(std::string name);
+    LedDevice(std::string name, int idx = 0);
 
     /**
      * Get the name of the LED device.
@@ -82,6 +83,7 @@ class LedDevice : public IDumpable {
 
   private:
     std::string mName;
+    int mIdx;
     std::string mBasePath;
     uint32_t mMaxBrightness;
     std::string mBreathNode;
