@@ -78,6 +78,22 @@
         </interface>
     </hal>
     <hal format="hidl" optional="true">
+        <name>vendor.synaptics.fingerprints.interfaces.extensions</name>
+        <version>1.0</version>
+        <interface>
+            <name>IFpCollection</name>
+            <instance>default</instance>
+        </interface>
+        <interface>
+            <name>INavigation</name>
+            <instance>default</instance>
+        </interface>
+        <interface>
+            <name>ISensorTest</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl" optional="true">
         <name>vendor.xiaomi.hardware.bgservice</name>
         <version>1.0</version>
         <interface>
