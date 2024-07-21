@@ -16,6 +16,40 @@
       "message": "Tested and successfully built",
       "revId": "cf92dfa34fab60fce95e52eba531a95fc5eb1e48",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30a86e4c_a4e6bd77",
+        "filename": "vintf/xiaomi_framework_compatibility_matrix.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2024-07-21T08:21:52Z",
+      "side": 1,
+      "message": "optional\u003d\"true\"",
+      "revId": "cf92dfa34fab60fce95e52eba531a95fc5eb1e48",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d92b7ca6_21c4e6d1",
+        "filename": "vintf/xiaomi_framework_compatibility_matrix.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2024-07-21T08:21:52Z",
+      "side": 1,
+      "message": "same",
+      "revId": "cf92dfa34fab60fce95e52eba531a95fc5eb1e48",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
