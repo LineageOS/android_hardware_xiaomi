@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07fa71ee_c847d9b6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 26678
+      },
+      "writtenOn": "2024-07-26T06:13:36Z",
+      "side": 1,
+      "message": "Built successfully and booted",
+      "revId": "4f83124642bdd7de0029d45cbfbb791c2b9aa3fe",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
