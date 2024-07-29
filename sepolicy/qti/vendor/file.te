@@ -1,5 +1,6 @@
 # Audio
 type audio_socket, file_type;
+type smartpa_type, fs_type, sysfs_type;
 
 # Camera
 type camera_persist_file, file_type, mlstrustedobject, vendor_persist_type;
