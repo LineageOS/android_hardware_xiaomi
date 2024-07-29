@@ -1,4 +1,5 @@
 allow hal_audio_default vendor_persist_audio_file:file rw_file_perms;
+allow hal_audio_default smartpa_type:file r_file_perms;
 
 unix_socket_connect(hal_audio_default, audio, hal_sensors_default)
 

@@ -1,0 +1,1 @@
+allow vendor_agmservice_qti smartpa_type:file r_file_perms;
