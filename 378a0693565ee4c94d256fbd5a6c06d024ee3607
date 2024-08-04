@@ -16,6 +16,24 @@
       "message": "remove",
       "revId": "378a0693565ee4c94d256fbd5a6c06d024ee3607",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "78f1838b_068228f2",
+        "filename": "vintf/xiaomi_framework_compatibility_matrix.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 26313
+      },
+      "writtenOn": "2024-08-04T16:55:13Z",
+      "side": 1,
+      "message": "Done + removed transports",
+      "parentUuid": "d15f9274_84f67df5",
+      "revId": "378a0693565ee4c94d256fbd5a6c06d024ee3607",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
