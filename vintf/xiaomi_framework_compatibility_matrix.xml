@@ -84,6 +84,14 @@
         </interface>
     </hal>
     <hal format="hidl" optional="true">
+        <name>vendor.pixelworks.hardware.display</name>
+        <version>1.0</version>
+        <interface>
+            <name>IIris</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl" optional="true">
         <name>vendor.silead.hardware.fingerprintext</name>
         <version>1.0</version>
         <interface>
