@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d15f9274_84f67df5",
+        "filename": "vintf/xiaomi_framework_compatibility_matrix.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 10067
+      },
+      "writtenOn": "2024-08-04T16:48:55Z",
+      "side": 1,
+      "message": "remove",
+      "revId": "378a0693565ee4c94d256fbd5a6c06d024ee3607",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
