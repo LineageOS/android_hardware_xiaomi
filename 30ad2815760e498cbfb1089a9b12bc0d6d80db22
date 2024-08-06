@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8fc2700d_69ea38cb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 22465
+      },
+      "writtenOn": "2024-08-06T09:27:54Z",
+      "side": 1,
+      "message": "I\u0027ve been using this fine in socrates for months, but would like opinions on it :).",
+      "revId": "30ad2815760e498cbfb1089a9b12bc0d6d80db22",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
