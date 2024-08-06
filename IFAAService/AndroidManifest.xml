@@ -8,7 +8,7 @@
         android:persistent="true">
 
         <service
-            android:name="org.ifaa.aidl.manager.IfaaService"
+            android:name=".IfaaService"
             android:exported="true">
 
             <intent-filter>
