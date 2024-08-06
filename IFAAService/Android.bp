@@ -7,7 +7,7 @@
 android_app {
     name: "IFAAService",
     srcs: [
-        "src/**/*.java",
+        "src/**/*.kt",
         "src/**/*.aidl",
     ],
     aidl: {
