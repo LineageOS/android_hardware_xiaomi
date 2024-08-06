@@ -34,6 +34,24 @@
       "parentUuid": "b8cbb07a_268fe2f7",
       "revId": "12f051fde601c41dae0a8b579962d382ab74e825",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "81d078ae_71e438e1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 22465
+      },
+      "writtenOn": "2024-08-06T10:59:03Z",
+      "side": 1,
+      "message": "Loading it from boot jars (edited the commit msg for clarifying)",
+      "parentUuid": "b8cbb07a_268fe2f7",
+      "revId": "12f051fde601c41dae0a8b579962d382ab74e825",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
