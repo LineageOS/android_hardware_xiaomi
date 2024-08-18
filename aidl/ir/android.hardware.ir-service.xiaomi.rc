@@ -1,0 +1,14 @@
+#
+# SPDX-FileCopyrightText: 2024 The LineageOS Project
+# SPDX-License-Identifier: Apache-2.0
+#
+
+on early-boot
+    # IR device
+    chown system system /dev/lirc0
+
+service vendor.ir-default /vendor/bin/hw/android.hardware.ir-service.xiaomi
+    class hal
+    user system
+    group system
+    shutdown critical
