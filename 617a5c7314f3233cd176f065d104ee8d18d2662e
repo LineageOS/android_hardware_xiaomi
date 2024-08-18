@@ -51,6 +51,23 @@
       "parentUuid": "4d848493_ea41ec56",
       "revId": "617a5c7314f3233cd176f065d104ee8d18d2662e",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef34e4af_40245509",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 32253
+      },
+      "writtenOn": "2024-08-18T16:23:36Z",
+      "side": 1,
+      "message": "Alipay seems to be fine with it ? at least, I don\u0027t see anything wrong in the logs.",
+      "revId": "617a5c7314f3233cd176f065d104ee8d18d2662e",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
