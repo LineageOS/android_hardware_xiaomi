@@ -68,6 +68,23 @@
       "message": "Alipay seems to be fine with it ? at least, I don\u0027t see anything wrong in the logs.",
       "revId": "617a5c7314f3233cd176f065d104ee8d18d2662e",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56a23f37_ac462e55",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2024-08-18T16:54:19Z",
+      "side": 1,
+      "message": "Seba, can you remove \"xiaomi:\" from commit messages?",
+      "revId": "617a5c7314f3233cd176f065d104ee8d18d2662e",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
