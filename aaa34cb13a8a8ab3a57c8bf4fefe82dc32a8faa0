@@ -16,6 +16,24 @@
       "message": "I don\u0027t think many trees use this HAL, so we can probably fix them quick enough",
       "revId": "aaa34cb13a8a8ab3a57c8bf4fefe82dc32a8faa0",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "44da98de_8d02ff06",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2024-08-18T23:03:35Z",
+      "side": 1,
+      "message": "@priv.luk@gmail.com can you try aidl HAL",
+      "parentUuid": "a8113dab_b2a0a066",
+      "revId": "aaa34cb13a8a8ab3a57c8bf4fefe82dc32a8faa0",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
