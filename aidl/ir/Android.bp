@@ -1,0 +1,21 @@
+//
+// SPDX-FileCopyrightText: 2024 The LineageOS Project
+// SPDX-License-Identifier: Apache-2.0
+//
+
+cc_binary {
+    name: "android.hardware.ir-service.xiaomi",
+    relative_install_path: "hw",
+    vendor: true,
+    init_rc: ["android.hardware.ir-service.xiaomi.rc"],
+    vintf_fragments: ["android.hardware.ir-service.xiaomi.xml"],
+    srcs: [
+        "ConsumerIr.cpp",
+        "service.cpp",
+    ],
+    shared_libs: [
+        "libbase",
+        "libbinder_ndk",
+        "android.hardware.ir-V1-ndk",
+    ],
+}
