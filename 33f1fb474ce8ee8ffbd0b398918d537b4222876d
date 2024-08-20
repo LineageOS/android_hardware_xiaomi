@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "75b71085_bf9bf692",
+        "filename": "aidl/ir/ConsumerIr.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2024-08-20T08:55:19Z",
+      "side": 1,
+      "message": "This seems unnecessary",
+      "revId": "33f1fb474ce8ee8ffbd0b398918d537b4222876d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "18a2b175_f51e51ce",
         "filename": "aidl/ir/ConsumerIr.cpp",
         "patchSetId": 2
