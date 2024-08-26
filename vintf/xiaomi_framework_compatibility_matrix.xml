@@ -47,6 +47,18 @@
             <instance>default</instance>
         </interface>
     </hal>
+   <hal format="hidl" optional="true">
+        <name>vendor.goodix.hardware.cap.biometrics.fingerprint</name>
+        <version>2.1</version>
+        <interface>
+            <name>IGoodixFingerprintDaemon</name>
+            <instance>default</instance>
+        </interface>
+        <interface>
+            <name>IGoodixFingerprintDaemonExt</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
     <hal format="hidl" optional="true">
         <name>vendor.focaltech.fingerprint</name>
         <version>1.0</version>
