@@ -21,8 +21,6 @@ namespace ir {
 
 static const std::string kIrDevice = "/dev/lirc0";
 
-static const int kDutyCycle = 33;
-
 static vector<ConsumerIrFreqRange> kRangeVec{
         {.minHz = 30000, .maxHz = 60000},
 };
@@ -54,15 +52,6 @@ static vector<ConsumerIrFreqRange> kRangeVec{
         close(fd);
 
         return ::ndk::ScopedAStatus::fromExceptionCode(EX_UNSUPPORTED_OPERATION);
-    }
-
-    rc = ioctl(fd, LIRC_SET_SEND_DUTY_CYCLE, &kDutyCycle);
-    if (rc < 0) {
-        LOG(ERROR) << "Failed to set duty cycle " << kDutyCycle << ", error: " << errno;
-
-        close(fd);
-
-        return ::ndk::ScopedAStatus::fromExceptionCode(EX_ILLEGAL_STATE);
     }
 
     if ((entries & 1) != 0) {
