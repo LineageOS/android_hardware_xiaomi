@@ -33,6 +33,24 @@
       "message": "works on xiaomi sm8450",
       "revId": "62313f8f6a1c8631e2a9f31b012b2fa7c326bee8",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "838bb8d4_01442539",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2024-08-28T13:08:58Z",
+      "side": 1,
+      "message": "```\n\t- duty-cycle: 8 bit balue that represents the percentage of one period\n\t  in which the signal is active.  It can be 50, 60, 70, 75, 80 or 90.\n```\nWas this thing even valid?",
+      "parentUuid": "d038a355_71ac5da7",
+      "revId": "62313f8f6a1c8631e2a9f31b012b2fa7c326bee8",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
