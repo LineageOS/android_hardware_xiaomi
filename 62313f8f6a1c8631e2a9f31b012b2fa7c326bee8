@@ -16,6 +16,23 @@
       "message": "Per Arian\u0027s request, this needs testing",
       "revId": "62313f8f6a1c8631e2a9f31b012b2fa7c326bee8",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "94650e72_df48ebcd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2024-08-28T12:52:24Z",
+      "side": 1,
+      "message": "works on xiaomi sm8450",
+      "revId": "62313f8f6a1c8631e2a9f31b012b2fa7c326bee8",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
