@@ -51,6 +51,23 @@
       "parentUuid": "d038a355_71ac5da7",
       "revId": "62313f8f6a1c8631e2a9f31b012b2fa7c326bee8",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0c5a685_cc791a8a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2024-08-28T14:51:30Z",
+      "side": 1,
+      "message": "Works on sm8250, sm8150 and sdm710",
+      "revId": "62313f8f6a1c8631e2a9f31b012b2fa7c326bee8",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
