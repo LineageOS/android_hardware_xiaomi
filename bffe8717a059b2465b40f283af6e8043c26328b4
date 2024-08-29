@@ -22,6 +22,30 @@
       },
       "revId": "bffe8717a059b2465b40f283af6e8043c26328b4",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "42b3794e_4b459b60",
+        "filename": "sensors/Sensor.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2024-08-29T19:12:13Z",
+      "side": 1,
+      "message": "newer patchsets changed this and don\u0027t pass references to the coordinated anymore",
+      "parentUuid": "5977e7dc_92269dfe",
+      "range": {
+        "startLine": 48,
+        "startChar": 32,
+        "endLine": 48,
+        "endChar": 58
+      },
+      "revId": "bffe8717a059b2465b40f283af6e8043c26328b4",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
