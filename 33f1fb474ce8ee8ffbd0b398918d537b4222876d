@@ -68,6 +68,24 @@
       "message": "Is this really needed on every transmit? The driver initializes that on probe (defaults to 50) and devices can set the `duty-cycle` property in kernel devicetree.\nOn my devices, it seems to be fine with the default value of 50 and no duty cycle setup here.",
       "revId": "33f1fb474ce8ee8ffbd0b398918d537b4222876d",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a86d8fc_ecd4862e",
+        "filename": "aidl/ir/ConsumerIr.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2024-08-29T19:30:40Z",
+      "side": 1,
+      "message": "Addressed in follow-up",
+      "parentUuid": "18a2b175_f51e51ce",
+      "revId": "33f1fb474ce8ee8ffbd0b398918d537b4222876d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
