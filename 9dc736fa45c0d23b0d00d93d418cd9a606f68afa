@@ -70,6 +70,30 @@
       },
       "revId": "9dc736fa45c0d23b0d00d93d418cd9a606f68afa",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f2a5c1d_52765803",
+        "filename": "sensors/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2024-08-29T19:04:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87739da4_465b98a6",
+      "range": {
+        "startLine": 8,
+        "startChar": 11,
+        "endLine": 8,
+        "endChar": 25
+      },
+      "revId": "9dc736fa45c0d23b0d00d93d418cd9a606f68afa",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
