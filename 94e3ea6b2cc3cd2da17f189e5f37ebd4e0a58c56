@@ -16,6 +16,23 @@
       "message": "I\u0027m guess merging this",
       "revId": "94e3ea6b2cc3cd2da17f189e5f37ebd4e0a58c56",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "711f7655_1917d1ba",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2024-08-31T14:19:38Z",
+      "side": 1,
+      "message": "I am not using any, so please feel free to update the targets using these.",
+      "revId": "94e3ea6b2cc3cd2da17f189e5f37ebd4e0a58c56",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
