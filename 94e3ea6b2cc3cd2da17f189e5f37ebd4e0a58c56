@@ -51,6 +51,24 @@
       "parentUuid": "1a237ee5_fb18e37b",
       "revId": "94e3ea6b2cc3cd2da17f189e5f37ebd4e0a58c56",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0cb4aa3_55b102cc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2024-09-01T08:29:44Z",
+      "side": 1,
+      "message": "I can update my targets today and test it.\nsm6250-common seems to use it too",
+      "parentUuid": "e81e601d_bc0dbd02",
+      "revId": "94e3ea6b2cc3cd2da17f189e5f37ebd4e0a58c56",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
