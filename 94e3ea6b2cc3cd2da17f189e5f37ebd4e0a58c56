@@ -86,6 +86,23 @@
       "message": "Verified on redwood",
       "revId": "94e3ea6b2cc3cd2da17f189e5f37ebd4e0a58c56",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7cc40878_0a2f1990",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 32253
+      },
+      "writtenOn": "2024-09-01T13:41:10Z",
+      "side": 1,
+      "message": "Fine on miatoll `sm6250` and xaga `mt6895`",
+      "revId": "94e3ea6b2cc3cd2da17f189e5f37ebd4e0a58c56",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
