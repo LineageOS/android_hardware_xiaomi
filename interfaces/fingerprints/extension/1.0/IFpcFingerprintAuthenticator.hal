@@ -1,0 +1,23 @@
+/*
+ * Copyright (C) 2024 The LineageOS Project
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+package com.fingerprints.extension@1.0;
+
+import IAuthenticatorCallback;
+
+interface IFpcFingerprintAuthenticator {
+    oneway authenticate();
+
+    oneway cancel();
+
+    oneway enroll();
+
+    oneway enumerate();
+
+    oneway remove(uint32_t fingerId);
+
+    oneway setNotify(IAuthenticatorCallback callback);
+};
