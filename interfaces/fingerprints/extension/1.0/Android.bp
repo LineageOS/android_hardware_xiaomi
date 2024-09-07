@@ -6,6 +6,7 @@ hidl_interface {
     system_ext_specific: true,
     srcs: [
         "types.hal",
+        "IAuthenticatorCallback.hal",
         "ICalibrationCallback.hal",
         "ICryptCallback.hal",
         "IFingerprintAuthenticator.hal",
@@ -17,6 +18,7 @@ hidl_interface {
         "IFingerprintRecalibration.hal",
         "IFingerprintSenseTouch.hal",
         "IFingerprintSensorTest.hal",
+        "IFpcFingerprintAuthenticator.hal",
         "IIlluminationTuningCallback.hal",
         "IImageCaptureCallback.hal",
         "IImageInjectionCallback.hal",
