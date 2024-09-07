@@ -41,6 +41,30 @@
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7850c187_bee0c622",
+        "filename": "interfaces/fingerprints/extension/1.0/IAuthenticatorCallback.hal",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 32253
+      },
+      "writtenOn": "2024-09-07T15:13:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b37f3d25_35987c95",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "2cfe2e209f0831954a0eada850bb17540aec3fe2",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7bda982d_a8280ffc",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-09-07T15:00:58Z",
       "side": 1,
       "message": "2024",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "2cfe2e209f0831954a0eada850bb17540aec3fe2",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2af6fdf6_52e5f1c6",
+        "filename": "interfaces/fingerprints/extension/1.0/IFpcFingerprintAuthenticator.hal",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 32253
+      },
+      "writtenOn": "2024-09-07T15:13:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7bda982d_a8280ffc",
       "range": {
         "startLine": 2,
         "startChar": 17,
