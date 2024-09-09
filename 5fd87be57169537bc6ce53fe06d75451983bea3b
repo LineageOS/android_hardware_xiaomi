@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7059e6dd_e65523de",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 22465
+      },
+      "writtenOn": "2024-09-09T17:52:07Z",
+      "side": 1,
+      "message": "I need this for maintaining FOD enabled while enrolling, as it gets disabled on ACQUIRED_GOOD messages: https://review.lineageos.org/c/LineageOS/android_device_xiaomi_socrates/+/401765",
+      "revId": "5fd87be57169537bc6ce53fe06d75451983bea3b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
