@@ -367,6 +367,11 @@ void BiometricsFingerprint::notify(const fingerprint_msg_t* msg) {
         case FINGERPRINT_TEMPLATE_ENROLLING:
             ALOGD("onEnrollResult(fid=%d, gid=%d, rem=%d)", msg->data.enroll.finger.fid,
                   msg->data.enroll.finger.gid, msg->data.enroll.samples_remaining);
+            if (thisPtr->mUdfpsHandler) {
+                thisPtr->mUdfpsHandler->onEnrollResult(msg->data.enroll.finger.fid,
+                                                       msg->data.enroll.finger.gid,
+                                                       msg->data.enroll.samples_remaining);
+            }
             if (!thisPtr->mClientCallback
                          ->onEnrollResult(devId, msg->data.enroll.finger.fid,
                                           msg->data.enroll.finger.gid,

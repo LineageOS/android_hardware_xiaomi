@@ -18,6 +18,7 @@ class UdfpsHandler {
     virtual void onFingerUp() = 0;
 
     virtual void onAcquired(int32_t result, int32_t vendorCode) = 0;
+    virtual void onEnrollResult(uint32_t fingerId, uint32_t groupId, uint32_t remaining) = 0;
     virtual void cancel() = 0;
 };
 
