@@ -1,12 +1,15 @@
 /*
- * Copyright (C) 2023 The LineageOS Project
+ * Copyright (C) 2024 The LineageOS Project
  *
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package com.fingerprints.extension@1.0;
+package com.fingerprints.extension@2.0;
 
-import ISensorTestCaptureCallback;
+import @1.0::ISensorTestCaptureCallback;
+import @1.0::SensorInfo;
+import @1.0::SensorTest;
+import @1.0::SensorTestInput;
 import ISensorTestCallback;
 
 interface IFingerprintSensorTest {
