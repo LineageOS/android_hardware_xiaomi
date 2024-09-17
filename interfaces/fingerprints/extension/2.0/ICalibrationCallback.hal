@@ -1,0 +1,13 @@
+/*
+ * Copyright (C) 2024 The LineageOS Project
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+package com.fingerprints.extension@2.0;
+
+interface ICalibrationCallback {
+    oneway onStatus(uint32_t code);
+
+    oneway onError(uint32_t error);
+};
