@@ -1,0 +1,34 @@
+/*
+ * Copyright (C) 2024 The LineageOS Project
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+package com.fingerprints.extension@2.0;
+
+import @1.0::IImageCaptureCallback;
+import @1.0::IImageInjectionCallback;
+import @1.0::SensorSize;
+
+interface IFingerprintEngineering {
+
+    getSensorSize() generates (SensorSize sensorSize);
+
+    oneway startImageSubscription(IImageCaptureCallback callback);
+
+    oneway stopImageSubscription();
+
+    oneway startImageInjection(IImageInjectionCallback callback);
+
+    oneway stopImageInjection();
+
+    oneway startCapture(IImageCaptureCallback callback, uint32_t mode);
+
+    oneway cancelCapture();
+
+    oneway setEnrollToken(vec<uint8_t> token);
+
+    getEnrollChallenge() generates (int64_t enrollChallenge);
+
+    getBuildInfo() generates (string buildInfo);
+};
