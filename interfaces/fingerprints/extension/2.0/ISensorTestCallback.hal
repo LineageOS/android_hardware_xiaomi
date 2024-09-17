@@ -1,0 +1,13 @@
+/*
+ * Copyright (C) 2024 The LineageOS Project
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+package com.fingerprints.extension@2.0;
+
+import @1.0::SensorTestResult;
+
+interface ISensorTestCallback {
+    oneway onResult(SensorTestResult result);
+};
