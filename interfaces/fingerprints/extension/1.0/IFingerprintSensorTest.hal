@@ -10,35 +10,6 @@ import ISensorTestCaptureCallback;
 import ISensorTestCallback;
 
 interface IFingerprintSensorTest {
-    struct SensorInfo {
-        int32_t sensorDieValidFlag;
-        int32_t hardwareId;
-        string lotId;
-        int32_t waferId;
-        int32_t waferPositionX;
-        int32_t waferPositionY;
-        string productionTimestamp;
-        int32_t companionDieValidFlag;
-        int32_t companionChipHardwareId;
-        string companionChipLotId;
-        int32_t vendorHwValidFlag;
-        vec<int8_t> vendorData;
-        int32_t totalNumOtpBitErrors;
-        int32_t maxNumOtpBitErrorsInByte;
-        int32_t productType;
-    };
-
-    struct SensorTest {
-        string name;
-        string description;
-        bool waitForFingerDown;
-        string rubberStampType;
-    };
-
-    struct SensorTestInput {
-        string testLimitsKeyValuePair;
-    };
-
     getSensorInfo() generates (SensorInfo sensorInfo);
 
     getSensorTests() generates (vec<SensorTest> sensorTests);

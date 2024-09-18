@@ -9,27 +9,6 @@ package com.fingerprints.extension@1.0;
 import IFingerprintOpticalCallback;
 
 interface IFingerprintOptical {
-    struct HotZoneData {
-        int32_t left;
-        int32_t right;
-        int32_t top;
-        int32_t bottom;
-        int32_t update;
-    };
-
-    struct TouchEventData {
-        int32_t hotzone_top;
-        int32_t hotzone_left;
-        int32_t hotzone_right;
-        int32_t hotzone_bottom;
-        int32_t pos_x;
-        int32_t pos_y;
-        float pressure;
-        float size;
-        int32_t major;
-        int32_t minor;
-    };
-
     oneway setNotify(IFingerprintOpticalCallback callback);
 
     oneway setIlluminationStatus(uint32_t value);

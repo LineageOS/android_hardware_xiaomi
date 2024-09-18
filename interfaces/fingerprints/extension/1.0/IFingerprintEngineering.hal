@@ -13,12 +13,7 @@ import ICalibrationCallback;
 import IIlluminationTuningCallback;
 
 interface IFingerprintEngineering {
-    struct SensorSize {
-        int32_t width;
-        int32_t height;
-    };
-
-    getSensorSize() generates (SensorSize sensorSize); 
+    getSensorSize() generates (SensorSize sensorSize);
 
     oneway startImageSubscription(IImageCaptureCallback callback);
 

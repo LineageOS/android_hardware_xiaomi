@@ -7,17 +7,6 @@
 package com.fingerprints.extension@1.0;
 
 interface IFingerprintSenseTouch {
-    struct SenseTouchConfig {
-        bool success;
-        int32_t version;
-        int32_t ground;
-        int32_t triggerThreshold;
-        int32_t untriggerThreshold;
-        bool authTriggerOnDown;
-        bool authTriggerOnUp;
-        int32_t authButtonTimeoutMs;
-    };
-
     getForce() generates (int32_t force);
 
     isSupported() generates (bool isSupported);
