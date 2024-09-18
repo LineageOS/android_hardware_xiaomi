@@ -1,0 +1,106 @@
+/*
+ * Copyright (C) 2024 The LineageOS Project
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+package com.fingerprints.extension@1.0;
+
+struct HotZoneData {
+    int32_t left;
+    int32_t right;
+    int32_t top;
+    int32_t bottom;
+    int32_t update;
+};
+
+struct ImageCaptureData {
+    int32_t mode;
+    int32_t captureResult;
+    int32_t identifyResult;
+    int32_t templateUpdateResult;
+    int32_t enrollResult;
+    int32_t cacResult;
+    int32_t userId;
+    int32_t remainingSamples;
+    int32_t coverage;
+    int32_t quality;
+    vec<int8_t> rawImage;
+    vec<int8_t> enhancedImage;
+};
+
+struct NavigationConfig {
+    int32_t tapNoImageMaxThreshold;
+    int32_t holdNoImageMinThreshold;
+    int32_t doubleClickTimeInterval;
+    int32_t tapImageTransMaxThreshold;
+    int32_t swipeImageTransMinThreshold;
+    int32_t backGroundAlgo;
+};
+
+struct SensorInfo {
+    int32_t sensorDieValidFlag;
+    int32_t hardwareId;
+    string lotId;
+    int32_t waferId;
+    int32_t waferPositionX;
+    int32_t waferPositionY;
+    string productionTimestamp;
+    int32_t companionDieValidFlag;
+    int32_t companionChipHardwareId;
+    string companionChipLotId;
+    int32_t vendorHwValidFlag;
+    vec<int8_t> vendorData;
+    int32_t totalNumOtpBitErrors;
+    int32_t maxNumOtpBitErrorsInByte;
+    int32_t productType;
+};
+
+struct SensorSize {
+    int32_t width;
+    int32_t height;
+};
+
+struct SensorTest {
+    string name;
+    string description;
+    bool waitForFingerDown;
+    string rubberStampType;
+};
+
+struct SensorTestInput {
+    string testLimitsKeyValuePair;
+};
+
+struct SensorTestResult {
+    int32_t resultCode;
+    string resultString;
+    int32_t errorCode;
+    string errorString;
+    vec<int8_t> imageData;
+    string log;
+};
+
+struct SenseTouchConfig {
+    bool success;
+    int32_t version;
+    int32_t ground;
+    int32_t triggerThreshold;
+    int32_t untriggerThreshold;
+    bool authTriggerOnDown;
+    bool authTriggerOnUp;
+    int32_t authButtonTimeoutMs;
+};
+
+struct TouchEventData {
+    int32_t hotzone_top;
+    int32_t hotzone_left;
+    int32_t hotzone_right;
+    int32_t hotzone_bottom;
+    int32_t pos_x;
+    int32_t pos_y;
+    float pressure;
+    float size;
+    int32_t major;
+    int32_t minor;
+};

@@ -7,21 +7,6 @@
 package com.fingerprints.extension@1.0;
 
 interface IImageCaptureCallback {
-    struct ImageCaptureData {
-        int32_t mode;
-        int32_t captureResult;
-        int32_t identifyResult;
-        int32_t templateUpdateResult;
-        int32_t enrollResult;
-        int32_t cacResult;
-        int32_t userId;
-        int32_t remainingSamples;
-        int32_t coverage;
-        int32_t quality;
-        vec<int8_t> rawImage;
-        vec<int8_t> enhancedImage;
-    };
-
     oneway onImage(ImageCaptureData imageCaptureData);
 
     oneway onImageTransferData(uint8_t type, vec<uint8_t> buffer);

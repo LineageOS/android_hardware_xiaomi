@@ -7,15 +7,6 @@
 package com.fingerprints.extension@1.0;
 
 interface IFingerprintNavigation {
-    struct NavigationConfig {
-        int32_t tapNoImageMaxThreshold;
-        int32_t holdNoImageMinThreshold;
-        int32_t doubleClickTimeInterval;
-        int32_t tapImageTransMaxThreshold;
-        int32_t swipeImageTransMinThreshold;
-        int32_t backGroundAlgo;
-    };
-
     setNavigation(bool enabled);
 
     getNavigationConfig() generates (NavigationConfig navigationConfig);
