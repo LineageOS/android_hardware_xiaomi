@@ -1,0 +1,135 @@
+# fingerprint.sysprop
+# module becomes static class (Java) / namespace (C++) for serving API
+module: "android.fingerprint.xiaomi.FingerprintHalProperties"
+owner: Vendor
+
+# type of fingerprint sensor (default: none)
+prop {
+    prop_name: "persist.vendor.fingerprint.type"
+    type: String
+    scope: Internal
+    access: ReadWrite
+    enum_values: "udfps|udfps_optical|side|home|rear"
+    api_name: "type"
+}
+
+# sensor modules (default: fortsense,fpc,fpc_fod,goodix,goodix_fod,goodix_fod6,silead,syna)
+#    module1,module2
+prop {
+    prop_name: "persist.vendor.fingerprint.sensor_modules"
+    type: String
+    scope: Internal
+    access: ReadWrite
+    api_name: "sensor_modules"
+}
+
+# sensor location
+#    <x>|<y>|<radius> in pixel
+prop {
+    prop_name: "persist.vendor.fingerprint.sensor_location"
+    type: String
+    scope: Internal
+    access: ReadWrite
+    api_name: "sensor_location"
+}
+
+# sensor id (default: 0)
+prop {
+    prop_name: "persist.vendor.fingerprint.sensor_id"
+    type: Integer
+    scope: Internal
+    access: ReadWrite
+    api_name: "sensor_id"
+}
+
+# sensor strength (default: 2)
+# [0=CONVENECE, 1=WEAK, 2=STRONG]
+prop {
+    prop_name: "persist.vendor.fingerprint.sensor_strength"
+    type: Integer
+    scope: Internal
+    access: ReadWrite
+    api_name: "sensor_strength"
+}
+
+# max enrollments per user (default: 5)
+#
+prop {
+    prop_name: "persist.vendor.fingerprint.max_enrollments"
+    type: Integer
+    scope: Internal
+    access: ReadWrite
+    api_name: "max_enrollments"
+}
+
+# whether support navigation guestures (default: false)
+prop {
+    prop_name: "persist.vendor.fingerprint.navigation_guesture"
+    type: Boolean
+    scope: Internal
+    access: ReadWrite
+    api_name: "navigation_guesture"
+}
+
+# whether support detect interaction (default: false)
+prop {
+    prop_name: "persist.vendor.fingerprint.detect_interaction"
+    type: Boolean
+    scope: Internal
+    access: ReadWrite
+    api_name: "detect_interaction"
+}
+
+# whether support display touch by hal (default: false)
+prop {
+    prop_name: "persist.vendor.fingerprint.udfps.display_touch"
+    type: Boolean
+    scope: Internal
+    access: ReadWrite
+    api_name: "display_touch"
+}
+
+# whether support illumination control  by hal (default: false)
+prop {
+    prop_name: "persist.vendor.fingerprint.udfps.control_illumination"
+    type: Boolean
+    scope: Internal
+    access: ReadWrite
+    api_name: "control_illumination"
+}
+
+# whether support lockout based on the failed auth attempts (default: true)
+prop {
+    prop_name: "persist.vendor.fingerprint.lockout_enable"
+    type: Boolean
+    scope: Internal
+    access: ReadWrite
+    api_name: "lockout_enable"
+}
+
+# temporarily lockout threshold in number of consecutive failed auth attempts (default: 5)
+prop {
+    prop_name: "persist.vendor.fingerprint.lockout_timed_threshold"
+    type: Integer
+    scope: Internal
+    access: ReadWrite
+    api_name: "lockout_timed_threshold"
+}
+
+# temporary lockout duration in ms (default: 10000ms)
+prop {
+    prop_name: "persist.vendor.fingerprint.lockout_timed_duration"
+    type: Integer
+    scope: Internal
+    access: ReadWrite
+    api_name: "lockout_timed_duration"
+}
+
+# permanently lockout threshold  in number of consecutive failed auth attempts (default: 20)
+prop {
+    prop_name: "persist.vendor.fingerprint.lockout_permanent_threshold"
+    type: Integer
+    scope: Internal
+    access: ReadWrite
+    api_name: "lockout_permanent_threshold"
+}
