@@ -16,6 +16,24 @@
       "message": "Can you please re-check?",
       "revId": "46b5bec94ea5875c6eaa3374d183ab7608cc2974",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45116cc1_4e8156a0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 32253
+      },
+      "writtenOn": "2024-09-28T19:00:24Z",
+      "side": 1,
+      "message": "lgtm",
+      "parentUuid": "7066497d_f0fe6f01",
+      "revId": "46b5bec94ea5875c6eaa3374d183ab7608cc2974",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
