@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0da2371_3f4c46bb",
+        "filename": "sensors/v2/SensorsSubHal.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2024-09-28T10:51:59Z",
+      "side": 1,
+      "message": "Same here, re-order.",
+      "range": {
+        "startLine": 43,
+        "startChar": 52,
+        "endLine": 43,
+        "endChar": 62
+      },
+      "revId": "a841717f60ebb00881a68704dc8535aa2b8adbf8",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
