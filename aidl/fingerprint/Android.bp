@@ -1,5 +1,6 @@
 //
 // Copyright (C) 2024 The LineageOS Project
+//               2024 Paranoid Android
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -10,17 +11,40 @@ cc_binary {
     init_rc: ["android.hardware.biometrics.fingerprint-service.xiaomi.rc"],
     vintf_fragments: ["android.hardware.biometrics.fingerprint-service.xiaomi.xml"],
     srcs: [
+        "CancellationSignal.cpp",
         "Fingerprint.cpp",
+        "FingerprintConfig.cpp",
+        "LockoutTracker.cpp",
         "Session.cpp",
         "service.cpp",
+    ],
+    local_include_dirs: [
+        "include",
     ],
     shared_libs: [
         "libbase",
         "libbinder_ndk",
+        "libcutils",
+        "libhardware",
+        "libdl",
+        "liblog",
+        "libudfpshandler.xiaomi",
         "android.hardware.biometrics.fingerprint-V4-ndk",
         "android.hardware.biometrics.common-V4-ndk",
+        "android.hardware.biometrics.common.config",
         "android.hardware.biometrics.common.thread",
         "android.hardware.biometrics.common.util",
     ],
+    static_libs: [
+        "libandroid.hardware.biometrics.fingerprint.Props",
+    ],
+    vendor: true,
+    header_libs: ["xiaomifingerprint_headers"],
+}
+
+sysprop_library {
+    name: "android.hardware.biometrics.fingerprint.Props",
+    srcs: ["fingerprint.sysprop"],
+    property_owner: "Vendor",
     vendor: true,
 }
