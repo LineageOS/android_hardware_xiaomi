@@ -22,6 +22,30 @@
       },
       "revId": "a841717f60ebb00881a68704dc8535aa2b8adbf8",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7483aa28_938fb17b",
+        "filename": "sensors/v2/SensorsSubHal.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2024-09-29T18:43:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f0da2371_3f4c46bb",
+      "range": {
+        "startLine": 43,
+        "startChar": 52,
+        "endLine": 43,
+        "endChar": 62
+      },
+      "revId": "a841717f60ebb00881a68704dc8535aa2b8adbf8",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
