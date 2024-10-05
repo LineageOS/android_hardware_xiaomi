@@ -16,6 +16,23 @@
       "message": "Keep this file\u0027s history",
       "revId": "ecad73e22cd23497f6343cad08a5bd9cf2ca5323",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f03b8ca0_3d0a2d42",
+        "filename": "aidl/fingerprint/include/Legacy2Aidl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2024-10-05T16:44:05Z",
+      "side": 1,
+      "message": "No `using` in headers, you taint the source file that uses it",
+      "revId": "ecad73e22cd23497f6343cad08a5bd9cf2ca5323",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
