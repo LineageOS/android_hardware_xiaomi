@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11192bcb_c79fb95e",
+        "filename": "aidl/fingerprint/UdfpsExtension.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2024-10-05T16:43:00Z",
+      "side": 1,
+      "message": "Keep this file\u0027s history",
+      "revId": "ecad73e22cd23497f6343cad08a5bd9cf2ca5323",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
