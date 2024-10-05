@@ -33,6 +33,24 @@
       "message": "Though I\u0027m not sure if it\u0027s my fault, this is what I encountered:\n\nF DEBUG   : Abort message: \u0027aidl::android::hardware::biometrics::fingerprint::Fingerprint::Fingerprint() unimplemented unrecognized or unimplemented fingerprint behavior: \u0027",
       "revId": "6caeffc560342ccbb76437bd554ee9db8c49a546",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d36109c_d98e7595",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 22465
+      },
+      "writtenOn": "2024-10-05T09:59:04Z",
+      "side": 1,
+      "message": "Mind sending a full stack trace?",
+      "parentUuid": "6e1bfce8_b12b6e29",
+      "revId": "6caeffc560342ccbb76437bd554ee9db8c49a546",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
