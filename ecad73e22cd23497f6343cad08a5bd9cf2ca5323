@@ -3,6 +3,91 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "af034eaf_c24399c6",
+        "filename": "aidl/fingerprint/CancellationSignal.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2024-10-05T16:53:23Z",
+      "side": 1,
+      "message": "No `using`",
+      "revId": "ecad73e22cd23497f6343cad08a5bd9cf2ca5323",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2dca9303_2bef7e28",
+        "filename": "aidl/fingerprint/Fingerprint.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2024-10-05T16:53:23Z",
+      "side": 1,
+      "message": "Why all these calls to getSensorHal? Call it once before all this logic",
+      "revId": "ecad73e22cd23497f6343cad08a5bd9cf2ca5323",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "678e7bd7_44699014",
+        "filename": "aidl/fingerprint/Fingerprint.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2024-10-05T16:53:23Z",
+      "side": 1,
+      "message": "`{ ... }`",
+      "revId": "ecad73e22cd23497f6343cad08a5bd9cf2ca5323",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c631539c_2d9eb6c0",
+        "filename": "aidl/fingerprint/Fingerprint.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2024-10-05T16:53:23Z",
+      "side": 1,
+      "message": "I don\u0027t think this should be a singleton, init it in service.cpp and pass it to the interface class",
+      "revId": "ecad73e22cd23497f6343cad08a5bd9cf2ca5323",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ab21881_2931b12a",
+        "filename": "aidl/fingerprint/Fingerprint.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2024-10-05T16:53:23Z",
+      "side": 1,
+      "message": "sensor HAL?",
+      "revId": "ecad73e22cd23497f6343cad08a5bd9cf2ca5323",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "11192bcb_c79fb95e",
         "filename": "aidl/fingerprint/UdfpsExtension.cpp",
         "patchSetId": 2
@@ -31,6 +116,23 @@
       "writtenOn": "2024-10-05T16:44:05Z",
       "side": 1,
       "message": "No `using` in headers, you taint the source file that uses it",
+      "revId": "ecad73e22cd23497f6343cad08a5bd9cf2ca5323",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d55a2c89_2f16e5a7",
+        "filename": "aidl/fingerprint/include/UdfpsHandler.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2024-10-05T16:53:23Z",
+      "side": 1,
+      "message": "Same goes for this",
       "revId": "ecad73e22cd23497f6343cad08a5bd9cf2ca5323",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     },
