@@ -69,6 +69,24 @@
       "parentUuid": "9d36109c_d98e7595",
       "revId": "6caeffc560342ccbb76437bd554ee9db8c49a546",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ca31784_25b0bbef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 22465
+      },
+      "writtenOn": "2024-10-05T10:59:12Z",
+      "side": 1,
+      "message": "You\u0027re probably missing properties, see aidl/fingerprint/fingerprint.sysprop",
+      "parentUuid": "0191d3a1_74ea60e2",
+      "revId": "6caeffc560342ccbb76437bd554ee9db8c49a546",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
