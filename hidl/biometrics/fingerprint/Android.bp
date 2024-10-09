@@ -14,7 +14,6 @@ cc_binary {
     relative_install_path: "hw",
     srcs: [
         "BiometricsFingerprint.cpp",
-        "UdfpsHandler.cpp",
         "service.cpp",
     ],
 
@@ -25,6 +24,7 @@ cc_binary {
         "liblog",
         "libhidlbase",
         "libhardware",
+        "libudfpshandler.xiaomi",
         "libutils",
         "android.hardware.biometrics.fingerprint@2.1",
         "android.hardware.biometrics.fingerprint@2.2",
@@ -32,23 +32,4 @@ cc_binary {
     ],
 
     header_libs: ["xiaomifingerprint_headers"],
-}
-
-cc_library_headers {
-    name: "xiaomifingerprint_headers",
-    export_include_dirs: ["include"],
-    vendor: true,
-    header_libs: ["libhardware_headers"],
-    export_header_lib_headers: ["libhardware_headers"],
-}
-
-cc_library_static {
-    name: "libudfps_extension.xiaomi",
-    srcs: ["UdfpsExtension.cpp"],
-    include_dirs: [
-        "frameworks/native/services/surfaceflinger/CompositionEngine/include"
-    ],
-    header_libs: [
-        "generated_kernel_headers",
-    ],
 }
