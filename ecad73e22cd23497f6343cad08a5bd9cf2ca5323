@@ -18,6 +18,24 @@
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "977b771a_972f43b8",
+        "filename": "aidl/fingerprint/CancellationSignal.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 17020
+      },
+      "writtenOn": "2024-10-09T15:07:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "af034eaf_c24399c6",
+      "revId": "ecad73e22cd23497f6343cad08a5bd9cf2ca5323",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2dca9303_2bef7e28",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-10-05T16:53:23Z",
       "side": 1,
       "message": "Why all these calls to getSensorHal? Call it once before all this logic",
+      "revId": "ecad73e22cd23497f6343cad08a5bd9cf2ca5323",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2d244f7_0f4371f1",
+        "filename": "aidl/fingerprint/Fingerprint.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 17020
+      },
+      "writtenOn": "2024-10-09T15:07:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2dca9303_2bef7e28",
       "revId": "ecad73e22cd23497f6343cad08a5bd9cf2ca5323",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     },
@@ -103,6 +139,24 @@
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9711fd2_34c96908",
+        "filename": "aidl/fingerprint/UdfpsExtension.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 17020
+      },
+      "writtenOn": "2024-10-09T15:07:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "11192bcb_c79fb95e",
+      "revId": "ecad73e22cd23497f6343cad08a5bd9cf2ca5323",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f03b8ca0_3d0a2d42",
@@ -116,6 +170,24 @@
       "writtenOn": "2024-10-05T16:44:05Z",
       "side": 1,
       "message": "No `using` in headers, you taint the source file that uses it",
+      "revId": "ecad73e22cd23497f6343cad08a5bd9cf2ca5323",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "931231f6_cf9d9b44",
+        "filename": "aidl/fingerprint/include/Legacy2Aidl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 17020
+      },
+      "writtenOn": "2024-10-09T15:07:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f03b8ca0_3d0a2d42",
       "revId": "ecad73e22cd23497f6343cad08a5bd9cf2ca5323",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     },
@@ -137,6 +209,24 @@
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "411d3e3b_727bc304",
+        "filename": "aidl/fingerprint/include/UdfpsHandler.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 17020
+      },
+      "writtenOn": "2024-10-09T15:07:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d55a2c89_2f16e5a7",
+      "revId": "ecad73e22cd23497f6343cad08a5bd9cf2ca5323",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a04d5201_fcd4333b",
@@ -150,6 +240,24 @@
       "writtenOn": "2024-10-05T16:44:34Z",
       "side": 1,
       "message": "Also make sure you retain this file\u0027s git history",
+      "revId": "ecad73e22cd23497f6343cad08a5bd9cf2ca5323",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "32dea3ca_f5dc399f",
+        "filename": "aidl/fingerprint/include/fingerprint.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 17020
+      },
+      "writtenOn": "2024-10-09T15:07:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a04d5201_fcd4333b",
       "revId": "ecad73e22cd23497f6343cad08a5bd9cf2ca5323",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
