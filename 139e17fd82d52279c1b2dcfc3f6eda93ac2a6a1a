@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b1517c6_31012f74",
+        "filename": "aidl/fingerprint/Session.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 28223
+      },
+      "writtenOn": "2024-10-09T23:44:32Z",
+      "side": 1,
+      "message": "Ditto",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 5
+      },
+      "revId": "139e17fd82d52279c1b2dcfc3f6eda93ac2a6a1a",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d5360f2_30250023",
+        "filename": "aidl/fingerprint/Session.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 28223
+      },
+      "writtenOn": "2024-10-09T23:44:32Z",
+      "side": 1,
+      "message": "Ditto",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 5
+      },
+      "revId": "139e17fd82d52279c1b2dcfc3f6eda93ac2a6a1a",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce3a3366_7a0b2f3b",
+        "filename": "aidl/fingerprint/Session.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 28223
+      },
+      "writtenOn": "2024-10-09T23:44:32Z",
+      "side": 1,
+      "message": "Ditto",
+      "range": {
+        "startLine": 64,
+        "startChar": 1,
+        "endLine": 66,
+        "endChar": 5
+      },
+      "revId": "139e17fd82d52279c1b2dcfc3f6eda93ac2a6a1a",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d3b230b_efffabb2",
+        "filename": "aidl/fingerprint/include/UdfpsHandler.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 28223
+      },
+      "writtenOn": "2024-10-09T23:44:32Z",
+      "side": 1,
+      "message": "This shouldn\u0027t be here since I1b73438ae6bf7e2c0b3fe6d2ca7726993604454b was abandoned",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 34
+      },
+      "revId": "139e17fd82d52279c1b2dcfc3f6eda93ac2a6a1a",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
