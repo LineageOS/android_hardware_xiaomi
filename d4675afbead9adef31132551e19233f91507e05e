@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "417d6f20_cac14da4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 17020
+      },
+      "writtenOn": "2024-10-10T09:58:00Z",
+      "side": 1,
+      "message": "My bad, I forgot LOS dropped it",
+      "revId": "d4675afbead9adef31132551e19233f91507e05e",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
