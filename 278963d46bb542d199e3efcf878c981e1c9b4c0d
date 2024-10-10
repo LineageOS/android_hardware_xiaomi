@@ -16,6 +16,24 @@
       "message": "Add copyrights",
       "revId": "278963d46bb542d199e3efcf878c981e1c9b4c0d",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76088544_89695e51",
+        "filename": "fingerprint/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 28223
+      },
+      "writtenOn": "2024-10-10T17:38:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "091dcd84_c4fe6f0e",
+      "revId": "278963d46bb542d199e3efcf878c981e1c9b4c0d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
