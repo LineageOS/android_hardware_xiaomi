@@ -88,6 +88,24 @@
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4693b9df_a669d24b",
+        "filename": "aidl/fingerprint/Fingerprint.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 28223
+      },
+      "writtenOn": "2024-10-10T16:47:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "678e7bd7_44699014",
+      "revId": "ecad73e22cd23497f6343cad08a5bd9cf2ca5323",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c631539c_2d9eb6c0",
