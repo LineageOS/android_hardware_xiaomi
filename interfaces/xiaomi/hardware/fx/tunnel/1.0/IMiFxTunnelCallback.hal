@@ -1,0 +1,11 @@
+/*
+ * Copyright (C) 2024 The LineageOS Project
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+package vendor.xiaomi.hardware.fx.tunnel@1.0;
+
+interface IMiFxTunnelCallback {
+    onMessage(uint64_t param_1, uint32_t param_2, uint32_t param_3, vec<int8_t> param_4);
+};

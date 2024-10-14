@@ -6,6 +6,9 @@
 
 package vendor.xiaomi.hardware.fx.tunnel@1.0;
 
+import @1.0::IMiFxTunnelCallback;
+
 interface IMiFxTunnel {
-    invokeCommand(int32_t cmdId, vec<uint8_t> params) generates (int32_t resultCode, vec<uint8_t> out_buf);
+    setNotify(IMiFxTunnelCallback callback);
+    invokeCommand(int32_t cmdId, vec<int8_t> params) generates (int32_t resultCode, vec<int8_t> out_buf);
 };

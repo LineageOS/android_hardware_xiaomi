@@ -6,6 +6,7 @@ hidl_interface {
     system_ext_specific: true,
     srcs: [
         "IMiFxTunnel.hal",
+        "IMiFxTunnelCallback.hal",
     ],
     interfaces: [
         "android.hidl.base@1.0",
