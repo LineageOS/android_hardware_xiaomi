@@ -16,6 +16,24 @@
       "message": "Why did you run clang-format on the AOSP header...",
       "revId": "cdc6694adc7da40d3776f47a86a07c82c61eb4ac",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "408aab4c_2fe2e1e2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 28223
+      },
+      "writtenOn": "2024-10-14T17:19:58Z",
+      "side": 1,
+      "message": "Should I not have? We already have changes over the AOSP header. As Bruno asked, I ran it on the AIDL change, and since you wanted it in a separate directory (fingerprint), I reran clang-format before splitting it.",
+      "parentUuid": "70e590c7_4ebff142",
+      "revId": "cdc6694adc7da40d3776f47a86a07c82c61eb4ac",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ],
   "submitRequirementResults": []
