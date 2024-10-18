@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "630fd43a_2f6df487",
+        "filename": "fingerprint/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2024-10-18T15:23:32Z",
+      "side": 1,
+      "message": "i\u0027m not a fan of making this it\u0027s own library and we will end up with confusing lib names in vendor/lib64 (libudfpshandler, libudfpshandler.xiaomi). How about making it static?",
+      "range": {
+        "startLine": 8,
+        "startChar": 11,
+        "endLine": 8,
+        "endChar": 33
+      },
+      "revId": "6a4bb3c35a23831cd8e6a31afd56d3c2f8f25db4",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
