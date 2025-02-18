@@ -1,1 +1,3 @@
 allow vendor_agmservice_qti smartpa_type:file r_file_perms;
+
+set_prop(vendor_agmservice_qti, vendor_audio_prop)
