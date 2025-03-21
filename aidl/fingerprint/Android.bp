@@ -12,7 +12,13 @@ soong_config_module_type {
     bool_variables: [
         "RUN_32BIT",
     ],
-    properties: ["compile_multilib"],
+    value_variables: [
+        "IMPL_VER",
+    ],
+    properties: [
+        "compile_multilib",
+        "cppflags",
+    ],
 }
 
 xiaomi_hardware_biometrics_config_default {
@@ -24,6 +30,9 @@ xiaomi_hardware_biometrics_config_default {
                 compile_multilib: "64",
             },
             compile_multilib: "prefer32",
+        },
+        IMPL_VER: {
+            cppflags: ["-DIMPL_%s"],
         },
     },
 }

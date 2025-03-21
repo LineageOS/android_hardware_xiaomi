@@ -12,7 +12,11 @@
 #include <android/log.h>
 #include <hardware/hardware.h>
 #include <log/log.h>
+#ifndef IMPL_V2
 #include "fingerprint.h"
+#else
+#include "fingerprint-v2.h"
+#endif
 
 #include "LockoutTracker.h"
 #include "UdfpsHandler.h"

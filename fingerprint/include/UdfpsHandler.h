@@ -7,7 +7,11 @@
 #pragma once
 
 #include <stdint.h>
+#ifndef IMPL_V2
 #include "fingerprint.h"
+#else
+#include "fingerprint-v2.h"
+#endif
 
 class UdfpsHandler {
   public:
