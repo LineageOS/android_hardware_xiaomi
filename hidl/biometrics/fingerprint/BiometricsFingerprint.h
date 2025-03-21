@@ -14,7 +14,7 @@
 #include <hidl/Status.h>
 #include <log/log.h>
 #include "UdfpsHandler.h"
-#include "fingerprint.h"
+#include "fingerprint-legacy.h"
 
 namespace android {
 namespace hardware {
