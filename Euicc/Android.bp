@@ -8,7 +8,6 @@ android_app {
     name: "XiaomiEuicc",
 
     srcs: ["src/**/*.kt"],
-    resource_dirs: ["res"],
 
     sdk_version: "current",
     product_specific: true,
@@ -25,16 +24,16 @@ android_app {
 }
 
 prebuilt_etc {
-    sub_dir: "permissions",
     name: "org.lineageos.euicc.xml",
+    relative_install_path: "permissions",
     filename: "org.lineageos.euicc.xml",
     src: "org.lineageos.euicc.xml",
     product_specific: true,
 }
 
 prebuilt_etc {
-    sub_dir: "sysconfig",
     name: "hidden-api-whitelist-org.lineageos.euicc.xml",
+    relative_install_path: "sysconfig",
     filename: "hidden-api-whitelist-org.lineageos.euicc.xml",
     src: "hidden-api-whitelist-org.lineageos.euicc.xml",
     product_specific: true,
