@@ -1,0 +1,25 @@
+//
+// Copyright (C) 2023-2025 Paranoid Android
+//
+// SPDX-License-Identifier: Apache-2.0
+//
+
+android_app {
+    name: "XiaomiEsimSwitcher",
+    certificate: "platform",
+    srcs: ["src/**/*.kt"],
+    platform_apis: true,
+    privileged: true,
+    privapp_allowlist: "privapp_whitelist_com.xiaomi.mtb.xml",
+    system_ext_specific: true,
+    static_libs: [
+        "androidx.core_core",
+        "androidx.preference_preference",
+        "org.lineageos.settings.resources",
+        "SettingsLib",
+    ],
+    optional_uses_libs: [
+        "com.qualcomm.qcrilhook",
+        "com.qti.extphone.extphonelib",
+    ],
+}
