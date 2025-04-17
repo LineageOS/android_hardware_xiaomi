@@ -1,0 +1,52 @@
+/*
+ * SPDX-FileCopyrightText: 2023-2025 Paranoid Android
+ * SPDX-FileCopyrightText: 2026 The LineageOS Project
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+package com.xiaomi.mtb
+
+import android.content.BroadcastReceiver
+import android.content.ComponentName
+import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.util.Log
+
+class BootCompletedReceiver : BroadcastReceiver() {
+
+    companion object {
+        private const val TAG = "EsimSwitcher"
+        private val DEBUG = Log.isLoggable(TAG, Log.DEBUG)
+    }
+
+    override fun onReceive(context: Context, intent: Intent) {
+        if (DEBUG) Log.d(TAG, "Received boot completed intent: ${intent.action}")
+        if (intent.action == Intent.ACTION_BOOT_COMPLETED) {
+            val hasEuiccFeature =
+                context.packageManager.hasSystemFeature(PackageManager.FEATURE_TELEPHONY_EUICC)
+            Log.i(TAG, "eSIM supported: $hasEuiccFeature")
+
+            setComponentEnabled(context, EsimSettingsActivity::class.java.name, hasEuiccFeature)
+
+            if (hasEuiccFeature) {
+                EsimController.getInstance(context).onBootCompleted()
+            }
+        }
+    }
+
+    private fun setComponentEnabled(context: Context, component: String, enabled: Boolean) {
+        val name = ComponentName(context, component)
+        val pm = context.packageManager
+        val newState =
+            if (enabled) {
+                PackageManager.COMPONENT_ENABLED_STATE_ENABLED
+            } else {
+                PackageManager.COMPONENT_ENABLED_STATE_DISABLED
+            }
+
+        if (pm.getComponentEnabledSetting(name) != newState) {
+            pm.setComponentEnabledSetting(name, newState, PackageManager.DONT_KILL_APP)
+        }
+    }
+}

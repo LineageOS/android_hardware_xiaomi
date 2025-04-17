@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2023-2025 Paranoid Android
+     Copyright (C) 2026 The LineageOS Project
+
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <!-- App Name -->
+    <string name="app_name">eSIM Switcher</string>
+
+    <!-- ESIM -->
+    <string name="esim_title">eSIM</string>
+    <string name="esim_enable_name">Enable eSIM</string>
+    <string name="esim_warning_title">eSIM in use</string>
+    <string name="esim_warning_message">Please disable or remove your current eSIM profile before proceeding</string>
+    <string name="esim_footer_note">Enabling eSIM will disable the second physical SIM slot</string>
+</resources>
