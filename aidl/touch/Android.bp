@@ -5,18 +5,39 @@
 
 cc_binary {
     name: "vendor.lineage.touch-service.xiaomi",
-    vintf_fragments: ["vendor.lineage.touch-service.xiaomi.xml"],
     init_rc: ["vendor.lineage.touch-service.xiaomi.rc"],
+    vintf_fragments: select(soong_config_variable("XIAOMI_TOUCH", "HIGH_TOUCH_POLLING_PATH"), {
+        any: ["vendor.lineage.touch-service.xiaomi-htpr.xml"],
+        default: [],
+    }) + select(soong_config_variable("XIAOMI_TOUCH", "KEY_DISABLER_CONTROL_PATH"), {
+        any: ["vendor.lineage.touch-service.xiaomi-kd.xml"],
+        default: [],
+    }) + select(soong_config_variable("XIAOMI_TOUCH", "KEY_SWAPPER_CONTROL_PATH"), {
+        any: ["vendor.lineage.touch-service.xiaomi-ks.xml"],
+        default: [],
+    }),
     relative_install_path: "hw",
     proprietary: true,
     cppflags: select(soong_config_variable("XIAOMI_TOUCH", "HIGH_TOUCH_POLLING_PATH"), {
         any @ flag_val: ["-DHTPR_CONTROL_PATH=\"" + flag_val + "\""],
         default: [],
+    }) + select(soong_config_variable("XIAOMI_TOUCH", "KEY_DISABLER_CONTROL_PATH"), {
+        any @ flag_val: ["-DKD_CONTROL_PATH=\"" + flag_val + "\""],
+        default: [],
+    }) + select(soong_config_variable("XIAOMI_TOUCH", "KEY_SWAPPER_CONTROL_PATH"), {
+        any @ flag_val: ["-DKS_CONTROL_PATH=\"" + flag_val + "\""],
+        default: [],
     }),
-    srcs: [
-        "HighTouchPollingRate.cpp",
-        "service.cpp",
-    ],
+    srcs: select(soong_config_variable("XIAOMI_TOUCH", "HIGH_TOUCH_POLLING_PATH"), {
+        any: ["HighTouchPollingRate.cpp"],
+        default: [],
+    }) + select(soong_config_variable("XIAOMI_TOUCH", "KEY_DISABLER_CONTROL_PATH"), {
+        any: ["KeyDisabler.cpp"],
+        default: [],
+    }) + select(soong_config_variable("XIAOMI_TOUCH", "KEY_SWAPPER_CONTROL_PATH"), {
+        any: ["KeySwapper.cpp"],
+        default: [],
+    }) + ["service.cpp"],
     shared_libs: [
         "libbase",
         "libbinder_ndk",
