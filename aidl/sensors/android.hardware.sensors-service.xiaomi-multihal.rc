@@ -1,3 +1,6 @@
+on boot
+    setprop vendor.sensors.dynamic_sensor_op_timeout_ms 1600
+
 service vendor.sensors-hal-multihal /vendor/bin/hw/android.hardware.sensors-service.xiaomi-multihal
     class hal
     user system
