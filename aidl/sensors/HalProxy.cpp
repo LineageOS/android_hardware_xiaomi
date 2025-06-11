@@ -612,7 +612,8 @@ void HalProxy::handlePendingWrites() {
                         static_cast<uint32_t>(EventQueueFlagBits::EVENTS_READ),
                         static_cast<uint32_t>(EventQueueFlagBits::READ_AND_PROCESS),
                         kPendingWriteTimeoutNs, mEventQueueFlag)) {
-                ALOGE("Dropping %zu events after blockingWrite failed.", numToWrite);
+                ALOGE("Dropping %zu events after blockingWrite failed (is system_server running?).",
+                      numToWrite);
                 if (numWakeupEvents > 0) {
                     if (pendingWriteEvents.size() > eventQueueSize) {
                         decrementRefCountAndMaybeReleaseWakelock(
