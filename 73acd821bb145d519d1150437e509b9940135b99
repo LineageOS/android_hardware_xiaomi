@@ -34,6 +34,23 @@
       "parentUuid": "81e47c19_16c02313",
       "revId": "73acd821bb145d519d1150437e509b9940135b99",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0718887_9ebfb468",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3917
+      },
+      "writtenOn": "2025-07-28T18:21:02Z",
+      "side": 1,
+      "message": "not sure about rest of chain, but this one is mandatory or:\n\nerror: hardware/xiaomi/vibrator/effect/Android.bp:4:1: \"libqtivibratoreffect.xiaomi\" depends on undefined module \"libc++fs\".",
+      "revId": "73acd821bb145d519d1150437e509b9940135b99",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
