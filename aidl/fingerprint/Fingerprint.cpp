@@ -34,7 +34,7 @@ typedef struct fingerprint_hal {
 
 static const fingerprint_hal_t kModules[] = {
         {"fortsense"},  {"fpc"},         {"fpc_fod"}, {"goodix"}, {"goodix:gf_fingerprint"},
-        {"goodix_fod"}, {"goodix_fod6"}, {"silead"},  {"syna"},
+        {"goodix_fod"}, {"goodix_fod6"}, {"silead"},  {"syna"}, {"jiiov"},
 };
 
 }  // namespace
