@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2023 The LineageOS Project
+// Copyright (C) 2023-2025 The LineageOS Project
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -13,22 +13,14 @@ android_app {
     product_specific: true,
     certificate: "platform",
     privileged: true,
+    privapp_allowlist: "org.lineageos.euicc.xml",
 
     optimize: {
         proguard_flags_files: ["proguard.flags"],
     },
     required: [
-        "org.lineageos.euicc.xml",
         "hidden-api-whitelist-org.lineageos.euicc.xml",
     ],
-}
-
-prebuilt_etc {
-    name: "org.lineageos.euicc.xml",
-    relative_install_path: "permissions",
-    filename: "org.lineageos.euicc.xml",
-    src: "org.lineageos.euicc.xml",
-    product_specific: true,
 }
 
 prebuilt_etc {
