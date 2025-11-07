@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "830de8a7_05b1112d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2025-11-07T08:26:06Z",
+      "side": 1,
+      "message": "I wrote SPDX. :P\n\n\u003e SPDX-FileCopyrightText: 2025 The LineageOS Project\n\u003e SPDX-License-Identifier: Apache-2.0",
+      "revId": "5def4afbcc5517255d196ab979ed60f9e178ae6b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
