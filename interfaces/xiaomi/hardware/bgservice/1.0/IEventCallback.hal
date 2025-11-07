@@ -1,0 +1,13 @@
+/*
+ * SPDX-FileCopyrightText: 2025 The LineageOS Project
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+package vendor.xiaomi.hardware.bgservice@1.0;
+
+interface IEventCallback {
+    notifyCallback(CallbackData callbackData) generates (bool result);
+    notifySnapshotAvailability(int32_t i) generates (bool result);
+    onCaptureCompleted(string str, int32_t i) generates (bool result);
+    onCaptureFailed(string str, int32_t i) generates (bool result);
+};

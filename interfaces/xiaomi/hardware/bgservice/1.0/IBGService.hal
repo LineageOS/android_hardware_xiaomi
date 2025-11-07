@@ -1,0 +1,13 @@
+/*
+ * SPDX-FileCopyrightText: 2025 The LineageOS Project
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+package vendor.xiaomi.hardware.bgservice@1.0;
+
+import vendor.xiaomi.hardware.bgservice@1.0::IEventCallback;
+
+interface IBGService {
+    setEventCallback(int32_t i, IEventCallback iEventCallback) generates (int32_t result);
+    oneway setCapabilities(string str);
+};
