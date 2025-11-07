@@ -19,6 +19,24 @@ hidl_package_root {
 }
 
 aidl_interface {
+    name: "vendor.xiaomi.hardware.aidlbgservice",
+    device_specific: true,
+    owner: "xiaomi",
+    local_include_dir: "aidl",
+    stability: "vintf",
+    srcs: [
+        "aidl/vendor/xiaomi/hardware/aidlbgservice/*.aidl",
+    ],
+    frozen: true,
+    versions_with_info: [
+        {
+            version: "1",
+            imports: [],
+        },
+    ],
+}
+
+aidl_interface {
     name: "vendor.xiaomi.hardware.aon",
     device_specific: true,
     owner: "xiaomi",
