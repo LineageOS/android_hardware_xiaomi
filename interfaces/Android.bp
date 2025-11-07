@@ -145,6 +145,24 @@ aidl_interface {
 }
 
 aidl_interface {
+    name: "vendor.xiaomi.hardware.mlipay",
+    device_specific: true,
+    owner: "xiaomi",
+    local_include_dir: "aidl",
+    stability: "vintf",
+    srcs: [
+        "aidl/vendor/xiaomi/hardware/mlipay/*.aidl",
+    ],
+    frozen: true,
+    versions_with_info: [
+        {
+            version: "1",
+            imports: [],
+        },
+    ],
+}
+
+aidl_interface {
     name: "vendor.xiaomi.hardware.quickcamera",
     device_specific: true,
     owner: "xiaomi",
