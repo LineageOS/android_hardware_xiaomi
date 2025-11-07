@@ -18,6 +18,24 @@ hidl_package_root {
     path: "hardware/xiaomi/interfaces/xiaomi",
 }
 
+aidl_interface {
+    name: "vendor.xiaomi.hardware.fx.tunnel",
+    system_ext_specific: true,
+    owner: "xiaomi",
+    local_include_dir: "aidl",
+    stability: "vintf",
+    srcs: [
+        "aidl/vendor/xiaomi/hardware/fx/tunnel/*.aidl",
+    ],
+    frozen: true,
+    versions_with_info: [
+        {
+            version: "1",
+            imports: [],
+        },
+    ],
+}
+
 prebuilt_hidl_interfaces {
     name: "hidl_com_fingerprints_extension_interface",
     interfaces: [
