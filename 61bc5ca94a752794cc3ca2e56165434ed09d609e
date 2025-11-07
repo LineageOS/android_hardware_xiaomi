@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e23e9b1c_6843881a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2025-11-07T08:43:28Z",
+      "side": 1,
+      "message": "Also follow interfaces structure from oplus: https://github.com/LineageOS/android_hardware_oplus/tree/lineage-23.0/interfaces",
+      "revId": "61bc5ca94a752794cc3ca2e56165434ed09d609e",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
