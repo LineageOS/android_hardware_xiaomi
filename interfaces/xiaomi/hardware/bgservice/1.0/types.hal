@@ -1,0 +1,23 @@
+/*
+ * SPDX-FileCopyrightText: 2025 The LineageOS Project
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+package vendor.xiaomi.hardware.bgservice@1.0;
+
+struct Image {
+    int32_t format;
+    int32_t width;
+    int32_t height;
+};
+
+struct CallbackData {
+    int32_t cameraId;
+    int32_t type ;
+    int32_t frameNumber;
+    int32_t sessionId;
+    uint64_t timeStampUs;
+    bool isParallelCamera;
+    string metadata;
+    vec<Image> images;
+};

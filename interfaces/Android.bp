@@ -233,13 +233,6 @@ prebuilt_hidl_interfaces {
 }
 
 prebuilt_hidl_interfaces {
-    name: "hidl_vendor_xiaomi_hardware_bgservice_interface",
-    interfaces: [
-        "vendor.xiaomi.hardware.bgservice@1.0::IBGService",
-    ],
-}
-
-prebuilt_hidl_interfaces {
     name: "hidl_vendor_xiaomi_hardware_cameraperf_interface",
     interfaces: [
         "vendor.xiaomi.hardware.cameraperf@1.0::IMiCameraPerfService",
