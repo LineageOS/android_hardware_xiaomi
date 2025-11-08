@@ -70,6 +70,24 @@
       "parentUuid": "30f304e4_64e21310",
       "revId": "133ea7eb6e9224587a4dce11a1b1c35e436a99da",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5ee51c3_58ac195e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 35546
+      },
+      "writtenOn": "2025-11-08T15:21:28Z",
+      "side": 1,
+      "message": "Yes, up to sm8550 we have that, but starting with sm8635 they use displayfeature_aidl.",
+      "parentUuid": "a2e20dac_da14bfc7",
+      "revId": "133ea7eb6e9224587a4dce11a1b1c35e436a99da",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
