@@ -52,6 +52,24 @@
       "parentUuid": "5f526b3a_e6eb95fa",
       "revId": "133ea7eb6e9224587a4dce11a1b1c35e436a99da",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2e20dac_da14bfc7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 33843
+      },
+      "writtenOn": "2025-11-08T10:06:44Z",
+      "side": 1,
+      "message": "Only find vendor.xiaomi.hardware.displayfeature@1.0.so for old devices",
+      "parentUuid": "30f304e4_64e21310",
+      "revId": "133ea7eb6e9224587a4dce11a1b1c35e436a99da",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
