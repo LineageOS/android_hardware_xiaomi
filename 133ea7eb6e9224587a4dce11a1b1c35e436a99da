@@ -16,6 +16,24 @@
       "message": "Add also V1 before this.",
       "revId": "133ea7eb6e9224587a4dce11a1b1c35e436a99da",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f526b3a_e6eb95fa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 33843
+      },
+      "writtenOn": "2025-11-08T09:50:11Z",
+      "side": 1,
+      "message": "But Xiaomi doesn\u0027t have V1",
+      "parentUuid": "d0b0383c_9da5b386",
+      "revId": "133ea7eb6e9224587a4dce11a1b1c35e436a99da",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
