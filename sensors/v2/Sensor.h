@@ -119,6 +119,7 @@ class SysfsPollingOneShotSensor : public OneShotSensor {
     struct pollfd mPolls[2];
     int mWaitPipeFd[2];
     int mPollFd;
+    std::string mEnablePath;
 };
 
 class DoubleTapSensor : public SysfsPollingOneShotSensor {
