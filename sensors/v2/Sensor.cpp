@@ -221,7 +221,7 @@ SysfsPollingOneShotSensor::SysfsPollingOneShotSensor(
         int32_t sensorHandle, ISensorsEventCallback* callback, const std::string& pollPath,
         const std::string& enablePath, const std::string& name, const std::string& typeAsString,
         SensorType type)
-    : OneShotSensor(sensorHandle, callback) {
+    : OneShotSensor(sensorHandle, callback), mEnablePath(enablePath) {
     mSensorInfo.name = name;
     mSensorInfo.type = type;
     mSensorInfo.typeAsString = typeAsString;
@@ -229,8 +229,6 @@ SysfsPollingOneShotSensor::SysfsPollingOneShotSensor(
     mSensorInfo.resolution = 1.0f;
     mSensorInfo.power = 0;
     mSensorInfo.flags |= SensorFlagBits::WAKE_UP;
-
-    mEnableStream.open(enablePath);
 
     int rc;
 
@@ -267,8 +265,14 @@ SysfsPollingOneShotSensor::~SysfsPollingOneShotSensor() {
 }
 
 void SysfsPollingOneShotSensor::writeEnable(bool enable) {
+    std::call_once(mEnableOpenOnce, [&] {
+        mEnableStream.open(mEnablePath);
+    });
+
     if (mEnableStream) {
         mEnableStream << (enable ? '1' : '0') << std::flush;
+    } else {
+        ALOGE("Failed to write enable to %s", mEnablePath.c_str());
     }
 }
 
