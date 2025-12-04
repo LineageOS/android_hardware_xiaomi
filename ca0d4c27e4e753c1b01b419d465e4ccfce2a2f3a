@@ -16,6 +16,23 @@
       "message": "Seems harmless, want to hear from Seba as well.",
       "revId": "ca0d4c27e4e753c1b01b419d465e4ccfce2a2f3a",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a7ebee2_a1c05d90",
+        "filename": "sensors/v2/Sensor.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2025-12-04T18:49:02Z",
+      "side": 1,
+      "message": "Maybe get rid of this code and let it lazily open the node in `writeEnable`?",
+      "revId": "ca0d4c27e4e753c1b01b419d465e4ccfce2a2f3a",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
