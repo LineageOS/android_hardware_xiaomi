@@ -69,6 +69,24 @@
       "parentUuid": "f6ca3d1f_d0f79545",
       "revId": "ca0d4c27e4e753c1b01b419d465e4ccfce2a2f3a",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c225e13a_0a1e2e28",
+        "filename": "sensors/v2/Sensor.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 34560
+      },
+      "writtenOn": "2025-12-05T03:29:16Z",
+      "side": 1,
+      "message": "Ok",
+      "parentUuid": "9d09d3d3_f82ad35b",
+      "revId": "ca0d4c27e4e753c1b01b419d465e4ccfce2a2f3a",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
