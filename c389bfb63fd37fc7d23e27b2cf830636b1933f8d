@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23976d99_f2469491",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2025-12-07T22:43:28Z",
+      "side": 1,
+      "message": "why do we add all the empty() handling in this commit? Do we really want to support that someone adds something to the header without a valid enable path?\nIt also doesn\u0027t really have something to do with \"lazy reconnection\" as the commit message suggests",
+      "revId": "c389bfb63fd37fc7d23e27b2cf830636b1933f8d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
