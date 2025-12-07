@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4399f74f_261bb8ff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2025-12-07T10:26:36Z",
+      "side": 1,
+      "message": "Would not the point of call_once here be to remove the conditions? And just open it there, right before it\u0027s used the first time instead of in the constructor",
+      "revId": "fbc9625c3391d58748ee2ee7c29f75ee119f9ef3",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
