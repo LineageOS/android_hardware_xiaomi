@@ -16,6 +16,74 @@
       "message": "Would not the point of call_once here be to remove the conditions? And just open it there, right before it\u0027s used the first time instead of in the constructor",
       "revId": "fbc9625c3391d58748ee2ee7c29f75ee119f9ef3",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ebd2d6d_7f51ac7b",
+        "filename": "sensors/v2/Sensor.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2025-12-07T11:41:50Z",
+      "side": 1,
+      "message": "If you refer to this then yes, you can remove the `is_open()` check",
+      "revId": "fbc9625c3391d58748ee2ee7c29f75ee119f9ef3",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95fb3e78_7070dd5c",
+        "filename": "sensors/v2/Sensor.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2025-12-07T11:41:50Z",
+      "side": 1,
+      "message": "This is no-op, not needed",
+      "revId": "fbc9625c3391d58748ee2ee7c29f75ee119f9ef3",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03a36a39_5bd2f2cf",
+        "filename": "sensors/v2/Sensor.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2025-12-07T11:41:50Z",
+      "side": 1,
+      "message": "Does `ok()` exist? If yes use that",
+      "revId": "fbc9625c3391d58748ee2ee7c29f75ee119f9ef3",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "013a815a_85387855",
+        "filename": "sensors/v2/Sensor.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2025-12-07T11:41:50Z",
+      "side": 1,
+      "message": "Print this only if `!mEnablePath.empty()`",
+      "revId": "fbc9625c3391d58748ee2ee7c29f75ee119f9ef3",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
