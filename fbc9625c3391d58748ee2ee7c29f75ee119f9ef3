@@ -18,6 +18,23 @@
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5841809_f2352152",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 34560
+      },
+      "writtenOn": "2025-12-07T12:39:33Z",
+      "side": 1,
+      "message": "Oh my mistake, I\u0027ll go and fix that",
+      "revId": "fbc9625c3391d58748ee2ee7c29f75ee119f9ef3",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4ebd2d6d_7f51ac7b",
@@ -31,6 +48,24 @@
       "writtenOn": "2025-12-07T11:41:50Z",
       "side": 1,
       "message": "If you refer to this then yes, you can remove the `is_open()` check",
+      "revId": "fbc9625c3391d58748ee2ee7c29f75ee119f9ef3",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8cc6dbba_cfe459fd",
+        "filename": "sensors/v2/Sensor.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 34560
+      },
+      "writtenOn": "2025-12-07T12:39:33Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "4ebd2d6d_7f51ac7b",
       "revId": "fbc9625c3391d58748ee2ee7c29f75ee119f9ef3",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     },
@@ -52,6 +87,24 @@
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7bc44b0_1887f7f0",
+        "filename": "sensors/v2/Sensor.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 34560
+      },
+      "writtenOn": "2025-12-07T12:39:33Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "95fb3e78_7070dd5c",
+      "revId": "fbc9625c3391d58748ee2ee7c29f75ee119f9ef3",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "03a36a39_5bd2f2cf",
@@ -69,6 +122,24 @@
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9fe26caa_c460adc9",
+        "filename": "sensors/v2/Sensor.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 34560
+      },
+      "writtenOn": "2025-12-07T12:39:33Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "03a36a39_5bd2f2cf",
+      "revId": "fbc9625c3391d58748ee2ee7c29f75ee119f9ef3",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "013a815a_85387855",
@@ -82,6 +153,24 @@
       "writtenOn": "2025-12-07T11:41:50Z",
       "side": 1,
       "message": "Print this only if `!mEnablePath.empty()`",
+      "revId": "fbc9625c3391d58748ee2ee7c29f75ee119f9ef3",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da26200d_84ae349e",
+        "filename": "sensors/v2/Sensor.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 34560
+      },
+      "writtenOn": "2025-12-07T12:39:33Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "013a815a_85387855",
       "revId": "fbc9625c3391d58748ee2ee7c29f75ee119f9ef3",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
