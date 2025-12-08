@@ -52,6 +52,24 @@
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e95d95f_a48e5a4a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 34560
+      },
+      "writtenOn": "2025-12-08T13:04:16Z",
+      "side": 1,
+      "message": "I initially intended for it to reopen, but after the recent changes I’ve finalized the current design. I’ll update the commit message accordingly. Also, I was overthinking the empty check, so I’ll remove it. Sorry for the late reply.",
+      "parentUuid": "f9b24b36_a5f52fff",
+      "revId": "c389bfb63fd37fc7d23e27b2cf830636b1933f8d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6d2b7ed7_dc7e7b10",
