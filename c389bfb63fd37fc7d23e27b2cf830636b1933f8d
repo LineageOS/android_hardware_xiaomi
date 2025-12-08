@@ -117,6 +117,30 @@
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ebcc8589_681a88dd",
+        "filename": "sensors/v2/Sensor.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2025-12-08T15:11:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f4f4aa2c_50b2be28",
+      "range": {
+        "startLine": 224,
+        "startChar": 6,
+        "endLine": 224,
+        "endChar": 45
+      },
+      "revId": "c389bfb63fd37fc7d23e27b2cf830636b1933f8d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0fe16fc0_305c2f31",
@@ -154,6 +178,30 @@
       "side": 1,
       "message": "I’ll consider that.",
       "parentUuid": "0fe16fc0_305c2f31",
+      "range": {
+        "startLine": 231,
+        "startChar": 48,
+        "endLine": 234,
+        "endChar": 1
+      },
+      "revId": "c389bfb63fd37fc7d23e27b2cf830636b1933f8d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e06663fd_30aede17",
+        "filename": "sensors/v2/Sensor.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2025-12-08T15:11:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b6f61914_46d94009",
       "range": {
         "startLine": 231,
         "startChar": 48,
