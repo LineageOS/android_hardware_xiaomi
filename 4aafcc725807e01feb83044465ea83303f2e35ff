@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06bc1727_6e9bcb2c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 30766
+      },
+      "writtenOn": "2025-12-14T19:42:57Z",
+      "side": 1,
+      "message": "You might wanna pick https://github.com/garnet-random/android_device_xiaomi_garnet/commit/fada9299d60ceff6af2d9db4a5bfde8d6f42d6e3\n\nAs I ended up getting rid of reflection",
+      "revId": "4aafcc725807e01feb83044465ea83303f2e35ff",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
