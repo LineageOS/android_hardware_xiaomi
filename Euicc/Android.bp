@@ -1,0 +1,18 @@
+
+//
+// SPDX-FileCopyrightText: The LineageOS Project
+// SPDX-License-Identifier: Apache-2.0
+//
+
+phony {
+    name: "XiaomiEuicc",
+    required: [
+        "EuiccPolicy",
+        "EuiccPolicyXiaomi",
+    ],
+}
+
+runtime_resource_overlay {
+    name: "EuiccPolicyXiaomi",
+    product_specific: true,
+}
