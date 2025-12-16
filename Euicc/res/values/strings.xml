@@ -9,7 +9,8 @@
             \"sim-slot-mappings\": [
                 {
                     \"devices\": [
-                        \"fuxi\"
+                        \"fuxi\",
+                        \"nuwa\"
                     ],
                     \"esim-slot-ids\": [
                         1
@@ -27,7 +28,8 @@
             \"sim_illustration_lottie_mappings\": [
                 {
                     \"devices\": [
-                        \"fuxi\"
+                        \"fuxi\",
+                        \"nuwa\"
                     ],
                     \"illustration_lottie\": \"sim_illustration_lottie_bottom\"
                 }
