@@ -34,6 +34,24 @@
       "parentUuid": "06bc1727_6e9bcb2c",
       "revId": "4aafcc725807e01feb83044465ea83303f2e35ff",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e31dc7f9_60b9775f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 30766
+      },
+      "writtenOn": "2025-12-18T11:40:14Z",
+      "side": 1,
+      "message": "I was also thinking of doing permission check and use with sku permission",
+      "parentUuid": "08bff67b_ed8e8cfe",
+      "revId": "4aafcc725807e01feb83044465ea83303f2e35ff",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
