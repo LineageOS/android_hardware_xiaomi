@@ -12,114 +12,122 @@ import android.os.IHwBinder
 import android.os.SystemProperties
 import android.provider.Settings
 import android.util.Log
-import org.ifaa.aidl.manager.IfaaManagerService
 import org.json.JSONObject
 import vendor.xiaomi.hardware.mlipay.V1_1.IMlipayService
 
 class IfaaService : Service() {
     private var _mlipayService: IMlipayService? = null
 
-    private val mlipayServiceDeathRecipient = IHwBinder.DeathRecipient {
-        Log.i(LOG_TAG, "mlipay service died")
-        _mlipayService = null
-    }
-
-    private val mBinder = object : IfaaManagerService.Stub() {
-        override fun getSupportBIOTypes(): Int {
-            val fpVendor = SystemProperties.get(FP_VENDOR_PROP, "")
-            val isUdfps = SystemProperties.getBoolean(IS_UDFPS_PROP, false)
-
-            val supportedBioMask = when (!invalidFpVendors.contains(fpVendor.lowercase())) {
-                true -> AUTH_TYPE_FINGERPRINT or AUTH_TYPE_IRIS
-                else -> AUTH_TYPE_IRIS
-            }
-
-            val ifaaProp = SystemProperties.getInt(
-                SUPPORTED_BIO_MASK_PROP, 0
-            ) and supportedBioMask or when (isUdfps) {
-                true -> AUTH_TYPE_OPTICAL_FINGERPRINT
-                else -> 0
-            }
-
-            return ifaaProp
+    private val mlipayServiceDeathRecipient =
+        IHwBinder.DeathRecipient {
+            Log.i(LOG_TAG, "mlipay service died")
+            _mlipayService = null
         }
 
-        override fun startBIOManager(authType: Int) = when (authType) {
-            AUTH_TYPE_FINGERPRINT -> {
-                applicationContext.startActivity(
-                    Intent(Settings.ACTION_SECURITY_SETTINGS).apply {
-                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+    private val mBinder =
+        object : IfaaManagerService.Stub() {
+            override fun getSupportBIOTypes(): Int {
+                val fpVendor = SystemProperties.get(FP_VENDOR_PROP, "")
+                val isUdfps = SystemProperties.getBoolean(IS_UDFPS_PROP, false)
+
+                val supportedBioMask =
+                    when (!invalidFpVendors.contains(fpVendor.lowercase())) {
+                        true -> AUTH_TYPE_FINGERPRINT or AUTH_TYPE_IRIS
+                        else -> AUTH_TYPE_IRIS
                     }
-                )
 
-                COMMAND_OK
+                val ifaaProp =
+                    SystemProperties.getInt(SUPPORTED_BIO_MASK_PROP, 0) and
+                        supportedBioMask or
+                        when (isUdfps) {
+                            true -> AUTH_TYPE_OPTICAL_FINGERPRINT
+                            else -> 0
+                        }
+
+                return ifaaProp
             }
 
-            else -> COMMAND_FAIL
-        }
+            override fun startBIOManager(authType: Int) =
+                when (authType) {
+                    AUTH_TYPE_FINGERPRINT -> {
+                        applicationContext.startActivity(
+                            Intent(Settings.ACTION_SECURITY_SETTINGS).apply {
+                                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                            }
+                        )
 
-        override fun getDeviceModel() = "${Build.MANUFACTURER}-${Build.DEVICE}"
+                        COMMAND_OK
+                    }
 
-        override fun processCmd(param: ByteArray) = getMlipayService()?.let { mlipayService ->
-            var receiveBuffer: ByteArray? = null
-
-            val paramByteArray = ArrayList<Byte>().apply {
-                for (byte in param) {
-                    add(byte)
+                    else -> COMMAND_FAIL
                 }
-            }
 
-            try {
-                val receiveBufferByteArray = mlipayService.invoke_command(
-                    paramByteArray, paramByteArray.size
-                )
+            override fun getDeviceModel() = "${Build.MANUFACTURER}-${Build.DEVICE}"
 
-                receiveBuffer = receiveBufferByteArray.toByteArray()
-            } catch (e: Exception) {
-                Log.e(LOG_TAG, "processCmdImpl: mlipay invoke_command failed", e)
-            }
+            override fun processCmd(param: ByteArray) =
+                getMlipayService()?.let { mlipayService ->
+                    var receiveBuffer: ByteArray? = null
 
-            receiveBuffer
-        }
+                    val paramByteArray =
+                        ArrayList<Byte>().apply {
+                            for (byte in param) {
+                                add(byte)
+                            }
+                        }
 
-        override fun getVersion() = 4
+                    try {
+                        val receiveBufferByteArray =
+                            mlipayService.invoke_command(paramByteArray, paramByteArray.size)
 
-        override fun getExtInfo(authType: Int, keyExtInfo: String) = initExtString()
+                        receiveBuffer = receiveBufferByteArray.toByteArray()
+                    } catch (e: Exception) {
+                        Log.e(LOG_TAG, "processCmdImpl: mlipay invoke_command failed", e)
+                    }
 
-        override fun setExtInfo(authType: Int, keyExtInfo: String, valExtInfo: String) {
-            // Do nothing
-        }
-
-        override fun getEnabled(bioType: Int) = when (bioType) {
-            AUTH_TYPE_FINGERPRINT -> BIOMETRICS_AVAILABLE
-            else -> SCREEN_LOCK_NONE
-        }
-
-        override fun getIDList(bioType: Int): IntArray {
-            var idList = IntArray(0)
-
-            getMlipayService()?.let { mlipayService ->
-                try {
-                    val idListAL = mlipayService.ifaa_get_idlist(bioType)
-
-                    idList = idListAL.toIntArray()
-                } catch (e: Exception) {
-                    Log.e(LOG_TAG, "getIDListImpl: mlipay ifaa_get_idlist failed", e)
+                    receiveBuffer
                 }
+
+            override fun getVersion() = 4
+
+            override fun getExtInfo(authType: Int, keyExtInfo: String) = initExtString()
+
+            override fun setExtInfo(authType: Int, keyExtInfo: String, valExtInfo: String) {
+                // Do nothing
             }
 
-            return idList
+            override fun getEnabled(bioType: Int) =
+                when (bioType) {
+                    AUTH_TYPE_FINGERPRINT -> BIOMETRICS_AVAILABLE
+                    else -> SCREEN_LOCK_NONE
+                }
+
+            override fun getIDList(bioType: Int): IntArray {
+                var idList = IntArray(0)
+
+                getMlipayService()?.let { mlipayService ->
+                    try {
+                        val idListAL = mlipayService.ifaa_get_idlist(bioType)
+
+                        idList = idListAL.toIntArray()
+                    } catch (e: Exception) {
+                        Log.e(LOG_TAG, "getIDListImpl: mlipay ifaa_get_idlist failed", e)
+                    }
+                }
+
+                return idList
+            }
         }
-    }
 
     override fun onBind(intent: Intent) = mBinder
 
-    private fun getMlipayService() = _mlipayService ?: runCatching {
-        IMlipayService.getService(true)
-    }.onSuccess {
-        _mlipayService = it
-        it.linkToDeath(mlipayServiceDeathRecipient, 0)
-    }.getOrNull()
+    private fun getMlipayService() =
+        _mlipayService
+            ?: runCatching { IMlipayService.getService(true) }
+                .onSuccess {
+                    _mlipayService = it
+                    it.linkToDeath(mlipayServiceDeathRecipient, 0)
+                }
+                .getOrNull()
 
     private fun initExtString(): String {
         val obj = JSONObject()
@@ -175,9 +183,6 @@ class IfaaService : Service() {
         private const val UDFPS_LOCATION_X_Y_PROP = "persist.vendor.sys.fp.udfps.location.X_Y"
         private const val UDFPS_SIZE_W_H_PROP = "persist.vendor.sys.fp.udfps.size.width_height"
 
-        private val invalidFpVendors = arrayOf(
-            "",
-            "none",
-        )
+        private val invalidFpVendors = arrayOf("", "none")
     }
 }
