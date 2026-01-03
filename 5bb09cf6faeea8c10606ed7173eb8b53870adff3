@@ -16,6 +16,24 @@
       "message": "Android Studio might use a different linting format?",
       "revId": "5bb09cf6faeea8c10606ed7173eb8b53870adff3",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "53c285dd_329f57de",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2026-01-03T15:02:12Z",
+      "side": 1,
+      "message": "Irrelevant to the case here, I guess. But on that, according to Mike, this matches the format Google is using.",
+      "parentUuid": "dfd56081_9953bd54",
+      "revId": "5bb09cf6faeea8c10606ed7173eb8b53870adff3",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
