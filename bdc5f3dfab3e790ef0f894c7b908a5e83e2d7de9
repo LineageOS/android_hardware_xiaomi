@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a58d9095_991ced44",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2026-01-11T14:15:28Z",
+      "side": 1,
+      "message": "Adapt to EuiccPolicy. See: https://review.lineageos.org/c/LineageOS/android_hardware_motorola/+/466197",
+      "revId": "bdc5f3dfab3e790ef0f894c7b908a5e83e2d7de9",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
