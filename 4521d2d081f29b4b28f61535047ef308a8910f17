@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "480ff782_88d56125",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2026-01-18T10:18:30Z",
+      "side": 1,
+      "message": "Damn... property \"compile_multilib\" is not supported. :/",
+      "revId": "4521d2d081f29b4b28f61535047ef308a8910f17",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
