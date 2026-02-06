@@ -34,6 +34,23 @@
       "parentUuid": "bb9859b9_99a3646f",
       "revId": "459a6181fb65b2ba2c84bcb3ab91d1c7339faa83",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ab20ee9_fefa8183",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 35591
+      },
+      "writtenOn": "2026-02-06T09:37:54Z",
+      "side": 1,
+      "message": "Is there a reason to not add it to the device only then ?",
+      "revId": "459a6181fb65b2ba2c84bcb3ab91d1c7339faa83",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
