@@ -51,6 +51,24 @@
       "message": "Is there a reason to not add it to the device only then ?",
       "revId": "459a6181fb65b2ba2c84bcb3ab91d1c7339faa83",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc436c79_9ac29c84",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2026-02-06T10:02:17Z",
+      "side": 1,
+      "message": "This is a FCM, not a manifest.",
+      "parentUuid": "3ab20ee9_fefa8183",
+      "revId": "459a6181fb65b2ba2c84bcb3ab91d1c7339faa83",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
