@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1099e9f7_3b565fc6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2026-02-07T16:00:32Z",
+      "side": 1,
+      "message": "Light HAL + backlight devices rules can be dropped given it is now a Lineage HAL",
+      "revId": "602855d71b157f8a222781af1a887ee3b4733743",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
