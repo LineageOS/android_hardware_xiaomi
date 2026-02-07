@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e1d17435_e8960613",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2026-02-07T16:04:37Z",
+      "side": 1,
+      "message": "I dropped secontext for light hal and all other that were deprecated since. Is there other stuff that is common?",
+      "parentUuid": "1099e9f7_3b565fc6",
+      "revId": "602855d71b157f8a222781af1a887ee3b4733743",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e025d602_2be715cd",
         "filename": "sepolicy/SEPolicy.mk",
         "patchSetId": 6
@@ -31,6 +49,24 @@
       "writtenOn": "2026-02-07T16:01:24Z",
       "side": 1,
       "message": "Did we drop year copyright from hw/xiaomi? If yes this can be changed as well",
+      "revId": "602855d71b157f8a222781af1a887ee3b4733743",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4606d191_60fbf636",
+        "filename": "sepolicy/SEPolicy.mk",
+        "patchSetId": 6
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2026-02-07T16:04:37Z",
+      "side": 1,
+      "message": "No, we did not.",
+      "parentUuid": "e025d602_2be715cd",
       "revId": "602855d71b157f8a222781af1a887ee3b4733743",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
