@@ -1,0 +1,36 @@
+type vendor_hal_fingerprint_hwservice_xiaomi, hwservice_manager_type;
+
+allow hal_fingerprint_default input_device:chr_file rw_file_perms;
+allow hal_fingerprint_default input_device:dir r_dir_perms;
+allow hal_fingerprint_default self:netlink_socket create_socket_perms_no_ioctl;
+allow hal_fingerprint_default self:capability { sys_nice };
+allow hal_fingerprint_default vendor_sysfs_sensors:chr_file r_file_perms;
+allow hal_fingerprint_default vendor_sysfs_sensors:file r_file_perms;
+allow hal_fingerprint_default tee_device:chr_file rw_file_perms;
+allow hal_fingerprint_default touchfeature_device:chr_file rw_file_perms;
+allow hal_fingerprint_default uhid_device:chr_file rw_file_perms;
+allow hal_fingerprint_default vendor_dmabuf_qseecom_heap_device:chr_file r_file_perms;
+allow hal_fingerprint_default vendor_dmabuf_qseecom_ta_heap_device:chr_file r_file_perms;
+allow hal_fingerprint_default vendor_dmabuf_secure_cdsp_heap_device:chr_file { ioctl open read };
+allow hal_fingerprint_default dmabuf_system_heap_device:chr_file r_file_perms;
+allow hal_fingerprint_default vendor_fingerprint_data_file:dir create_dir_perms;
+allow hal_fingerprint_default vendor_fingerprint_data_file:file create_file_perms;
+allow hal_fingerprint_default vendor_fingerprint_device:chr_file rwx_file_perms;
+allow hal_fingerprint_default vendor_hal_fingerprint_hwservice_xiaomi:hwservice_manager { add find };
+allow hal_fingerprint_default vendor_hal_perf_default:binder call;
+allow hal_fingerprint_default vendor_hal_perf_hwservice:hwservice_manager find;
+allow hal_fingerprint_default vendor_sysfs_displayfeature:dir search;
+allow hal_fingerprint_default vendor_sysfs_displayfeature:file rw_file_perms;
+allow hal_fingerprint_default vendor_sysfs_fingerprint:dir r_dir_perms;
+allow hal_fingerprint_default vendor_sysfs_fingerprint:file rw_file_perms;
+allow hal_fingerprint_default vendor_sysfs_graphics:dir r_dir_perms;
+allow hal_fingerprint_default vendor_sysfs_graphics:file rw_file_perms;
+allow hal_fingerprint_default vendor_xdsp_device:chr_file r_file_perms;
+allow hal_fingerprint_default vendor_xdsp_device:file r_file_perms;
+allow hal_fingerprint_default mnt_vendor_file:dir search;
+allow hal_fingerprint_default vendor_displayfeature_device:chr_file { ioctl open read write };
+
+get_prop(hal_fingerprint_default, vendor_adsprpc_prop)
+get_prop(hal_fingerprint_default, vendor_panel_info_prop)
+set_prop(hal_fingerprint_default, vendor_fp_prop)
+set_prop(hal_fingerprint_default, vendor_fp_info_prop)

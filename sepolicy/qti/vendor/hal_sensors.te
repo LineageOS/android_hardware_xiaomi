@@ -1,0 +1,5 @@
+unix_socket_connect(hal_sensors_default, audio, hal_audio_default)
+
+allow hal_sensors_default vendor_sysfs_graphics:dir r_dir_perms;
+allow hal_sensors_default vendor_sysfs_graphics:file r_file_perms;
+allow hal_sensors_default stmvl53l5_device:chr_file { ioctl open read write };

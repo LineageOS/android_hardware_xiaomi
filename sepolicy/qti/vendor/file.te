@@ -1,0 +1,23 @@
+# Audio
+type audio_socket, file_type;
+
+# Camera
+type camera_persist_file, file_type, mlstrustedobject, vendor_persist_type;
+
+# Diag
+type vendor_modem_data_file, data_file_type, file_type;
+
+# Display
+type vendor_sysfs_displayfeature, fs_type, sysfs_type;
+
+# Fingerprint
+type vendor_fingerprint_data_file, data_file_type, file_type;
+type vendor_fingerprint_data_file_fpdump, data_file_type, file_type;
+
+# Mac Address
+type vendor_mac_vendor_data_file, data_file_type, file_type, mlstrustedobject;
+
+# Thermal
+type sys_thermal_wifi_limit, fs_type, sysfs_type;
+type sys_thermal_flash_state, fs_type, sysfs_type;
+type thermal_data_file, data_file_type, file_type;

@@ -1,0 +1,17 @@
+# Block devices
+typeattribute system_block_device super_block_device_type;
+
+# Camera
+type stmvl53l5_device, dev_type;
+
+# Display
+type vendor_displayfeature_device, dev_type;
+
+# Fingerprint
+type vendor_fingerprint_device, dev_type;
+
+# Modem
+type vendor_radio_smd_device, dev_type;
+
+# Touchscreen
+type touchfeature_device, dev_type;

@@ -1,0 +1,8 @@
+allow vendor_wcnss_service self:capability { net_raw setgid setuid };
+allow vendor_wcnss_service self:packet_socket write;
+allow vendor_wcnss_service sysfs_net:file read;
+allow vendor_wcnss_service mnt_vendor_file:dir search;
+allow vendor_wcnss_service vendor_mac_vendor_data_file:dir create_dir_perms;
+allow vendor_wcnss_service vendor_mac_vendor_data_file:file create_file_perms;
+allow vendor_wcnss_service mnt_vendor_file:dir create_dir_perms;
+allow vendor_wcnss_service mnt_vendor_file:file create_file_perms;

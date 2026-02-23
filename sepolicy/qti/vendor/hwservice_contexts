@@ -1,0 +1,16 @@
+# Camera
+vendor.xiaomi.hardware.bgservice::IBGService u:object_r:vendor_hal_camerapostproc_xiaomi_hwservice:s0
+vendor.xiaomi.hardware.campostproc::IMiPostProcService u:object_r:vendor_hal_camerapostproc_xiaomi_hwservice:s0
+vendor.xiaomi.hardware.quickcamera::IQuickCameraService u:object_r:hal_quickcamera_hwservice:s0
+
+# Fingerprint
+vendor.xiaomi.hardware.fx.tunnel::IMiFxTunnel u:object_r:vendor_hal_fingerprint_hwservice_xiaomi:s0
+com.fingerprints.extension::IFingerprintEngineering u:object_r:vendor_hal_fingerprint_hwservice_xiaomi:s0
+com.fingerprints.extension::IFingerprintAuthenticator u:object_r:vendor_hal_fingerprint_hwservice_xiaomi:s0
+com.fingerprints.extension::IFingerprintNavigation u:object_r:vendor_hal_fingerprint_hwservice_xiaomi:s0
+com.fingerprints.extension::IFingerprintSensorTest u:object_r:vendor_hal_fingerprint_hwservice_xiaomi:s0
+com.fingerprints.extension::IFingerprintCalibration u:object_r:vendor_hal_fingerprint_hwservice_xiaomi:s0
+com.fingerprints.extension::IFingerprintOptical u:object_r:vendor_hal_fingerprint_hwservice_xiaomi:s0
+
+# Mlipay
+vendor.xiaomi.hardware.mlipay::IMlipayService u:object_r:hal_mlipay_hwservice:s0
