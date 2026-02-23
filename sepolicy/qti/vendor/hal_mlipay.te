@@ -1,0 +1,24 @@
+type hal_mlipay_default, domain;
+type hal_mlipay_default_exec, exec_type, file_type, vendor_file_type;
+type hal_mlipay_hwservice, hwservice_manager_type;
+
+hal_attribute(mlipay)
+init_daemon_domain(hal_mlipay_default)
+
+hwbinder_use(hal_mlipay_default)
+binder_call(hal_mlipay_client, hal_mlipay_server)
+binder_call(hal_mlipay_server, hal_mlipay_client)
+
+add_hwservice(hal_mlipay_server, hal_mlipay_hwservice)
+hal_server_domain(hal_mlipay_default, hal_mlipay)
+
+allow hal_mlipay_default tee_device:chr_file rw_file_perms;
+allow hal_mlipay_default firmware_file:dir r_dir_perms;
+allow hal_mlipay_default firmware_file:file r_file_perms;
+allow hal_mlipay_default ion_device:chr_file rw_file_perms;
+allow hal_mlipay_default vendor_dmabuf_qseecom_heap_device:chr_file { ioctl open read };
+allow hal_mlipay_default vendor_dmabuf_qseecom_ta_heap_device:chr_file { ioctl open read };
+
+get_prop(hal_mlipay_default, vendor_fp_prop)
+get_prop(hal_mlipay_default, vendor_system_prop)
+set_prop(hal_mlipay_default, vendor_payment_security_prop)

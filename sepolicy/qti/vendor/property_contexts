@@ -1,0 +1,37 @@
+# Camera
+persist.vendor.EnableP3ColorSpace u:object_r:vendor_camera_p3enable_prop:s0
+vendor.camera.sensor. u:object_r:vendor_camera_sensor_prop:s0
+
+# Device ID
+persist.vendor.radio.imei u:object_r:vendor_deviceid_prop:s0
+persist.vendor.radio.meid u:object_r:vendor_deviceid_prop:s0
+ro.vendor.oem.imei u:object_r:vendor_deviceid_prop:s0
+ro.vendor.oem.meid u:object_r:vendor_deviceid_prop:s0
+ro.vendor.oem.psno u:object_r:vendor_sno_prop:s0
+ro.vendor.oem.sno u:object_r:vendor_sno_prop:s0
+
+# Fingerprint
+persist.vendor.fingerprint. u:object_r:vendor_fp_prop:s0
+persist.vendor.fpc. u:object_r:vendor_fp_prop:s0
+persist.vendor.sys.fp. u:object_r:vendor_fp_prop:s0
+persist.vendor.sys.fp.info u:object_r:vendor_fp_info_prop:s0
+persist.vendor.sys.fp.uid u:object_r:vendor_fp_info_prop:s0
+vendor.fps_hal. u:object_r:vendor_fp_prop:s0
+vendor.panel.display. u:object_r:vendor_fp_prop:s0
+ro.hardware.fp.udfps u:object_r:vendor_fp_prop:s0
+
+# Panel
+vendor.panel. u:object_r:vendor_panel_info_prop:s0
+
+# Mlipay
+persist.vendor.sys.pay.fido u:object_r:vendor_payment_security_prop:s0
+persist.vendor.sys.pay.fido2 u:object_r:vendor_payment_security_prop:s0
+persist.vendor.sys.pay.ifaa u:object_r:vendor_payment_security_prop:s0
+persist.vendor.sys.pay.soter u:object_r:vendor_payment_security_prop:s0
+persist.vendor.sys.pay.widevine u:object_r:vendor_payment_security_prop:s0
+persist.vendor.sys.provision.status u:object_r:vendor_payment_security_prop:s0
+vendor.sys.feature_state u:object_r:vendor_payment_security_prop:s0
+vendor.sys.rpmb_state u:object_r:vendor_payment_security_prop:s0
+
+# Thermal
+vendor.sys.thermal.data.path u:object_r:vendor_thermal_normal_prop:s0

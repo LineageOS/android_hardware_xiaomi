@@ -1,0 +1,31 @@
+type mi_thermald, domain, mlstrustedsubject;
+type mi_thermald_exec, exec_type, vendor_file_type, file_type;
+
+init_daemon_domain(mi_thermald)
+
+allow mi_thermald sysfs:dir { read open };
+allow mi_thermald sysfs_devices_system_cpu:file rw_file_perms;
+allow mi_thermald self:capability { fsetid sys_boot };
+allow mi_thermald sysfs_thermal:file w_file_perms;
+allow mi_thermald vendor_sysfs_kgsl:dir r_dir_perms;
+allow mi_thermald vendor_sysfs_kgsl:file rw_file_perms;
+allow mi_thermald vendor_sysfs_kgsl:lnk_file r_file_perms;
+allow mi_thermald vendor_sysfs_battery_supply:dir r_dir_perms;
+allow mi_thermald vendor_sysfs_battery_supply:file rw_file_perms;
+allow mi_thermald vendor_sysfs_battery_supply:lnk_file r_file_perms;
+allow mi_thermald vendor_sysfs_graphics:dir r_dir_perms;
+allow mi_thermald vendor_sysfs_graphics:file rw_file_perms;
+allow mi_thermald vendor_sysfs_graphics:lnk_file r_file_perms;
+allow mi_thermald thermal_data_file:dir { add_name read remove_name search watch write };
+allow mi_thermald thermal_data_file:file { create getattr open read rename setattr unlink write };
+allow mi_thermald mi_thermald:capability { chown fowner };
+allow mi_thermald mi_thermald:capability2 { block_suspend wake_alarm };
+allow mi_thermald vendor_data_file:dir { add_name read remove_name watch write };
+allow mi_thermald vendor_data_file:file { create getattr open read rename setattr unlink write };
+allow mi_thermald sys_thermal_wifi_limit:file { open read write };
+allow mi_thermald sys_thermal_wifi_limit:file rw_file_perms;
+
+r_dir_file(mi_thermald, sysfs_thermal)
+r_dir_file(mi_thermald, sysfs_leds)
+
+set_prop(mi_thermald, vendor_thermal_normal_prop)
