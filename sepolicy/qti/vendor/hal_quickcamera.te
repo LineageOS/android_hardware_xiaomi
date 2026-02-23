@@ -1,0 +1,13 @@
+type hal_quickcamera_default, domain;
+type hal_quickcamera_default_exec, exec_type, file_type, vendor_file_type;
+type hal_quickcamera_hwservice, hwservice_manager_type;
+
+hal_attribute(quickcamera)
+
+init_daemon_domain(hal_quickcamera_default)
+hal_server_domain(hal_quickcamera_default, hal_quickcamera)
+
+binder_call(hal_quickcamera_client, hal_quickcamera_server)
+binder_call(hal_quickcamera_server, hal_quickcamera_client)
+
+add_hwservice(hal_quickcamera_server, hal_quickcamera_hwservice)

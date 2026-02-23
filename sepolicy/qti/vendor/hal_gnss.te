@@ -1,0 +1,2 @@
+get_prop(vendor_hal_gnss_qti, vendor_sensors_prop)
+get_prop(vendor_hal_gnss_qti, vendor_mi_ins_prop)

@@ -1,0 +1,5 @@
+# Fingerprint
+FortsenseFingerprintService                    u:object_r:hal_fingerprint_service_xiaomi:s0
+
+# Resmsosaic
+android.IRemosaicDaemon                        u:object_r:remosaic_daemon_service:s0

@@ -1,0 +1,2 @@
+allow hal_lineage_livedisplay_qti sysfs_anti_flicker:file rw_file_perms;
+allow hal_lineage_livedisplay_qti sysfs_hbm:file rw_file_perms;
