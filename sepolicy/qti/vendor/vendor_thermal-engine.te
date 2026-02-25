@@ -1,0 +1,2 @@
+r_dir_file(vendor_thermal-engine, thermal_data_file)
+set_prop(vendor_thermal-engine, vendor_thermal_normal_prop)

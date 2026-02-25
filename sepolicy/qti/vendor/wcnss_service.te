@@ -6,3 +6,6 @@ allow vendor_wcnss_service vendor_mac_vendor_data_file:dir create_dir_perms;
 allow vendor_wcnss_service vendor_mac_vendor_data_file:file create_file_perms;
 allow vendor_wcnss_service mnt_vendor_file:dir create_dir_perms;
 allow vendor_wcnss_service mnt_vendor_file:file create_file_perms;
+
+set_prop(vendor_wcnss_service, vendor_radio_prop)
+set_prop(vendor_wcnss_service, vendor_wcnss_service_prop)
