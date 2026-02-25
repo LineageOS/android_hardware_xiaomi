@@ -16,6 +16,24 @@
       "message": "This must be cleaned up, allowing access to rootfs, sysfs and mnt_vendor_file sucks.",
       "revId": "68cb5287091ee5a42098abd099f34701b786a401",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32445361_54137e11",
+        "filename": "sepolicy/qti/vendor/batterysecret.te",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2026-02-25T10:30:03Z",
+      "side": 1,
+      "message": "I can do that on sm8450 soon and label the actually used nodes properly, though they might not cover all older platforms.",
+      "parentUuid": "9b09a70b_4428ea04",
+      "revId": "68cb5287091ee5a42098abd099f34701b786a401",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
