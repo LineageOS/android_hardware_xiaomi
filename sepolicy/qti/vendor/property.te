@@ -11,6 +11,9 @@ vendor_public_prop(vendor_cpuid_prop)
 vendor_restricted_prop(vendor_fp_info_prop)
 vendor_public_prop(vendor_fp_prop)
 
+# INS
+vendor_public_prop(vendor_mi_ins_prop)
+
 # Mlipay
 vendor_public_prop(vendor_payment_security_prop)
 

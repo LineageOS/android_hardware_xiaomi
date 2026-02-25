@@ -24,6 +24,10 @@ vendor.fps_hal. u:object_r:vendor_fp_prop:s0
 vendor.panel.display. u:object_r:vendor_fp_prop:s0
 ro.hardware.fp.udfps u:object_r:vendor_fp_prop:s0
 
+# INS
+persist.vendor.sensors.ins. u:object_r:vendor_mi_ins_prop:s0
+persist.vendor.sensors.ins_debug u:object_r:vendor_mi_ins_prop:s0
+
 # Mlipay
 persist.vendor.sys.pay.fido u:object_r:vendor_payment_security_prop:s0
 persist.vendor.sys.pay.fido2 u:object_r:vendor_payment_security_prop:s0
