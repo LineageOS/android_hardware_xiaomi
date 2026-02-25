@@ -1,2 +1,6 @@
+# Fingerprint
+vendor_restricted_prop(vendor_fp_info_prop)
+vendor_public_prop(vendor_fp_prop)
+
 # Thermal
 vendor_public_prop(vendor_thermal_normal_prop)

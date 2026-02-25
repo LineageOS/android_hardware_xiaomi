@@ -1,2 +1,12 @@
+# Fingerprint
+persist.vendor.fingerprint. u:object_r:vendor_fp_prop:s0
+persist.vendor.fpc. u:object_r:vendor_fp_prop:s0
+persist.vendor.sys.fp. u:object_r:vendor_fp_prop:s0
+persist.vendor.sys.fp.info u:object_r:vendor_fp_info_prop:s0
+persist.vendor.sys.fp.uid u:object_r:vendor_fp_info_prop:s0
+vendor.fps_hal. u:object_r:vendor_fp_prop:s0
+vendor.panel.display. u:object_r:vendor_fp_prop:s0
+ro.hardware.fp.udfps u:object_r:vendor_fp_prop:s0
+
 # Thermal
 vendor.sys.thermal.data.path u:object_r:vendor_thermal_normal_prop:s0
