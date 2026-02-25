@@ -5,6 +5,9 @@ genfscon sysfs /kernel/smartpa/smartpa_type u:object_r:smartpa_type:s0
 genfscon sysfs /devices/platform/soc/soc:xm_battmngr/power_supply/battery u:object_r:vendor_sysfs_battery_supply:s0
 genfscon sysfs /devices/platform/soc/soc:xm_battmngr/power_supply/usb u:object_r:vendor_sysfs_usb_supply:s0
 
+# Extcon
+genfscon sysfs /devices/platform/soc/soc:spf_core_platform/soc:spf_core_platform:lpass-cdc/wcd937x-codec/extcon u:object_r:sysfs_extcon:s0
+
 # Fingerprint
 genfscon sysfs /devices/platform/soc/soc:fingerprint_fpc u:object_r:vendor_sysfs_fingerprint:s0
 genfscon sysfs /devices/platform/soc/soc:fingerprint_fpc/wakeup_enable u:object_r:vendor_sysfs_fingerprint:s0
