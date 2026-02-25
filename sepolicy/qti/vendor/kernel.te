@@ -1,0 +1,3 @@
+allow kernel per_boot_file:file r_file_perms;
+
+dontaudit kernel mnt_vendor_file:dir search;

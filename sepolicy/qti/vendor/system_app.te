@@ -1,3 +1,9 @@
 allow system_app hal_mlipay_hwservice:hwservice_manager find;
+allow system_app hal_motor_hwservice_xiaomi:hwservice_manager find;
+allow system_app sysfs_doze:file rw_file_perms;
+allow system_app { motor_device vendor_sysfs_graphics sysfs_leds }:dir search;
+allow system_app { cgroup vendor_sysfs_graphics }:file rw_file_perms;
+allow system_app { motor_device vendor_sysfs_graphics hall_device }:chr_file rw_file_perms;
 
 binder_call(system_app, hal_mlipay_default)
+binder_call(system_app, hal_motor)

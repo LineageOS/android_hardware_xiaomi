@@ -7,16 +7,21 @@ type vendor_hal_camerapostproc_xiaomi_hwservice, hwservice_manager_type;
 binder_call(vendor_hal_camerapostproc_xiaomi_client, vendor_hal_camerapostproc_xiaomi_server)
 binder_call(vendor_hal_camerapostproc_xiaomi_server, vendor_hal_camerapostproc_xiaomi_client)
 
+binder_call(hal_camera_default, remosaic_daemon)
+
+hal_client_domain(hal_camera_default, hal_power)
 hal_server_domain(hal_camera_default, vendor_hal_camerapostproc_xiaomi)
 allow hal_camera_client vendor_hal_camerapostproc_xiaomi_hwservice:hwservice_manager find;
 add_hwservice(hal_camera_server, vendor_hal_camerapostproc_xiaomi_hwservice)
 
 allow hal_camera_default hal_quickcamera_hwservice:hwservice_manager find;
+allow hal_camera_default remosaic_daemon_service:service_manager find;
 
 allow hal_camera_default camera_persist_file:dir search;
 allow hal_camera_default vendor_persist_sensors_file:dir search;
 allow hal_camera_default stmvl53l5_device:chr_file { ioctl open read write };
 allow hal_camera_default sys_thermal_flash_state:file rw_file_perms;
+allow hal_camera_default proc_meminfo:file r_file_perms;
 
 r_dir_file(hal_camera_default, mnt_vendor_file)
 r_dir_file(hal_camera_default, camera_persist_file)

@@ -20,5 +20,14 @@ vendor_public_prop(vendor_payment_security_prop)
 # Panel
 vendor_public_prop(vendor_panel_info_prop)
 
+# Sensors
+vendor_internal_prop(persist_sensors_prop)
+
 # Thermal
 vendor_public_prop(vendor_thermal_normal_prop)
+
+# Ultrasound
+vendor_public_prop(elliptic_ultrasound_prop)
+
+# WiFi
+vendor_internal_prop(vendor_wcnss_service_prop)

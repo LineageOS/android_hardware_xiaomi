@@ -1,0 +1,3 @@
+recovery_only(`
+    domain_trans(init, rootfs, vendor_hvdcp)
+')
