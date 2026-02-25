@@ -1,0 +1,8 @@
+# Fingerprint
+vendor.xiaomi.hardware.fx.tunnel::IMiFxTunnel u:object_r:vendor_hal_fingerprint_hwservice_xiaomi:s0
+com.fingerprints.extension::IFingerprintEngineering u:object_r:vendor_hal_fingerprint_hwservice_xiaomi:s0
+com.fingerprints.extension::IFingerprintAuthenticator u:object_r:vendor_hal_fingerprint_hwservice_xiaomi:s0
+com.fingerprints.extension::IFingerprintNavigation u:object_r:vendor_hal_fingerprint_hwservice_xiaomi:s0
+com.fingerprints.extension::IFingerprintSensorTest u:object_r:vendor_hal_fingerprint_hwservice_xiaomi:s0
+com.fingerprints.extension::IFingerprintCalibration u:object_r:vendor_hal_fingerprint_hwservice_xiaomi:s0
+com.fingerprints.extension::IFingerprintOptical u:object_r:vendor_hal_fingerprint_hwservice_xiaomi:s0
