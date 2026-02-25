@@ -1,0 +1,18 @@
+allow vendor_hal_perf_default hal_graphics_composer_default:process getpgid;
+allow vendor_hal_perf_default hal_graphics_composer_default:dir r_dir_perms;
+allow vendor_hal_perf_default hal_graphics_composer_default:file r_file_perms;
+allow vendor_hal_perf_default hal_graphics_composer_default:file append;
+allow vendor_hal_perf_default hal_graphics_composer:dir search;
+allow vendor_hal_perf_default hal_camera_default:dir r_dir_perms;
+allow vendor_hal_perf_default hal_camera_default:file r_file_perms;
+allow vendor_hal_perf_default hal_fingerprint_default:dir r_dir_perms;
+allow vendor_hal_perf_default hal_fingerprint_default:file r_file_perms;
+allow vendor_hal_perf_default sysfs_thermal:file rw_file_perms;
+allow vendor_hal_perf_default hal_audio_default:dir search;
+allow vendor_hal_perf_default hal_audio_default:file { open read };
+allow vendor_hal_perf_default thermal_data_file:dir { read search watch };
+allow vendor_hal_perf_default thermal_data_file:file { getattr open read setattr unlink };
+allow vendor_hal_perf_default mi_thermald:dir r_dir_perms;
+allow vendor_hal_perf_default mi_thermald:file r_file_perms;
+
+set_prop(vendor_hal_perf_default, vendor_wlc_public_prop)
