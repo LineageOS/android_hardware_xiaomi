@@ -1,0 +1,2 @@
+# Thermal
+vendor.sys.thermal.data.path u:object_r:vendor_thermal_normal_prop:s0

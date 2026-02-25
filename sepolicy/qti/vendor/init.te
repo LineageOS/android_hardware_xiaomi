@@ -1,0 +1,2 @@
+# Thermal
+set_prop(vendor_init, vendor_thermal_normal_prop)

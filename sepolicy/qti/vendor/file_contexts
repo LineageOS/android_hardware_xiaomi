@@ -7,5 +7,11 @@
 # Sensors
 /(vendor|system/vendor)/bin/hw/android\.hardware\.sensors-service\.xiaomi-multihal u:object_r:hal_sensors_default_exec:s0
 
+# Thermal
+/(vendor|system/vendor)/bin/mi_thermald u:object_r:mi_thermald_exec:s0
+/data/vendor/thermal(/.*)? u:object_r:thermal_data_file:s0
+/sys/class/thermal/thermal_message/wifi_limit u:object_r:sys_thermal_wifi_limit:s0
+/sys/devices/virtual/thermal/thermal_message/wifi_limit u:object_r:sys_thermal_wifi_limit:s0
+
 # Touchscreen
 /vendor/bin/hw/vendor\.lineage\.touch-service\.xiaomi u:object_r:hal_lineage_touch_default_exec:s0
