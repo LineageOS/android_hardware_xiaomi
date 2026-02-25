@@ -1,0 +1,1 @@
+allow hal_sensors_default stmvl53l5_device:chr_file { ioctl open read write };
