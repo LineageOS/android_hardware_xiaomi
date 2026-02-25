@@ -1,0 +1,29 @@
+attribute vendor_hal_camerapostproc_xiaomi;
+attribute vendor_hal_camerapostproc_xiaomi_client;
+attribute vendor_hal_camerapostproc_xiaomi_server;
+
+type vendor_hal_camerapostproc_xiaomi_hwservice, hwservice_manager_type;
+
+binder_call(vendor_hal_camerapostproc_xiaomi_client, vendor_hal_camerapostproc_xiaomi_server)
+binder_call(vendor_hal_camerapostproc_xiaomi_server, vendor_hal_camerapostproc_xiaomi_client)
+
+hal_server_domain(hal_camera_default, vendor_hal_camerapostproc_xiaomi)
+allow hal_camera_client vendor_hal_camerapostproc_xiaomi_hwservice:hwservice_manager find;
+add_hwservice(hal_camera_server, vendor_hal_camerapostproc_xiaomi_hwservice)
+
+allow hal_camera_default hal_quickcamera_hwservice:hwservice_manager find;
+
+allow hal_camera_default camera_persist_file:dir search;
+allow hal_camera_default vendor_persist_sensors_file:dir search;
+allow hal_camera_default stmvl53l5_device:chr_file { ioctl open read write };
+allow hal_camera_default sys_thermal_flash_state:file rw_file_perms;
+
+r_dir_file(hal_camera_default, mnt_vendor_file)
+r_dir_file(hal_camera_default, camera_persist_file)
+r_dir_file(hal_camera_default, vendor_persist_sensors_file)
+
+set_prop(hal_camera_default, vendor_camera_p3enable_prop)
+set_prop(hal_camera_default, vendor_camera_sensor_prop)
+
+dontaudit hal_camera graphics_device:dir search;
+dontaudit hal_camera_default default_prop:file read;
