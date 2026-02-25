@@ -2,6 +2,14 @@
 persist.vendor.EnableP3ColorSpace u:object_r:vendor_camera_p3enable_prop:s0
 vendor.camera.sensor. u:object_r:vendor_camera_sensor_prop:s0
 
+# Device ID
+persist.vendor.radio.imei u:object_r:vendor_deviceid_prop:s0
+persist.vendor.radio.meid u:object_r:vendor_deviceid_prop:s0
+ro.vendor.oem.imei u:object_r:vendor_deviceid_prop:s0
+ro.vendor.oem.meid u:object_r:vendor_deviceid_prop:s0
+ro.vendor.oem.psno u:object_r:vendor_sno_prop:s0
+ro.vendor.oem.sno u:object_r:vendor_sno_prop:s0
+
 # Fingerprint
 persist.vendor.fingerprint. u:object_r:vendor_fp_prop:s0
 persist.vendor.fpc. u:object_r:vendor_fp_prop:s0

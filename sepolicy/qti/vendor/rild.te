@@ -1,0 +1,7 @@
+allow rild vendor_radio_smd_device:file { open read write };
+allow rild vendor_radio_smd_device:chr_file { open read write };
+allow rild vendor_modem_data_file:dir create_dir_perms;
+allow rild vendor_modem_data_file:file create_file_perms;
+
+set_prop(rild, vendor_deviceid_prop)
+set_prop(rild, vendor_sno_prop)

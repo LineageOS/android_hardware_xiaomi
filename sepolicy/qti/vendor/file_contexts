@@ -27,6 +27,9 @@
 /vendor/lib(64)?/rfsa/adsp/libsnpe_dsp_v66_domains_v2_skel\.so u:object_r:same_process_hal_file:s0
 /vendor/lib(64)?/rfsa/adsp/libsnpe_dsp_v68_domains_v3_skel\.so u:object_r:same_process_hal_file:s0
 
+# Diag
+/data/vendor/modem(/.*)? u:object_r:vendor_modem_data_file:s0
+
 # Display
 /dev/mi_display/disp_feature u:object_r:vendor_displayfeature_device:s0
 /sys/devices/virtual/mi_display/disp_feature/disp-DSI-+[0-1](/.*)? u:object_r:vendor_sysfs_displayfeature:s0
@@ -42,6 +45,9 @@
 
 # Mlipay
 /(vendor|system/vendor)/bin/mlipayd@1.1 u:object_r:hal_mlipay_default_exec:s0
+
+# Modem
+/dev/smd8 u:object_r:vendor_radio_smd_device:s0
 
 # Sensors
 /(vendor|system/vendor)/bin/hw/android\.hardware\.sensors-service\.xiaomi-multihal u:object_r:hal_sensors_default_exec:s0

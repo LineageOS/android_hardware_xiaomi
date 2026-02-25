@@ -1,6 +1,9 @@
 # Camera
 type camera_persist_file, file_type, mlstrustedobject, vendor_persist_type;
 
+# Diag
+type vendor_modem_data_file, data_file_type, file_type;
+
 # Display
 type vendor_sysfs_displayfeature, fs_type, sysfs_type;
 
