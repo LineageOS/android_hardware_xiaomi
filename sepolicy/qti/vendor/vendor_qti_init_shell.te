@@ -1,0 +1,1 @@
+allow vendor_qti_init_shell vendor_sysfs_msm_perf:file w_file_perms;
