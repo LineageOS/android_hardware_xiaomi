@@ -1,0 +1,1 @@
+allow vendor_modprobe block_device:dir search;
