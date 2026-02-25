@@ -10,3 +10,10 @@ set_prop(vendor_init, vendor_ssr_prop)
 
 # Thermal
 set_prop(vendor_init, vendor_thermal_normal_prop)
+
+dontaudit init bt_firmware_file:filesystem getattr;
+dontaudit init firmware_file:filesystem getattr;
+
+allow init firmware_file:file mounton;
+allow init per_boot_file:file ioctl;
+allowxperm init per_boot_file:file ioctl { F2FS_IOC_SET_PIN_FILE };
