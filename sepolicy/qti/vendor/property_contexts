@@ -1,3 +1,7 @@
+# Camera
+persist.vendor.EnableP3ColorSpace u:object_r:vendor_camera_p3enable_prop:s0
+vendor.camera.sensor. u:object_r:vendor_camera_sensor_prop:s0
+
 # Fingerprint
 persist.vendor.fingerprint. u:object_r:vendor_fp_prop:s0
 persist.vendor.fpc. u:object_r:vendor_fp_prop:s0

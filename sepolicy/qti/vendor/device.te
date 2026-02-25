@@ -1,3 +1,6 @@
+# Camera
+type stmvl53l5_device, dev_type;
+
 # Display
 type vendor_displayfeature_device, dev_type;
 
