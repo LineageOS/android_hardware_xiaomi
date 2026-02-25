@@ -2,6 +2,11 @@
 vendor_public_prop(vendor_camera_p3enable_prop)
 vendor_public_prop(vendor_camera_sensor_prop)
 
+# Device ID
+vendor_public_prop(vendor_deviceid_prop)
+vendor_public_prop(vendor_sno_prop)
+vendor_public_prop(vendor_cpuid_prop)
+
 # Fingerprint
 vendor_restricted_prop(vendor_fp_info_prop)
 vendor_public_prop(vendor_fp_prop)
