@@ -1,0 +1,3 @@
+# Thermal
+type sys_thermal_wifi_limit, fs_type, sysfs_type;
+type thermal_data_file, data_file_type, file_type;
