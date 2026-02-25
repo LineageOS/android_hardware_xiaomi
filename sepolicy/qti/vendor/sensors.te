@@ -1,0 +1,2 @@
+allow vendor_sensors vendor_sysfs_displayfeature:dir search;
+allow vendor_sensors vendor_sysfs_displayfeature:file { getattr open read };
