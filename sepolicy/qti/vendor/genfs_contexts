@@ -15,5 +15,16 @@ genfscon sysfs /devices/virtual/touch/touch_dev/gesture_double_tap_state u:objec
 genfscon sysfs /devices/virtual/touch/touch_dev/gesture_single_tap_enabled u:object_r:vendor_sysfs_sensors:s0
 genfscon sysfs /devices/virtual/touch/touch_dev/gesture_single_tap_state u:object_r:vendor_sysfs_sensors:s0
 
+# Suspend
+genfscon sysfs /devices/platform/soc/3000000.remoteproc-adsp/remoteproc/remoteproc2/3000000.remoteproc-adsp:glink-edge/3000000.remoteproc-adsp:glink-edge.adsp_apps.-1.-1/wakeup u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/884000.i2c/i2c-3/3-005a/wakeup u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/88c000.i2c/i2c-6/6-005a/wakeup u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/890000.spi/spi_master/spi1/spi1.0/wakeup u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/990000.spi/spi_master/spi0/spi0.0/wakeup u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/c42d000.qcom,spmi/spmi-0/0-00/c42d000.qcom,spmi:qcom,pmk8350@0:pon_hlos@1300/c42d000.qcom,spmi:qcom,pmk8350@0:pon_hlos@1300:pwrkey-bark/wakeup u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/c42d000.qcom,spmi/spmi-0/0-00/c42d000.qcom,spmi:qcom,pmk8350@0:pon_hlos@1300/c42d000.qcom,spmi:qcom,pmk8350@0:pon_hlos@1300:pwrkey-resin-bark/wakeup u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/soc:fingerprint_goodix/wakeup u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/soc:fingerprint_fpc/wakeup u:object_r:sysfs_wakeup:s0
+
 # Touchscreen
 genfscon sysfs /devices/virtual/touch/touch_dev/bump_sample_rate u:object_r:vendor_sysfs_touch:s0
