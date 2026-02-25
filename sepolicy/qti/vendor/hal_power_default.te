@@ -1,0 +1,2 @@
+allow hal_power_default proc_walt:dir search;
+allow hal_power_default proc_walt:file rw_file_perms;

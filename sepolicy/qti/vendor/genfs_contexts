@@ -37,3 +37,6 @@ genfscon sysfs /devices/platform/soc/soc:fingerprint_goodix/wakeup u:object_r:sy
 
 # Touchscreen
 genfscon sysfs /devices/virtual/touch/touch_dev/bump_sample_rate u:object_r:vendor_sysfs_touch:s0
+
+# Walt
+genfscon proc /sys/walt u:object_r:proc_walt:s0
