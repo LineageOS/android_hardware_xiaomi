@@ -52,6 +52,24 @@
       "parentUuid": "817f0531_3334de2e",
       "revId": "b3f7723cfcf1ff015d479f9799aa880a5aa90f1d",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c04aa2f1_53100c96",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2026-02-25T18:28:51Z",
+      "side": 1,
+      "message": "I do prefer this commit",
+      "parentUuid": "8c4d3846_802ff300",
+      "revId": "b3f7723cfcf1ff015d479f9799aa880a5aa90f1d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
