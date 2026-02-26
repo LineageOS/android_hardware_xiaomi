@@ -106,6 +106,69 @@
       "parentUuid": "2f1a69f9_35ccf0d4",
       "revId": "b3f7723cfcf1ff015d479f9799aa880a5aa90f1d",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c700fcc1_e5027750",
+        "filename": "sepolicy/qti/vendor/file_contexts",
+        "patchSetId": 3
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 36466
+      },
+      "writtenOn": "2026-02-26T04:28:42Z",
+      "side": 1,
+      "message": "Duplicate",
+      "revId": "b3f7723cfcf1ff015d479f9799aa880a5aa90f1d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9399eb5_fe0d4825",
+        "filename": "sepolicy/qti/vendor/hal_nfc_default.te",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 36466
+      },
+      "writtenOn": "2026-02-26T04:28:42Z",
+      "side": 1,
+      "message": "Aren\u0027t these already in device/qcom/sepolicy_vndr?",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 73
+      },
+      "revId": "b3f7723cfcf1ff015d479f9799aa880a5aa90f1d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "162ffbc9_7b56a487",
+        "filename": "sepolicy/qti/vendor/hal_wifi.te",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 36466
+      },
+      "writtenOn": "2026-02-26T04:28:42Z",
+      "side": 1,
+      "message": "Same here",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 50
+      },
+      "revId": "b3f7723cfcf1ff015d479f9799aa880a5aa90f1d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
