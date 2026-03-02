@@ -69,6 +69,24 @@
       "parentUuid": "e025d602_2be715cd",
       "revId": "602855d71b157f8a222781af1a887ee3b4733743",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ddd7928c_be85e709",
+        "filename": "sepolicy/SEPolicy.mk",
+        "patchSetId": 6
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 32837
+      },
+      "writtenOn": "2026-03-02T16:14:11Z",
+      "side": 1,
+      "message": "Hello everyone,\n \nmaybe it\u0027s easier to update this? https://github.com/AOSPA/android_device_xiaomi_sepolicy\n\nPS There are three xiaomi services that are required on all devices and require many permissions. \n\nmi_thermald\nmlipay\nbatterysecret\n\nThank you.",
+      "parentUuid": "4606d191_60fbf636",
+      "revId": "602855d71b157f8a222781af1a887ee3b4733743",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
