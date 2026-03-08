@@ -70,6 +70,24 @@
       "parentUuid": "3e811ba9_01a00833",
       "revId": "68cb5287091ee5a42098abd099f34701b786a401",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16c61cf0_452cfcf5",
+        "filename": "sepolicy/qti/vendor/batterysecret.te",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 32837
+      },
+      "writtenOn": "2026-03-08T09:55:10Z",
+      "side": 1,
+      "message": "There is actually good content there — it just needs to be cleaned up from garbage and outdated rules. It\u0027s easier than writing everything from scratch. My job is just to suggest it.",
+      "parentUuid": "0a080f52_131b30fc",
+      "revId": "68cb5287091ee5a42098abd099f34701b786a401",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
