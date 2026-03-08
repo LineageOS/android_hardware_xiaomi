@@ -52,6 +52,24 @@
       "parentUuid": "32445361_54137e11",
       "revId": "68cb5287091ee5a42098abd099f34701b786a401",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a080f52_131b30fc",
+        "filename": "sepolicy/qti/vendor/batterysecret.te",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2026-03-08T09:50:04Z",
+      "side": 1,
+      "message": "no thanks, this looks pretty bad.",
+      "parentUuid": "3e811ba9_01a00833",
+      "revId": "68cb5287091ee5a42098abd099f34701b786a401",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
