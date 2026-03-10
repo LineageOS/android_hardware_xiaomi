@@ -9,6 +9,7 @@ phony {
     required: [
         "EuiccPolicy",
         "EuiccPolicyXiaomi",
+        "XiaomiEsimSwitcher",
     ],
 }
 
