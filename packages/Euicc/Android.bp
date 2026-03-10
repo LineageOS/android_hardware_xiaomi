@@ -1,4 +1,3 @@
-
 //
 // SPDX-FileCopyrightText: The LineageOS Project
 // SPDX-License-Identifier: Apache-2.0
@@ -10,10 +9,44 @@ phony {
         "EuiccPolicy",
         "EuiccPolicyXiaomi",
         "XiaomiEsimSwitcher",
+        "EuiccGoogle",
+    ],
+}
+
+android_app_import {
+    name: "EuiccGoogle",
+    owner: "xiaomi",
+    apk: "proprietary/product/priv-app/EuiccGoogle/EuiccGoogle.apk",
+    preprocessed: true,
+    presigned: true,
+    dex_preopt: {
+        enabled: false,
+    },
+    privileged: true,
+    product_specific: true,
+    required: [
+        "default-permissions-euicc.xml",
+        "privapp-permissions-euiccgoogle.xml",
     ],
 }
 
 runtime_resource_overlay {
     name: "EuiccPolicyXiaomi",
+    product_specific: true,
+}
+
+prebuilt_etc {
+    name: "default-permissions-euicc.xml",
+    filename: "default-permissions-euicc.xml",
+    src: "permissions/default-permissions-euicc.xml",
+    sub_dir: "default-permissions",
+    product_specific: true,
+}
+
+prebuilt_etc {
+    name: "privapp-permissions-euiccgoogle.xml",
+    filename: "privapp-permissions-euiccgoogle.xml",
+    src: "permissions/privapp-permissions-euiccgoogle.xml",
+    sub_dir: "permissions",
     product_specific: true,
 }
