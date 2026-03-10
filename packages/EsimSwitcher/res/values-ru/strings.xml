@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (C) 2023 The LineageOS Project
+    SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <!-- App Name -->
+    <string name="app_name">eSIM Switcher</string>
+
+    <!-- ESIM -->
+    <string name="esim_title">eSIM</string>
+    <string name="esim_enable_name">Включить eSIM</string>
+    <string name="esim_warning_title">eSIM используется</string>
+    <string name="esim_warning_message">Перед продолжением отключите или удалите текущий профиль eSIM</string>
+    <string name="esim_footer_note">При включении eSIM второй слот физической SIM-карты будет отключён</string>
+</resources>
