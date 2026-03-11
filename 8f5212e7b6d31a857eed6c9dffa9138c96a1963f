@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de9523ad_b53c2c85",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 32837
+      },
+      "writtenOn": "2026-03-11T01:53:14Z",
+      "side": 1,
+      "message": "Tested on Xiaomi Ziyi.\neSIM enable/disable works correctly.",
+      "revId": "8f5212e7b6d31a857eed6c9dffa9138c96a1963f",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
