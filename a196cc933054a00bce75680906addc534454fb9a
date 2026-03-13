@@ -51,6 +51,24 @@
       "parentUuid": "8f24b95a_d8fd3dec",
       "revId": "a196cc933054a00bce75680906addc534454fb9a",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99802c5e_74454e7d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 35546
+      },
+      "writtenOn": "2026-03-13T15:46:30Z",
+      "side": 1,
+      "message": "You need something like this:\nhttps://github.com/LineageOS/android_device_xiaomi_garnet/blob/0c2a8e865bc3c7f64d8f13153cda3f92071c2a59/overlay/FrameworkOverlayGarnet/res-Esim/values/arrays.xml#L21",
+      "parentUuid": "3786a641_db48d850",
+      "revId": "a196cc933054a00bce75680906addc534454fb9a",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
