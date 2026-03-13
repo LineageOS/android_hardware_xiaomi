@@ -16,6 +16,23 @@
       "message": "i dont need this but in case @jvillaltamatos3007@gmail.com needs it",
       "revId": "a196cc933054a00bce75680906addc534454fb9a",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f24b95a_d8fd3dec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 32837
+      },
+      "writtenOn": "2026-03-13T07:35:18Z",
+      "side": 1,
+      "message": "Tested on Xiaomi Ziyi (SM8450).\n\nThis change does not work on this device.\n\nThe eSIM switch option does not appear at all in the UI, so it is not possible to switch between SIM and eSIM slots.",
+      "revId": "a196cc933054a00bce75680906addc534454fb9a",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
