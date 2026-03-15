@@ -400,13 +400,20 @@ void Session::notify(const fingerprint_msg_t* msg) {
 #ifndef IMPL_V2
             ALOGD("onRemove(fid=%d, gid=%d, rem=%d)", msg->data.removed.finger.fid,
                   msg->data.removed.finger.gid, msg->data.removed.remaining_templates);
-#else
-            ALOGD("onRemove(fid=%d, rem=%d)", msg->data.removed.finger.fid,
-                  msg->data.removed.remaining_templates);
-#endif
             std::vector<int> enrollments;
             enrollments.push_back(msg->data.removed.finger.fid);
             mCb->onEnrollmentsRemoved(enrollments);
+#else
+            std::vector<int32_t> enrollments;
+            enrollments.reserve(NUM_FINGERS);
+            for (unsigned int i = 0; i < NUM_FINGERS; i++) {
+                int32_t fid = msg->data.removed.fingers[i].fid;
+                if (!fid) break;
+                ALOGD("onRemove(fid=%d)", fid);
+                enrollments.push_back(fid);
+            }
+            mCb->onEnrollmentsRemoved(enrollments);
+#endif
         } break;
         case FINGERPRINT_AUTHENTICATED: {
 #ifndef IMPL_V2
@@ -438,16 +445,23 @@ void Session::notify(const fingerprint_msg_t* msg) {
 #ifndef IMPL_V2
             ALOGD("onEnumerate(fid=%d, gid=%d, rem=%d)", msg->data.enumerated.finger.fid,
                   msg->data.enumerated.finger.gid, msg->data.enumerated.remaining_templates);
-#else
-            ALOGD("onEnumerate(fid=%d, rem=%d)", msg->data.enumerated.finger.fid,
-                  msg->data.enumerated.remaining_templates);
-#endif
             static std::vector<int> enrollments;
             enrollments.push_back(msg->data.enumerated.finger.fid);
             if (msg->data.enumerated.remaining_templates == 0) {
                 mCb->onEnrollmentsEnumerated(enrollments);
                 enrollments.clear();
             }
+#else
+            std::vector<int32_t> enrollments;
+            enrollments.reserve(NUM_FINGERS);
+            for (unsigned int i = 0; i < NUM_FINGERS; i++) {
+                int32_t fid = msg->data.enumerated.fingers[i].fid;
+                if (!fid) break;
+                ALOGD("onEnumerate(fid=%d)", fid);
+                enrollments.push_back(fid);
+            }
+            mCb->onEnrollmentsEnumerated(enrollments);
+#endif
         } break;
 #ifdef IMPL_V2
         case FINGERPRINT_CHALLENGE_GENERATED: {
