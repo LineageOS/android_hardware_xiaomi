@@ -400,13 +400,21 @@ void Session::notify(const fingerprint_msg_t* msg) {
 #ifndef DEVICE_USES_NEW_IMPLEMENTATION
             ALOGD("onRemove(fid=%d, gid=%d, rem=%d)", msg->data.removed.finger.fid,
                   msg->data.removed.finger.gid, msg->data.removed.remaining_templates);
-#else
-            ALOGD("onRemove(fid=%d, rem=%d)", msg->data.removed.finger.fid,
-                  msg->data.removed.remaining_templates);
-#endif
             std::vector<int> enrollments;
             enrollments.push_back(msg->data.removed.finger.fid);
             mCb->onEnrollmentsRemoved(enrollments);
+#else
+            ALOGD("onRemove");
+            std::vector<int32_t> enrollments;
+            enrollments.reserve(NUM_FINGERS);
+            for (unsigned int i = 0; i < NUM_FINGERS; i++) {
+                int32_t fid = msg->data.removed.fingers[i].fid;
+                if (fid) {
+                    enrollments.push_back(fid);
+                }
+            }
+            mCb->onEnrollmentsRemoved(enrollments);
+#endif
         } break;
         case FINGERPRINT_AUTHENTICATED: {
 #ifndef DEVICE_USES_NEW_IMPLEMENTATION
@@ -438,16 +446,24 @@ void Session::notify(const fingerprint_msg_t* msg) {
 #ifndef DEVICE_USES_NEW_IMPLEMENTATION
             ALOGD("onEnumerate(fid=%d, gid=%d, rem=%d)", msg->data.enumerated.finger.fid,
                   msg->data.enumerated.finger.gid, msg->data.enumerated.remaining_templates);
-#else
-            ALOGD("onEnumerate(fid=%d, rem=%d)", msg->data.enumerated.finger.fid,
-                  msg->data.enumerated.remaining_templates);
-#endif
             static std::vector<int> enrollments;
             enrollments.push_back(msg->data.enumerated.finger.fid);
             if (msg->data.enumerated.remaining_templates == 0) {
                 mCb->onEnrollmentsEnumerated(enrollments);
                 enrollments.clear();
             }
+#else
+            ALOGD("onEnumerate");
+            std::vector<int32_t> enrollments;
+            enrollments.reserve(NUM_FINGERS);
+            for (unsigned int i = 0; i < NUM_FINGERS; i++) {
+                int32_t fid = msg->data.enumerated.fingers[i].fid;
+                if (fid) {
+                    enrollments.push_back(fid);
+                }
+            }
+            mCb->onEnrollmentsEnumerated(enrollments);
+#endif
         } break;
 #ifdef DEVICE_USES_NEW_IMPLEMENTATION
         case FINGERPRINT_CHALLENGE_GENERATED: {
