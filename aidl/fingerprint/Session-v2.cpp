@@ -356,10 +356,14 @@ void SessionV2::notify(const fingerprint_msg_t* msg) {
                                       msg->data.enroll.samples_remaining);
         } break;
         case FINGERPRINT_TEMPLATE_REMOVED: {
-            ALOGD("onRemove(fid=%d, rem=%d)", msg->data.removed.finger.fid,
-                  msg->data.removed.remaining_templates);
-            std::vector<int> enrollments;
-            enrollments.push_back(msg->data.removed.finger.fid);
+            std::vector<int32_t> enrollments;
+            enrollments.reserve(NUM_FINGERS);
+            for (unsigned int i = 0; i < NUM_FINGERS; i++) {
+                int32_t fid = msg->data.removed.fingers[i].fid;
+                if (!fid) break;
+                ALOGD("onRemove(fid=%d)", fid);
+                enrollments.push_back(fid);
+            }
             mCb->onEnrollmentsRemoved(enrollments);
         } break;
         case FINGERPRINT_AUTHENTICATED: {
@@ -384,14 +388,15 @@ void SessionV2::notify(const fingerprint_msg_t* msg) {
             }
         } break;
         case FINGERPRINT_TEMPLATE_ENUMERATING: {
-            ALOGD("onEnumerate(fid=%d, rem=%d)", msg->data.enumerated.finger.fid,
-                  msg->data.enumerated.remaining_templates);
-            static std::vector<int> enrollments;
-            enrollments.push_back(msg->data.enumerated.finger.fid);
-            if (msg->data.enumerated.remaining_templates == 0) {
-                mCb->onEnrollmentsEnumerated(enrollments);
-                enrollments.clear();
+            std::vector<int32_t> enrollments;
+            enrollments.reserve(NUM_FINGERS);
+            for (unsigned int i = 0; i < NUM_FINGERS; i++) {
+                int32_t fid = msg->data.enumerated.fingers[i].fid;
+                if (!fid) break;
+                ALOGD("onEnumerate(fid=%d)", fid);
+                enrollments.push_back(fid);
             }
+            mCb->onEnrollmentsEnumerated(enrollments);
         } break;
         case FINGERPRINT_CHALLENGE_GENERATED: {
             ALOGD("onChallengeGenerated(%lu)", msg->data.challenge.value);
