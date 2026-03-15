@@ -16,6 +16,8 @@
 #define FINGERPRINT_MODULE_API_VERSION_3_0 HARDWARE_MODULE_API_VERSION(3, 0)
 #define FINGERPRINT_HARDWARE_MODULE_ID "fingerprint"
 
+#define NUM_FINGERS 5
+
 typedef enum fingerprint_msg_type {
     FINGERPRINT_ERROR = -1,
     FINGERPRINT_ACQUIRED = 1,
@@ -85,8 +87,7 @@ typedef struct fingerprint_enroll {
 } fingerprint_enroll_t;
 
 typedef struct fingerprint_iterator {
-    fingerprint_finger_id_t finger;
-    uint32_t remaining_templates;
+    fingerprint_finger_id_t fingers[NUM_FINGERS];
 } fingerprint_iterator_t;
 
 typedef fingerprint_iterator_t fingerprint_enumerated_t;
