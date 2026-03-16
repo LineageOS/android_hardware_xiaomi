@@ -16,6 +16,24 @@
       "message": "Hi, add ziyi",
       "revId": "bbf9da595a661e46215561a8a27e8ef130e5d658",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "557a8608_557ab410",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 32837
+      },
+      "writtenOn": "2026-03-16T15:34:09Z",
+      "side": 1,
+      "message": "https://github.com/Evolution-X-Devices/hardware_xiaomi/commit/a25fc8d878a0a39848c7e37fa168b0c758c7f489\n\nhttps://github.com/Evolution-X-Devices/hardware_xiaomi/commit/ee40ff356a0d80538570fc704d591e9a64e553c5\n\ncheck pls",
+      "parentUuid": "b5ea9549_dcae4fe8",
+      "revId": "bbf9da595a661e46215561a8a27e8ef130e5d658",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
