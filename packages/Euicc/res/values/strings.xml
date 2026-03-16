@@ -9,6 +9,7 @@
             \"sim-slot-mappings\": [
                 {
                     \"devices\": [
+                        \"diting\",
                         \"XIG05\",
                         \"fuxi\",
                         \"garnet\",
@@ -29,6 +30,7 @@
             \"sim_illustration_lottie_mappings\": [
                 {
                     \"devices\": [
+                        \"diting\",
                         \"XIG05\",
                         \"fuxi\",
                         \"garnet\",
