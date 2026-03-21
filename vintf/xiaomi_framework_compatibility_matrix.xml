@@ -144,6 +144,13 @@
             <instance>default</instance>
         </interface>
     </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.xiaomi.hardware.aon</name>
+        <interface>
+            <name>IAlwaysOn</name>
+            <instance>miaonservicehal</instance>
+        </interface>
+    </hal>
     <hal format="hidl" optional="true">
         <name>vendor.xiaomi.hardware.bgservice</name>
         <version>1.0</version>
