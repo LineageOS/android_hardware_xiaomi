@@ -34,6 +34,24 @@
       "parentUuid": "341b1b27_ac19be40",
       "revId": "3991ec57cf22b77d43f670385c39aa80ea725d18",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d2ea6c6_fef12be0",
+        "filename": "fingerprint/include/fingerprint.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2026-03-21T11:29:24Z",
+      "side": 1,
+      "message": "It\u0027s fine then, although keep in mind that the value is also not from AOSP, but our addition\n\nIt\u0027s most likely a hardcoded value of the legacy HAL API\n\nbtw which device will use this new DEVICE_USES_NEW_IMPLEMENTATION?",
+      "parentUuid": "6603812c_b125ec01",
+      "revId": "3991ec57cf22b77d43f670385c39aa80ea725d18",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
