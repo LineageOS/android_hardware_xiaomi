@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afa5ce46_1875abae",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2026-03-21T10:35:29Z",
+      "side": 1,
+      "message": "For Git history reasons, I would split this commit into two:\n\n- Duplicate the `fingerprint.h` header to `fingerprint-v2.h`, w/o edits\n- Apply new changes to `fingerprint-v2.h` and the remaining changes",
+      "revId": "b23d87e02a9eb17fdef9531db80159129919bf9a",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
