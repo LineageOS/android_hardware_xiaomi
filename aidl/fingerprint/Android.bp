@@ -40,6 +40,7 @@ cc_binary {
         "FingerprintConfig.cpp",
         "LockoutTracker.cpp",
         "Session.cpp",
+        "Session-v2.cpp",
         "service.cpp",
     ],
     local_include_dirs: [
