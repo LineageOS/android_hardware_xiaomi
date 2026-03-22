@@ -11,6 +11,8 @@
 
 #include "CancellationSignal.h"
 
+#ifndef IMPL_V2
+
 namespace aidl::android::hardware::biometrics::fingerprint {
 
 void onClientDeath(void* cookie) {
@@ -392,3 +394,5 @@ void Session::notify(const fingerprint_msg_t* msg) {
 }
 
 }  // namespace aidl::android::hardware::biometrics::fingerprint
+
+#endif

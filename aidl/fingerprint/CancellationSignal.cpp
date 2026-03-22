@@ -8,7 +8,7 @@
 
 namespace aidl::android::hardware::biometrics::fingerprint {
 
-CancellationSignal::CancellationSignal(Session* session) : mSession(session) {}
+CancellationSignal::CancellationSignal(SessionImpl* session) : mSession(session) {}
 
 ndk::ScopedAStatus CancellationSignal::cancel() {
     return mSession->cancel();

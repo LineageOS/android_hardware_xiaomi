@@ -37,7 +37,7 @@ class Fingerprint : public BnFingerprint {
     static void notify(const fingerprint_msg_t* msg);
 
     std::shared_ptr<FingerprintConfig> mConfig;
-    std::shared_ptr<Session> mSession;
+    std::shared_ptr<SessionImpl> mSession;
     LockoutTracker mLockoutTracker;
     FingerprintSensorType mSensorType;
 
