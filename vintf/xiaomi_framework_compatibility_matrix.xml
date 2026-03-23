@@ -284,6 +284,13 @@
             <instance>default</instance>
         </interface>
     </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.xiaomi.hardware.quickcamera</name>
+        <interface>
+            <name>IQuickCameraService</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
     <hal format="hidl" optional="true">
         <name>vendor.xiaomi.hardware.quickcamera</name>
         <version>1.0</version>
