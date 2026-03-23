@@ -16,6 +16,24 @@
       "message": "Put all these before the hidl counterpart.",
       "revId": "cffd1f4076f8455e8744fea2515b09e4da179780",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84cdd2e6_0d3b954f",
+        "filename": "vintf/xiaomi_framework_compatibility_matrix.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 30766
+      },
+      "writtenOn": "2026-03-23T11:55:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c09421b6_43eacf7f",
+      "revId": "cffd1f4076f8455e8744fea2515b09e4da179780",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
