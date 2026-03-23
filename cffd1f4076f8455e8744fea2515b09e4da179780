@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c09421b6_43eacf7f",
+        "filename": "vintf/xiaomi_framework_compatibility_matrix.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2026-03-23T09:05:25Z",
+      "side": 1,
+      "message": "Put all these before the hidl counterpart.",
+      "revId": "cffd1f4076f8455e8744fea2515b09e4da179780",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
