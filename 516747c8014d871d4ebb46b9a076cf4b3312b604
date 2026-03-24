@@ -22,6 +22,30 @@
       },
       "revId": "516747c8014d871d4ebb46b9a076cf4b3312b604",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04331ad8_a0ff272d",
+        "filename": "aidl/fingerprint/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2026-03-24T09:26:10Z",
+      "side": 1,
+      "message": "It seems that you\u0027re looking at outdated patchset.",
+      "parentUuid": "32bbe32c_d237a84d",
+      "range": {
+        "startLine": 14,
+        "startChar": 9,
+        "endLine": 14,
+        "endChar": 21
+      },
+      "revId": "516747c8014d871d4ebb46b9a076cf4b3312b604",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
