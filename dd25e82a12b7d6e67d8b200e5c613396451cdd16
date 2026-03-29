@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd2b266b_a6a03c3f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 10067
+      },
+      "writtenOn": "2026-03-29T19:51:42Z",
+      "side": 1,
+      "message": "this is expected to be done via crowdin, if this app isn\u0027t added there, one should edit lineage/crowdin instead.",
+      "revId": "dd25e82a12b7d6e67d8b200e5c613396451cdd16",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
