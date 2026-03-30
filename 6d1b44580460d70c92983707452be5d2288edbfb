@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4dd78a0c_88854d3f",
+        "filename": "README.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2026-03-30T21:13:21Z",
+      "side": 1,
+      "message": "technically v1 is the default.",
+      "range": {
+        "startLine": 8,
+        "startChar": 82,
+        "endLine": 8,
+        "endChar": 87
+      },
+      "revId": "6d1b44580460d70c92983707452be5d2288edbfb",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
