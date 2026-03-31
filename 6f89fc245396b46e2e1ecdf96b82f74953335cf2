@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05c86771_f4dfa2ea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 32837
+      },
+      "writtenOn": "2026-03-31T04:07:26Z",
+      "side": 1,
+      "message": "Im checked both variants(v2\u0026v1), fp(udfps) works correctly. Great work.\n\nSM8450 (ziyi).",
+      "revId": "6f89fc245396b46e2e1ecdf96b82f74953335cf2",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
