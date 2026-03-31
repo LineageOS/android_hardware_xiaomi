@@ -16,6 +16,24 @@
       "message": "I am not sure if we want this.",
       "revId": "4b4a006ae9c38bf39760e2732e1cd0cea518f84f",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8962ff80_daeaf552",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2026-03-31T14:22:31Z",
+      "side": 1,
+      "message": "As far as I know the esim switcher app is only needed on devices where one physical slot conflicts with the modem, right? I would assume that some future devices will not have the conflicting physical slot anymore, making the switcher app redundant. I would say we should build both explicitly and not merge this.",
+      "parentUuid": "fee5225a_45421adc",
+      "revId": "4b4a006ae9c38bf39760e2732e1cd0cea518f84f",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
