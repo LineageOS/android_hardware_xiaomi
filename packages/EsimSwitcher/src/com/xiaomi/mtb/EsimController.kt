@@ -6,14 +6,13 @@
 
 package com.xiaomi.mtb
 
-import android.app.ActivityThread
 import android.content.Context
+import android.os.Handler
+import android.os.Looper
 import android.telephony.SubscriptionManager
 import android.util.Log
 import dalvik.system.DexClassLoader
-import java.lang.reflect.InvocationHandler
-import java.lang.reflect.Method
-import java.lang.reflect.Proxy
+import java.io.File
 
 class EsimController private constructor(private val context: Context) {
 
@@ -22,9 +21,7 @@ class EsimController private constructor(private val context: Context) {
         private val DEBUG = Log.isLoggable(TAG, Log.DEBUG)
 
         private const val MIRILHOOK_CLASS_NAME = "com.xiaomi.mirilhook.MiRilHook"
-        private const val MIRILHOOK_JAR_PATH = "/system_ext/framework/mirilhook.jar"
-        private const val QCRILHOOKCALLBACK_CLASS_NAME = "com.qualcomm.qcrilhook.QcRilHookCallback"
-        private const val QCRILHOOK_JAR_PATH = "/system_ext/framework/qcrilhook.jar"
+        private const val MIRILHOOK_JAR_PATH = "/system_ext/framework/xiaomi-modem-common.jar"
 
         @Volatile private var instance: EsimController? = null
 
@@ -39,9 +36,6 @@ class EsimController private constructor(private val context: Context) {
     private var miRilJarLoader: DexClassLoader? = null
     private var miRilHookClass: Class<*>? = null
     private var miRilHookObj: Any? = null
-    private var qcRilJarLoader: DexClassLoader? = null
-    private var qcRilHookCallbackClass: Class<*>? = null
-    private var qcRilHookCallbackObj: Any? = null
 
     fun onBootCompleted() {
         if (DEBUG) Log.d(TAG, "onBootCompleted")
@@ -102,57 +96,18 @@ class EsimController private constructor(private val context: Context) {
                     .onFailure { e -> if (DEBUG) Log.d(TAG, "Failed to load miRilHookClass: $e") }
                     .getOrNull()
 
-        qcRilJarLoader =
-            qcRilJarLoader
-                ?: runCatching {
-                        DexClassLoader(
-                            QCRILHOOK_JAR_PATH,
-                            context.getDir("jar", 0).absolutePath,
-                            null,
-                            context.classLoader,
-                        )
-                    }
-                    .onFailure { e ->
-                        if (DEBUG) Log.d(TAG, "Failed to initialize qcRilJarLoader: $e")
-                    }
-                    .getOrNull()
-
-        qcRilHookCallbackClass =
-            qcRilHookCallbackClass
-                ?: runCatching { qcRilJarLoader?.loadClass(QCRILHOOKCALLBACK_CLASS_NAME) }
-                    .onFailure { e ->
-                        if (DEBUG) Log.d(TAG, "Failed to load qcRilHookCallbackClass: $e")
-                    }
-                    .getOrNull()
-
-        qcRilHookCallbackObj =
-            qcRilHookCallbackObj
-                ?: runCatching {
-                        Proxy.newProxyInstance(
-                            context.classLoader,
-                            arrayOf(qcRilHookCallbackClass),
-                            QcRilHookCbMethodProxy(),
-                        )
-                    }
-                    .onFailure { e ->
-                        if (DEBUG) Log.d(TAG, "Failed to initialize qcRilHookCallbackObj: $e")
-                    }
-                    .getOrNull()
-
         miRilHookObj =
             miRilHookObj
                 ?: miRilHookClass
                     ?.getConstructor(
                         Context::class.java,
-                        qcRilHookCallbackClass,
-                        String::class.java,
+                        Handler::class.java,
                     )
                     ?.let { constructor ->
                         runCatching {
                                 constructor.newInstance(
                                     context,
-                                    qcRilHookCallbackObj,
-                                    ActivityThread.currentPackageName(),
+                                    Handler(Looper.getMainLooper()),
                                 )
                             }
                             .onFailure { e ->
@@ -184,14 +139,4 @@ class EsimController private constructor(private val context: Context) {
         }
     }
 
-    inner class QcRilHookCbMethodProxy : InvocationHandler {
-        override fun invoke(proxy: Any, method: Method, args: Array<Any?>?): Any? {
-            val methodName = method.name
-            if (DEBUG) Log.d(TAG, "QcRilHookCbMethodProxy callbackMethod name: $methodName")
-            when (methodName) {
-                "onQcRilHookReady" -> {}
-            }
-            return null
-        }
-    }
 }
