@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c78ce3d2_78f99b21",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 30766
+      },
+      "writtenOn": "2026-05-05T07:45:44Z",
+      "side": 1,
+      "message": "hos3 blobs remvoed mirilhook and added xiaomi-modem-common, can someone test this my device does not have esim so cant test it properly",
+      "revId": "eef399892ee3e204e122fc6a67d679575bf73f7e",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
