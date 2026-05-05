@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2a96366_4693d4af",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 30766
+      },
+      "writtenOn": "2026-05-05T12:31:11Z",
+      "side": 1,
+      "message": "we might wanna write up proper callback with proxy but just as is seems to work fine too",
+      "revId": "a97ac04c63b20e2108d87f4bd6e9958daf42da06",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
