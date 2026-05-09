@@ -52,6 +52,24 @@
       "parentUuid": "a9c2953c_95e93e7d",
       "revId": "a97ac04c63b20e2108d87f4bd6e9958daf42da06",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8c7b812_13923fed",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 32837
+      },
+      "writtenOn": "2026-05-09T21:20:02Z",
+      "side": 1,
+      "message": "PS - log spam is:\nAccess denied finding property \"is_expressive_design_enabled\"\n\nI’ll add support for this property separately and re-check the log afterwards.",
+      "parentUuid": "1eadef84_3bfc6537",
+      "revId": "a97ac04c63b20e2108d87f4bd6e9958daf42da06",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
