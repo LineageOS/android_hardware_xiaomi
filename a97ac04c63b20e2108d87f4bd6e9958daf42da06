@@ -88,6 +88,24 @@
       "parentUuid": "f8c7b812_13923fed",
       "revId": "a97ac04c63b20e2108d87f4bd6e9958daf42da06",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d2f9079_b470a16a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 30766
+      },
+      "writtenOn": "2026-05-10T08:16:47Z",
+      "side": 1,
+      "message": "Actually I was thinking I should add support new one while also keeping logic for old one in case someone with old blobs wanna use it too, I\u0027ll push patches for it",
+      "parentUuid": "ecba8edc_52c946a4",
+      "revId": "a97ac04c63b20e2108d87f4bd6e9958daf42da06",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
