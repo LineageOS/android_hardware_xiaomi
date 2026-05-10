@@ -16,6 +16,24 @@
       "message": "@dkpost3@gmail.com can you test this, it now keeps old method for older jars",
       "revId": "09cf5594897412bfa9a23a60e64cdf7a1b20a556",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aea19267_59e37c75",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 32837
+      },
+      "writtenOn": "2026-05-10T19:44:32Z",
+      "side": 1,
+      "message": "yes, of course, but only tomorrow :)",
+      "parentUuid": "db1cc7d3_008f9b5b",
+      "revId": "09cf5594897412bfa9a23a60e64cdf7a1b20a556",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
