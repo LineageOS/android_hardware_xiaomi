@@ -34,6 +34,24 @@
       "parentUuid": "db1cc7d3_008f9b5b",
       "revId": "09cf5594897412bfa9a23a60e64cdf7a1b20a556",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb8b675c_138a910e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 32837
+      },
+      "writtenOn": "2026-05-11T12:38:55Z",
+      "side": 1,
+      "message": "This does not work correctly on ziyi.\n\nWhen the toggle is disabled, the eSIM profile is hidden, but it is still possible to add a new eSIM profile.\n\nWhen the toggle is enabled, the already active eSIM profile becomes visible. However, if the toggle is disabled again, the eSIM profile is not actually deactivated.\n\nThe overlay `android.overlay.ziyi.esim` is present on my build.\n\nThe expected/correct behavior is restored after reverting this commit:\nhttps://github.com/Evolution-X-Devices/hardware_xiaomi/commit/cfc1565295ef379ad3d5ff352274dc152331b059",
+      "parentUuid": "aea19267_59e37c75",
+      "revId": "09cf5594897412bfa9a23a60e64cdf7a1b20a556",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
