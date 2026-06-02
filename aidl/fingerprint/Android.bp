@@ -27,7 +27,7 @@ xiaomi_hardware_biometrics_config_default {
     soong_config_variables: {
         RUN_32BIT: {
             conditions_default: {
-                compile_multilib: "64",
+                compile_multilib: "",
             },
             compile_multilib: "prefer32",
         },
