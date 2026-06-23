@@ -1,7 +1,7 @@
 service vendor.sensors-hal-multihal /vendor/bin/hw/android.hardware.sensors-service.xiaomi-multihal
     class hal
     user system
-    group system wakelock context_hub input uhid
+    group system wakelock context_hub input uhid audio
     task_profiles ServiceCapacityLow
     capabilities BLOCK_SUSPEND
     rlimit rtprio 10 10
