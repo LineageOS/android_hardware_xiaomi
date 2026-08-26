@@ -235,12 +235,14 @@ ndk::ScopedAStatus Session::cancel() {
 
     int ret = mDevice->cancel(mDevice);
 
-    if (ret == 0) {
-        mCb->onError(Error::CANCELED, 0 /* vendorCode */);
-        return ndk::ScopedAStatus::ok();
+    if (ret != 0) {
+        return ndk::ScopedAStatus::fromServiceSpecificError(ret);
     }
 
-    return ndk::ScopedAStatus::fromServiceSpecificError(ret);
+    // The legacy HAL reports FINGERPRINT_ERROR_CANCELED through its notify
+    // callback. Sending another callback here races that notification and can
+    // deliver an error after the framework has already destroyed the client.
+    return ndk::ScopedAStatus::ok();
 }
 
 ndk::ScopedAStatus Session::close() {
