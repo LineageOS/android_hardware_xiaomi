@@ -2,6 +2,7 @@
 
 hidl_interface {
     name: "vendor.xiaomi.hw.touchfeature@1.0",
+    installable: false,
     root: "vendor.xiaomi",
     system_ext_specific: true,
     srcs: [
