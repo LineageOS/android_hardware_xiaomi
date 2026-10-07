@@ -8,21 +8,24 @@ package org.ifaa.aidl.manager
 import android.app.Service
 import android.content.Intent
 import android.os.Build
+import android.os.IBinder
 import android.os.IHwBinder
+import android.os.ServiceManager
 import android.os.SystemProperties
 import android.provider.Settings
 import android.util.Log
+import java.util.concurrent.FutureTask
+import java.util.concurrent.TimeUnit
+import java.util.concurrent.TimeoutException
 import org.json.JSONObject
-import vendor.xiaomi.hardware.mlipay.V1_1.IMlipayService
+import vendor.xiaomi.hardware.mlipay.IMlipayService as AidlMlipayService
+import vendor.xiaomi.hardware.mlipay.V1_1.IMlipayService as HidlMlipayService
 
 class IfaaService : Service() {
-    private var _mlipayService: IMlipayService? = null
-
-    private val mlipayServiceDeathRecipient =
-        IHwBinder.DeathRecipient {
-            Log.i(LOG_TAG, "mlipay service died")
-            _mlipayService = null
-        }
+    private var _aidlMlipayService: AidlMlipayService? = null
+    private var _aidlMlipayServiceLookup: FutureTask<IBinder?>? = null
+    private var _hidlMlipayService: HidlMlipayService? = null
+    private val isAidlMlipayDeclared by lazy { ServiceManager.isDeclared(AIDL_MLIPAY_SERVICE_NAME) }
 
     private val mBinder =
         object : IfaaManagerService.Stub() {
@@ -64,28 +67,20 @@ class IfaaService : Service() {
 
             override fun getDeviceModel() = "${Build.MANUFACTURER}-${Build.DEVICE}"
 
-            override fun processCmd(param: ByteArray) =
-                getMlipayService()?.let { mlipayService ->
-                    var receiveBuffer: ByteArray? = null
-
-                    val paramByteArray =
-                        ArrayList<Byte>().apply {
-                            for (byte in param) {
-                                add(byte)
-                            }
-                        }
-
-                    try {
-                        val receiveBufferByteArray =
-                            mlipayService.invoke_command(paramByteArray, paramByteArray.size)
-
-                        receiveBuffer = receiveBufferByteArray.toByteArray()
-                    } catch (e: Exception) {
-                        Log.e(LOG_TAG, "processCmdImpl: mlipay invoke_command failed", e)
+            override fun processCmd(param: ByteArray): ByteArray? {
+                try {
+                    getAidlMlipayService()?.let {
+                        return it.invoke_command(param, param.size)
                     }
 
-                    receiveBuffer
+                    return getHidlMlipayService()
+                        ?.invoke_command(ArrayList(param.toList()), param.size)
+                        ?.toByteArray()
+                } catch (e: Exception) {
+                    Log.e(LOG_TAG, "processCmdImpl: mlipay invoke_command failed", e)
+                    return null
                 }
+            }
 
             override fun getVersion() = 4
 
@@ -102,32 +97,109 @@ class IfaaService : Service() {
                 }
 
             override fun getIDList(bioType: Int): IntArray {
-                var idList = IntArray(0)
-
-                getMlipayService()?.let { mlipayService ->
-                    try {
-                        val idListAL = mlipayService.ifaa_get_idlist(bioType)
-
-                        idList = idListAL.toIntArray()
-                    } catch (e: Exception) {
-                        Log.e(LOG_TAG, "getIDListImpl: mlipay ifaa_get_idlist failed", e)
+                try {
+                    getAidlMlipayService()?.let {
+                        return it.ifaa_get_idlist(bioType)
                     }
-                }
 
-                return idList
+                    return getHidlMlipayService()?.ifaa_get_idlist(bioType)?.toIntArray()
+                        ?: IntArray(0)
+                } catch (e: Exception) {
+                    Log.e(LOG_TAG, "getIDListImpl: mlipay ifaa_get_idlist failed", e)
+                    return IntArray(0)
+                }
             }
         }
 
     override fun onBind(intent: Intent) = mBinder
 
-    private fun getMlipayService() =
-        _mlipayService
-            ?: runCatching { IMlipayService.getService(true) }
-                .onSuccess {
-                    _mlipayService = it
-                    it.linkToDeath(mlipayServiceDeathRecipient, 0)
-                }
-                .getOrNull()
+    @Synchronized
+    private fun getAidlMlipayService(): AidlMlipayService? {
+        _aidlMlipayService?.let {
+            if (it.asBinder().isBinderAlive) return it
+            _aidlMlipayService = null
+        }
+
+        try {
+            if (!isAidlMlipayDeclared) return null
+
+            // Reuse the pending lookup if lazy HAL startup exceeds the timeout.
+            val lookup =
+                _aidlMlipayServiceLookup
+                    ?: FutureTask<IBinder?> {
+                            ServiceManager.waitForDeclaredService(AIDL_MLIPAY_SERVICE_NAME)
+                        }
+                        .also {
+                            _aidlMlipayServiceLookup = it
+                            Thread(it, "IFAA-mlipay").apply { isDaemon = true }.start()
+                        }
+            val binder = lookup.get(MLIPAY_SERVICE_TIMEOUT_MS, TimeUnit.MILLISECONDS)
+            _aidlMlipayServiceLookup = null
+            val mlipayBinder =
+                binder
+                    ?: run {
+                        Log.w(LOG_TAG, "AIDL mlipay service unavailable, trying HIDL")
+                        return null
+                    }
+            val service = AidlMlipayService.Stub.asInterface(mlipayBinder) ?: return null
+            mlipayBinder.linkToDeath(
+                IBinder.DeathRecipient {
+                    synchronized(this) {
+                        if (_aidlMlipayService?.asBinder() == mlipayBinder) {
+                            Log.i(LOG_TAG, "AIDL mlipay service died")
+                            _aidlMlipayService = null
+                        }
+                    }
+                },
+                0,
+            )
+            _aidlMlipayService = service
+            Log.i(LOG_TAG, "Connected to AIDL mlipay service")
+            return service
+        } catch (e: TimeoutException) {
+            Log.w(LOG_TAG, "AIDL mlipay service unavailable, trying HIDL")
+            return null
+        } catch (e: InterruptedException) {
+            Thread.currentThread().interrupt()
+            Log.w(LOG_TAG, "Interrupted while connecting to AIDL mlipay service", e)
+            return null
+        } catch (e: Exception) {
+            _aidlMlipayServiceLookup = null
+            Log.w(LOG_TAG, "Unable to connect to AIDL mlipay service, trying HIDL", e)
+            return null
+        }
+    }
+
+    @Synchronized
+    private fun getHidlMlipayService(): HidlMlipayService? {
+        _hidlMlipayService?.let {
+            return it
+        }
+
+        try {
+            // Avoid waiting for HIDL on AIDL-only devices.
+            val service = HidlMlipayService.getService(false) ?: return null
+            val linked =
+                service.linkToDeath(
+                    IHwBinder.DeathRecipient {
+                        synchronized(this) {
+                            if (_hidlMlipayService?.asBinder() == service.asBinder()) {
+                                Log.i(LOG_TAG, "HIDL mlipay service died")
+                                _hidlMlipayService = null
+                            }
+                        }
+                    },
+                    0,
+                )
+            if (!linked) return null
+            _hidlMlipayService = service
+            Log.i(LOG_TAG, "Connected to HIDL mlipay service")
+            return service
+        } catch (e: Exception) {
+            Log.w(LOG_TAG, "Unable to connect to HIDL mlipay service", e)
+            return null
+        }
+    }
 
     private fun initExtString(): String {
         val obj = JSONObject()
@@ -176,6 +248,10 @@ class IfaaService : Service() {
 
         private const val COMMAND_OK = 0
         private const val COMMAND_FAIL = -1
+
+        private const val AIDL_MLIPAY_SERVICE_NAME =
+            "vendor.xiaomi.hardware.mlipay.IMlipayService/default"
+        private const val MLIPAY_SERVICE_TIMEOUT_MS = 2000L
 
         private const val SUPPORTED_BIO_MASK_PROP = "persist.vendor.sys.pay.ifaa"
         private const val FP_VENDOR_PROP = "persist.vendor.sys.fp.vendor"
