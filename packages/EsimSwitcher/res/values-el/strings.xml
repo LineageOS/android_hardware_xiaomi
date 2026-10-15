@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2023-2025 Paranoid Android
+     SPDX-FileCopyrightText: 2026 The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <string name="app_name">Επιλογέας eSIM</string>
+    <string name="esim_title">eSIM</string>
+    <string name="esim_enable_name">Ενεργοποίηση eSIM</string>
+    <string name="esim_warning_title">eSIM σε χρήση</string>
+    <string name="esim_warning_message">Παρακαλώ απενεργοποιήστε ή αφαιρέστε το τρέχον σας προφίλ eSIM πριν προχωρήσετε</string>
+    <string name="esim_footer_note">Με την ενεργοποίηση της eSIM θα απενεργοποιηθεί η δεύτερη υποδοχή φυσικής SIM</string>
+</resources>
