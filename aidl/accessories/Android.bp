@@ -13,6 +13,7 @@ cc_defaults {
     shared_libs: [
         "libbase",
         "libbinder_ndk",
+        "libcutils",
     ],
 }
 
@@ -23,6 +24,7 @@ cc_library_static {
     srcs: [
         "xiaomismartpen/XiaomiSmartPen.cpp",
         "SysfsPoller.cpp",
+        "UeventListener.cpp",
         "XiaomiAccessories.cpp",
     ],
     export_include_dirs: ["."],

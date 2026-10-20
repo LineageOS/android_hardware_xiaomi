@@ -8,6 +8,8 @@
 #include <aidl/vendor/lineage/accessories/Accessory.h>
 #include <aidl/vendor/lineage/accessories/BnAccessory.h>
 #include <mutex>
+#include <string>
+#include "../UeventListener.h"
 
 namespace aidl {
 namespace vendor {
@@ -16,6 +18,8 @@ namespace accessories {
 
 /**
  * Xiaomi Smart Pen accessory.
+ * The pen is charged by the wireless charger once attached to the device, which also reports
+ * its Bluetooth address and battery level.
  */
 class XiaomiSmartPen : public Accessory {
   public:
@@ -25,11 +29,16 @@ class XiaomiSmartPen : public Accessory {
     ::ndk::ScopedAStatus setEnabled(bool enabled) override;
 
   private:
-    bool mEnabled;
+    bool mEnabled = true;
+
+    int mBatteryLevel = BatteryInfo::BATTERY_LEVEL_UNKNOWN;
+    UeventListener mWirelessListener;
 
     std::mutex mDataMutex;
 
     void onEnabledChanged();
+    void onWirelessChanged(const std::string& chargeState, const std::string& mac,
+                           const std::string& soc);
     void updateStatus();
 };
 
