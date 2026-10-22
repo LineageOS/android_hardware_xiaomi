@@ -8,6 +8,7 @@ package com.tencent.soter.soterserver;
 
 import com.tencent.soter.soterserver.SoterDeviceResult;
 import com.tencent.soter.soterserver.SoterExportResult;
+import com.tencent.soter.soterserver.SoterExtraParam;
 import com.tencent.soter.soterserver.SoterSessionResult;
 import com.tencent.soter.soterserver.SoterSignResult;
 
@@ -24,4 +25,5 @@ interface ISoterService {
     SoterSignResult finishSign(long signSession);
     SoterDeviceResult getDeviceId();
     int getVersion();
+    SoterExtraParam getExtraParam(String key);
 }
