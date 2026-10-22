@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2026 The LineageOS Project
+
+     SPDX-License-Identifier: Apache-2.0
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.tencent.soter.soterserver">
+
+    <application
+        android:label="@string/app_name"
+        android:persistent="true">
+
+        <service
+            android:name=".SoterService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.tencent.soter.soterserver.ISoterService" />
+            </intent-filter>
+        </service>
+
+        <receiver
+            android:name=".SoterService$UserAppUninstallReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_FULLY_REMOVED" />
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+</manifest>
