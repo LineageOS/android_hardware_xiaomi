@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4c00b0a_c88d5b20",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 34491
+      },
+      "writtenOn": "2026-10-22T21:15:34Z",
+      "side": 1,
+      "message": "Tested on Xiaomi Mi 10S (thyme, SM8250).\n\nVerification details:\n- **Environment**: Xiaomi SM8250 (using Qualcomm HIDL Soter HAL: `vendor.qti.hardware.soter@1.0::ISoter`).\n- **Test scope**: Both WeChat (`com.tencent.mm`) and QQ Wallet (`com.tencent.mobileqq` / Tenpay) biometric fingerprint payments were tested.\n- **Results**:\n  - ASK / AuthKey generation and certificate export completed successfully (errcode: 0).\n  - TEE signing via QSEE and Stargate FP sensor succeeded.\n  - UDFPS positioning (`getExtraParam`: `fingerprint_type` and `fingerprint_hardware_position`) is called properly with `version 2` and coordinates calculated accurately.\n  - WeChat and QQ fingerprint pay both function normally on device.\n\n**Note**: Due to hardware limitations, I only have access to Xiaomi SM8250 devices. I am unable to test Qualcomm AIDL (SM8750+), MediaTek (MiTEE / ISEE), and XRing platforms on physical devices.\n\nSanitized test log: https://gist.github.com/Flicker372/bc4bc79d2f2e44b6840f1ab78cc5fa39",
+      "revId": "cd4247f420977dbeb258470dddc8a173a84d1233",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
