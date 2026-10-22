@@ -16,10 +16,7 @@ import android.os.RemoteException;
 import android.os.SystemProperties;
 import android.util.Log;
 
-import vendor.qti.hardware.soter.V1_0.ISoter;
-
 import java.lang.ref.WeakReference;
-import java.util.List;
 
 public class SoterService extends Service {
     private static final String TAG = "SoterService";
@@ -44,17 +41,6 @@ public class SoterService extends Service {
         super.onDestroy();
     }
 
-    private static byte[] listToByteArray(List<Byte> list) {
-        if (list == null || list.isEmpty()) {
-            return null;
-        }
-        byte[] arr = new byte[list.size()];
-        for (int i = 0; i < list.size(); i++) {
-            arr[i] = list.get(i);
-        }
-        return arr;
-    }
-
     private static boolean isFod() {
         String fpType = SystemProperties.get("persist.vendor.fingerprint.type", "");
         if (fpType.startsWith("udfps")) {
@@ -75,12 +61,12 @@ public class SoterService extends Service {
                 if (!isReplacing) {
                     Log.i(TAG, "begin to use uid to remove ask");
                     try {
-                        ISoter soter = ISoter.getService();
-                        if (soter != null) {
+                        SoterTZService soter = SoterTZService.get();
+                        if (soter != null && soter.isAvailable()) {
                             Log.i(TAG, "start removeAllAuthKey");
                             soter.removeAllUidKey(uid);
                         } else {
-                            Log.e(TAG, "soterService is null");
+                            Log.e(TAG, "soterService is null or unavailable");
                         }
                     } catch (Exception e) {
                         Log.e(TAG, e.toString());
@@ -99,262 +85,58 @@ public class SoterService extends Service {
 
         @Override
         public int generateAppSecureKey(int uid) throws RemoteException {
-            Log.i(TAG, "generateAppSecureKey in");
-            int errcode = SoterErrorCode.SOTER_WRAPPERERROR_UNKNOWN;
-            try {
-                ISoter soter = ISoter.getService();
-                if (soter != null) {
-                    Log.i(TAG, "start generateAppSecureKey");
-                    errcode = soter.generateAskKeyPair(Binder.getCallingUid());
-                } else {
-                    Log.e(TAG, "soterService is null");
-                }
-            } catch (Exception e) {
-                Log.e(TAG, e.toString());
-            }
-            Log.i(TAG, "generateAppSecureKey errcode:" + errcode);
-            return errcode;
+            return SoterTZService.get().generateAppSecureKey(Binder.getCallingUid());
         }
 
         @Override
         public SoterExportResult getAppSecureKey(int uid) throws RemoteException {
-            Log.i(TAG, "getAppSecureKeyImp in");
-            SoterExportResult result = new SoterExportResult();
-            result.resultCode = SoterErrorCode.SOTER_ERROR_UNKNOWN_ERROR;
-            try {
-                ISoter soter = ISoter.getService();
-                if (soter != null) {
-                    Log.i(TAG, "start exportAskPublicKey");
-                    soter.exportAskPublicKey(
-                            Binder.getCallingUid(),
-                            (resCode, data, dataLength) -> {
-                                result.resultCode = resCode;
-                                result.exportData = listToByteArray(data);
-                                result.exportDataLength = dataLength;
-                            });
-                }
-            } catch (Exception e) {
-                result.resultCode = SoterErrorCode.SOTER_WRAPPERERROR_UNKNOWN;
-                Log.e(TAG, "exception" + e.toString());
-            }
-            return result;
+            return SoterTZService.get().getAppSecureKey(Binder.getCallingUid());
         }
 
         @Override
         public boolean hasAskAlready(int uid) throws RemoteException {
-            Log.v(TAG, "hasAskAlready called");
-            int errcode = SoterErrorCode.SOTER_ERROR_UNKNOWN_ERROR;
-            try {
-                ISoter soter = ISoter.getService();
-                if (soter != null) {
-                    Log.i(TAG, "start hasAskAlready");
-                    errcode = soter.hasAskAlready(Binder.getCallingUid());
-                } else {
-                    Log.e(TAG, "soterService is null");
-                }
-            } catch (Exception e) {
-                Log.e(TAG, e.toString());
-            }
-            return errcode == SoterErrorCode.SOTER_ERROR_OK;
+            return SoterTZService.get().hasAskAlready(Binder.getCallingUid());
         }
 
         @Override
         public int generateAuthKey(int uid, String kname) throws RemoteException {
-            Log.i(TAG, "generateAuthKey in");
-            if (kname == null || kname.length() == 0) {
-                return SoterErrorCode.SOTER_ERROR_KNAME_NULL;
-            }
-            int errcode = SoterErrorCode.SOTER_WRAPPERERROR_UNKNOWN;
-            try {
-                ISoter soter = ISoter.getService();
-                if (soter != null) {
-                    Log.i(TAG, "start generateAuthKey");
-                    errcode = soter.generateAuthKeyPair(Binder.getCallingUid(), kname);
-                } else {
-                    Log.e(TAG, "soterService is null");
-                }
-            } catch (Exception e) {
-                Log.e(TAG, e.toString());
-            }
-            Log.i(TAG, "generateAuthKey errcode:" + errcode);
-            return errcode;
+            return SoterTZService.get().generateAuthKey(Binder.getCallingUid(), kname);
         }
 
         @Override
         public int removeAuthKey(int uid, String kname) throws RemoteException {
-            Log.i(TAG, "removeAuthKey in");
-            if (kname == null || kname.length() == 0) {
-                return SoterErrorCode.SOTER_ERROR_KNAME_NULL;
-            }
-            int errcode = SoterErrorCode.SOTER_WRAPPERERROR_UNKNOWN;
-            try {
-                ISoter soter = ISoter.getService();
-                if (soter != null) {
-                    Log.i(TAG, "start removeAuthKey");
-                    errcode = soter.removeAuthKey(Binder.getCallingUid(), kname);
-                } else {
-                    Log.e(TAG, "soterService is null");
-                }
-            } catch (Exception e) {
-                Log.e(TAG, e.toString());
-            }
-            Log.i(TAG, "removeAuthKeyImp errcode:" + errcode);
-            return errcode;
+            return SoterTZService.get().removeAuthKey(Binder.getCallingUid(), kname);
         }
 
         @Override
         public SoterExportResult getAuthKey(int uid, String kname) throws RemoteException {
-            Log.i(TAG, "getAuthKey in");
-            SoterExportResult result = new SoterExportResult();
-            result.resultCode = SoterErrorCode.SOTER_ERROR_UNKNOWN_ERROR;
-            if (kname == null || kname.length() == 0) {
-                result.resultCode = SoterErrorCode.SOTER_ERROR_KNAME_NULL;
-                return result;
-            }
-            try {
-                ISoter soter = ISoter.getService();
-                if (soter != null) {
-                    Log.i(TAG, "start exportAuthKeyPublicKey");
-                    soter.exportAuthKeyPublicKey(
-                            Binder.getCallingUid(),
-                            kname,
-                            (resCode, data, dataLength) -> {
-                                result.resultCode = resCode;
-                                result.exportData = listToByteArray(data);
-                                result.exportDataLength = dataLength;
-                            });
-                }
-            } catch (Exception e) {
-                Log.e(TAG, e.toString());
-            }
-            Log.i(TAG, "exportAuthKeyPublicKey errcode:" + result.resultCode);
-            return result;
+            return SoterTZService.get().getAuthKey(Binder.getCallingUid(), kname);
         }
 
         @Override
         public int removeAllAuthKey(int uid) throws RemoteException {
-            Log.i(TAG, "removeAllAuthKey in");
-            int errcode = SoterErrorCode.SOTER_WRAPPERERROR_UNKNOWN;
-            try {
-                ISoter soter = ISoter.getService();
-                if (soter != null) {
-                    Log.i(TAG, "start removeAllAuthKey");
-                    errcode = soter.removeAllUidKey(Binder.getCallingUid());
-                } else {
-                    Log.e(TAG, "soterService is null");
-                }
-            } catch (Exception e) {
-                Log.e(TAG, e.toString());
-            }
-            Log.i(TAG, "removeAllAuthKeyImp errcode:" + errcode);
-            return errcode;
+            return SoterTZService.get().removeAllAuthKey(Binder.getCallingUid());
         }
 
         @Override
         public boolean hasAuthKey(int uid, String kname) throws RemoteException {
-            Log.i(TAG, "hasAuthKey in");
-            if (kname == null || kname.length() == 0) {
-                Log.d(TAG, "kname is null");
-                return false;
-            }
-            int errcode = SoterErrorCode.SOTER_ERROR_UNKNOWN_ERROR;
-            try {
-                ISoter soter = ISoter.getService();
-                if (soter != null) {
-                    Log.i(TAG, "start hasAuthKeyImp");
-                    errcode = soter.hasAuthKey(Binder.getCallingUid(), kname);
-                } else {
-                    Log.e(TAG, "soterService is null");
-                }
-            } catch (Exception e) {
-                Log.e(TAG, e.toString());
-            }
-            return errcode == SoterErrorCode.SOTER_ERROR_OK;
+            return SoterTZService.get().hasAuthKey(Binder.getCallingUid(), kname);
         }
 
         @Override
         public SoterSessionResult initSigh(int uid, String kname, String challenge)
                 throws RemoteException {
-            Log.i(TAG, "initSigh in");
-            SoterSessionResult result = new SoterSessionResult();
-            if (kname == null || kname.length() == 0) {
-                result.resultCode = SoterErrorCode.SOTER_ERROR_KNAME_NULL;
-                return result;
-            }
-            if (challenge == null || challenge.length() == 0) {
-                result.resultCode = SoterErrorCode.SOTER_ERROR_CHALLENGE_NULL;
-                return result;
-            }
-            try {
-                ISoter soter = ISoter.getService();
-                if (soter != null) {
-                    Log.i(TAG, "start initSign");
-                    soter.initSign(
-                            Binder.getCallingUid(),
-                            kname,
-                            challenge,
-                            (resCode, session) -> {
-                                result.resultCode = resCode;
-                                result.session = session;
-                            });
-                }
-            } catch (Exception e) {
-                Log.e(TAG, e.toString());
-            }
-            Log.i(TAG, "initSign errcode:" + result.resultCode);
-            return result;
+            return SoterTZService.get().initSign(Binder.getCallingUid(), kname, challenge);
         }
 
         @Override
         public SoterSignResult finishSign(long signSession) throws RemoteException {
-            Log.i(TAG, "finishSignImp in");
-            SoterSignResult result = new SoterSignResult();
-            if (signSession == 0) {
-                result.resultCode = SoterErrorCode.SOTER_ERROR_OPERATEID_NULL;
-            }
-            try {
-                ISoter soter = ISoter.getService();
-                if (soter != null) {
-                    Log.i(TAG, "start initSign");
-                    soter.finishSign(
-                            signSession,
-                            (resCode, data, dataLength) -> {
-                                result.resultCode = resCode;
-                                result.exportData = listToByteArray(data);
-                                result.exportDataLength = dataLength;
-                            });
-                } else {
-                    Log.e(TAG, "soterService is null");
-                }
-            } catch (Exception e) {
-                Log.e(TAG, e.toString());
-            }
-            Log.i(TAG, "finishSignImp errcode:" + result.resultCode);
-            return result;
+            return SoterTZService.get().finishSign(signSession);
         }
 
         @Override
         public SoterDeviceResult getDeviceId() throws RemoteException {
-            Log.i(TAG, "getDeviceIdImp in");
-            SoterDeviceResult result = new SoterDeviceResult();
-            try {
-                ISoter soter = ISoter.getService();
-                if (soter != null) {
-                    Log.i(TAG, "start getDeviceId");
-                    soter.getDeviceId(
-                            (resCode, data, dataLength) -> {
-                                result.resultCode = resCode;
-                                result.exportData = listToByteArray(data);
-                                result.exportDataLength = dataLength;
-                            });
-                } else {
-                    Log.e(TAG, "soterService is null");
-                }
-            } catch (Exception e) {
-                Log.e(TAG, e.toString());
-            }
-            Log.i(TAG, "getDeviceId errcode:" + result.resultCode);
-            return result;
+            return SoterTZService.get().getDeviceId();
         }
 
         @Override
@@ -369,8 +151,8 @@ public class SoterService extends Service {
             Log.i(TAG, "getExtraParam key: " + key);
             SoterExtraParam extraParam = new SoterExtraParam();
             try {
-                ISoter soter = ISoter.getService();
-                if (soter != null) {
+                SoterTZService soter = SoterTZService.get();
+                if (soter != null && soter.isAvailable()) {
                     Log.i(TAG, "start getExtraParam!");
                     if (isFod()) {
                         if ("fingerprint_type".equals(key)) {
@@ -414,12 +196,17 @@ public class SoterService extends Service {
                         }
                     }
                 } else {
-                    Log.e(TAG, "soterService is null");
+                    Log.e(TAG, "soterService is null or unavailable");
                 }
             } catch (Exception e) {
                 Log.e(TAG, "exception" + e.toString());
             }
             return extraParam;
+        }
+
+        @Override
+        public String aidlAuth() throws RemoteException {
+            return null;
         }
     }
 }

@@ -44,6 +44,10 @@ public final class SoterErrorCode {
     public static final int SOTER_ERROR_OPERATEID_NULL = -204;
     public static final int SOTER_ERROR_UNKNOWN_ERROR = -1000;
 
+    public static final int ERR_OK = SOTER_ERROR_OK;
+    public static final int ERR_UNKNOWN = SOTER_WRAPPERERROR_UNKNOWN;
+    public static final int ERR_FAILED = SOTER_ERROR_UNKNOWN_ERROR;
+
     public static String toString(int o) {
         if (o == SOTER_ERROR_OK) {
             return "SOTER_ERROR_OK";
