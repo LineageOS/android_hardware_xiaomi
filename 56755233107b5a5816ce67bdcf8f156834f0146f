@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b31d3a88_8b404ee7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 32253
+      },
+      "writtenOn": "2026-10-25T06:54:09Z",
+      "side": 1,
+      "message": "I\u0027m pretty sure references from BSPs are not allowed here. The JingPad BSP has suffered DMCA takedowns b4.",
+      "revId": "56755233107b5a5816ce67bdcf8f156834f0146f",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
