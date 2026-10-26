@@ -1,0 +1,7 @@
+# Start the BLE advertisement scanner in recovery for Xiaomi remotes
+service ble-remote-input /sbin/ble-remote-scanner
+    oneshot
+    user root
+    group root
+    seclabel u:r:recovery:s0
+    stdio_to_kmsg
