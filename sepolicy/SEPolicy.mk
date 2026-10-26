@@ -11,3 +11,8 @@ SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += \
 
 BOARD_VENDOR_SEPOLICY_DIRS += \
     hardware/xiaomi/sepolicy/common/vendor
+
+ifeq ($(PRODUCT_IS_ATV), true)
+BOARD_VENDOR_SEPOLICY_DIRS += \
+    hardware/xiaomi/sepolicy/atv/vendor
+endif
