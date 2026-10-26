@@ -1,0 +1,6 @@
+# Recovery-only controller access and virtual navigation keys.
+recovery_only(`
+    allow recovery kmsg_debug_device:chr_file write;
+    allow recovery stpbt_device:chr_file rw_file_perms;
+    allow recovery uhid_device:chr_file rw_file_perms;
+')
