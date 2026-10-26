@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a068284a_e64897e9",
+        "filename": "ble-remote/main.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2026-10-26T23:44:48Z",
+      "side": 1,
+      "message": "we could eventually drop this, if it simplifies the code",
+      "range": {
+        "startLine": 50,
+        "startChar": 24,
+        "endLine": 50,
+        "endChar": 36
+      },
+      "revId": "24ddf32f5003b723125f075dabb519f541536458",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8af46b89_f3c683ab",
+        "filename": "ble-remote/main.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2026-10-26T23:44:48Z",
+      "side": 1,
+      "message": "gotta remove references to jaws. :p",
+      "range": {
+        "startLine": 105,
+        "startChar": 26,
+        "endLine": 105,
+        "endChar": 30
+      },
+      "revId": "24ddf32f5003b723125f075dabb519f541536458",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
