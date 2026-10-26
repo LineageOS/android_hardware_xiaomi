@@ -6,6 +6,11 @@
 BOARD_VENDOR_SEPOLICY_DIRS += \
     hardware/xiaomi/sepolicy/common/vendor
 
+ifeq ($(PRODUCT_IS_ATV), true)
+BOARD_VENDOR_SEPOLICY_DIRS += \
+    hardware/xiaomi/sepolicy/atv/vendor
+endif
+
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += \
     hardware/xiaomi/sepolicy/common/private
 
