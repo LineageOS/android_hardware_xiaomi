@@ -1,0 +1,25 @@
+//
+// SPDX-FileCopyrightText: The LineageOS Project
+// SPDX-License-Identifier: Apache-2.0
+//
+
+cc_binary {
+    name: "ble-remote-scanner",
+    recovery: true,
+    init_rc: ["ble-remote-scanner.rc"],
+    srcs: [
+        "main.cpp",
+        "remote_hci.cpp",
+        "remote_input.cpp",
+        "transport_bcm.cpp",
+        "transport_mtk.cpp",
+    ],
+    cppflags: [
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+    ],
+    shared_libs: [
+        "libbase",
+    ],
+}
