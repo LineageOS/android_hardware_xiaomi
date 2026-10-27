@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80f45b9a_e0db28e5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2026-10-27T08:31:34Z",
+      "side": 1,
+      "message": "Hey Seba, adding you in case you want to suggest any cleaning. This was essentially adapted from https://github.com/rainbowdashh/android_device_xiaomi_oneday/commit/33b94b0fe7ea2843ed321df17a4a3eaac8a49263, to add MTK support as well. I use it for my \"jaws\" device: https://review.lineageos.org/c/LineageOS/android_device_xiaomi_jaws/+/510485",
+      "revId": "56ae6efe37ebb61829729ece746b1d898f0f6614",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
