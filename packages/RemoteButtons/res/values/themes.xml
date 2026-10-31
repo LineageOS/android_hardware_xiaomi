@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <!-- Matches the guided steps of TV Settings, which opens the wizard -->
+    <style name="Theme.RemoteButtons" parent="Theme.Leanback.GuidedStep">
+        <item name="android:windowBackground">@color/settings_background</item>
+        <item name="guidedStepBackground">@color/settings_background</item>
+        <item name="guidedActionsBackground">@color/settings_panel_background</item>
+        <item name="guidedActionsBackgroundDark">@color/settings_panel_background</item>
+        <item name="guidedActionsSelectorDrawable">@null</item>
+        <item name="guidedActionsElevation">0dp</item>
+        <item name="guidanceTitleStyle">@style/GuidanceTitle</item>
+        <item name="guidanceDescriptionStyle">@style/GuidanceDescription</item>
+        <item name="guidanceIconStyle">@style/GuidanceIcon</item>
+        <item name="guidedActionsListStyle">@style/GuidedActionsList</item>
+        <!-- Long titles wrap instead of being cut off, as in TV Settings. Leanback applies the
+             "min" one as the line limit of options without a multi-line description. -->
+        <item name="guidedActionTitleMinLines">@integer/guided_action_title_max_lines</item>
+        <item name="guidedActionTitleMaxLines">@integer/guided_action_title_max_lines</item>
+        <item name="guidedActionItemContainerStyle">@style/GuidedActionItemContainer</item>
+        <item name="guidedActionItemContentStyle">@style/GuidedActionItemContent</item>
+        <item name="guidedActionItemTitleStyle">@style/GuidedActionItemTitle</item>
+        <item name="guidedActionItemDescriptionStyle">@style/GuidedActionItemDescription</item>
+        <item name="guidedActionItemChevronStyle">@style/GuidedActionItemChevron</item>
+        <item name="guidedActionItemCheckmarkStyle">@style/GuidedActionItemCheckmark</item>
+    </style>
+
+    <style name="GuidanceTitle" parent="Widget.Leanback.GuidanceTitleStyle">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">36sp</item>
+        <item name="android:textColor">@color/item_primary_text</item>
+        <item name="android:lineSpacingMultiplier">1.04296</item>
+    </style>
+
+    <style name="GuidanceDescription" parent="Widget.Leanback.GuidanceDescriptionStyle">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/item_secondary_text</item>
+        <item name="android:lineSpacingMultiplier">1.5</item>
+    </style>
+
+    <style name="GuidanceIcon" parent="Widget.Leanback.GuidanceIconStyle">
+        <item name="android:layout_width">48dp</item>
+        <item name="android:layout_height">48dp</item>
+    </style>
+
+    <style name="GuidedActionsList" parent="Widget.Leanback.GuidedActionsListStyle">
+        <item name="android:verticalSpacing">8dp</item>
+        <item name="android:paddingStart">24dp</item>
+        <item name="android:paddingEnd">24dp</item>
+    </style>
+
+    <style name="GuidedActionItemContainer" parent="Widget.Leanback.GuidedActionItemContainerStyle">
+        <item name="android:background">@drawable/item_background</item>
+        <item name="android:minHeight">60dp</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+    </style>
+
+    <style name="GuidedActionItemContent" parent="Widget.Leanback.GuidedActionItemContentStyle">
+        <item name="android:duplicateParentState">true</item>
+    </style>
+
+    <style name="GuidedActionItemTitle" parent="Widget.Leanback.GuidedActionItemTitleStyle">
+        <item name="android:duplicateParentState">true</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/item_primary_text_selector</item>
+    </style>
+
+    <style name="GuidedActionItemDescription" parent="Widget.Leanback.GuidedActionItemDescriptionStyle">
+        <item name="android:duplicateParentState">true</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/item_secondary_text_selector</item>
+    </style>
+
+    <style name="GuidedActionItemChevron" parent="Widget.Leanback.GuidedActionItemChevronStyle">
+        <item name="android:duplicateParentState">true</item>
+        <item name="android:tint">@color/item_primary_text_selector</item>
+    </style>
+
+    <style name="GuidedActionItemCheckmark" parent="Widget.Leanback.GuidedActionItemCheckmarkStyle">
+        <item name="android:duplicateParentState">true</item>
+        <item name="android:tint">@color/item_primary_text_selector</item>
+    </style>
+</resources>
