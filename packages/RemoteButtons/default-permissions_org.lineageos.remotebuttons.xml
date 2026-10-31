@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<exceptions>
+    <!-- Programs the remote over Bluetooth; granted so users aren't asked on first launch -->
+    <exception package="org.lineageos.remotebuttons">
+        <permission name="android.permission.BLUETOOTH_CONNECT" fixed="false" />
+    </exception>
+</exceptions>
