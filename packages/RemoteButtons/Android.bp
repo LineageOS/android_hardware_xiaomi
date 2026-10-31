@@ -1,0 +1,36 @@
+//
+// SPDX-FileCopyrightText: The LineageOS Project
+// SPDX-License-Identifier: Apache-2.0
+//
+
+android_app {
+    name: "XiaomiRemoteButtons",
+    srcs: [
+        "src/**/*.java",
+        "src/**/*.kt",
+    ],
+    sdk_version: "current",
+    product_specific: true,
+    asset_dirs: ["assets"],
+    required: ["default-permissions_org.lineageos.remotebuttons.xml"],
+    static_libs: [
+        "androidx.core_core-ktx",
+        "androidx.fragment_fragment-ktx",
+        "androidx.leanback_leanback",
+        "androidx.lifecycle_lifecycle-runtime-ktx",
+        "androidx.lifecycle_lifecycle-viewmodel-ktx",
+        "androidx.slice_slice-builders",
+        "androidx.slice_slice-core",
+        "kotlinx-coroutines-android",
+    ],
+    optimize: {
+        proguard_flags_files: ["proguard.flags"],
+    },
+}
+
+prebuilt_etc {
+    name: "default-permissions_org.lineageos.remotebuttons.xml",
+    src: "default-permissions_org.lineageos.remotebuttons.xml",
+    sub_dir: "default-permissions",
+    product_specific: true,
+}

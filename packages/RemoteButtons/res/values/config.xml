@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <!-- Remote programmer factories to try, as class names implementing
+         org.lineageos.remotebuttons.remote.RemoteProgrammer$Factory. Devices can overlay this to
+         enable only the remotes they ship with. -->
+    <string-array name="config_remoteProgrammers" translatable="false">
+        <item>org.lineageos.remotebuttons.remote.xiaomi.XiaomiRemoteProgrammer$Factory</item>
+    </string-array>
+
+    <!-- Authority of the TV Settings slice; devices point bluetooth_ir_entry_slice_uri at
+         content://org.lineageos.remotebuttons.slice/ir -->
+    <string name="slice_authority" translatable="false">org.lineageos.remotebuttons.slice</string>
+</resources>

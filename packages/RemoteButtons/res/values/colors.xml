@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<!-- TV Settings (two panel) palette, so the wizard opened from it looks the same -->
+<resources>
+    <color name="settings_background">#ff0b141a</color>
+    <color name="settings_panel_background">#ff10191f</color>
+    <color name="item_focused_background">#ffe4f3ff</color>
+    <color name="item_primary_text">#ffe4f3ff</color>
+    <color name="item_primary_text_focused">#ff001222</color>
+    <color name="item_secondary_text">#ff959ea7</color>
+    <color name="item_secondary_text_focused">#ff445664</color>
+    <color name="item_text_disabled">#ff9aa0a6</color>
+</resources>
