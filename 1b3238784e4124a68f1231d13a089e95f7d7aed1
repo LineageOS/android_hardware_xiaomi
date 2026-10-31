@@ -34,6 +34,24 @@
       "parentUuid": "732197e8_119b081e",
       "revId": "1b3238784e4124a68f1231d13a089e95f7d7aed1",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98e07fa8_ac31c57d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2026-10-31T13:02:54Z",
+      "side": 1,
+      "message": "I\u0027ll wait for monday then. Would prefer to ship it knowing that it works for us both.",
+      "parentUuid": "90cb2fd0_af5af5bc",
+      "revId": "1b3238784e4124a68f1231d13a089e95f7d7aed1",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
