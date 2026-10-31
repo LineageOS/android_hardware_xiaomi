@@ -1,0 +1,2 @@
+# Remote programmers are looked up by name from config_remoteProgrammers.
+-keep class * implements org.lineageos.remotebuttons.remote.RemoteProgrammer$Factory { <init>(); }

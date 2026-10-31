@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <!-- App name, and the title of its page in TV Settings > Remotes & Accessories -->
+    <string name="app_name">Remote buttons</string>
+    <string name="settings_title">Set up remote buttons</string>
+    <string name="permission_needed">Bluetooth permission is needed to program the remote.</string>
+
+    <!-- Start screen. %1$s: brand and code set, e.g. "Samsung (12)" -->
+    <string name="welcome_description">The remote can turn your TV, soundbar or receiver on and off and change its volume using infrared.</string>
+    <string name="status_configured">Set up for %1$s.</string>
+    <string name="status_not_configured">Not set up.</string>
+    <string name="action_set_up">Set up</string>
+    <string name="action_clear">Clear setup</string>
+
+    <!-- Setup: before the first code is sent -->
+    <string name="notice_title">Control your TV with this remote</string>
+    <string name="notice_description">Codes will be tried one by one. Music plays during each try so you can hear whether the remote changes the volume. Make sure the sound is not muted.</string>
+
+    <!-- Setup: what the remote should control -->
+    <string name="device_type_title">What should the remote control?</string>
+    <string name="device_type_tv">Just my TV</string>
+    <string name="device_type_soundbar">A soundbar</string>
+    <string name="device_type_receiver">A receiver</string>
+
+    <!-- Setup: brand list -->
+    <string name="brand_title_tv">Which brand is your TV?</string>
+    <string name="brand_title_soundbar">Which brand is your soundbar?</string>
+    <string name="brand_title_receiver">Which brand is your receiver?</string>
+
+    <!-- Setup: trying code sets. %1$d: number of the code set being tried, %2$d: number of code sets. %1$s in pairing_error_description: technical error message -->
+    <string name="pairing_programming">Sending codes to the remote…</string>
+    <string name="pairing_title">Try the volume buttons</string>
+    <string name="pairing_description">Point the remote at your device and press Volume + or Volume −. Does the volume of the music change?</string>
+    <string name="pairing_attempt">Code set %1$d of %2$d</string>
+    <string name="pairing_error_title">Couldn\'t program the remote</string>
+    <string name="pairing_error_description">Make sure the remote is paired and nearby. (%1$s)</string>
+    <string name="code_set_item">Code set %1$d</string>
+    <string name="action_yes">Yes</string>
+    <string name="action_no">No, try the next one</string>
+    <string name="action_choose_code_set">Choose a code set</string>
+    <string name="action_try_again">Try again</string>
+    <string name="action_skip">Skip this code set</string>
+    <string name="action_other_brand">Choose another brand</string>
+
+    <!-- Setup: result. %1$s: brand name, e.g. "Samsung" -->
+    <string name="done_title">The remote now controls your %1$s</string>
+    <string name="done_description">The power and volume buttons send infrared commands.</string>
+    <string name="failed_title">No %1$s code set worked</string>
+    <string name="failed_description">You can try them again, or pick another brand: some devices are sold under several names.</string>
+
+    <!-- Clearing the remote's IR codes -->
+    <string name="clear_title">Clear the remote\'s IR setup?</string>
+    <string name="clear_description">Removes the infrared codes from the remote, including codes set up by other apps. The remote will stop controlling your device until it is set up again.</string>
+    <string name="clear_done">Remote setup cleared</string>
+    <string name="clear_failed">Couldn\'t reach the remote</string>
+</resources>
