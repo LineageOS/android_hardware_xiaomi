@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f98e3c5_d82af87c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2026-10-31T15:13:52Z",
+      "side": 1,
+      "message": "By the way, I fixed the layout issues that caused the guidance pane to move to the top when pressing remote\u0027s BACK key.",
+      "revId": "cec9a90d842869359e71021f0827fdd9af17104e",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
