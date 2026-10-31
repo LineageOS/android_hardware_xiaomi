@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73d2d794_6fc52b3e",
+        "filename": "sepolicy/common/private/file_contexts",
+        "patchSetId": 8
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2026-10-31T19:12:28Z",
+      "side": 1,
+      "message": "this is common now",
+      "revId": "efa3c0b5e1a392afd5b6e2703832b750fea0a952",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48882620_e1e1673b",
+        "filename": "sepolicy/common/public/device.te",
+        "patchSetId": 8
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2026-10-31T19:12:28Z",
+      "side": 1,
+      "message": "this is common now",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 25
+      },
+      "revId": "efa3c0b5e1a392afd5b6e2703832b750fea0a952",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96d5096d_826a14e9",
+        "filename": "sepolicy/common/vendor/hal_ir_default.te",
+        "patchSetId": 8
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2026-10-31T19:12:28Z",
+      "side": 1,
+      "message": "this is common now",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 16
+      },
+      "revId": "efa3c0b5e1a392afd5b6e2703832b750fea0a952",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
