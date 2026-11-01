@@ -52,6 +52,24 @@
       "parentUuid": "ec9bd8df_d999f8a9",
       "revId": "c805d2b32f89499bf5f948c7f8476f2911e78ca6",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "15f3b915_7ed539ea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 38503
+      },
+      "writtenOn": "2026-11-01T14:44:16Z",
+      "side": 1,
+      "message": "You mean the shutdown option in the power menu?, if so I don\u0027t think it\u0027s possible to start it with the remote, even stock doesn\u0027t have that, it only lists reboot and screenshot.\nI believe that it comes from the fact that Bluetooth gets disabled and the remote talks to the box exclusively through Bluetooth LE, maybe it\u0027s better to focus on hibernation and energy saving mode, since even when sleeping the front light stays on with LOS but not on stock.",
+      "parentUuid": "77fd3dab_d257d0f5",
+      "revId": "c805d2b32f89499bf5f948c7f8476f2911e78ca6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
