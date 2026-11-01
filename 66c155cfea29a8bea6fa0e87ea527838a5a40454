@@ -16,6 +16,57 @@
       "message": "In the meanwhile, did you test this?",
       "revId": "66c155cfea29a8bea6fa0e87ea527838a5a40454",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c027ce3e_c3aa7e72",
+        "filename": "packages/RemoteButtons/src/org/lineageos/remotebuttons/database/xiaomi/XiaomiIrDatabase.kt",
+        "patchSetId": 10
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 38503
+      },
+      "writtenOn": "2026-11-01T12:37:05Z",
+      "side": 1,
+      "message": "The bundled database is only copied when the app\u0027s copy is missing or empty, so if xiaomi_ir.sqlite is ever regenerated, existing installs keep the old copy. The asset already has PRAGMA user_version \u003d 1, so comparing versions would let an updated asset replace it:\n\n```\n/** PRAGMA user_version of the bundled asset; bump both when the asset changes. */\nprivate const val DATABASE_VERSION \u003d 1\n...\nval installedVersion \u003d /* open read-only */ db.use { if (populated) it.version else 0 }\nif (installedVersion \u003e\u003d DATABASE_VERSION) return\n```\n\n(and pass DATABASE_VERSION to SQLiteOpenHelper instead of 1)",
+      "revId": "66c155cfea29a8bea6fa0e87ea527838a5a40454",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4bd7b006_f883cc18",
+        "filename": "packages/RemoteButtons/src/org/lineageos/remotebuttons/viewmodels/SetupViewModel.kt",
+        "patchSetId": 10
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 38503
+      },
+      "writtenOn": "2026-11-01T12:37:05Z",
+      "side": 1,
+      "message": "Same issue here, and it can crash: ClearFragment calls this from its lifecycleScope. If Back is pressed while clearing, the scope is cancelled, runCatching turns that into a failure result, and the coroutine carries on to Toast.makeText(requireContext(), ...) on a detached fragment, which throws IllegalStateException (from reading the code, not reproduced). Rethrowing CancellationException here as well fixes it:\n\n```\ntry {\n    programmers.withRemote(...) { remote, session -\u003e remote.programmer.clear(session) }\n    repository.setConfigured(null)\n    Result.success(Unit)\n} catch (e: CancellationException) {\n    throw e\n} catch (e: Exception) {\n    Log.e(TAG, \"Clearing the remote failed\", e)\n    Result.failure(e)\n}\n```",
+      "revId": "66c155cfea29a8bea6fa0e87ea527838a5a40454",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df4693b9_741bbcc8",
+        "filename": "packages/RemoteButtons/src/org/lineageos/remotebuttons/viewmodels/SetupViewModel.kt",
+        "patchSetId": 10
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 38503
+      },
+      "writtenOn": "2026-11-01T12:37:05Z",
+      "side": 1,
+      "message": "runCatching also catches CancellationException. When \"No\" is pressed or another code set is picked while one is still being written, tryCodeSet() cancels the previous job, but that job then goes through onFailure: it clears remoteAddress (so the next attempt reconnects to every bonded LE device again) and can publish Pairing.Error for the old index after the new Programming state, so the step briefly shows \"Couldn\u0027t program the remote\".\n\nSuggest a try/catch that rethrows the cancellation:\n\n```\n_pairing.value \u003d\n    try {\n        programmers.withRemote(repository.remoteAddress) { remote, session -\u003e ... }\n        tone.start()\n        Pairing.Ready(index, count)\n    } catch (e: CancellationException) {\n        // Superseded by another attempt or by leaving the step: not a failure.\n        throw e\n    } catch (e: Exception) {\n        Log.e(TAG, \"Programming code set $index failed\", e)\n        repository.remoteAddress \u003d null\n        Pairing.Error(index, count, e.message ?: e.toString())\n    }\n```",
+      "revId": "66c155cfea29a8bea6fa0e87ea527838a5a40454",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
