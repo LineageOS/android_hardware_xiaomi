@@ -90,6 +90,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "b82b974e_797997c4",
+        "filename": "packages/RemoteButtons/src/org/lineageos/remotebuttons/database/xiaomi/XiaomiIrDatabase.kt",
+        "patchSetId": 10
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 38503
+      },
+      "writtenOn": "2026-11-01T13:23:07Z",
+      "side": 1,
+      "message": "Done in PS11. Tested on jaws: an installed copy with an older user_version is replaced when the brand list opens, an up to date one is kept.",
+      "parentUuid": "c540292c_00d53007",
+      "revId": "66c155cfea29a8bea6fa0e87ea527838a5a40454",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "4bd7b006_f883cc18",
         "filename": "packages/RemoteButtons/src/org/lineageos/remotebuttons/viewmodels/SetupViewModel.kt",
         "patchSetId": 10
@@ -125,6 +143,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "7243c981_fcbd076c",
+        "filename": "packages/RemoteButtons/src/org/lineageos/remotebuttons/viewmodels/SetupViewModel.kt",
+        "patchSetId": 10
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 38503
+      },
+      "writtenOn": "2026-11-01T13:23:07Z",
+      "side": 1,
+      "message": "Done in PS11.",
+      "parentUuid": "49ec89fd_a5709784",
+      "revId": "66c155cfea29a8bea6fa0e87ea527838a5a40454",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "df4693b9_741bbcc8",
         "filename": "packages/RemoteButtons/src/org/lineageos/remotebuttons/viewmodels/SetupViewModel.kt",
         "patchSetId": 10
@@ -154,6 +190,24 @@
       "side": 1,
       "message": "Test and ammend.",
       "parentUuid": "df4693b9_741bbcc8",
+      "revId": "66c155cfea29a8bea6fa0e87ea527838a5a40454",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87008efa_8f358215",
+        "filename": "packages/RemoteButtons/src/org/lineageos/remotebuttons/viewmodels/SetupViewModel.kt",
+        "patchSetId": 10
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 38503
+      },
+      "writtenOn": "2026-11-01T13:23:07Z",
+      "side": 1,
+      "message": "Done in PS11. A correction to my description: the step shows no actions while a code set is being written, so this is only reachable by leaving the step (Back or Home) during the write. The visible effect is that the remote address is forgotten, so the next attempt reconnects to every bonded LE device again.",
+      "parentUuid": "37f4f284_caed8a9e",
       "revId": "66c155cfea29a8bea6fa0e87ea527838a5a40454",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
