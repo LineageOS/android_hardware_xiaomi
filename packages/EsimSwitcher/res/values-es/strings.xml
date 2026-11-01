@@ -10,4 +10,5 @@
     <string name="esim_enable_name">Activar eSIM</string>
     <string name="esim_warning_title">eSIM en uso</string>
     <string name="esim_warning_message">Desactiva o elimina tu perfil de eSIM actual antes de continuar</string>
+    <string name="esim_footer_note">Al activar la eSIM, se desactivará la segunda ranura física de la SIM</string>
 </resources>
