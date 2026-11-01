@@ -34,6 +34,24 @@
       "parentUuid": "226fa426_15d234b1",
       "revId": "c805d2b32f89499bf5f948c7f8476f2911e78ca6",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77fd3dab_d257d0f5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2026-11-01T14:37:27Z",
+      "side": 1,
+      "message": "No worries, but I think you could help me figuring out the power-off issue if you had the full Android source sync\u0027ed. :)",
+      "parentUuid": "ec9bd8df_d999f8a9",
+      "revId": "c805d2b32f89499bf5f948c7f8476f2911e78ca6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
