@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "226fa426_15d234b1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2026-11-01T14:27:53Z",
+      "side": 1,
+      "message": "Out of curiosity, are you just building the app or making a full Android build?",
+      "revId": "c805d2b32f89499bf5f948c7f8476f2911e78ca6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
