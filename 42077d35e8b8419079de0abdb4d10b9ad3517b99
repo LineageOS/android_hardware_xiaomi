@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "575608dd_a77426ea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2026-11-02T18:44:12Z",
+      "side": 1,
+      "message": "Planning to merge this wednesday. Just a head-up in case you missed my messages in our discord channel.",
+      "revId": "42077d35e8b8419079de0abdb4d10b9ad3517b99",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
