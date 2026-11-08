@@ -9,8 +9,10 @@ android_app {
         "src/**/*.java",
         "src/**/*.kt",
     ],
-    sdk_version: "current",
+    sdk_version: "system_current",
     product_specific: true,
+    privileged: true,
+    privapp_allowlist: "privapp_allowlist_org.lineageos.remotebuttons.xml",
     asset_dirs: ["assets"],
     required: ["default-permissions_org.lineageos.remotebuttons.xml"],
     static_libs: [
