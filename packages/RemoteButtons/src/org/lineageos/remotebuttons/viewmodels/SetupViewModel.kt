@@ -15,6 +15,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import org.lineageos.remotebuttons.audio.HdmiVolume
 import org.lineageos.remotebuttons.audio.TestTone
 import org.lineageos.remotebuttons.database.Brand
 import org.lineageos.remotebuttons.ir.CodeSet
@@ -94,6 +95,7 @@ class SetupViewModel(application: Application) : AndroidViewModel(application) {
             audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC),
             0,
         )
+        HdmiVolume.setControlledByTv(getApplication(), true)
         val index = currentIndex() ?: return
         repository.setConfigured("${brand?.name} (${codeSets[index].id.substringAfterLast('/')})")
         _pairing.value = Pairing.Idle
@@ -112,6 +114,7 @@ class SetupViewModel(application: Application) : AndroidViewModel(application) {
                 remote.programmer.clear(session)
             }
             repository.setConfigured(null)
+            HdmiVolume.setControlledByTv(getApplication(), false)
             Result.success(Unit)
         } catch (e: CancellationException) {
             throw e

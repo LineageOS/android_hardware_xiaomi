@@ -7,6 +7,8 @@
     package="org.lineageos.remotebuttons">
 
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <!-- Sets HDMI to full volume once the remote controls the TV's volume -->
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS_PRIVILEGED" />
 
     <uses-feature
         android:name="android.hardware.bluetooth_le"
