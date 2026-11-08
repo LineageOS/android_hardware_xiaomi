@@ -1,0 +1,24 @@
+//
+// SPDX-FileCopyrightText: The LineageOS Project
+// SPDX-License-Identifier: Apache-2.0
+//
+
+android_app {
+    name: "XiaomiRemoteVoice",
+    srcs: [
+        "src/**/*.java",
+        "src/**/*.kt",
+    ],
+    sdk_version: "system_current",
+    product_specific: true,
+    privileged: true,
+    privapp_allowlist: "privapp_allowlist_org.lineageos.remotevoice.xml",
+    required: ["default-permissions_org.lineageos.remotevoice.xml"],
+}
+
+prebuilt_etc {
+    name: "default-permissions_org.lineageos.remotevoice.xml",
+    src: "default-permissions_org.lineageos.remotevoice.xml",
+    sub_dir: "default-permissions",
+    product_specific: true,
+}
