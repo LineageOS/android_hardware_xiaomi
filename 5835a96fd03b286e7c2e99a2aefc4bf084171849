@@ -16,6 +16,24 @@
       "message": "Wasn\u0027t this assisted by an LLM?",
       "revId": "5835a96fd03b286e7c2e99a2aefc4bf084171849",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9fa319f9_bbac8478",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 38503
+      },
+      "writtenOn": "2026-11-08T10:43:56Z",
+      "side": 1,
+      "message": "Yes it was, commit message updated.",
+      "parentUuid": "a788eeb8_af8b1dc6",
+      "revId": "5835a96fd03b286e7c2e99a2aefc4bf084171849",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
