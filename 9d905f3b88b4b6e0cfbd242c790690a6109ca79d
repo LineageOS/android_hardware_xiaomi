@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "17484c92_44c32b12",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2026-11-09T00:51:25Z",
+      "side": 1,
+      "message": "Is this fixing the issue that volume buttons wouldn\u0027t work if a remote setup was cleared?",
+      "revId": "9d905f3b88b4b6e0cfbd242c790690a6109ca79d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
