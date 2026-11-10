@@ -46,6 +46,24 @@
       },
       "revId": "d6bfb1aa5a1625c9cee23bfc3e0f4e927185e470",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee5f60af_57f683f3",
+        "filename": "packages/RemoteVoice/src/org/lineageos/remotevoice/RemoteVoiceManager.kt",
+        "patchSetId": 3
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 38503
+      },
+      "writtenOn": "2026-11-10T23:19:18Z",
+      "side": 1,
+      "message": "Right, thanks: non-exported receivers only get root/system UID broadcasts, and these come from the bluetooth UID. They\u0027re protected broadcasts, so exporting is fine. Tested on jaws with a Bluetooth off/on: PS3 never noticed the reconnect, PS4 restored the voice channel ~2 s after the remote reconnected.",
+      "parentUuid": "c0103a42_6cd4e812",
+      "revId": "d6bfb1aa5a1625c9cee23bfc3e0f4e927185e470",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
