@@ -86,6 +86,10 @@ std::unique_ptr<effect_stream> readEffectStreamFromFile(uint32_t uniqueEffectId)
 
 std::unique_ptr<effect_stream> duplicateEffect(const effect_stream* effectStream,
                                                uint32_t newEffectId) {
+    if (!effectStream) {
+        return nullptr;
+    }
+
     const std::uint32_t newEffectLength = effectStream->length * 4;
     std::vector<int8_t> fifoData(newEffectLength);
 
