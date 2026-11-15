@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <string name="app_name">Gumbi daljinca</string>
+    <string name="settings_title">Nastavi gumbe daljinca</string>
+    <string name="permission_needed">Dovoljenje za Bluetooth je potrebno za programiranje daljinca</string>
+    <string name="welcome_description">Daljinec lahko vklopi ali izklopi vaš televizor, zvočno letev ali sprejemnik in spreminja njihovo glasnost z uporabo infrardečega vmesnika.</string>
+    <string name="status_configured">Nastavi za %1$s</string>
+    <string name="status_not_configured">Ničesar še ni nastavljenega</string>
+    <string name="action_set_up">Nastavi</string>
+    <string name="action_clear">Počisti nastavitev</string>
+    <string name="notice_title">Upravljajte vaš televizor s tem daljincem</string>
+    <string name="notice_description">Kode bodo preizkušene ena za drugo. Glasba se predvaja med vsakim poskusom, da lahko slišite ali daljinec spremeni glasnost. Prepričajte se, da zvok ni utišan.</string>
+    <string name="device_type_title">Kaj naj daljinec upravlja?</string>
+    <string name="device_type_tv">Samo moj televizor</string>
+    <string name="device_type_soundbar">Zvočno letev</string>
+    <string name="device_type_receiver">Sprejemnik</string>
+    <string name="brand_title_tv">Katere znamke je vaš televizor?</string>
+    <string name="brand_title_soundbar">Katere znamke je vaša zvočna letev?</string>
+    <string name="brand_title_receiver">Katere znamke je vaš sprejemnik?</string>
+    <string name="pairing_programming">Pošiljanje kod sprejemniku …</string>
+    <string name="pairing_title">Preizkusi gumbe za glasnost</string>
+    <string name="pairing_description">Usmerite daljinec proti vaši napravi in pritisnite glasnost gor ali glasnost dol. Se glasnost glasbe spremeni?</string>
+    <string name="pairing_attempt">Nabor kod %1$d od %2$d</string>
+    <string name="pairing_error_title">Daljinca ni bilo mogoče programirati</string>
+    <string name="pairing_error_description">Prepričajte se, da je daljinec seznanjen in v bližini. (%1$s)</string>
+    <string name="code_set_item">Nabor kod %1$d</string>
+    <string name="action_yes">Da</string>
+    <string name="action_no">Ne, poskusi naslednjo</string>
+    <string name="action_choose_code_set">Izberite nabor kod</string>
+    <string name="action_try_again">Poskusi znova</string>
+    <string name="action_skip">Preskoči ta nabor kod</string>
+    <string name="action_other_brand">Izberi drugo znamko</string>
+    <string name="done_title">Daljinec zdaj upravlja vaš %1$s</string>
+    <string name="done_description">Gumbi za vklop in glasnost pošiljajo infrardeče ukaze.</string>
+    <string name="failed_title">Noben nabor kod %1$s ni deloval</string>
+    <string name="failed_description">Lahko jih poizkusite ponovno ali izberete drugo znamko: nekatere naprave se prodajajo pod več imeni.</string>
+    <string name="clear_title">Počisti infrardečo nastavitev daljinca?</string>
+    <string name="clear_description">Odstrani infrardeče kode iz daljinca, vključno s kodami, nastavljene iz drugih aplikacij. Ta daljinec bo prenehal upravljati vašo napravo, dokler je ne nastavite ponovno.</string>
+    <string name="clear_done">Nastavitev daljinca počiščena</string>
+    <string name="clear_failed">Daljinca ni bilo mogoče doseči</string>
+</resources>

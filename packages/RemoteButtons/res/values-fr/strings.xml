@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <string name="brand_title_tv">Quelle est la marque de votre TV ?</string>
+    <string name="brand_title_soundbar">Quelle est la marque de votre barre de son ?</string>
+    <string name="pairing_title">Essayez les boutons de volume</string>
+    <string name="action_yes">Oui</string>
+    <string name="action_other_brand">Choisir une autre marque</string>
+    <string name="done_title">La télécommande contrôle à présent votre %1$s</string>
+</resources>

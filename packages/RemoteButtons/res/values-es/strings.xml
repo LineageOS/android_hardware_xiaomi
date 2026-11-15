@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <string name="app_name">Botones del mando a distancia</string>
+    <string name="settings_title">Configurar botones del mando a distancia</string>
+    <string name="permission_needed">Se necesita el permiso de Bluetooth para programar el mando a distancia.</string>
+    <string name="status_configured">Configurar para %1$s.</string>
+    <string name="status_not_configured">Todavía no hay nada configurado.</string>
+    <string name="action_set_up">Configurar</string>
+    <string name="notice_title">Controla tu televisor con este mando a distancia</string>
+    <string name="device_type_title">¿Qué debería controlar el mando a distancia?</string>
+    <string name="device_type_soundbar">Una barra de sonido</string>
+    <string name="device_type_receiver">Un receptor</string>
+    <string name="brand_title_tv">¿De qué marca es tu televisor?</string>
+    <string name="brand_title_soundbar">¿De qué marca es tu barra de sonido?</string>
+    <string name="brand_title_receiver">¿De qué marca es tu receptor?</string>
+    <string name="pairing_programming">Enviando códigos al mando…</string>
+    <string name="pairing_attempt">Conjunto de códigos %1$d de %2$d</string>
+    <string name="pairing_error_title">No se pudo programar el mando a distancia</string>
+    <string name="pairing_error_description">Asegúrate de que el mando a distancia está emparejado y cerca. (%1$s)</string>
+    <string name="code_set_item">Conjunto de códigos %1$d</string>
+    <string name="action_yes">Sí</string>
+    <string name="action_no">No, prueba el siguiente</string>
+    <string name="action_choose_code_set">Elige un conjunto de códigos</string>
+    <string name="action_skip">Omitir este conjunto de códigos</string>
+    <string name="done_title">El mando a distancia ahora controla tu %1$s</string>
+    <string name="done_description">Los botones de encendido y volumen envían comandos infrarrojos.</string>
+    <string name="failed_description">Puedes volver a probarlos o elegir otra marca: algunos dispositivos se venden bajo distintos nombres.</string>
+    <string name="clear_title">¿Eliminar la configuración de infrarrojos del mando a distancia?</string>
+    <string name="clear_description">Elimina los códigos infrarrojos del mando a distancia, incluidos los configurados por otras aplicaciones. El mando a distancia dejará de controlar tu dispositivo hasta que se configure de nuevo.</string>
+    <string name="clear_done">Se eliminó la configuración del mando a distancia</string>
+    <string name="clear_failed">No se pudo conectar con el mando a distancia</string>
+</resources>

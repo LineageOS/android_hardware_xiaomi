@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <string name="app_name">Pult düymələri</string>
+    <string name="settings_title">Pult düymələrini qur</string>
+    <string name="permission_needed">Pultu proqramlaşdırmaq üçün Bluetooth izni lazımdır.</string>
+    <string name="welcome_description">Pult, infraqırmızı şüa istifadə edərək TV-inizi, səs panelinizi və ya qəbuledicinizi yandıra və ya söndürə və səs həcmini dəyişdirə bilər.</string>
+    <string name="status_configured">%1$s üçün qur.</string>
+    <string name="status_not_configured">Hələ heç nə qurulmayıb.</string>
+    <string name="action_set_up">Qur</string>
+    <string name="action_clear">Təmiz quraşdırma</string>
+    <string name="notice_title">TV-nizi bu pultla idarə edin</string>
+    <string name="notice_description">Kodlar tək-tək sınanacaq. Hər cəhd zamanı musiqi oxudulur ki, pultun səs həcmini dəyişdirib-dəyişdirmədiyini eşidə biləsiniz. Səsin tam kəsilmədiyinə əmin olun.</string>
+    <string name="device_type_title">Pult nə edir?</string>
+    <string name="device_type_tv">Sadəcə TV-im</string>
+    <string name="device_type_soundbar">Səs paneli</string>
+    <string name="device_type_receiver">Qəbuledici</string>
+    <string name="brand_title_tv">TV-inizin markası nədir?</string>
+    <string name="brand_title_soundbar">Səs panelinizin markası nədir?</string>
+    <string name="brand_title_receiver">Qəbuledicinizin markası nədir?</string>
+    <string name="pairing_programming">Kodlar pulta göndərilir…</string>
+    <string name="pairing_title">Həcm düymələrini sına</string>
+    <string name="pairing_description">Pultu cihazınıza tutun və \"Vol+\" və ya \"Vol-\" düymələrinə basın. Musiqinin səs həcmi dəyişir?</string>
+    <string name="pairing_attempt">Kod dəsti %1$d/%2$d</string>
+    <string name="pairing_error_title">Pult proqramlaşdırıla bilmədi</string>
+    <string name="pairing_error_description">Pultun cütləşdirildiyinə və yaxında olduğuna əmin olun. (%1$s)</string>
+    <string name="code_set_item">Kod dəsti %1$d</string>
+    <string name="action_yes">Bəli</string>
+    <string name="action_no">Xeyr, növbətini sına</string>
+    <string name="action_choose_code_set">Kod ayarlamanı seç</string>
+    <string name="action_try_again">Yenidən sına</string>
+    <string name="action_skip">Bu kod dəstini ötür</string>
+    <string name="action_other_brand">Başqa bir marka seç</string>
+    <string name="done_title">Pultunuz artıq %1$s cihazınızı idarə edə bilir</string>
+    <string name="done_description">Güc və həcm düymələri infraqırmızı əmrlər göndərir.</string>
+    <string name="failed_title">Heç bir %1$s kod dəsti işləmədi</string>
+    <string name="failed_description">Onları yenidən sınaya və ya başqa bir marka seçə bilərsiniz: bəzi cihazlar bir neçə ad altında satılır</string>
+    <string name="clear_title">Pultun infraqırmızı quraşdırması təmizlənsin?</string>
+    <string name="clear_description">Pultdan infraqırmızı kodları, o cümlədən digər tətbiqlər tərəfindən qurulmuş kodları silir. Pult yenidən qurulana qədər cihazınızı idarə etməyi dayandıracaq.</string>
+    <string name="clear_done">Pult quraşdırması təmizləndi</string>
+    <string name="clear_failed">Pult əlçatan deyil</string>
+</resources>

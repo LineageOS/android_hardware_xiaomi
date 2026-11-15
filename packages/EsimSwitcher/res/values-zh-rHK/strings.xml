@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2023-2025 Paranoid Android
+     SPDX-FileCopyrightText: 2026 The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <string name="app_name">eSIM 切換工具</string>
+    <string name="esim_title">eSIM</string>
+    <string name="esim_enable_name">啟用 eSIM</string>
+    <string name="esim_warning_title">正在使用 eSIM</string>
+    <string name="esim_footer_note">啟用 eSIM 將會停用第二個實體 SIM 卡槽。</string>
+</resources>

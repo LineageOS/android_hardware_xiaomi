@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <string name="app_name">Botões do comando</string>
+    <string name="settings_title">Configurar botões do comando</string>
+    <string name="permission_needed">A permissão Bluetooth é necessária para programar o comando.</string>
+    <string name="welcome_description">O comando pode ligar a sua TV, barra de som ou recetor AV ao ligar/desligar e mudar o volume por infravermelhos.</string>
+    <string name="status_configured">Configurar para %1$s.</string>
+    <string name="status_not_configured">Ainda sem nada configurado.</string>
+    <string name="action_set_up">Configurar</string>
+    <string name="action_clear">Limpar configuração</string>
+    <string name="notice_title">Controle a sua TV com este comando</string>
+    <string name="notice_description">Os códigos serão testados um a um. A música reproduz durante cada tentativa para que consiga ouvir se o comando altera o volume. Certifique-se de que o som não está silenciado.</string>
+    <string name="device_type_title">O que deve o comando controlar?</string>
+    <string name="device_type_tv">Apenas a minha TV</string>
+    <string name="device_type_soundbar">Uma barra de som</string>
+    <string name="device_type_receiver">Um recetor AV</string>
+    <string name="brand_title_tv">De que marca é a sua TV?</string>
+    <string name="brand_title_soundbar">De que marca é a sua barra de som?</string>
+    <string name="brand_title_receiver">De que marca é o seu recetor AV?</string>
+    <string name="pairing_programming">A enviar códigos para o comando…</string>
+    <string name="pairing_title">Experimente os botões de volume</string>
+    <string name="pairing_description">Aponte o comando para o seu dispositivo e pressione o botão Vol+ ou Vol-. O volume da música altera?</string>
+    <string name="pairing_attempt">Código definido %1$d de %2$d</string>
+    <string name="pairing_error_title">Não foi possível programar o comando</string>
+    <string name="pairing_error_description">Certifique-se de que o comando está emparelhado e nas proximidades. (%1$s)</string>
+    <string name="code_set_item">Código definido %1$d</string>
+    <string name="action_yes">Sim</string>
+    <string name="action_no">Não. Tentar o próximo</string>
+    <string name="action_choose_code_set">Escolha um conjunto de códigos</string>
+    <string name="action_try_again">Tentar novamente</string>
+    <string name="action_skip">Ignorar este conjunto de códigos</string>
+    <string name="action_other_brand">Escolha outra marca</string>
+    <string name="done_title">O comando agora controla o seu dispositivo %1$s</string>
+    <string name="done_description">Os botões de ligar/desligar e de volume enviam comandos por infravermelhos.</string>
+    <string name="failed_title">Nenhum código definido para %1$s funcionou</string>
+    <string name="failed_description">Pode tentar novamente, ou escolher outra marca: alguns dispositivos são vendidos sob vários nomes.</string>
+    <string name="clear_title">Limpar as configurações IR do comando?</string>
+    <string name="clear_description">Remove os códigos infravermelhos do comando, incluindo códigos configurados por outras aplicações. O comando deixará de controlar o seu dispositivo até que seja configurado novamente.</string>
+    <string name="clear_done">Configuração do comando limpa</string>
+    <string name="clear_failed">Não é possível alcançar o comando</string>
+</resources>

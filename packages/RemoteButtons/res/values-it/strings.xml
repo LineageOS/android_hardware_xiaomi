@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <string name="app_name">Pulsanti del telecomando</string>
+    <string name="settings_title">Configura i pulsanti del telecomando</string>
+    <string name="permission_needed">L\'autorizzazione Bluetooth è necessaria per configurare il telecomando.</string>
+    <string name="welcome_description">Il telecomando può accendere e spegnere la TV, la soundbar o il ricevitore e regolarne il volume utilizzando gli infrarossi.</string>
+    <string name="status_configured">Configurato per %1$s.</string>
+    <string name="status_not_configured">Non ancora configurato.</string>
+    <string name="action_set_up">Configura</string>
+    <string name="action_clear">Elimina configurazione</string>
+    <string name="notice_title">Controlla la tua TV con questo telecomando</string>
+    <string name="notice_description">I codici verranno provati uno per uno. Durante ogni tentativo viene riprodotta della musica in modo da poter sentire se il telecomando regola il volume. Assicurati che l\'audio non sia mutato.</string>
+    <string name="device_type_title">Che cosa dovrebbe essere controllato dal telecomando?</string>
+    <string name="device_type_tv">Solo la mia TV</string>
+    <string name="device_type_soundbar">Una soundbar</string>
+    <string name="device_type_receiver"/>
+    <string name="brand_title_tv">Di quale marca è la tua TV?</string>
+    <string name="brand_title_soundbar">Di quale marca è la tua soundbar?</string>
+    <string name="brand_title_receiver">Di quale marca è il tuo ricevitore?</string>
+    <string name="pairing_programming">Invio dei codici al telecomando…</string>
+    <string name="pairing_title">Prova i pulsanti del volume</string>
+    <string name="pairing_description">Puntare il telecomando verso il dispositivo e premere i pulsanti del volume. Il volume della musica cambia?</string>
+    <string name="pairing_attempt">Gruppo di codici %1$d di %2$d</string>
+    <string name="pairing_error_title">Impossibile configurare il telecomando</string>
+    <string name="pairing_error_description">Assicurati che il telecomando sia accoppiato e nelle vicinanze. (%1$s)</string>
+    <string name="code_set_item">Gruppo di codici %1$d</string>
+    <string name="action_yes">Sì</string>
+    <string name="action_no">No, prova il prossimo</string>
+    <string name="action_choose_code_set">Scegli un gruppo di codici</string>
+    <string name="action_try_again">Riprova</string>
+    <string name="action_skip">Salta questo gruppo di codici</string>
+    <string name="action_other_brand">Scegli un\'altra marca</string>
+    <string name="done_title">Il telecomando ora controlla il tuo %1$s</string>
+    <string name="done_description">I pulsanti di accensione e volume inviano comandi infrarossi.</string>
+    <string name="failed_title">Nessun gruppo di codici %1$s ha funzionato</string>
+    <string name="failed_description">Puoi riprovarli, o scegliere un\'altra marca: alcuni dispositivi sono venduti sotto più nomi.</string>
+    <string name="clear_title">Cancellare la configurazione degli infrarossi del telecomando?</string>
+    <string name="clear_description">Rimuove i codici a infrarossi dal telecomando, inclusi i codici configurati da altre applicazioni. Il telecomando non controllerà più il dispositivo fino a quando non verrà configurato di nuovo.</string>
+    <string name="clear_done">Configurazione del telecomando eliminata</string>
+    <string name="clear_failed">Impossibile raggiungere il telecomando</string>
+</resources>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <string name="app_name">Cnaipí an chianrialtáin</string>
+    <string name="settings_title">Cumraigh cnaipí an chianrialtáin</string>
+    <string name="permission_needed">Tá cead Bluetooth ag teastáil chun an cianrialtán a ríomhchlárú.</string>
+    <string name="welcome_description">Is féidir leis an gcianrialtán do theilifís, do bharra fuaime nó do ghlacadóir a chur ar siúl agus a mhúchadh, chomh maith leis an leibhéal fuaime a athrú, trí úsáid a bhaint as infridhearg.</string>
+    <string name="status_configured">Socraigh le haghaidh %1$s.</string>
+    <string name="status_not_configured">Níl aon rud curtha ar bun go fóill.</string>
+    <string name="action_set_up">Socrú</string>
+    <string name="action_clear">Socrú soiléir</string>
+    <string name="notice_title">Rialaigh do theilifís leis an gcianrialtán seo</string>
+    <string name="notice_description">Déanfar tástáil ar na cóid ceann ar cheann. Seinntear ceol le linn gach iarrachta, ionas gur féidir leat a chloisteáil an athraíonn an cianrialtán an leibhéal fuaime. Cinntigh nach bhfuil an fhuaim balbhaithe.</string>
+    <string name="device_type_title">Cad ba cheart don chianrialtán a rialú?</string>
+    <string name="device_type_tv">Mo theilifís amháin</string>
+    <string name="device_type_soundbar">Barra fuaime</string>
+    <string name="device_type_receiver">Glacadóir</string>
+    <string name="brand_title_tv">Cén branda é do theilifís?</string>
+    <string name="brand_title_soundbar">Cén branda é do bharra fuaime?</string>
+    <string name="brand_title_receiver">Cén branda é do ghlacadóir?</string>
+    <string name="pairing_programming">Cóid á seoladh chuig an ngléas cianda…</string>
+    <string name="pairing_title">Bain triail as na cnaipí toirte</string>
+    <string name="pairing_description">Dírigh an cianrialtán ar do ghléas agus brúigh Vol+ nó Vol-. An n-athraíonn airde na ceoil?</string>
+    <string name="pairing_attempt">Tacar cód %1$d de %2$d</string>
+    <string name="pairing_error_title">Níorbh fhéidir an cianrialtán a chlárú</string>
+    <string name="pairing_error_description">Cinntigh go bhfuil an cianrialtán péireáilte agus in aice láimhe. (%1$s)</string>
+    <string name="code_set_item">Tacar cód %1$d</string>
+    <string name="action_yes">Sea</string>
+    <string name="action_no">Ní hea, bain triail as an gcéad cheann eile</string>
+    <string name="action_choose_code_set">Roghnaigh tacar cód</string>
+    <string name="action_try_again">Déan iarracht arís</string>
+    <string name="action_skip">Scipeáil an tacar cód seo</string>
+    <string name="action_other_brand">Roghnaigh branda eile</string>
+    <string name="done_title">Rialaíonn an cianrialtán do %1$s anois</string>
+    <string name="done_description">Seolann na cnaipí cumhachta agus toirte orduithe infridhearga.</string>
+    <string name="failed_title">Níor oibrigh aon tacar cód %1$s</string>
+    <string name="failed_description">Is féidir leat triail a bhaint astu arís, nó branda eile a roghnú: díoltar roinnt feistí faoi ainmneacha éagsúla.</string>
+    <string name="clear_title">An scriosfar cumraíocht infridhearg an chianrialtáin?</string>
+    <string name="clear_description">Baineann sé na cóid infridhearga den chianrialtán, lena n-áirítear cóid a bhunaigh aipeanna eile. Ní bheidh an cianrialtán in ann do ghléas a rialú a thuilleadh go dtí go ndéanfar é a chumrú arís.</string>
+    <string name="clear_done">Socruithe cianda glanta</string>
+    <string name="clear_failed">Níorbh fhéidir an cianrialtán a bhaint amach</string>
+</resources>

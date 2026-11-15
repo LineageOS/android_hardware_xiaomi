@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <string name="app_name">リモートボタン</string>
+    <string name="settings_title">リモートボタンの設定</string>
+    <string name="permission_needed">リモコンをプログラムするには Bluetooth の権限が必要です。</string>
+    <string name="welcome_description">リモコンは赤外線を使用して、テレビ、サウンドバー、または受信機のオンオフや音量変更ができます。</string>
+    <string name="status_configured">%1$s に設定しました。</string>
+    <string name="status_not_configured">まだ設定されていません。</string>
+    <string name="action_set_up">セットアップ</string>
+    <string name="action_clear">セットアップをクリア</string>
+    <string name="notice_title">このリモコンでテレビを制御します</string>
+    <string name="notice_description">コードは一つずつ試行されます。音楽が試行ごとに再生されるので、音量を変更できたか聞いて確かめてください。 音量がミュートになっていないことを確認してください。</string>
+    <string name="device_type_title">リモコンで何を操作しますか？</string>
+    <string name="device_type_tv">テレビのみ</string>
+    <string name="device_type_soundbar">サウンドバー</string>
+    <string name="device_type_receiver">受信機</string>
+    <string name="brand_title_tv">どのブランドのテレビですか？</string>
+    <string name="brand_title_soundbar">どのブランドのサウンドバーですか？</string>
+    <string name="brand_title_receiver">どのブランドの受信機ですか？</string>
+    <string name="pairing_programming">コードを送信中…</string>
+    <string name="pairing_title">音量ボタンを試してください</string>
+    <string name="pairing_description">デバイスにリモコンを向けて、音量+または-を押してください。音楽の音量は変わりますか？</string>
+    <string name="pairing_attempt">コードセット %1$d / %2$d</string>
+    <string name="pairing_error_title">リモコンをプログラムできませんでした</string>
+    <string name="pairing_error_description">リモコンがペアリングされているか、近くにあるか確認してください。(%1$s)</string>
+    <string name="code_set_item">コードセット %1$d</string>
+    <string name="action_yes">はい</string>
+    <string name="action_no">いいえ（次を試す）</string>
+    <string name="action_choose_code_set">コードセットを選択</string>
+    <string name="action_try_again">もう一度試す</string>
+    <string name="action_skip">このコードセットをスキップ</string>
+    <string name="action_other_brand">他のブランドを選択</string>
+    <string name="done_title">%1$s を制御できるようになりました</string>
+    <string name="done_description">電源ボタンと音量ボタンで赤外線コマンドを送信します。</string>
+    <string name="failed_title">%1$s コードセットが動作しませんでした</string>
+    <string name="failed_description">もう一度試すか、別のブランドを選んでください。一部のデバイスは別ブランドの名前で販売されていることがあります。</string>
+    <string name="clear_title">リモコンの IR 設定をクリアしますか？</string>
+    <string name="clear_description">リモコンから赤外線コードを削除します。他のアプリで設定したコードも削除されます。もう一度設定するまで、リモコンでデバイスを操作できなくなります。</string>
+    <string name="clear_done">リモコン設定をクリアしました</string>
+    <string name="clear_failed">リモコンを操作できませんでした</string>
+</resources>

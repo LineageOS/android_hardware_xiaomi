@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <string name="app_name">Zdalne przyciski</string>
+    <string name="settings_title">Skonfiguruj przyciski zdalne</string>
+    <string name="permission_needed">Aby zaprogramować pilota, wymagane jest uprawnienie Bluetooth.</string>
+    <string name="welcome_description">Pilot może włączać i wyłączać telewizor, pasek dźwięku lub odbiornik i zmieniać głośność za pomocą podczerwieni.</string>
+    <string name="status_configured">Konfiguracja dla %1$s.</string>
+    <string name="status_not_configured">Nic nie zostało jeszcze skonfigurowane.</string>
+    <string name="action_set_up">Skonfiguruj</string>
+    <string name="action_clear">Wyczyść ustawienia</string>
+    <string name="notice_title">Kontroluj swój telewizor za pomocą tego pilota</string>
+    <string name="notice_description">Kody będą sprawdzane jeden po drugim. Podczas każdej próby odtwarzana jest muzyka, dzięki czemu można usłyszeć, czy pilot zmienia głośność. Upewnij się, że dźwięk nie jest wyciszony.</string>
+    <string name="device_type_title">Co pilot powinien kontrolować?</string>
+    <string name="device_type_tv">Tylko mój telewizor</string>
+    <string name="device_type_soundbar">Listwa dźwiękowa</string>
+    <string name="device_type_receiver">Odbiornik</string>
+    <string name="brand_title_tv">Jakiej marki jest twój telewizor?</string>
+    <string name="brand_title_soundbar">Jakiej marki jest twoja listwa dźwiękowa?</string>
+    <string name="brand_title_receiver">Jakiej marki jest twój odbiornik?</string>
+    <string name="pairing_programming">Wysyłanie kodów do pilota…</string>
+    <string name="pairing_title">Wypróbuj przyciski głośności</string>
+    <string name="pairing_description">Skieruj pilota w stronę urządzenia i naciśnij przycisk Vol+ lub Vol-. Czy zmienia się głośność muzyki?</string>
+    <string name="pairing_attempt">Zestaw kodów %1$d z %2$d</string>
+    <string name="pairing_error_title">Nie można zaprogramować pilota</string>
+    <string name="pairing_error_description">Upewnij się, że pilot jest sparowany i w pobliżu. (%1$s)</string>
+    <string name="code_set_item">Zestaw kodów %1$d</string>
+    <string name="action_yes">Tak</string>
+    <string name="action_no">Nie, wypróbuj następny</string>
+    <string name="action_choose_code_set">Wybierz zestaw kodów</string>
+    <string name="action_try_again">Spróbuj ponownie</string>
+    <string name="action_skip">Pomiń ten zestaw kodów</string>
+    <string name="action_other_brand">Wybierz inną markę</string>
+    <string name="done_title">Pilot steruje teraz urządzeniami %1$s</string>
+    <string name="done_description">Przyciski zasilania i głośności wysyłają sygnały na podczerwień.</string>
+    <string name="failed_title">Żaden zestaw kodów %1$s nie zadziałał</string>
+    <string name="failed_description">Możesz spróbować ponownie albo wybrać inną markę: niektóre urządzenia są sprzedawane pod kilkoma nazwami.</string>
+    <string name="clear_title">Czy wyczyścić ustawienia podczerwieni pilota?</string>
+    <string name="clear_description">Usuwa kody podczerwieni z pilota, w tym kody skonfigurowane przez inne aplikacje. Pilot przestanie sterować urządzeniem do czasu ponownej konfiguracji.</string>
+    <string name="clear_done">Zdalne ustawienia wyczyszczone</string>
+    <string name="clear_failed">Nie udało się połączyć z pilotem</string>
+</resources>

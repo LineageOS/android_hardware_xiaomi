@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <string name="app_name">Távirányító gombok</string>
+    <string name="settings_title">Gombok beállítása</string>
+    <string name="permission_needed">A távirányító programozásához bluetooth-jogosultság szükséges.</string>
+    <string name="welcome_description">Az infraporton keresztül képes lesz ki- bekapcsolni, hangerőt változtatni TV-jén, erősítőjén vagy hangprojektorán.</string>
+    <string name="status_configured">%1$s beállítása.</string>
+    <string name="status_not_configured">Még nincs semmi beállítva.</string>
+    <string name="action_set_up">Beállítás</string>
+    <string name="action_clear">Beállítás törlése</string>
+    <string name="notice_title">Irányítsa TV-jét ezzel a távirányítóval</string>
+    <string name="notice_description">Egyenként próbáljuk ki a kódokat. A próbálkozások alatt zene szól, így hallhatja, hogy a távirányító módosítja-e a hangerőt. Ügyeljen arra, hogy a hang ne legyen némítva.</string>
+    <string name="device_type_title">Mit kellene a távirányítónak vezérelnie?</string>
+    <string name="device_type_tv">Csak a TV-met</string>
+    <string name="device_type_soundbar">Egy hangprojektort</string>
+    <string name="device_type_receiver">Egy erősítőt</string>
+    <string name="brand_title_tv">Ki gyártotta a TV-t ?</string>
+    <string name="brand_title_soundbar">Ki gyártotta a hangprojektort ?</string>
+    <string name="brand_title_receiver">Ki gyártotta az erősítőt ?</string>
+    <string name="pairing_programming">Kód küldése a távirányítóra…</string>
+    <string name="pairing_title">Próbálja ki a hengerőgombokat</string>
+    <string name="pairing_description">Irányítsa a távirányítót az eszközére és nyomja meg a hangerő fel vagy le gombot. Megváltozott a hengerő?</string>
+    <string name="pairing_attempt">%2$d / %1$d kódkészlet</string>
+    <string name="pairing_error_title">Nem sikerült beprogramozni a távirányítót</string>
+    <string name="pairing_error_description">Legyen biztos benne, hogy a (%1$s) távirányító párosítva van, és a közelben található.</string>
+    <string name="code_set_item">%1$d kód</string>
+    <string name="action_yes">Igen</string>
+    <string name="action_no">Nem. Próbálja ki a következőt</string>
+    <string name="action_choose_code_set">Válasszon kódkészletet</string>
+    <string name="action_try_again">Próbálja meg újra</string>
+    <string name="action_skip">Kódkészlet kihagyása</string>
+    <string name="action_other_brand">Válasszon másik gyártót</string>
+    <string name="done_title">A távirányító most már alkalmas a következő irányítására: %1$s</string>
+    <string name="done_description">A bekapcsoló- és a hangerőgombok infra-parancsokat küldenek.</string>
+    <string name="failed_title">%1$s ez a kódkészlet nem működik</string>
+    <string name="failed_description">Megpróbálhatja újra őket, vagy választhat egy másik gyártót: egyes készülékeket többféle néven is forgalmaznak.</string>
+    <string name="clear_title">Törli a távirányító infravörös beállításait?</string>
+    <string name="clear_description">Eltávolítja az infravörös kódokat a távirányítóból – beleértve a más alkalmazások által beállított kódokat is. A távirányító ezt követően nem vezérli tovább a készüléket, amíg újra be nem állítja.</string>
+    <string name="clear_done">A távirányító beállításait töröltük</string>
+    <string name="clear_failed">A távirányító nem érhető el</string>
+</resources>

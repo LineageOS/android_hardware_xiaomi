@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <string name="app_name">Пульт управления</string>
+    <string name="settings_title">Настройка кнопок пульта</string>
+    <string name="permission_needed">Необходимо разрешение Bluetooth для настройки пульта</string>
+    <string name="welcome_description">С помощью пульта дистанционного управления можно включать и выключать телевизор, саундбар или ресивер, а также регулировать громкость с помощью инфракрасного сигнала.</string>
+    <string name="status_configured">Настройка для %1$s.</string>
+    <string name="status_not_configured">Пока ничего не настроено.</string>
+    <string name="action_set_up">Настроить</string>
+    <string name="action_clear">Очистить настройки</string>
+    <string name="notice_title">Управляйте вашим ТВ с помощью этого пульта</string>
+    <string name="notice_description">Коды будут проверяться поочередно. Во время каждой попытки будет воспроизводиться музыка, чтобы вы могли услышать, изменяет ли пульт громкость. Убедитесь, что звук не отключен.</string>
+    <string name="device_type_title">Чем должен управлять пульт?</string>
+    <string name="device_type_tv">Только ТВ</string>
+    <string name="device_type_soundbar">Саундбаром</string>
+    <string name="device_type_receiver">Приемником</string>
+    <string name="brand_title_tv">Бренд вашего телевизора?</string>
+    <string name="brand_title_soundbar">Бренд вашего саундбара?</string>
+    <string name="brand_title_receiver">Бренд вашего приемника?</string>
+    <string name="pairing_programming">Отправка кодов на пульт…</string>
+    <string name="pairing_title">Попробовать кнопки громкости</string>
+    <string name="pairing_description">Наведите пульт на устройство и нажмите кнопку Vol+ или Vol-. Изменилась ли громкость музыки?</string>
+    <string name="pairing_attempt">Набор кодов %1$d из %2$d</string>
+    <string name="pairing_error_title">Не удалось настроить пульт</string>
+    <string name="pairing_error_description">Убедитесь, что пульт сопряжен и находится поблизости. (%1$s)</string>
+    <string name="code_set_item">Код %1$d установлен</string>
+    <string name="action_yes">Да</string>
+    <string name="action_no">Нет, попробовать следующий</string>
+    <string name="action_choose_code_set">Выберите код для установки</string>
+    <string name="action_try_again">Попробуйте еще раз</string>
+    <string name="action_skip">Пропустить установку этого кода</string>
+    <string name="action_other_brand">Выбрать другого производителя</string>
+    <string name="done_title">Теперь пульт управляет вашим %1$s</string>
+    <string name="done_description">Кнопки питания и громкости передают команды по ИК-порту</string>
+    <string name="failed_title">Ни один набор кодов %1$s не сработал</string>
+    <string name="failed_description">Вы можете попробовать настроить их снова или выбрать другого производителя - бывает, что одно и то же устройство продается под разными названиями.</string>
+    <string name="clear_title">Очистить настройки ИК-порта пульта?</string>
+    <string name="clear_description">Удаление инфракрасных кодов с пульта дистанционного управления, включая коды, установленные другими приложениями. Пульт перестанет управлять вашим устройством, пока оно не будет настроено снова.</string>
+    <string name="clear_done">Настройки пульта сброшены</string>
+    <string name="clear_failed">Не удалось подключиться к пульту</string>
+</resources>

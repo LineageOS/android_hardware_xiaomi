@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <string name="app_name">Butoane telecomandă</string>
+    <string name="settings_title">Configurați butoanele telecomenzii</string>
+    <string name="permission_needed">Pentru a programa telecomanda este necesară permisiunea Bluetooth.</string>
+    <string name="welcome_description">Telecomanda poate porni și dezactiva televizorul, bara sonoră sau receptorul și poate schimba volumul acestora folosind infraroșu.</string>
+    <string name="status_configured">Configurare pentru %1$s.</string>
+    <string name="status_not_configured">Nimic configurat încă.</string>
+    <string name="action_set_up">Configurați</string>
+    <string name="action_clear">Șterge configurarea</string>
+    <string name="notice_title">Controlați televizorul cu această telecomandă</string>
+    <string name="notice_description">Codurile vor fi testate unul câte unul. Muzica se redă în timpul fiecărei încercări, astfel încât să puteți auzi dacă telecomanda schimbă volumul. Asigurați-vă că sunetul nu este dezactivat.</string>
+    <string name="device_type_title">Ce ar trebui să controleze telecomanda?</string>
+    <string name="device_type_tv">Doar televizorul meu</string>
+    <string name="device_type_soundbar">O bară sonoră</string>
+    <string name="device_type_receiver">Un receptor</string>
+    <string name="brand_title_tv">Ce marcă este televizorul dvs.?</string>
+    <string name="brand_title_soundbar">Ce marcă este bara dvs. sonoră?</string>
+    <string name="brand_title_receiver">Ce marcă este receptorul dvs.?</string>
+    <string name="pairing_programming">Se trimit coduri la telecomandă…</string>
+    <string name="pairing_title">Încercați butoanele de volum</string>
+    <string name="pairing_description">Îndreptați telecomanda spre dispozitivul dvs. și apăsați Vol+ sau Vol-. Se schimbă volumul muzicii?</string>
+    <string name="pairing_attempt">Set cod %1$d din %2$d</string>
+    <string name="pairing_error_title">Nu s-a putut programa telecomanda</string>
+    <string name="pairing_error_description">Asigurați-vă că telecomanda este asociată și în apropiere. (%1$s)</string>
+    <string name="code_set_item">Set cod %1$d</string>
+    <string name="action_yes">Da</string>
+    <string name="action_no">Nu, încearcă urmatorul</string>
+    <string name="action_choose_code_set">Alegeți un set de coduri</string>
+    <string name="action_try_again">Încercați din nou</string>
+    <string name="action_skip">Săriți peste acest set de coduri</string>
+    <string name="action_other_brand">Alegeți o altă marcă</string>
+    <string name="done_title">Telecomanda controlează acum %1$s</string>
+    <string name="done_description">Butoanele de pornire și volum trimit comenzi în infraroșu.</string>
+    <string name="failed_title">Niciun set de coduri %1$s nu a funcționat</string>
+    <string name="failed_description">Le puteți încerca din nou sau puteți alege o altă marcă: unele dispozitive sunt vândute sub mai multe denumiri.</string>
+    <string name="clear_title">Ștergeți configurarea IR a telecomenzii?</string>
+    <string name="clear_description">Elimină codurile infraroșii din telecomandă, inclusiv codurile stabilite de alte aplicații. Telecomanda nu va mai controla dispozitivul până când aceasta va fi configurată din nou.</string>
+    <string name="clear_done">Configurare telecomandă ștearsă</string>
+    <string name="clear_failed">Nu s-a putut conecta la telecomandă</string>
+</resources>

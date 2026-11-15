@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <string name="app_name">تىزگىنەك توپچە</string>
+    <string name="settings_title">تىزگىنەك توپچە تەڭشىكى</string>
+    <string name="permission_needed">تىزگىنەكنى تەڭشەش ئۈچۈن كۆكچىش ئىجازىتىگە ئېھتىياجلىق.</string>
+    <string name="welcome_description">تىزگىنەك ئىنفىرا قىزىل نۇرلۇق ئۈزچات ئارقىلىق تېلېۋىزور، ياڭراتقۇ بالداق ياكى قوبۇللىغۇچنى ئېچىپ ۋە تاقىيالايدۇ ھەمدە ئاۋاز كۈچلۈكلۈكىنى ئۆزگەرتەلەيدۇ.</string>
+    <string name="status_configured">%1$s نى تەڭشەيدۇ.</string>
+    <string name="status_not_configured">ھېچنېمە تەڭشەلمىگەن.</string>
+    <string name="action_set_up">تەڭشەك</string>
+    <string name="action_clear">تەڭشەكنى تازىلا</string>
+    <string name="notice_title">بۇ تىزگىنەكتە تېلېۋىزورنى تىزگىنلەيدۇ</string>
+    <string name="notice_description">سىستېما پەرقلىق كودنى بىرمۇ-بىر سىنايدۇ. ھەر قېتىم سىنىغاندا نەغمە ياڭرىتىپ، تىزگىنەكنىڭ ئاۋاز كۈچلۈكلۈكىنى ئۆزگەرتكەن ياكى ئۆزگەرتمىگەنلىكىنى تىڭشىشىڭىزغا قولايلىق يارىتىدۇ. ئۈسكۈنە ئاۋازىنىڭ ئۈنسىز ھالەتتە ئەمەسلىكىنى جەزملەڭ.</string>
+    <string name="device_type_title">تىزگىنەك نېمىنى تىزگىنلىشى كېرەك؟</string>
+    <string name="device_type_tv">تېلېۋىزورلا</string>
+    <string name="device_type_soundbar">ياڭراتقۇ بالداق</string>
+    <string name="device_type_receiver">قوبۇللىغۇچ</string>
+    <string name="brand_title_tv">تېلېۋىزورنىڭ ماركىسى نېمە؟</string>
+    <string name="brand_title_soundbar">ياڭراتقۇ بالداقنىڭ ماركىسى نېمە؟</string>
+    <string name="brand_title_receiver">قوبۇللىغۇچنىڭ ماركىسى نېمە؟</string>
+    <string name="pairing_programming">تىزگىنەككە كود يوللاۋاتىدۇ…</string>
+    <string name="pairing_title">ئاۋاز توپچىنى سىنا</string>
+    <string name="pairing_description">تىزگىنەكتە ئۈسكۈنىنى نىشانلاپ Vol+ ياكى Vol-توپچە بېسىلىدۇ. نەغمىنىڭ ئاۋاز كۈچلۈكلۈكى ئۆزگەردىمۇ؟</string>
+    <string name="pairing_attempt">%1$d/%2$d كود تەڭشەلدى</string>
+    <string name="pairing_error_title">تىزگىنەككە پىروگرامما تۈزەلمىدى</string>
+    <string name="pairing_error_description">تىزگىنەكنىڭ جۈپلەنگەنلىكى ۋە يېقىن ئەتراپتا ئىكەنلىكىنى جەزملەڭ.(%1$s)</string>
+    <string name="code_set_item">%1$d كود تەڭشەلدى</string>
+    <string name="action_yes">ھەئە</string>
+    <string name="action_no">ياق، كېيىنكىنى سىنا</string>
+    <string name="action_choose_code_set">كود توپلىمى تاللىنىدۇ</string>
+    <string name="action_try_again">قايتا سىنا</string>
+    <string name="action_skip">بۇ كود توپلىمىدىن ئاتلا</string>
+    <string name="action_other_brand">باشقا ماركىنى تاللاڭ</string>
+    <string name="done_title">ھازىر تىزگىنەك %1$s نى باشقۇرىدۇ</string>
+    <string name="done_description">توك مەنبە ۋە ئاۋاز توپچە ئىنفىرا قىزىل نۇردا بۇيرۇق يوللايدۇ.</string>
+    <string name="failed_title">ھېچقانداق %1$s كود توپلىمى ئىشلىمىدى</string>
+    <string name="failed_description">قايتا سىناڭ ياكى باشقا ماركىنى تاللاڭ: بەزى ئۈسكۈنە بىر قانچە ماركىدا سېتىلىدۇ.</string>
+    <string name="clear_title">تىزگىنەكنىڭ ئىنفىرا قىزىل نۇر تەڭشىكىنى تازىلامدۇ؟</string>
+    <string name="clear_description">تىزگىنەكتىن ئىنفىرا قىزىل نۇر كودىنى چىقىرىۋېتىدۇ، باشقا ئەپ تەڭشىگەن كودنىمۇ ئۆز ئىچىگە ئالىدۇ. تىزگىنەك تاكى قايتا تەڭشەلگۈچە ئۈسكۈنىنى تىزگىنلەشتىن توختايدۇ.</string>
+    <string name="clear_done">تىزگىنەك تەڭشىكى تازىلاندى</string>
+    <string name="clear_failed">تىزگىنەككە ئۇلىشالمىدى</string>
+</resources>

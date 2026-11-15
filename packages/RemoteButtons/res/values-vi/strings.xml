@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <string name="app_name">Các nút điều khiển từ xa</string>
+    <string name="settings_title">Thiết lập các nút trên điều khiển từ xa</string>
+    <string name="permission_needed">Cần có quyền truy cập Bluetooth để lập trình điều khiển từ xa.</string>
+    <string name="welcome_description">Điều khiển từ xa có thể bật/tắt TV, loa thanh hoặc thiết bị thu âm thanh của bạn, cũng như điều chỉnh âm lượng của chúng thông qua tia hồng ngoại.</string>
+    <string name="status_configured">Thiết lập cho %1$s.</string>
+    <string name="status_not_configured">Chưa thiết lập gì cả.</string>
+    <string name="action_set_up">Thiết lập</string>
+    <string name="action_clear">Xóa thiết lập</string>
+    <string name="notice_title">Điều khiển TV của bạn bằng chiếc điều khiển này</string>
+    <string name="notice_description">Các mã sẽ được thử lần lượt. Nhạc sẽ phát trong mỗi lần thử để bạn có thể nghe xem điều khiển từ xa có làm thay đổi âm lượng hay không. Hãy đảm bảo rằng âm thanh không bị tắt.</string>
+    <string name="device_type_title">Điều khiển từ xa nên dùng để làm gì?</string>
+    <string name="device_type_tv">Chỉ cho TV của tôi</string>
+    <string name="device_type_soundbar">Một chiếc loa thanh</string>
+    <string name="device_type_receiver">Một thiết bị thu âm thanh</string>
+    <string name="brand_title_tv">TV của bạn thuộc thương hiệu nào?</string>
+    <string name="brand_title_soundbar">Loa thanh của bạn thuộc thương hiệu nào?</string>
+    <string name="brand_title_receiver">Thiết bị thu âm của bạn thuộc thương hiệu nào?</string>
+    <string name="pairing_programming">Đang gửi mã đến điều khiển từ xa…</string>
+    <string name="pairing_title">Hãy thử các nút âm lượng</string>
+    <string name="pairing_description">Hướng điều khiển từ xa về phía thiết bị của bạn rồi nhấn Vol+ hoặc Vol-. Âm lượng nhạc có thay đổi không?</string>
+    <string name="pairing_attempt">Bộ mã %1$d trong %2$d</string>
+    <string name="pairing_error_title">Không thể lập trình điều khiển từ xa</string>
+    <string name="pairing_error_description">Đảm bảo điều khiển từ xa đã được ghép nối và đặt ở gần. (%1$s)</string>
+    <string name="code_set_item">Bộ mã %1$d</string>
+    <string name="action_yes">Có</string>
+    <string name="action_no">Không, thử cái tiếp theo</string>
+    <string name="action_choose_code_set">Chọn một bộ mã</string>
+    <string name="action_try_again">Thử lại</string>
+    <string name="action_skip">Bỏ qua bộ mã này</string>
+    <string name="action_other_brand">Chọn một thương hiệu khác</string>
+    <string name="done_title">Điều khiển từ xa giờ đây điều khiển %1$s của bạn</string>
+    <string name="done_description">Các nút nguồn và âm lượng gửi lệnh hồng ngoại.</string>
+    <string name="failed_title">Không có bộ mã %1$s nào hoạt động</string>
+    <string name="failed_description">Bạn có thể thử lại chúng, hoặc chọn một thương hiệu khác: Một số thiết bị được bán dưới nhiều tên gọi khác nhau.</string>
+    <string name="clear_title">Xóa thiết lập hồng ngoại (IR) của điều khiển từ xa?</string>
+    <string name="clear_description">Xóa các mã hồng ngoại khỏi điều khiển từ xa, bao gồm cả những mã đã được thiết lập bởi các ứng dụng khác. Điều khiển từ xa sẽ ngừng điều khiển thiết bị của bạn cho đến khi được thiết lập lại.</string>
+    <string name="clear_done">Thiết lập điều khiển từ xa đã được xóa</string>
+    <string name="clear_failed">Không thể kết nối với điều khiển từ xa</string>
+</resources>

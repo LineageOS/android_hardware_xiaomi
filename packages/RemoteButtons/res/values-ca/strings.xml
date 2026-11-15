@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <string name="app_name">Botons del comandament</string>
+    <string name="settings_title">Configuració dels botons del comandament</string>
+    <string name="permission_needed">Cal el permís de Bluetooth per programar el comandament.</string>
+    <string name="welcome_description">El comandament pot encendre i apagar el televisor, barra de so o receptor, i ajustar-ne el volum mitjançant infrarojos.</string>
+    <string name="status_configured">Configuració per a %1$s.</string>
+    <string name="status_not_configured">Encara no hi ha res configurat.</string>
+    <string name="action_set_up">Configura</string>
+    <string name="action_clear">Esborra la configuració</string>
+    <string name="notice_title">Controleu el televisor amb aquest comandament</string>
+    <string name="notice_description">Els codis s\'aniran provant un per un. Mentre es prova cadascun, sonarà música perquè pugueu sentir si el comandament canvia el volum. Assegureu-vos que el so no estigui silenciat.</string>
+    <string name="device_type_title">Què hauria de controlar el comandament?</string>
+    <string name="device_type_tv">Només la televisió</string>
+    <string name="device_type_soundbar">Una barra de so</string>
+    <string name="device_type_receiver">Un receptor</string>
+    <string name="brand_title_tv">De quina marca és el televisor?</string>
+    <string name="brand_title_soundbar">De quina marca és la barra de so?</string>
+    <string name="brand_title_receiver">De quina marca és el receptor?</string>
+    <string name="pairing_programming">S\'estan enviant els codis al comandament…</string>
+    <string name="pairing_title">Proveu els botons de volum</string>
+    <string name="pairing_description">Apunteu amb el comandament cap al dispositiu i premeu Vol+ o Vol-. Canvia el volum de la música?</string>
+    <string name="pairing_attempt">Conjunt de codis %1$d de %2$d</string>
+    <string name="pairing_error_title">No s\'ha pogut programar el comandament</string>
+    <string name="pairing_error_description">Assegureu-vos que el comandament estigui vinculat i a prop. (%1$s)</string>
+    <string name="code_set_item">Conjunt de codis %1$d</string>
+    <string name="action_yes">Sí</string>
+    <string name="action_no">No, prova el següent</string>
+    <string name="action_choose_code_set">Trieu un conjunt de codis</string>
+    <string name="action_try_again">Torna-ho a provar</string>
+    <string name="action_skip">Omet aquest conjunt de codis</string>
+    <string name="action_other_brand">Trieu una altra marca</string>
+    <string name="done_title">El comandament ara controla %1$s</string>
+    <string name="done_description">Els botons d\'encesa i de volum envien ordres per infrarojos.</string>
+    <string name="failed_title">No s\'ha pogut executar cap codi %1$s</string>
+    <string name="failed_description">Podeu tornar a provar-los o triar una altra marca: alguns dispositius es venen amb diversos noms.</string>
+    <string name="clear_title">Voleu esborrar la configuració d\'infrarojos del comandament?</string>
+    <string name="clear_description">Elimina els codis infrarojos del comandament, inclosos els codis configurats per altres aplicacions. El comandament deixarà de controlar el dispositiu fins que es torni a configurar.</string>
+    <string name="clear_done">S\'ha eliminat la configuració del comandament</string>
+    <string name="clear_failed">No s\'ha pogut connectar amb el comandament</string>
+</resources>
