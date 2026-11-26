@@ -34,6 +34,24 @@
       "parentUuid": "5b08280f_98b6f91b",
       "revId": "0c27252ffcbea87e5a0c3059e233d24d8d8557d6",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24f71e38_1f98cd40",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 34519
+      },
+      "writtenOn": "2026-11-26T19:37:57Z",
+      "side": 1,
+      "message": "Also no hard feelings intended, as for me doing an other project, im fine anyday with cherry-picking these, i just asked coz i am one of the other guys who use OPlusPen on a day-to-day basis on the device that i maintain here (iceland) fyi\n\nJust wanted to know if these are gonna be the standard or not, coz then OPlusPen kinda needs a whole rewrite",
+      "parentUuid": "052dbde4_0ba6839d",
+      "revId": "0c27252ffcbea87e5a0c3059e233d24d8d8557d6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
