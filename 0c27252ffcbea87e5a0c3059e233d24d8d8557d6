@@ -16,6 +16,24 @@
       "message": "Hey couldn\u0027t you do something similar to how OPlusPen is done rather than this new stuff?",
       "revId": "0c27252ffcbea87e5a0c3059e233d24d8d8557d6",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "052dbde4_0ba6839d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2026-11-26T19:31:43Z",
+      "side": 1,
+      "message": "No, rather, oplus might later adapt to this stuff\n\n(if you\u0027re asking this because you\u0027re lazy about cherry-picking this on other AOSP projects, I don\u0027t care)",
+      "parentUuid": "5b08280f_98b6f91b",
+      "revId": "0c27252ffcbea87e5a0c3059e233d24d8d8557d6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
